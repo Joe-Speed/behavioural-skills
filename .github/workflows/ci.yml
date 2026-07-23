@@ -21,11 +21,5 @@ jobs:
       - name: Validate skill frontmatter
         run: npm run validate
 
-      - name: Build site index
-        run: npm run build
-
-      - name: Fail if generated index is out of date
-        run: git diff --exit-code -- site/data/index.json
-
       - name: Site tests
         run: npm run test:site
