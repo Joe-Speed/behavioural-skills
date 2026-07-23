@@ -7,13 +7,9 @@ on what counts as one skill. This document is that line.
 
 ## The atomicity rule
 
-> A skill is one thing a behavioural scientist does — narrow enough that you
-> can describe it in a single sentence without using the word "and."
+> A skill is one thing a behavioural scientist does — narrow enough that you can describe it in a single sentence without using the word "and."
 
-If your one-sentence description needs "and" to cover what the skill does,
-you have two skills. Split them. The second one can (and often should)
-declare the first one's output as its input — that's not a workaround, it's
-the point of the whole repository.
+If your one-sentence description needs "and" to cover what the skill does, you have two skills. Split them. The second one can (and often should) declare the first one's output as its input. 
 
 **Good — genuinely atomic:**
 
