@@ -7,7 +7,7 @@ on what counts as one skill. This document is that line.
 
 ## The atomicity rule
 
-> A skill is one thing a behavioral scientist does — narrow enough that you
+> A skill is one thing a behavioural scientist does — narrow enough that you
 > can describe it in a single sentence without using the word "and."
 
 If your one-sentence description needs "and" to cover what the skill does,
@@ -17,20 +17,20 @@ the point of the whole repository.
 
 **Good — genuinely atomic:**
 
-- Decompose a defined behavior into COM-B sub-components.
+- Decompose a defined behaviour into COM-B sub-components.
 - Draft a values-affirmation prompt for a named target population.
 - Adjust a published effect size for publication bias.
 - Turn a vague program goal into one measurable, observable target
-  behavior.
+  behaviour.
 
 **Too broad — this is a workflow, not a skill:**
 
-- Design a behavior change program. *(This is the whole project, made of
+- Design a behaviour change program. *(This is the whole project, made of
   a dozen atomic skills.)*
-- Apply behavioral science to a chatbot. *(Apply which operation? Message
+- Apply behavioural science to a chatbot. *(Apply which operation? Message
   drafting? Barrier diagnosis? Persona segmentation? Pick one.)*
 - Analyze this program and tell me what's wrong with it. *(Diagnosis of
-  what — the behavior definition, the barriers, the message, the
+  what — the behaviour definition, the barriers, the message, the
   measurement? Each is a different skill.)*
 
 A useful test: if you can't finish the sentence "This skill takes
@@ -88,7 +88,7 @@ name the framework, model, or paper, with a real citation. "Common sense"
 or "general best practice" is not an evidence base.
 
 **`weird_context` is not optional self-flagellation — it's information a
-user needs.** Most behavioral science evidence is disproportionately
+user needs.** Most behavioural science evidence is disproportionately
 Western, Educated, Industrialized, Rich, and Democratic. Say plainly
 whether this skill's evidence base and worked examples hold up outside
 that context, and if you're not sure, say that too (`mixed-evidence` or
@@ -139,4 +139,4 @@ stale relative to `skills/`.
 - CI runs `npm run validate` and the site checks automatically. A red CI
   run on schema or taxonomy errors is expected to be fixed before review,
   not argued with — those checks encode the rules above mechanically so
-  reviewers can focus on whether the behavioral science is actually right.
+  reviewers can focus on whether the behavioural science is actually right.

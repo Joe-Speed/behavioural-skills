@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-23T11:20:01.821Z",
+  "generatedAt": "2026-07-23T11:33:56.928Z",
   "taxonomy": {
     "categories": [
       {
-        "id": "behavior-definition",
-        "label": "Behavior Definition",
+        "id": "behaviour-definition",
+        "label": "Behaviour Definition",
         "description": "Turning a program goal or vague intent into a defined, measurable target."
       },
       {
         "id": "diagnosis",
         "label": "Diagnosis",
-        "description": "Explaining why a defined behavior isn't happening (barriers, drivers, root causes)."
+        "description": "Explaining why a defined behaviour isn't happening (barriers, drivers, root causes)."
       },
       {
         "id": "intervention-design",
@@ -20,7 +20,7 @@
       {
         "id": "measurement",
         "label": "Measurement",
-        "description": "Choosing, adapting, or building instruments to measure a behavior or construct."
+        "description": "Choosing, adapting, or building instruments to measure a behaviour or construct."
       },
       {
         "id": "research-methods",
@@ -30,7 +30,7 @@
       {
         "id": "segmentation",
         "label": "Segmentation & Personas",
-        "description": "Grouping people or contexts into behaviorally meaningful segments."
+        "description": "Grouping people or contexts into behaviourally meaningful segments."
       },
       {
         "id": "risk-review",
@@ -47,12 +47,12 @@
       {
         "id": "define",
         "label": "Define",
-        "description": "Establishing what behavior, population, or outcome the work is about."
+        "description": "Establishing what behaviour, population, or outcome the work is about."
       },
       {
         "id": "diagnose",
         "label": "Diagnose",
-        "description": "Understanding why the current behavior pattern exists."
+        "description": "Understanding why the current behaviour pattern exists."
       },
       {
         "id": "design",
@@ -74,19 +74,19 @@
       {
         "id": "program_goal_statement",
         "label": "Program goal statement",
-        "description": "A practitioner's plain-language description of what a program is trying to achieve, plus whatever context they have on the target population and setting. Typically vague and not yet a measurable behavior.",
+        "description": "A practitioner's plain-language description of what a program is trying to achieve, plus whatever context they have on the target population and setting. Typically vague and not yet a measurable behaviour.",
         "user_suppliable": true
       },
       {
-        "id": "target_behavior_brief",
-        "label": "Target behavior brief",
-        "description": "One measurable, observable target behavior specified as who + what + when, plus a prioritized list of runner-up candidate behaviors with the reasoning for why the top choice won.",
+        "id": "target_behaviour_brief",
+        "label": "Target behaviour brief",
+        "description": "One measurable, observable target behaviour specified as who + what + when, plus a prioritized list of runner-up candidate behaviours with the reasoning for why the top choice won.",
         "user_suppliable": false
       },
       {
         "id": "comb_barrier_hypotheses",
         "label": "COM-B barrier hypotheses",
-        "description": "Competing Capability / Opportunity / Motivation barrier hypotheses for one target behavior, each with the diagnostic question(s) that would discriminate it from the others.",
+        "description": "Competing Capability / Opportunity / Motivation barrier hypotheses for one target behaviour, each with the diagnostic question(s) that would discriminate it from the others.",
         "user_suppliable": false
       }
     ]
@@ -96,12 +96,12 @@
       "slug": "comb-barrier-decomposer",
       "name": "comb-barrier-decomposer",
       "title": "COM-B Barrier Decomposer",
-      "description": "Use when one specific, already-defined target behavior exists (a clear who + what + when, not a goal or outcome) and the question on the table is \"why isn't this happening yet?\" Invoke immediately after key-behavior-definer, or any time a defined behavior is handed over without an accompanying barrier diagnosis. Do not invoke on a vague program goal — that has to become one defined behavior first, or the barriers produced here will be diagnosing the wrong thing.",
+      "description": "Use when one specific, already-defined target behaviour exists (a clear who + what + when, not a goal or outcome) and the question on the table is \"why isn't this happening yet?\" Invoke immediately after key-behaviour-definer, or any time a defined behaviour is handed over without an accompanying barrier diagnosis. Do not invoke on a vague program goal — that has to become one defined behaviour first, or the barriers produced here will be diagnosing the wrong thing.",
       "category": "diagnosis",
       "stage": "diagnose",
       "evidence_base": [
         {
-          "framework": "COM-B model of behavior",
+          "framework": "COM-B model of behaviour",
           "citation": "Michie, S., van Stralen, M. M., & West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. Implementation Science, 6(42)."
         },
         {
@@ -111,12 +111,12 @@
       ],
       "weird_context": {
         "status": "mixed-evidence",
-        "note": "COM-B is presented as a universal model of behavior (its three components are meant to be exhaustive by construction, not culturally contingent), but the diagnostic question bank and worked examples in the source literature skew toward UK health-behavior contexts. The Opportunity (social) sub-component in particular tends to need the most local adaptation — what counts as socially sanctioned or normal varies more than the framework's examples suggest."
+        "note": "COM-B is presented as a universal model of behaviour (its three components are meant to be exhaustive by construction, not culturally contingent), but the diagnostic question bank and worked examples in the source literature skew toward UK health-behaviour contexts. The Opportunity (social) sub-component in particular tends to need the most local adaptation — what counts as socially sanctioned or normal varies more than the framework's examples suggest."
       },
       "inputs": [
         {
-          "type": "target_behavior_brief",
-          "description": "The single defined target behavior (who + what + when) to diagnose. Normally the output of key-behavior-definer, but any equivalently specific behavior statement works.",
+          "type": "target_behaviour_brief",
+          "description": "The single defined target behaviour (who + what + when) to diagnose. Normally the output of key-behaviour-definer, but any equivalently specific behaviour statement works.",
           "source": "skill-output",
           "required": true
         }
@@ -124,7 +124,7 @@
       "outputs": [
         {
           "type": "comb_barrier_hypotheses",
-          "description": "Competing Capability / Opportunity / Motivation barrier hypotheses for the target behavior, each paired with the diagnostic question(s) that would discriminate it from the others."
+          "description": "Competing Capability / Opportunity / Motivation barrier hypotheses for the target behaviour, each paired with the diagnostic question(s) that would discriminate it from the others."
         }
       ],
       "authors": [
@@ -134,19 +134,19 @@
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Decomposes one defined target behavior into competing Capability,\nOpportunity, and Motivation barrier hypotheses, each attached to the\ndiagnostic question that would tell you whether that specific hypothesis is\nthe one actually holding the behavior back."
+          "markdown": "Decomposes one defined target behaviour into competing Capability,\nOpportunity, and Motivation barrier hypotheses, each attached to the\ndiagnostic question that would tell you whether that specific hypothesis is\nthe one actually holding the behaviour back."
         },
         {
           "heading": "When to invoke it",
-          "markdown": "- A target behavior brief exists (who + what + when) and the next question\n  is \"why isn't this happening already?\"\n- A team is about to jump straight to intervention ideas (\"let's send a\n  reminder text\") without having named a barrier the intervention is meant\n  to address.\n- Multiple plausible explanations for non-behavior are being asserted\n  informally (\"maybe they forgot\", \"maybe it's too expensive\", \"maybe\n  they don't think it matters\") and need to be organized into testable,\n  mutually exclusive hypotheses.\n- Do **not** invoke on a goal or outcome statement — route it through\n  [key-behavior-definer](../key-behavior-definer) first. A barrier\n  decomposition of \"improve maternal health\" has nothing concrete to\n  attach to."
+          "markdown": "- A target behaviour brief exists (who + what + when) and the next question\n  is \"why isn't this happening already?\"\n- A team is about to jump straight to intervention ideas (\"let's send a\n  reminder text\") without having named a barrier the intervention is meant\n  to address.\n- Multiple plausible explanations for non-behaviour are being asserted\n  informally (\"maybe they forgot\", \"maybe it's too expensive\", \"maybe\n  they don't think it matters\") and need to be organized into testable,\n  mutually exclusive hypotheses.\n- Do **not** invoke on a goal or outcome statement — route it through\n  [key-behaviour-definer](../key-behaviour-definer) first. A barrier\n  decomposition of \"improve maternal health\" has nothing concrete to\n  attach to."
         },
         {
           "heading": "What it draws on",
-          "markdown": "The COM-B model: behavior (B) occurs when a person has sufficient\n**C**apability (psychological — knowledge, skills, ability to self-regulate;\nphysical — strength, stamina, dexterity), **O**pportunity (physical — time,\nresources, location; social — norms, sanction, support from others), and\n**M**otivation (reflective — beliefs, intentions, evaluations; automatic —\nhabit, emotion, impulse) at the moment the behavior needs to occur. Because\nthe three components are constructed to be jointly exhaustive, a rigorous\ndecomposition should be able to state at least one hypothesis per\nsub-component even if some are quickly ruled out — the discipline is in\nnaming what would distinguish a real barrier from a plausible-sounding one,\nnot in generating the longest list."
+          "markdown": "The COM-B model: behaviour (B) occurs when a person has sufficient\n**C**apability (psychological — knowledge, skills, ability to self-regulate;\nphysical — strength, stamina, dexterity), **O**pportunity (physical — time,\nresources, location; social — norms, sanction, support from others), and\n**M**otivation (reflective — beliefs, intentions, evaluations; automatic —\nhabit, emotion, impulse) at the moment the behaviour needs to occur. Because\nthe three components are constructed to be jointly exhaustive, a rigorous\ndecomposition should be able to state at least one hypothesis per\nsub-component even if some are quickly ruled out — the discipline is in\nnaming what would distinguish a real barrier from a plausible-sounding one,\nnot in generating the longest list."
         },
         {
           "heading": "Output template",
-          "markdown": "```markdown\n# COM-B Barrier Hypotheses\n\n**Target behavior:** <who + what + when, carried over verbatim>"
+          "markdown": "```markdown\n# COM-B Barrier Hypotheses\n\n**Target behaviour:** <who + what + when, carried over verbatim>"
         },
         {
           "heading": "Capability",
@@ -158,7 +158,7 @@
         },
         {
           "heading": "Motivation",
-          "markdown": "### Reflective\n- **Hypothesis:** <e.g. \"doesn't believe the behavior will produce the promised benefit\">\n  **Diagnostic question:** <...>\n### Automatic\n- **Hypothesis:** <e.g. \"competing habitual behavior crowds out the window to act\">\n  **Diagnostic question:** <...>"
+          "markdown": "### Reflective\n- **Hypothesis:** <e.g. \"doesn't believe the behaviour will produce the promised benefit\">\n  **Diagnostic question:** <...>\n### Automatic\n- **Hypothesis:** <e.g. \"competing habitual behaviour crowds out the window to act\">\n  **Diagnostic question:** <...>"
         },
         {
           "heading": "Most likely barrier(s), pending diagnostic answers",
@@ -166,16 +166,16 @@
         },
         {
           "heading": "Known failure modes",
-          "markdown": "- **Motivation as a dumping ground.** It's easy to label every unexplained\n  non-behavior \"lack of motivation\" because it requires no further\n  evidence. If a hypothesis can't be stated specifically enough to produce\n  a diagnostic question that could rule it *out*, it isn't a real\n  hypothesis yet.\n- **Capability/Opportunity confusion.** \"Doesn't know how\" (capability) and\n  \"was never told\" (opportunity, if the information was never made\n  available to them) get mislabeled constantly. The distinguishing test is\n  whether the barrier would persist even if the environment fully\n  supported the person — if yes, it's capability; if the environment is\n  actually the blocker, it's opportunity.\n- **Non-discriminating questions.** A diagnostic question that would get\n  the same answer regardless of which hypothesis is true isn't\n  discriminating — it's just a survey item. Each question should be\n  chosen because a different hypothesis predicts a different answer.\n- **Running on a compound or vague behavior.** If the input behavior still\n  contains \"and\" or lacks a clear who/what/when, the barriers produced will\n  quietly diagnose whichever half of the behavior was easiest to picture,\n  not the behavior as actually specified.\n- **Treating the ranked barriers as confirmed.** This skill produces\n  hypotheses and the questions to test them, not a diagnosis. Passing the\n  \"most likely barrier\" straight to intervention design without answering\n  the diagnostic questions in the field skips the step the questions exist\n  for."
+          "markdown": "- **Motivation as a dumping ground.** It's easy to label every unexplained\n  non-behaviour \"lack of motivation\" because it requires no further\n  evidence. If a hypothesis can't be stated specifically enough to produce\n  a diagnostic question that could rule it *out*, it isn't a real\n  hypothesis yet.\n- **Capability/Opportunity confusion.** \"Doesn't know how\" (capability) and\n  \"was never told\" (opportunity, if the information was never made\n  available to them) get mislabeled constantly. The distinguishing test is\n  whether the barrier would persist even if the environment fully\n  supported the person — if yes, it's capability; if the environment is\n  actually the blocker, it's opportunity.\n- **Non-discriminating questions.** A diagnostic question that would get\n  the same answer regardless of which hypothesis is true isn't\n  discriminating — it's just a survey item. Each question should be\n  chosen because a different hypothesis predicts a different answer.\n- **Running on a compound or vague behaviour.** If the input behaviour still\n  contains \"and\" or lacks a clear who/what/when, the barriers produced will\n  quietly diagnose whichever half of the behaviour was easiest to picture,\n  not the behaviour as actually specified.\n- **Treating the ranked barriers as confirmed.** This skill produces\n  hypotheses and the questions to test them, not a diagnosis. Passing the\n  \"most likely barrier\" straight to intervention design without answering\n  the diagnostic questions in the field skips the step the questions exist\n  for."
         }
       ]
     },
     {
-      "slug": "key-behavior-definer",
-      "name": "key-behavior-definer",
-      "title": "Key Behavior Definer",
-      "description": "Use when a program goal, campaign objective, or \"theory of change\" is stated in vague, aspirational, or attitudinal terms (e.g. \"increase savings\", \"improve maternal health\", \"reduce dropout\", \"build trust in the vaccine\") and no single measurable, observable behavior has been named yet. Invoke before any diagnosis, intervention-design, or measurement skill in this library, since all of them require one defined target behavior as input. Do not invoke once a specific who + what + when behavior is already agreed — that's a sign this step is done.",
-      "category": "behavior-definition",
+      "slug": "key-behaviour-definer",
+      "name": "key-behaviour-definer",
+      "title": "Key Behaviour Definer",
+      "description": "Use when a program goal, campaign objective, or \"theory of change\" is stated in vague, aspirational, or attitudinal terms (e.g. \"increase savings\", \"improve maternal health\", \"reduce dropout\", \"build trust in the vaccine\") and no single measurable, observable behaviour has been named yet. Invoke before any diagnosis, intervention-design, or measurement skill in this library, since all of them require one defined target behaviour as input. Do not invoke once a specific who + what + when behaviour is already agreed — that's a sign this step is done.",
+      "category": "behaviour-definition",
       "stage": "define",
       "evidence_base": [
         {
@@ -183,13 +183,13 @@
           "citation": "Michie, S., Atkins, L., & West, R. (2014). The Behaviour Change Wheel: A Guide to Designing Interventions. Silverback Publishing, Ch. 3."
         },
         {
-          "framework": "APEASE criteria for behavior prioritization",
+          "framework": "APEASE criteria for behaviour prioritization",
           "citation": "Michie, S., Atkins, L., & West, R. (2014). The Behaviour Change Wheel: A Guide to Designing Interventions. Silverback Publishing, pp. 46-48."
         }
       ],
       "weird_context": {
         "status": "mixed-evidence",
-        "note": "The BCW's target-behaviour-selection logic itself is context-agnostic (it's a prioritization procedure, not a claim about what motivates people), but the worked examples and APEASE weighting in the source literature are drawn overwhelmingly from UK/US public health programs. Treat the *procedure* as portable and the *illustrative priors* (e.g. which behaviors are usually \"high impact\") as needing local validation."
+        "note": "The BCW's target-behaviour-selection logic itself is context-agnostic (it's a prioritization procedure, not a claim about what motivates people), but the worked examples and APEASE weighting in the source literature are drawn overwhelmingly from UK/US public health programs. Treat the *procedure* as portable and the *illustrative priors* (e.g. which behaviours are usually \"high impact\") as needing local validation."
       },
       "inputs": [
         {
@@ -201,8 +201,8 @@
       ],
       "outputs": [
         {
-          "type": "target_behavior_brief",
-          "description": "One measurable, observable target behavior specified as who + what + when, plus a prioritized list of runner-up candidate behaviors with the reasoning for why the top choice won."
+          "type": "target_behaviour_brief",
+          "description": "One measurable, observable target behaviour specified as who + what + when, plus a prioritized list of runner-up candidate behaviours with the reasoning for why the top choice won."
         }
       ],
       "authors": [
@@ -212,23 +212,23 @@
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns one vague program goal into a single measurable, observable target\nbehavior — specified as who does what, by when — backed by a prioritized\nlist of the other candidate behaviors that were considered and set aside."
+          "markdown": "Turns one vague program goal into a single measurable, observable target\nbehaviour — specified as who does what, by when — backed by a prioritized\nlist of the other candidate behaviours that were considered and set aside."
         },
         {
           "heading": "When to invoke it",
-          "markdown": "- A program document, funder brief, or stakeholder states a goal as an\n  outcome, attitude, or aspiration rather than a behavior (\"increase\n  financial resilience\", \"improve engagement\", \"reduce stigma\").\n- Someone asks \"what should we actually be trying to change here?\" or \"what\n  behavior are we targeting?\"\n- Multiple candidate behaviors are floating around informally and the team\n  needs one to commit to before diagnosis or design work starts.\n- Do **not** invoke if a specific, already-observable behavior with a named\n  actor and timeframe is on the table — hand that directly to a diagnosis\n  skill (e.g. [comb-barrier-decomposer](../comb-barrier-decomposer)) instead."
+          "markdown": "- A program document, funder brief, or stakeholder states a goal as an\n  outcome, attitude, or aspiration rather than a behaviour (\"increase\n  financial resilience\", \"improve engagement\", \"reduce stigma\").\n- Someone asks \"what should we actually be trying to change here?\" or \"what\n  behaviour are we targeting?\"\n- Multiple candidate behaviours are floating around informally and the team\n  needs one to commit to before diagnosis or design work starts.\n- Do **not** invoke if a specific, already-observable behaviour with a named\n  actor and timeframe is on the table — hand that directly to a diagnosis\n  skill (e.g. [comb-barrier-decomposer](../comb-barrier-decomposer)) instead."
         },
         {
           "heading": "What it draws on",
-          "markdown": "The Behaviour Change Wheel's \"select target behaviour\" step: generate a\nreasonably exhaustive list of candidate behaviors that could plausibly\nachieve the stated goal, then score each against the APEASE criteria —\n**A**ffordability, **P**racticability, **E**ffectiveness (and cost-\neffectiveness), **A**cceptability, **S**ide-effects/safety, **E**quity —\nplus impact (how much changing this behavior would move the goal) and\nspillover (whether changing it makes other useful behaviors more or less\nlikely). The highest-scoring candidate becomes the target; the rest are\nkept as a ranked shortlist rather than discarded, since diagnosis on the\ntop choice sometimes fails and a team needs a documented next option."
+          "markdown": "The Behaviour Change Wheel's \"select target behaviour\" step: generate a\nreasonably exhaustive list of candidate behaviours that could plausibly\nachieve the stated goal, then score each against the APEASE criteria —\n**A**ffordability, **P**racticability, **E**ffectiveness (and cost-\neffectiveness), **A**cceptability, **S**ide-effects/safety, **E**quity —\nplus impact (how much changing this behaviour would move the goal) and\nspillover (whether changing it makes other useful behaviours more or less\nlikely). The highest-scoring candidate becomes the target; the rest are\nkept as a ranked shortlist rather than discarded, since diagnosis on the\ntop choice sometimes fails and a team needs a documented next option."
         },
         {
           "heading": "Output template",
-          "markdown": "```markdown\n# Target Behavior Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
+          "markdown": "```markdown\n# Target Behaviour Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
         },
         {
-          "heading": "Selected target behavior",
-          "markdown": "- **Who:** <actor — e.g. \"first-time mothers in program clinics\">\n- **What:** <single observable action — e.g. \"attend the 6-week postnatal check\">\n- **When:** <window — e.g. \"within 6-8 weeks of delivery\">\n- **One-sentence behavior statement:** <Who does What, by When — no \"and\">"
+          "heading": "Selected target behaviour",
+          "markdown": "- **Who:** <actor — e.g. \"first-time mothers in program clinics\">\n- **What:** <single observable action — e.g. \"attend the 6-week postnatal check\">\n- **When:** <window — e.g. \"within 6-8 weeks of delivery\">\n- **One-sentence behaviour statement:** <Who does What, by When — no \"and\">"
         },
         {
           "heading": "Why this one (APEASE + impact rationale)",
@@ -236,7 +236,7 @@
         },
         {
           "heading": "Candidate shortlist (ranked, not discarded)",
-          "markdown": "1. <candidate behavior> — <why it ranked below the selected one>\n2. <candidate behavior> — <why it ranked below the selected one>\n3. <candidate behavior> — <why it ranked below the selected one>"
+          "markdown": "1. <candidate behaviour> — <why it ranked below the selected one>\n2. <candidate behaviour> — <why it ranked below the selected one>\n3. <candidate behaviour> — <why it ranked below the selected one>"
         },
         {
           "heading": "Open questions / assumptions to check",
@@ -244,7 +244,7 @@
         },
         {
           "heading": "Known failure modes",
-          "markdown": "- **Compound behaviors slip through.** \"Attend antenatal care and adhere to\n  iron supplementation\" is two behaviors wearing a trench coat. If the\n  output statement needs \"and\" to describe the action, split it before\n  passing it downstream — this skill's job is exactly one behavior per run.\n- **Outcome dressed up as behavior.** \"Reduce anemia\" is a health outcome,\n  not something anyone *does*. If the selected behavior isn't something a\n  specific person could be observed doing at a specific moment, it hasn't\n  actually been defined yet.\n- **Selecting for measurability over impact.** The easiest behavior to\n  observe (e.g. app logins) is sometimes prioritized over the behavior that\n  actually drives the goal (e.g. offline saving). APEASE scoring should\n  catch this, but only if impact is scored honestly rather than deferred to\n  \"whatever we can already measure.\"\n- **No real alternatives generated.** If the candidate list is padded with\n  strawmen so the preferred behavior wins, the shortlist stops being useful\n  as a fallback. Push for candidates that a reasonable person could have\n  picked first.\n- **Context collapse.** Run on a goal statement with no population or\n  setting context, the output's \"who\" will be generic and the downstream\n  diagnosis will inherit that vagueness. Push back to the user for at least\n  a rough population and setting before finalizing."
+          "markdown": "- **Compound behaviours slip through.** \"Attend antenatal care and adhere to\n  iron supplementation\" is two behaviours wearing a trench coat. If the\n  output statement needs \"and\" to describe the action, split it before\n  passing it downstream — this skill's job is exactly one behaviour per run.\n- **Outcome dressed up as behaviour.** \"Reduce anemia\" is a health outcome,\n  not something anyone *does*. If the selected behaviour isn't something a\n  specific person could be observed doing at a specific moment, it hasn't\n  actually been defined yet.\n- **Selecting for measurability over impact.** The easiest behaviour to\n  observe (e.g. app logins) is sometimes prioritized over the behaviour that\n  actually drives the goal (e.g. offline saving). APEASE scoring should\n  catch this, but only if impact is scored honestly rather than deferred to\n  \"whatever we can already measure.\"\n- **No real alternatives generated.** If the candidate list is padded with\n  strawmen so the preferred behaviour wins, the shortlist stops being useful\n  as a fallback. Push for candidates that a reasonable person could have\n  picked first.\n- **Context collapse.** Run on a goal statement with no population or\n  setting context, the output's \"who\" will be generic and the downstream\n  diagnosis will inherit that vagueness. Push back to the user for at least\n  a rough population and setting before finalizing."
         }
       ]
     }
@@ -259,10 +259,10 @@
         "stage": "diagnose"
       },
       {
-        "id": "key-behavior-definer",
+        "id": "key-behaviour-definer",
         "kind": "skill",
-        "label": "Key Behavior Definer",
-        "category": "behavior-definition",
+        "label": "Key Behaviour Definer",
+        "category": "behaviour-definition",
         "stage": "define"
       },
       {
@@ -273,13 +273,13 @@
     ],
     "edges": [
       {
-        "from": "key-behavior-definer",
+        "from": "key-behaviour-definer",
         "to": "comb-barrier-decomposer",
-        "via": "target_behavior_brief"
+        "via": "target_behaviour_brief"
       },
       {
         "from": "external:program_goal_statement",
-        "to": "key-behavior-definer",
+        "to": "key-behaviour-definer",
         "via": "program_goal_statement"
       }
     ],

@@ -2,7 +2,7 @@
   "name": "atomic-skills",
   "version": "0.1.0",
   "private": true,
-  "description": "A curated, chainable library of atomic AI skills for behavioral science.",
+  "description": "A curated, chainable library of atomic AI skills for behavioural science.",
   "type": "commonjs",
   "scripts": {
     "validate": "node scripts/validate.js",

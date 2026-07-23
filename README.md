@@ -1,20 +1,20 @@
-# Atomic Skills
+# Behavioural Skills
 
-A curated library of atomic, first-party AI skills for behavioral
+A curated library of atomic, first-party AI skills for behavioural
 science — built so a program designer or product manager at a social
-sector organization can bring real behavioral-science rigor into their
-workflow without a behavioral scientist in the room.
+sector organization can bring real behavioural-science rigor into their
+workflow without a behavioural scientist in the room.
 
 Originated as an open call between [Irrational Labs](https://irrationallabs.com)
 and [The Agency Fund](https://agency.fund) to turn the operations a
-behavioral scientist actually performs — decomposing a behavior into COM-B
+behavioural scientist actually performs — decomposing a behaviour into COM-B
 components, drafting a values-affirmation prompt, adjusting an effect size
 for publication bias — into small, well-specified, chainable units instead
-of one monolithic "behavioral science assistant."
+of one monolithic "behavioural science assistant."
 
 ## The design constraint
 
-Every skill here is **atomic**: one thing a behavioral scientist does,
+Every skill here is **atomic**: one thing a behavioural scientist does,
 narrow enough to describe in a single sentence without the word "and."
 Skills are meant to chain — one skill's output is the next skill's declared
 input — and the repository is built to make those chains visible and
@@ -67,7 +67,7 @@ templates/          Copy skill-template/ to draft a new skill.
 ./scripts/install.sh --list
 
 # Install by name
-./scripts/install.sh --target /path/to/your/project --name key-behavior-definer,comb-barrier-decomposer
+./scripts/install.sh --target /path/to/your/project --name key-behaviour-definer,comb-barrier-decomposer
 
 # Install by category
 ./scripts/install.sh --target /path/to/your/project --category diagnosis
@@ -80,7 +80,7 @@ PowerShell equivalents:
 
 ```powershell
 ./scripts/install.ps1 -List
-./scripts/install.ps1 -Target C:\path\to\your\project -Name key-behavior-definer,comb-barrier-decomposer
+./scripts/install.ps1 -Target C:\path\to\your\project -Name key-behaviour-definer,comb-barrier-decomposer
 ./scripts/install.ps1 -Target C:\path\to\your\project -Category diagnosis
 ./scripts/install.ps1 -Target C:\path\to\your\project -All
 ```
@@ -106,10 +106,10 @@ CI runs `validate`, `build` (failing if the committed index is stale), and
 
 | Skill | Category | Stage | Consumes | Produces |
 |---|---|---|---|---|
-| [key-behavior-definer](skills/key-behavior-definer) | Behavior Definition | Define | a program goal statement (user-supplied) | a target behavior brief |
-| [comb-barrier-decomposer](skills/comb-barrier-decomposer) | Diagnosis | Diagnose | a target behavior brief | COM-B barrier hypotheses |
+| [key-behaviour-definer](skills/key-behaviour-definer) | Behaviour Definition | Define | a program goal statement (user-supplied) | a target behaviour brief |
+| [comb-barrier-decomposer](skills/comb-barrier-decomposer) | Diagnosis | Diagnose | a target behaviour brief | COM-B barrier hypotheses |
 
-`comb-barrier-decomposer` consumes `key-behavior-definer`'s output — this
+`comb-barrier-decomposer` consumes `key-behaviour-definer`'s output — this
 chain is derived automatically by `scripts/build-index.js` from the two
 skills' frontmatter, not hand-wired, and is visible in the site's
 dependency graph view.

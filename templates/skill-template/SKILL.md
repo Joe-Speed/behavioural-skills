@@ -13,7 +13,7 @@ description: >-
   conditions — not a summary of what the skill does. If you find yourself
   writing "this skill helps you..." or "this skill does...", rewrite it as
   a "use when" / "invoke when" clause instead.
-category: behavior-definition # must be an id from schema/taxonomy.yaml#categories
+category: behaviour-definition # must be an id from schema/taxonomy.yaml#categories
 stage: define # must be an id from schema/taxonomy.yaml#stages
 evidence_base:
   - framework: Name of the framework, model, or method
@@ -75,5 +75,5 @@ read reliably>
 - Name at least one way this skill produces a plausible-looking but wrong
   result, and what would tip a user off that it happened.
 - Name at least one input condition this skill is out of scope for (e.g.
-  "a compound behavior", "a population the evidence base doesn't cover")
+  "a compound behaviour", "a population the evidence base doesn't cover")
   and what to do instead.

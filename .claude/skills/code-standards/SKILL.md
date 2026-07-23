@@ -75,7 +75,7 @@ category that doesn't exist yet.
 - Bash: `set -euo pipefail`, every variable expansion quoted, long-form
   flags in `usage()` text.
 - The two scripts are one spec in two languages: a flag added to one is
-  added to the other in the same change, with matching behavior for
+  added to the other in the same change, with matching behaviour for
   `--all` / `--name` / `--category` / `--list`.
 - No parsing YAML by hand beyond the single `category:` / `title:` scalar
   line grep already in use — if a script ever needs to read a nested
