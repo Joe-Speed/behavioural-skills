@@ -287,6 +287,72 @@ main {
 
 .skill-body code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.85rem; }
 
+.install-block { margin: 1.5rem 0 2rem; }
+
+.install-block h2 { font-size: 1.15rem; margin: 0 0 0.4rem; }
+
+.install-hint {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
+.install-hint code {
+  background: var(--code-bg);
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+.terminal {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #12100e;
+  border: 1px solid #2a2722;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.9rem;
+  background: #1a1815;
+  border-bottom: 1px solid #2a2722;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.terminal-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8478;
+}
+
+.terminal-copy {
+  font: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.terminal-copy.copied { background: #4a7c4e; }
+
+.terminal-body {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  color: #e8e4da;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .chain-links {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 0.88rem;
