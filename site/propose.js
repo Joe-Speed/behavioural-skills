@@ -3,7 +3,7 @@
 // change either way — only this constant does.
 const SUBMISSION_ENDPOINT = null; // e.g. "https://your-backend.example.com/api/skill-drafts"
 
-const GITHUB_REPO = "Joe-Speed/atomic-skills";
+const GITHUB_REPO = "Joe-Speed/behavioural-skills";
 
 (async function () {
   const form = document.getElementById("propose-form");

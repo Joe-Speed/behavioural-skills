@@ -39,7 +39,7 @@ either side, it isn't atomic yet.
 
 ## Before you start
 
-1. Check the [catalogue](https://github.com/Joe-Speed/atomic-skills)
+1. Check the [catalogue](https://github.com/Joe-Speed/behavioural-skills)
    (or `skills/`) for something that already covers this. A near-duplicate
    skill with slightly different wording fragments the graph — if
    something close already exists, extend it or propose a change to it

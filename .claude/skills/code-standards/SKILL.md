@@ -3,7 +3,7 @@ name: code-standards
 description: Code standards for all JavaScript (Node scripts and the static site), Bash, PowerShell, and JSON Schema/YAML in this repo. Load before writing or reviewing anything under scripts/, site/, or schema/.
 ---
 
-# Code standards for atomic-skills tooling
+# Code standards for behavioural-skills tooling
 
 Overriding rule: **the least code that solves the problem.** Every
 function, file, and script earns its place. No speculative abstraction —
