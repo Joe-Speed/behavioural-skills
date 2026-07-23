@@ -36,122 +36,101 @@ function loadSkillDirs() {
     .sort();
 }
 
-function main() {
-  const taxonomy = loadTaxonomy();
-  const schema = JSON.parse(fs.readFileSync(SCHEMA_PATH, "utf8"));
-  const ajv = new Ajv2020({ allErrors: true, strict: true });
-  addFormats(ajv);
-  const validateSchema = ajv.compile(schema);
-
-  const skillDirs = loadSkillDirs();
-  const skills = [];
-  const results = []; // { dir, errors: [], warnings: [] }
-
-  for (const dir of skillDirs) {
-    const errors = [];
-    const warnings = [];
-    const skillPath = path.join(SKILLS_DIR, dir, "SKILL.md");
-
-    if (!fs.existsSync(skillPath)) {
-      results.push({ dir, errors: [`missing SKILL.md`], warnings });
-      continue;
+function checkFrontmatterShape(fm, dir, validateSchema) {
+  const errors = [];
+  const valid = validateSchema(fm);
+  if (!valid) {
+    for (const err of validateSchema.errors) {
+      errors.push(`schema: ${err.instancePath || "(root)"} ${err.message}`);
     }
+  }
+  if (fm.name && fm.name !== dir) {
+    errors.push(`name mismatch: frontmatter name "${fm.name}" does not match folder "${dir}"`);
+  }
+  return errors;
+}
 
-    const raw = fs.readFileSync(skillPath, "utf8");
-    const { data: fm, content } = matter(raw);
-
-    // 1. Structural validation against the JSON schema.
-    const valid = validateSchema(fm);
-    if (!valid) {
-      for (const err of validateSchema.errors) {
-        errors.push(`schema: ${err.instancePath || "(root)"} ${err.message}`);
-      }
+function checkTaxonomyMembership(fm, taxonomy) {
+  const errors = [];
+  if (fm.category && !taxonomy.categoryIds.has(fm.category)) {
+    errors.push(`unknown category "${fm.category}" — add it to schema/taxonomy.yaml#categories or fix the typo`);
+  }
+  if (fm.stage && !taxonomy.stageIds.has(fm.stage)) {
+    errors.push(`unknown stage "${fm.stage}" — add it to schema/taxonomy.yaml#stages or fix the typo`);
+  }
+  for (const io of [...(fm.inputs || []), ...(fm.outputs || [])]) {
+    if (io.type && !taxonomy.ioTypes.has(io.type)) {
+      errors.push(`io type "${io.type}" is not declared in schema/taxonomy.yaml#io_types`);
     }
+  }
+  return errors;
+}
 
-    // Everything below assumes the frontmatter at least parsed as an object;
-    // guard so one malformed skill doesn't crash the whole run.
-    if (fm && typeof fm === "object") {
-      // 2. Folder name must match declared name.
-      if (fm.name && fm.name !== dir) {
-        errors.push(
-          `name mismatch: frontmatter name "${fm.name}" does not match folder "${dir}"`
-        );
-      }
+function checkEvidenceBase(fm) {
+  // Redundant with the schema's minItems on evidence_base — kept separate so
+  // a missing evidence base gets a message pointing at the actual rule
+  // instead of a generic ajv "must NOT have fewer than 1 items".
+  if (!Array.isArray(fm.evidence_base) || fm.evidence_base.length === 0) {
+    return [`evidence_base is missing or empty — every skill must cite at least one framework or paper it draws on`];
+  }
+  return [];
+}
 
-      // 3. Category / stage must be in the controlled vocabulary.
-      if (fm.category && !taxonomy.categoryIds.has(fm.category)) {
-        errors.push(
-          `unknown category "${fm.category}" — add it to schema/taxonomy.yaml#categories or fix the typo`
-        );
-      }
-      if (fm.stage && !taxonomy.stageIds.has(fm.stage)) {
-        errors.push(
-          `unknown stage "${fm.stage}" — add it to schema/taxonomy.yaml#stages or fix the typo`
-        );
-      }
+function checkDescriptionIsTrigger(fm) {
+  if (typeof fm.description === "string" && !TRIGGER_PATTERN.test(fm.description)) {
+    return [
+      `description does not read as a trigger condition — expected phrasing like "Use when ..." / "Invoke when ...", got: "${fm.description.slice(0, 80)}..."`,
+    ];
+  }
+  return [];
+}
 
-      // 4. Evidence base must be non-empty (schema minItems already enforces
-      // this structurally; this re-check gives a clearer message).
-      if (!Array.isArray(fm.evidence_base) || fm.evidence_base.length === 0) {
-        errors.push(
-          `evidence_base is missing or empty — every skill must cite at least one framework or paper it draws on`
-        );
-      }
+function checkAtomicityHint(content) {
+  // Heuristic nudge, not a hard failure: "and" in the opening line of "What
+  // it does" usually means two skills are sharing one SKILL.md.
+  const whatItDoesMatch = content.match(/##\s*What it does\s*\n+([^\n#]+)/i);
+  if (whatItDoesMatch && / and /i.test(whatItDoesMatch[1])) {
+    return [`"What it does" contains "and" — check this skill still describes one operation (atomicity rule in CONTRIBUTING.md)`];
+  }
+  return [];
+}
 
-      // 5. Description must read as a trigger condition, not a summary.
-      if (typeof fm.description === "string" && !TRIGGER_PATTERN.test(fm.description)) {
-        errors.push(
-          `description does not read as a trigger condition — expected phrasing like "Use when ..." / "Invoke when ...", got: "${fm.description.slice(0, 80)}..."`
-        );
-      }
-
-      // 6. Every declared input/output type must exist in the taxonomy.
-      for (const io of fm.inputs || []) {
-        if (io.type && !taxonomy.ioTypes.has(io.type)) {
-          errors.push(
-            `input type "${io.type}" is not declared in schema/taxonomy.yaml#io_types`
-          );
-        }
-      }
-      for (const io of fm.outputs || []) {
-        if (io.type && !taxonomy.ioTypes.has(io.type)) {
-          errors.push(
-            `output type "${io.type}" is not declared in schema/taxonomy.yaml#io_types`
-          );
-        }
-      }
-
-      // Soft check: atomicity. A skill described with "and" joining two
-      // actions in its opening line is usually two skills wearing one
-      // SKILL.md. This is a heuristic nudge, not a hard failure — flagged
-      // as a warning for a human to read, not blocked in CI.
-      const whatItDoesMatch = content.match(/##\s*What it does\s*\n+([^\n#]+)/i);
-      if (whatItDoesMatch && / and /i.test(whatItDoesMatch[1])) {
-        warnings.push(
-          `"What it does" contains "and" — check this skill still describes one operation (atomicity rule in CONTRIBUTING.md)`
-        );
-      }
-    }
-
-    skills.push({ dir, frontmatter: fm });
-    results.push({ dir, errors, warnings });
+function checkOneSkill(dir, taxonomy, validateSchema) {
+  const skillPath = path.join(SKILLS_DIR, dir, "SKILL.md");
+  if (!fs.existsSync(skillPath)) {
+    return { dir, frontmatter: null, errors: ["missing SKILL.md"], warnings: [] };
   }
 
-  // 7. Dangling-input check, run across the whole set: any input type that
-  // isn't produced by some skill's output AND isn't marked user_suppliable
-  // in the taxonomy is a dead end in the graph — either a typo, a missing
-  // producer skill, or a type that should be marked user_suppliable.
+  const { data: fm, content } = matter(fs.readFileSync(skillPath, "utf8"));
+  const errors = checkFrontmatterShape(fm, dir, validateSchema);
+  const warnings = [];
+
+  if (fm && typeof fm === "object") {
+    errors.push(...checkTaxonomyMembership(fm, taxonomy));
+    errors.push(...checkEvidenceBase(fm));
+    errors.push(...checkDescriptionIsTrigger(fm));
+    warnings.push(...checkAtomicityHint(content));
+  }
+
+  return { dir, frontmatter: fm, errors, warnings };
+}
+
+// Any input type that isn't produced by some skill's output and isn't
+// marked user_suppliable in the taxonomy is a dead end in the graph —
+// either a typo, a missing producer skill, or a type that should be marked
+// user_suppliable. Only catchable once every skill's outputs are known, so
+// this runs as a second pass over the full set.
+function checkDanglingInputs(results, taxonomy) {
   const producedTypes = new Set();
-  for (const { frontmatter } of skills) {
+  for (const { frontmatter } of results) {
     for (const out of frontmatter?.outputs || []) {
       if (out.type) producedTypes.add(out.type);
     }
   }
-  for (const { dir, frontmatter } of skills) {
-    const result = results.find((r) => r.dir === dir);
-    for (const input of frontmatter?.inputs || []) {
-      const typeDef = taxonomy.ioTypes.get(input.type);
-      const userSuppliable = typeDef?.user_suppliable === true;
+
+  for (const result of results) {
+    for (const input of result.frontmatter?.inputs || []) {
+      const userSuppliable = taxonomy.ioTypes.get(input.type)?.user_suppliable === true;
       if (!producedTypes.has(input.type) && !userSuppliable) {
         result.errors.push(
           `input type "${input.type}" has no producer among current skill outputs and is not marked user_suppliable in schema/taxonomy.yaml — either add a producing skill, or mark it user_suppliable if a human is meant to supply it directly`
@@ -159,8 +138,9 @@ function main() {
       }
     }
   }
+}
 
-  // --- report ---
+function printReport(results) {
   let errorCount = 0;
   let warningCount = 0;
   for (const { dir, errors, warnings } of results) {
@@ -177,10 +157,20 @@ function main() {
       warningCount++;
     }
   }
+  console.log(`\n${results.length} skill(s) checked, ${errorCount} error(s), ${warningCount} warning(s).`);
+  return errorCount;
+}
 
-  console.log(
-    `\n${skills.length} skill(s) checked, ${errorCount} error(s), ${warningCount} warning(s).`
-  );
+function main() {
+  const taxonomy = loadTaxonomy();
+  const schema = JSON.parse(fs.readFileSync(SCHEMA_PATH, "utf8"));
+  const ajv = new Ajv2020({ allErrors: true, strict: true });
+  addFormats(ajv);
+  const validateSchema = ajv.compile(schema);
+
+  const results = loadSkillDirs().map((dir) => checkOneSkill(dir, taxonomy, validateSchema));
+  checkDanglingInputs(results, taxonomy);
+  const errorCount = printReport(results);
   if (errorCount > 0) process.exit(1);
 }
 

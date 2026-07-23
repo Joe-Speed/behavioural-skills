@@ -3,7 +3,7 @@
 // change either way — only this constant does.
 const SUBMISSION_ENDPOINT = null; // e.g. "https://your-backend.example.com/api/skill-drafts"
 
-const GITHUB_REPO = "Joe-Speed/behavioral-skills";
+const GITHUB_REPO = "Joe-Speed/atomic-skills";
 
 (async function () {
   const form = document.getElementById("propose-form");
@@ -11,20 +11,19 @@ const GITHUB_REPO = "Joe-Speed/behavioral-skills";
   const categorySelect = document.getElementById("category-select");
   const stageSelect = document.getElementById("stage-select");
 
+  function populateOptions(select, items) {
+    for (const item of items) {
+      const opt = document.createElement("option");
+      opt.value = item.id;
+      opt.textContent = item.label;
+      select.appendChild(opt);
+    }
+  }
+
   try {
     const data = await loadIndex();
-    for (const c of data.taxonomy.categories) {
-      const opt = document.createElement("option");
-      opt.value = c.id;
-      opt.textContent = c.label;
-      categorySelect.appendChild(opt);
-    }
-    for (const s of data.taxonomy.stages) {
-      const opt = document.createElement("option");
-      opt.value = s.id;
-      opt.textContent = s.label;
-      stageSelect.appendChild(opt);
-    }
+    populateOptions(categorySelect, data.taxonomy.categories);
+    populateOptions(stageSelect, data.taxonomy.stages);
   } catch (err) {
     console.error(err);
   }

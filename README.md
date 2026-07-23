@@ -1,4 +1,4 @@
-# Behavioral Skills
+# Atomic Skills
 
 A curated library of atomic, first-party AI skills for behavioral
 science — built so a program designer or product manager at a social

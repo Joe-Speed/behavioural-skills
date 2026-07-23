@@ -16,7 +16,7 @@
     return;
   }
 
-  document.title = `Behavioral Skills — ${skill.title}`;
+  document.title = `Atomic Skills — ${skill.title}`;
 
   function producersOf(ioType, excludeSlug) {
     return data.graph.edges

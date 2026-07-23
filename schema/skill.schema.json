@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Joe-Speed/behavioral-skills/schema/skill.schema.json",
+  "$id": "https://github.com/Joe-Speed/atomic-skills/schema/skill.schema.json",
   "title": "Skill frontmatter",
   "description": "Structural shape of the YAML frontmatter every SKILL.md must carry. Membership checks against the controlled vocabularies (category, stage, io_types) and semantic checks (trigger-phrased description, evidence base, dangling inputs, atomicity) live in scripts/validate.js against schema/taxonomy.yaml, not here.",
   "type": "object",

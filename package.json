@@ -1,5 +1,5 @@
 {
-  "name": "behavioral-skills",
+  "name": "atomic-skills",
   "version": "0.1.0",
   "private": true,
   "description": "A curated, chainable library of atomic AI skills for behavioral science.",

@@ -10,28 +10,19 @@
     return;
   }
 
-  const elements = [];
-
-  for (const node of data.graph.nodes) {
-    elements.push({
-      data: {
-        id: node.id,
-        label: node.label,
-        kind: node.kind,
-      },
-    });
-  }
-
-  for (const [i, edge] of data.graph.edges.entries()) {
-    elements.push({
+  const elements = [
+    ...data.graph.nodes.map((node) => ({
+      data: { id: node.id, label: node.label, kind: node.kind },
+    })),
+    ...data.graph.edges.map((edge, i) => ({
       data: {
         id: `edge-${i}`,
         source: edge.from,
         target: edge.to,
         label: lookupLabel(data.taxonomy.io_types, edge.via),
       },
-    });
-  }
+    })),
+  ];
 
   const cy = cytoscape({
     container: canvas,
