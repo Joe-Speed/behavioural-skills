@@ -23,6 +23,8 @@ machine-checkable rather than a matter of prose convention.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full rule, with worked
 good and bad examples.
 
+Browse the catalogue at **[joe-speed.github.io/behavioural-skills](https://joe-speed.github.io/behavioural-skills/)**.
+
 ## How it fits together
 
 ```
@@ -99,8 +101,8 @@ npx serve site       # or: python3 -m http.server --directory site
                       # then open http://localhost:3000 (or 8000)
 ```
 
-CI runs `validate`, `build` (failing if the committed index is stale), and
-`test:site` on every pull request.
+CI runs `validate` and `test:site` (which itself checks the committed index
+isn't stale) on every pull request.
 
 ## Current catalogue
 
