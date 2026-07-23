@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Validate skill frontmatter
+        run: npm run validate
+
+      - name: Build site index
+        run: npm run build
+
+      - name: Fail if generated index is out of date
+        run: git diff --exit-code -- site/data/index.json
+
+      - name: Site tests
+        run: npm run test:site

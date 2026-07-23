@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Behavioral Skills — Propose a Skill</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Behavioral <span>Skills</span></a>
+      <nav class="site-nav">
+        <a href="index.html">Catalogue</a>
+        <a href="graph.html">Dependency Graph</a>
+        <a href="propose.html" class="active">Propose a Skill</a>
+        <a href="https://github.com/Joe-Speed/behavioral-skills" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <p class="lede">
+      Sketch a new skill without leaving the browser. By default this opens
+      a pre-filled GitHub issue using CONTRIBUTING.md's template — no
+      account setup beyond GitHub itself. If this deployment has a
+      submission endpoint configured, it posts there instead. See
+      <code>site/propose.js</code> for the one constant that switches
+      between the two.
+    </p>
+
+    <form class="propose" id="propose-form">
+      <label>
+        Skill name (kebab-case, e.g. <code>values-affirmation-drafter</code>)
+        <input type="text" name="name" required pattern="[a-z][a-z0-9]*(-[a-z0-9]+)*" />
+      </label>
+      <label>
+        Title
+        <input type="text" name="title" required />
+      </label>
+      <label>
+        What it does (one sentence, no "and")
+        <input type="text" name="what_it_does" required />
+      </label>
+      <label>
+        Trigger description (when should this fire?)
+        <textarea name="description" rows="3" required placeholder="Use when ..."></textarea>
+      </label>
+      <label>
+        Category
+        <select name="category" id="category-select"></select>
+      </label>
+      <label>
+        Research stage
+        <select name="stage" id="stage-select"></select>
+      </label>
+      <label>
+        What it draws on (framework / paper / evidence base)
+        <textarea name="evidence_base" rows="2" required></textarea>
+      </label>
+      <label>
+        Declared input(s) — existing io type id, or a new one you're proposing
+        <input type="text" name="inputs" required />
+      </label>
+      <label>
+        Declared output(s) — existing io type id, or a new one you're proposing
+        <input type="text" name="outputs" required />
+      </label>
+      <label>
+        Known failure modes
+        <textarea name="failure_modes" rows="2"></textarea>
+      </label>
+      <label>
+        Your name
+        <input type="text" name="author" required />
+      </label>
+      <button type="submit">Submit draft</button>
+    </form>
+
+    <p class="notice" id="propose-status" style="display:none;"></p>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="propose.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+# Single source of truth for the controlled vocabularies referenced by
+# schema/skill.schema.json and enforced by scripts/validate.js.
+#
+# Adding a skill that needs a new category, stage, or io type means adding
+# it here first. This is what keeps the dependency graph computable: two
+# skills only chain if they reference the exact same io_types id.
+
+categories:
+  - id: behavior-definition
+    label: Behavior Definition
+    description: Turning a program goal or vague intent into a defined, measurable target.
+  - id: diagnosis
+    label: Diagnosis
+    description: Explaining why a defined behavior isn't happening (barriers, drivers, root causes).
+  - id: intervention-design
+    label: Intervention Design
+    description: Turning a diagnosis into candidate levers, messages, or intervention content.
+  - id: measurement
+    label: Measurement
+    description: Choosing, adapting, or building instruments to measure a behavior or construct.
+  - id: research-methods
+    label: Research Methods
+    description: Analytical or methodological operations (e.g. effect size adjustment, model specification).
+  - id: segmentation
+    label: Segmentation & Personas
+    description: Grouping people or contexts into behaviorally meaningful segments.
+  - id: risk-review
+    label: Risk & Pre-Mortem
+    description: Anticipating backfire effects, failure points, or unintended consequences before launch.
+  - id: cultural-context
+    label: Cultural Context
+    description: Assessing how a cultural or contextual lens changes what will work.
+
+# A research stage is orthogonal to category: it's where in a project
+# timeline a skill is normally invoked, independent of what it does.
+stages:
+  - id: define
+    label: Define
+    description: Establishing what behavior, population, or outcome the work is about.
+  - id: diagnose
+    label: Diagnose
+    description: Understanding why the current behavior pattern exists.
+  - id: design
+    label: Design
+    description: Generating intervention content or strategy.
+  - id: test
+    label: Test
+    description: Planning or analyzing an evaluation of an intervention.
+  - id: measure
+    label: Measure
+    description: Instrumenting or validating measurement itself.
+
+# io_types are the controlled vocabulary for declared inputs/outputs.
+# `user_suppliable: true` marks a type a human is expected to provide
+# directly (a document, a raw goal statement, field notes). Any input type
+# that is NOT user_suppliable must be produced as an output by at least one
+# skill in the repo, or validation fails — that's the rule that keeps the
+# graph honest instead of full of dangling edges.
+io_types:
+  - id: program_goal_statement
+    label: Program goal statement
+    description: >-
+      A practitioner's plain-language description of what a program is trying
+      to achieve, plus whatever context they have on the target population and
+      setting. Typically vague and not yet a measurable behavior.
+    user_suppliable: true
+
+  - id: target_behavior_brief
+    label: Target behavior brief
+    description: >-
+      One measurable, observable target behavior specified as who + what +
+      when, plus a prioritized list of runner-up candidate behaviors with the
+      reasoning for why the top choice won.
+    user_suppliable: false
+
+  - id: comb_barrier_hypotheses
+    label: COM-B barrier hypotheses
+    description: >-
+      Competing Capability / Opportunity / Motivation barrier hypotheses for
+      one target behavior, each with the diagnostic question(s) that would
+      discriminate it from the others.
+    user_suppliable: false

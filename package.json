@@ -1,0 +1,19 @@
+{
+  "name": "behavioral-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A curated, chainable library of atomic AI skills for behavioral science.",
+  "type": "commonjs",
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "build": "node scripts/build-index.js",
+    "test:site": "node scripts/test-site.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0"
+  }
+}

@@ -1,0 +1,53 @@
+name: New skill proposal
+description: Sketch a new atomic behavioral-science skill for this repo.
+labels: ["new-skill-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        See CONTRIBUTING.md for the atomicity rule before filling this in.
+        This form matches the fields scripts/validate.js checks against.
+  - type: input
+    id: what-it-does
+    attributes:
+      label: What it does (one sentence, no "and")
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Trigger description
+      description: "Use when ... / Invoke when ..."
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      description: An id from schema/taxonomy.yaml#categories, or a new one you're proposing
+  - type: input
+    id: stage
+    attributes:
+      label: Research stage
+      description: An id from schema/taxonomy.yaml#stages, or a new one you're proposing
+  - type: textarea
+    id: evidence-base
+    attributes:
+      label: What it draws on
+      description: Framework, paper, or evidence base — flag if WEIRD-skewed
+    validations:
+      required: true
+  - type: input
+    id: inputs
+    attributes:
+      label: Declared input(s)
+      description: Existing io_types id(s), or new one(s) you're proposing
+  - type: input
+    id: outputs
+    attributes:
+      label: Declared output(s)
+      description: Existing io_types id(s), or new one(s) you're proposing
+  - type: textarea
+    id: failure-modes
+    attributes:
+      label: Known failure modes

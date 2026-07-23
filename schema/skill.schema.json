@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Joe-Speed/behavioral-skills/schema/skill.schema.json",
+  "title": "Skill frontmatter",
+  "description": "Structural shape of the YAML frontmatter every SKILL.md must carry. Membership checks against the controlled vocabularies (category, stage, io_types) and semantic checks (trigger-phrased description, evidence base, dangling inputs, atomicity) live in scripts/validate.js against schema/taxonomy.yaml, not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "title",
+    "description",
+    "category",
+    "stage",
+    "evidence_base",
+    "weird_context",
+    "inputs",
+    "outputs",
+    "authors",
+    "version"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "description": "Kebab-case identifier. Must match the skill's folder name."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Human-readable name shown in the catalogue."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "description": "Trigger conditions for invoking this skill, not a summary of what it does. Should read as 'Use when...' / 'Invoke when...', naming the user intent or input state that fires it."
+    },
+    "category": {
+      "type": "string",
+      "description": "Must be an id from schema/taxonomy.yaml#categories."
+    },
+    "stage": {
+      "type": "string",
+      "description": "Must be an id from schema/taxonomy.yaml#stages."
+    },
+    "evidence_base": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["framework", "citation"],
+        "properties": {
+          "framework": { "type": "string", "minLength": 2 },
+          "citation": { "type": "string", "minLength": 5 },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "weird_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["weird-only", "likely-generalizes", "mixed-evidence", "untested-outside-weird"]
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "description", "source"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Must be an id from schema/taxonomy.yaml#io_types."
+          },
+          "description": { "type": "string", "minLength": 5 },
+          "source": {
+            "type": "string",
+            "enum": ["user", "skill-output"],
+            "description": "'user' means a human supplies it directly; 'skill-output' means it's expected to come from another skill's output."
+          },
+          "required": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "description"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Must be an id from schema/taxonomy.yaml#io_types."
+          },
+          "description": { "type": "string", "minLength": 5 }
+        }
+      }
+    },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

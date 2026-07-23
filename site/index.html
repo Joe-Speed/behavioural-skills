@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Behavioral Skills — Catalogue</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Behavioral <span>Skills</span></a>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Catalogue</a>
+        <a href="graph.html">Dependency Graph</a>
+        <a href="propose.html">Propose a Skill</a>
+        <a href="https://github.com/Joe-Speed/behavioral-skills" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <p class="lede">
+      A curated, chainable library of atomic AI skills for behavioral
+      science — each one narrow enough to describe without the word
+      "and," built so one skill's output can feed the next.
+    </p>
+
+    <div class="filters">
+      <div class="filter-group">
+        <h3>Category</h3>
+        <div class="chip-row" id="category-filters"></div>
+      </div>
+      <div class="filter-group">
+        <h3>Research Stage</h3>
+        <div class="chip-row" id="stage-filters"></div>
+      </div>
+    </div>
+
+    <div class="skill-grid" id="skill-grid">
+      <p class="empty-state">Loading catalogue…</p>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="catalogue.js"></script>
+</body>
+</html>
