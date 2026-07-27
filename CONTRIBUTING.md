@@ -76,8 +76,9 @@ because their descriptions sound similar.
 - Reuse an existing `io_types` id whenever the concept genuinely matches,
   even if you'd have phrased it slightly differently. A type that exists
   twice under different names is invisible to the graph.
-- After running `npm run build`, open `site/graph.html` locally and check
-  your skill actually connects where you meant it to.
+- After running `npm run build`, open your skill's page
+  (`site/skill.html?slug=<your-skill>`) locally and check its Inputs/Outputs
+  sections list the producer or consumer skills you meant it to chain with.
 
 **`evidence_base` cannot be empty.** Every skill draws on something —
 name the framework, model, or paper, with a real citation. "Common sense"

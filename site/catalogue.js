@@ -2,6 +2,7 @@
   const grid = document.getElementById("skill-grid");
   const categoryFilters = document.getElementById("category-filters");
   const stageFilters = document.getElementById("stage-filters");
+  const sidebar = document.getElementById("install-sidebar");
 
   let data;
   try {
@@ -13,6 +14,29 @@
 
   const activeCategories = new Set();
   const activeStages = new Set();
+  const selectedSlugs = new Set();
+  const skillsBySlug = new Map(data.skills.map((s) => [s.slug, s]));
+
+  sidebar.innerHTML = `
+    <h2>Install</h2>
+    <p class="install-hint">Select skills from the list to build a combined install command.</p>
+    ${renderInstallPanel({ withSelection: true })}
+  `;
+  const panel = sidebar.querySelector(".install-panel");
+  const selectedCount = panel.querySelector(".selected-count");
+  const selectedChips = panel.querySelector(".selected-chips");
+  const refreshTerminal = bindInstallPanel(panel, () => Array.from(selectedSlugs));
+
+  function refreshSelection() {
+    selectedCount.textContent = String(selectedSlugs.size);
+    renderSelectedChips(selectedChips, selectedSlugs, skillsBySlug, (slug) => {
+      selectedSlugs.delete(slug);
+      const checkbox = grid.querySelector(`input[data-slug="${CSS.escape(slug)}"]`);
+      if (checkbox) checkbox.checked = false;
+      refreshSelection();
+    });
+    refreshTerminal();
+  }
 
   function firstSentence(text) {
     const clean = text.replace(/\s+/g, " ").trim();
@@ -58,17 +82,26 @@
 
     grid.innerHTML = "";
     for (const skill of filtered) {
-      const card = document.createElement("a");
+      const card = document.createElement("div");
       card.className = "skill-card";
-      card.href = skillUrl(skill.slug);
       card.innerHTML = `
-        <h3>${skill.title}</h3>
-        <div class="tags">
-          <span class="tag">${lookupLabel(data.taxonomy.categories, skill.category)}</span>
-          <span class="tag">${lookupLabel(data.taxonomy.stages, skill.stage)}</span>
-        </div>
-        <p class="desc">${firstSentence(skill.description)}</p>
+        <label class="skill-card-check">
+          <input type="checkbox" data-slug="${skill.slug}" ${selectedSlugs.has(skill.slug) ? "checked" : ""} />
+        </label>
+        <a class="skill-card-link" href="${skillUrl(skill.slug)}">
+          <h3>${skill.title}</h3>
+          <div class="tags">
+            <span class="tag">${lookupLabel(data.taxonomy.categories, skill.category)}</span>
+            <span class="tag">${lookupLabel(data.taxonomy.stages, skill.stage)}</span>
+          </div>
+          <p class="desc">${firstSentence(skill.description)}</p>
+        </a>
       `;
+      card.querySelector("input").addEventListener("change", (e) => {
+        if (e.target.checked) selectedSlugs.add(skill.slug);
+        else selectedSlugs.delete(skill.slug);
+        refreshSelection();
+      });
       grid.appendChild(card);
     }
   }

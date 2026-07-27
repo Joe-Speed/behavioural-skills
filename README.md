@@ -55,9 +55,10 @@ scripts/            validate.js   — checks every skill against the schema,
                                     and internally consistent.
 
 site/               A static catalogue: browse and filter by category and
-                    research stage, view the dependency graph, read any
-                    skill's full spec. Reads only site/data/index.json —
-                    no build step beyond scripts/build-index.js.
+                    research stage, get a copy-paste install command for any
+                    selection of skills, read any skill's full spec. Reads
+                    only site/data/index.json — no build step beyond
+                    scripts/build-index.js.
 
 templates/          Copy skill-template/ to draft a new skill.
 ```
@@ -113,8 +114,8 @@ isn't stale) on every pull request.
 
 `comb-barrier-decomposer` consumes `key-behaviour-definer`'s output — this
 chain is derived automatically by `scripts/build-index.js` from the two
-skills' frontmatter, not hand-wired, and is visible in the site's
-dependency graph view.
+skills' frontmatter, not hand-wired, and is visible on each skill's page as
+its declared inputs/outputs.
 
 ## Contributing
 

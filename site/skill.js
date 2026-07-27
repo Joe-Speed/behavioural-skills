@@ -64,8 +64,6 @@
     .map((s) => `<h2>${s.heading}</h2>${marked.parse(s.markdown)}`)
     .join("");
 
-  const installCommand = `curl -sSL https://raw.githubusercontent.com/Joe-Speed/behavioural-skills/main/scripts/install.sh | bash -s -- --target . --name ${skill.slug}`;
-
   main.innerHTML = `
     <div class="skill-header">
       <h1>${skill.title}</h1>
@@ -74,8 +72,7 @@
 
     <div class="install-block">
       <h2>Install this skill</h2>
-      <p class="install-hint">Copies <code>skills/${skill.slug}</code> into <code>./skills/${skill.slug}</code> in your project.</p>
-      ${renderTerminal(installCommand)}
+      ${renderInstallPanel()}
     </div>
 
     <dl class="meta-grid">
@@ -100,5 +97,5 @@
     <div class="skill-body">${sectionsHtml}</div>
   `;
 
-  bindTerminalCopyButtons(main);
+  bindInstallPanel(main.querySelector(".install-panel"), () => [skill.slug]);
 })();
