@@ -70,10 +70,17 @@ a { color: var(--accent); }
   max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.site-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .brand {
@@ -94,6 +101,35 @@ a { color: var(--accent); }
 
 .site-nav a { text-decoration: none; color: var(--ink-muted); }
 .site-nav a:hover, .site-nav a.active { color: var(--accent); }
+
+.github-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem 0.35rem 0.65rem;
+  background: var(--surface);
+}
+
+.github-badge:hover { border-color: var(--accent); }
+
+.github-badge-icon { fill: currentColor; }
+
+.github-badge-count {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  background: var(--code-bg);
+  color: var(--ink-muted);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+}
 
 main {
   max-width: var(--max-width);

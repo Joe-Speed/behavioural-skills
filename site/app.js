@@ -75,8 +75,11 @@ const INSTALL_RAW_BASE = "https://raw.githubusercontent.com/Joe-Speed/behavioura
 // scripts/install.sh takes a comma-separated --name list; scripts/install.ps1
 // takes the PowerShell equivalent -Name. Both only support unix-style / pwsh
 // invocation respectively, so platform picks which script (and shell) to show.
+// With nothing selected yet, names falls back to a placeholder token so the
+// terminal always shows a complete (if unrunnable) command rather than
+// disappearing.
 function buildInstallCommand(slugs, platform) {
-  const names = slugs.join(",");
+  const names = slugs.length > 0 ? slugs.join(",") : "<select-skills>";
   if (platform === "windows") {
     return `iwr -useb ${INSTALL_RAW_BASE}/scripts/install.ps1 -OutFile install.ps1; ./install.ps1 -Target . -Name ${names}`;
   }
@@ -91,7 +94,7 @@ function renderInstallPanel({ withSelection = false } = {}) {
   return `
     <div class="install-panel">
       <p class="install-eyebrow">Install command</p>
-      <p class="install-hint">Copy, paste, run. Updates as you change platform${withSelection ? " or selection" : ""}.</p>
+      <p class="install-hint" data-install-hint>Copy, paste, run. Updates as you change platform${withSelection ? " or selection" : ""}.</p>
 
       <label class="platform-select">
         <span>Platform</span>
@@ -121,17 +124,15 @@ function renderInstallPanel({ withSelection = false } = {}) {
 function bindInstallPanel(panel, getSlugs) {
   const slot = panel.querySelector(".install-terminal-slot");
   const select = panel.querySelector(".platform-input");
+  const hint = panel.querySelector("[data-install-hint]");
 
   function refresh() {
     const slugs = getSlugs();
-    if (slugs.length === 0) {
-      slot.innerHTML = `<p class="empty-state">Select at least one skill to generate an install command.</p>`;
-      return;
-    }
     const platform = select.value;
     const command = buildInstallCommand(slugs, platform);
     slot.innerHTML = renderTerminal(command, platform === "windows" ? "powershell" : "bash");
     bindTerminalCopyButtons(slot);
+    if (hint) hint.hidden = slugs.length > 0;
   }
 
   select.addEventListener("change", refresh);
@@ -153,3 +154,28 @@ function renderSelectedChips(container, selectedSlugs, skillsByslug, onRemove) {
     container.appendChild(chip);
   }
 }
+
+function formatStarCount(n) {
+  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+  return String(n);
+}
+
+// Every page includes a .github-badge in its header; fetch the live star
+// count for it. GitHub's REST API allows anonymous CORS reads of public repo
+// metadata, so no token or proxy is needed. Fails silently (drops the count,
+// keeps the link) on rate-limit or network errors.
+async function bindGithubStarBadge() {
+  const countEl = document.querySelector(".github-badge-count");
+  if (!countEl) return;
+  try {
+    const res = await fetch("https://api.github.com/repos/Joe-Speed/behavioural-skills");
+    if (!res.ok) throw new Error(String(res.status));
+    const data = await res.json();
+    countEl.textContent = formatStarCount(data.stargazers_count);
+  } catch (err) {
+    console.error("Could not load GitHub star count", err);
+    countEl.remove();
+  }
+}
+
+bindGithubStarBadge();

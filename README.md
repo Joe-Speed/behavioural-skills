@@ -117,6 +117,13 @@ chain is derived automatically by `scripts/build-index.js` from the two
 skills' frontmatter, not hand-wired, and is visible on each skill's page as
 its declared inputs/outputs.
 
+## Roadmap
+
+See [ROADMAP.md](ROADMAP.md) for candidate skills we're actively looking
+for — starting with the pre-intervention gap: nothing in the catalogue yet
+covers the evidence-gathering and researcher-bias-checking work that
+happens *before* a target behaviour is defined.
+
 ## Contributing
 
 Draft ideas, claim a skill, and see the atomicity rule with good/bad
