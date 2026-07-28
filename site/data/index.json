@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-23T11:44:48.885Z",
+  "generatedAt": "2026-07-28T15:37:22.639Z",
   "taxonomy": {
     "categories": [
       {
@@ -41,9 +41,24 @@
         "id": "cultural-context",
         "label": "Cultural Context",
         "description": "Assessing how a cultural or contextual lens changes what will work."
+      },
+      {
+        "id": "evidence-scoping",
+        "label": "Evidence Scoping",
+        "description": "Surveying existing evidence for a behaviour or context before diagnosis or design begins."
+      },
+      {
+        "id": "researcher-calibration",
+        "label": "Researcher Calibration",
+        "description": "Checking the research team's own priors, assumptions, or evidence gaps before they shape downstream diagnosis or design. Distinct from Cultural Context, which is about the target population rather than the researcher."
       }
     ],
     "stages": [
+      {
+        "id": "prepare",
+        "label": "Prepare",
+        "description": "Groundwork before defining a target behaviour: gathering evidence and checking the research team's own priors."
+      },
       {
         "id": "define",
         "label": "Define",
@@ -88,6 +103,24 @@
         "label": "COM-B barrier hypotheses",
         "description": "Competing Capability / Opportunity / Motivation barrier hypotheses for one target behaviour, each with the diagnostic question(s) that would discriminate it from the others.",
         "user_suppliable": false
+      },
+      {
+        "id": "evidence_scan_brief",
+        "label": "Evidence scan brief",
+        "description": "A structured summary of existing evidence for a target behaviour, population, or context: what's already been tried, effect sizes where available, contradicting or null findings, and which specific findings are WEIRD-skewed.",
+        "user_suppliable": false
+      },
+      {
+        "id": "researcher_assumption_statement",
+        "label": "Researcher assumption statement",
+        "description": "A researcher's own short, honest answers to a fixed set of self-report prompts about their prior beliefs on why the target population behaves as it does, given before looking at any diagnostic data: what they already believe is causing the behaviour gap, what population they've personally worked with most and how similar it is to this one, and what observation would change their mind.",
+        "user_suppliable": true
+      },
+      {
+        "id": "bias_audit_report",
+        "label": "Bias audit report",
+        "description": "A structured flag list surfacing which parts of a researcher's stated prior assumptions are unfalsifiable as written, default to a WEIRD population as the implicit norm, or lack a named disconfirming observation. Not a pass/fail score, and not a debiasing plan — only a surfacing of what's already there.",
+        "user_suppliable": false
       }
     ]
   },
@@ -119,6 +152,12 @@
           "description": "The single defined target behaviour (who + what + when) to diagnose. Normally the output of key-behaviour-definer, but any equivalently specific behaviour statement works.",
           "source": "skill-output",
           "required": true
+        },
+        {
+          "type": "bias_audit_report",
+          "description": "Optional researcher bias audit for this project, if researcher-bias-self-audit has already run. When present, treat its flagged assumptions as barrier hypotheses to actively test via their diagnostic questions, not as barriers to assume true — a flagged prior becoming a hypothesis without independent field evidence just relocates the bias rather than checking it.",
+          "source": "skill-output",
+          "required": false
         }
       ],
       "outputs": [
@@ -130,7 +169,7 @@
       "authors": [
         "Nikhil Ravichandar"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "sections": [
         {
           "heading": "What it does",
@@ -142,31 +181,117 @@
         },
         {
           "heading": "What it draws on",
-          "markdown": "The COM-B model: behaviour (B) occurs when a person has sufficient\n**C**apability (psychological — knowledge, skills, ability to self-regulate;\nphysical — strength, stamina, dexterity), **O**pportunity (physical — time,\nresources, location; social — norms, sanction, support from others), and\n**M**otivation (reflective — beliefs, intentions, evaluations; automatic —\nhabit, emotion, impulse) at the moment the behaviour needs to occur. Because\nthe three components are constructed to be jointly exhaustive, a rigorous\ndecomposition should be able to state at least one hypothesis per\nsub-component even if some are quickly ruled out — the discipline is in\nnaming what would distinguish a real barrier from a plausible-sounding one,\nnot in generating the longest list."
+          "markdown": "The COM-B model: behaviour (B) occurs when a person has sufficient\n**C**apability (psychological — knowledge, skills, ability to self-regulate;\nphysical — strength, stamina, dexterity), **O**pportunity (physical — time,\nresources, location; social — norms, sanction, support from others), and\n**M**otivation (reflective — beliefs, intentions, evaluations; automatic —\nhabit, emotion, impulse) at the moment the behaviour needs to occur. Because\nthe three components are constructed to be jointly exhaustive, a rigorous\ndecomposition should be able to state at least one hypothesis per\nsub-component even if some are quickly ruled out — the discipline is in\nnaming what would distinguish a real barrier from a plausible-sounding one,\nnot in generating the longest list. One hypothesis per sub-component is a\nfloor, not a ceiling — if two genuinely distinct, non-trivial hypotheses\ncompete for the same sub-component, list both rather than merging or\ndropping one to fit a one-bullet shape.\n\nEvery candidate Capability hypothesis must pass the persistence test before\nit's placed: **would this barrier persist even if the environment fully\nsupported the person (full information, full access, no social cost)?** If\nyes, it's Capability. If no — if the person would be fine once the\nenvironment changed — it's Opportunity, not Capability, no matter how much\nit resembles \"doesn't know how\" or \"doesn't understand.\" This is the single\nmost common mislabel in COM-B application and the template below makes\nshowing this check mandatory, not optional.\n\nIf a `bias_audit_report` is available (from\n[researcher-bias-self-audit](../researcher-bias-self-audit)), cross-check\nits flagged assumptions against the hypothesis list below: a flagged prior\nthat quietly reappears as a hypothesis needs its own diagnostic question\nlike any other, not a pass on the strength of already having been named."
         },
         {
           "heading": "Output template",
-          "markdown": "```markdown\n# COM-B Barrier Hypotheses\n\n**Target behaviour:** <who + what + when, carried over verbatim>"
+          "markdown": "Every Capability hypothesis requires its persistence-test line — a\nhypothesis placed under Capability without one is incomplete, not just\nunder-documented. Every diagnostic question requires its discrimination\nline: state the different answer each hypothesis under it predicts; a\nquestion that would get the same answer either way isn't diagnostic and\nbelongs back in the hypothesis stage, not in this section. List more than\none hypothesis per sub-component whenever more than one is genuinely\ndistinct and non-trivial — do not compress two competing ideas into one\nbullet.\n\n```markdown\n# COM-B Barrier Hypotheses\n\n**Target behaviour:** <who + what + when, carried over verbatim>"
         },
         {
           "heading": "Capability",
-          "markdown": "### Physical\n- **Hypothesis:** <specific barrier — e.g. \"lacks the physical skill to complete the form unassisted\">\n  **Diagnostic question:** <question whose answer would confirm/rule this out>\n### Psychological\n- **Hypothesis:** <e.g. \"doesn't know the deadline exists\">\n  **Diagnostic question:** <...>"
+          "markdown": "### Physical\n- **Hypothesis:** <specific barrier — e.g. \"lacks the physical skill to complete the form unassisted\">\n  **Persistence test:** <would this persist with full information/access/social support? state the answer and why>\n  **Diagnostic question:** <question whose answer would confirm/rule this out>\n  **Discriminates because:** <the different answer this hypothesis predicts vs. the other hypotheses in this document>\n### Psychological\n- **Hypothesis:** <e.g. \"can't translate general awareness into a plan that fits their specific, variable schedule\">\n  **Persistence test:** <...>\n  **Diagnostic question:** <...>\n  **Discriminates because:** <...>"
         },
         {
           "heading": "Opportunity",
-          "markdown": "### Physical\n- **Hypothesis:** <e.g. \"the clinic is only open during work hours\">\n  **Diagnostic question:** <...>\n### Social\n- **Hypothesis:** <e.g. \"attending would signal something the person wants to avoid signaling\">\n  **Diagnostic question:** <...>"
+          "markdown": "### Physical\n- **Hypothesis:** <e.g. \"the clinic is only open during work hours\">\n  **Diagnostic question:** <...>\n  **Discriminates because:** <...>\n### Social\n- **Hypothesis:** <e.g. \"attending would signal something the person wants to avoid signaling\">\n  **Diagnostic question:** <...>\n  **Discriminates because:** <...>"
         },
         {
           "heading": "Motivation",
-          "markdown": "### Reflective\n- **Hypothesis:** <e.g. \"doesn't believe the behaviour will produce the promised benefit\">\n  **Diagnostic question:** <...>\n### Automatic\n- **Hypothesis:** <e.g. \"competing habitual behaviour crowds out the window to act\">\n  **Diagnostic question:** <...>"
+          "markdown": "### Reflective\n- **Hypothesis:** <e.g. \"doesn't believe the behaviour will produce the promised benefit\">\n  **Diagnostic question:** <...>\n  **Discriminates because:** <...>\n### Automatic\n- **Hypothesis:** <e.g. \"competing habitual behaviour crowds out the window to act\">\n  **Diagnostic question:** <...>\n  **Discriminates because:** <...>"
         },
         {
           "heading": "Most likely barrier(s), pending diagnostic answers",
-          "markdown": "<1-3 sentences ranking which hypotheses seem most probable given whatever\ncontext is available, flagged clearly as provisional until the diagnostic\nquestions are actually answered in the field>\n```"
+          "markdown": "Score every hypothesis above on two criteria before ranking — a ranking\nwith no visible scoring is indistinguishable from an unexamined first\nguess:\n\n| Hypothesis | Context support (does existing context make this more/less likely, and why) | Field cost (how cheap/fast is its diagnostic question to actually run) |\n|---|---|---|\n| <hypothesis 1> | <...> | <...> |\n| <hypothesis 2> | <...> | <...> |\n\n<1-3 sentences naming the top 1-2 hypotheses by that table, flagged clearly\nas provisional until the diagnostic questions are actually answered in the\nfield — not a restatement of intuition the table wasn't used to reach>\n```"
         },
         {
           "heading": "Known failure modes",
-          "markdown": "- **Motivation as a dumping ground.** It's easy to label every unexplained\n  non-behaviour \"lack of motivation\" because it requires no further\n  evidence. If a hypothesis can't be stated specifically enough to produce\n  a diagnostic question that could rule it *out*, it isn't a real\n  hypothesis yet.\n- **Capability/Opportunity confusion.** \"Doesn't know how\" (capability) and\n  \"was never told\" (opportunity, if the information was never made\n  available to them) get mislabeled constantly. The distinguishing test is\n  whether the barrier would persist even if the environment fully\n  supported the person — if yes, it's capability; if the environment is\n  actually the blocker, it's opportunity.\n- **Non-discriminating questions.** A diagnostic question that would get\n  the same answer regardless of which hypothesis is true isn't\n  discriminating — it's just a survey item. Each question should be\n  chosen because a different hypothesis predicts a different answer.\n- **Running on a compound or vague behaviour.** If the input behaviour still\n  contains \"and\" or lacks a clear who/what/when, the barriers produced will\n  quietly diagnose whichever half of the behaviour was easiest to picture,\n  not the behaviour as actually specified.\n- **Treating the ranked barriers as confirmed.** This skill produces\n  hypotheses and the questions to test them, not a diagnosis. Passing the\n  \"most likely barrier\" straight to intervention design without answering\n  the diagnostic questions in the field skips the step the questions exist\n  for."
+          "markdown": "- **Motivation as a dumping ground.** It's easy to label every unexplained\n  non-behaviour \"lack of motivation\" because it requires no further\n  evidence. If a hypothesis can't be stated specifically enough to produce\n  a diagnostic question that could rule it *out*, it isn't a real\n  hypothesis yet.\n- **Capability/Opportunity confusion.** \"Doesn't know how\" (capability) and\n  \"was never told\" (opportunity, if the information was never made\n  available to them) get mislabeled constantly — including by careful\n  attempts, which is exactly why the persistence-test line in the template\n  is mandatory rather than left as background judgment. A Capability\n  hypothesis whose persistence-test answer is actually \"no, they'd be fine\n  if the environment changed\" is a mislabeled Opportunity hypothesis, full\n  stop, regardless of how the sentence is worded.\n- **Non-discriminating questions.** A diagnostic question that would get\n  the same answer regardless of which hypothesis is true isn't\n  discriminating — it's just a survey item. If the \"Discriminates because\"\n  line can't name a different predicted answer per hypothesis, the\n  question needs to change, not just the write-up.\n- **Running on a compound or vague behaviour.** If the input behaviour still\n  contains \"and\" or lacks a clear who/what/when, the barriers produced will\n  quietly diagnose whichever half of the behaviour was easiest to picture,\n  not the behaviour as actually specified.\n- **Treating the ranked barriers as confirmed.** This skill produces\n  hypotheses and the questions to test them, not a diagnosis. Passing the\n  \"most likely barrier\" straight to intervention design without answering\n  the diagnostic questions in the field skips the step the questions exist\n  for."
+        }
+      ]
+    },
+    {
+      "slug": "evidence-base-scoper",
+      "name": "evidence-base-scoper",
+      "title": "Evidence Base Scoper",
+      "description": "Use when a program goal has been named but no one has checked what evidence already exists for similar behaviours, populations, or interventions — before key-behaviour-definer or comb-barrier-decomposer run, so their framing is informed by prior work instead of starting cold. Invoke as early as possible, ideally alongside or just before key-behaviour-definer, on the same raw program goal statement. Do not invoke once a target behaviour is already defined and a diagnosis is underway — feed this skill's output into that process instead of re-running it mid-diagnosis.",
+      "category": "evidence-scoping",
+      "stage": "prepare",
+      "evidence_base": [
+        {
+          "framework": "Rapid Evidence Assessment (REA) methodology",
+          "citation": "Grant, M. J., & Booth, A. (2009). A typology of reviews: an analysis of 14 review types and associated methodologies. Health Information & Libraries Journal, 26(2), 91-108."
+        },
+        {
+          "framework": "GRADE approach to rating evidence quality",
+          "citation": "Guyatt, G. H., Oxman, A. D., Vist, G. E., et al. (2008). GRADE: an emerging consensus on rating quality of evidence and strength of recommendations. BMJ, 336(7650), 924-926."
+        },
+        {
+          "framework": "Publication bias in evidence synthesis",
+          "citation": "Rothstein, H. R., Sutton, A. J., & Borenstein, M. (Eds.). (2005). Publication Bias in Meta-Analysis: Prevention, Assessment and Adjustments. John Wiley & Sons, Ch. 1."
+        }
+      ],
+      "weird_context": {
+        "status": "weird-only",
+        "note": "This skill's entire purpose is surfacing what's in the indexed, published literature — and that literature is itself overwhelmingly WEIRD (Western, Educated, Industrialized, Rich, Democratic) in its samples (Henrich, Heine, & Norenzayan, 2010, \"The weirdest people in the world?\", Behavioral and Brain Sciences, 33(2-3), 61-83). A \"no evidence found\" result from this skill means \"no *published* evidence was found,\" not \"this doesn't work here\" — the output template forces this distinction into its own field rather than letting it stay implicit."
+      },
+      "inputs": [
+        {
+          "type": "program_goal_statement",
+          "description": "The program or campaign goal as originally stated, plus whatever context is available on the target population, setting, and known constraints. The same raw input key-behaviour-definer takes — this skill can run in parallel with it, not necessarily after it.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "evidence_scan_brief",
+          "description": "What's already been tried for this behaviour/population/context, what the effect sizes looked like where reported, where the evidence base is thin or contradictory, and which specific findings are WEIRD-skewed."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Surveys existing evidence for the behaviour, population, or context named\nin a program goal, and produces a structured brief of what's already known\nto work, not work, or remain untested — before anyone downstream defines a\ntarget behaviour or diagnoses barriers from intuition alone."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A program goal has just been stated and no one has checked whether\n  similar interventions have already been tried, anywhere, for this\n  behaviour or population.\n- A team is about to define a target behaviour or generate barrier\n  hypotheses based purely on internal assumptions, with no reference to\n  external evidence.\n- Someone asks \"has this been done before?\" or \"what does the evidence\n  actually say works here?\"\n- Do **not** invoke as a substitute for [key-behaviour-definer](../key-behaviour-definer)\n  — this skill surveys what's known, it doesn't select a target behaviour.\n  Run them on the same input, not one instead of the other."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "A Rapid Evidence Assessment (REA): a time-bounded, structured literature\nscan rather than a full systematic review — the goal is a usable brief in\nhours or days, not exhaustive coverage over months. GRADE-style thinking\ngoverns how each finding is reported: name the effect (if any), the\npopulation and setting it was measured in, and how confident that estimate\nshould be treated (a single small pilot and a multi-site RCT are not\nequally trustworthy evidence, even if both point the same direction).\nPublication-bias literature is why the output template has a mandatory\nsection for null and contradicting findings — a scan that only surfaces\nsupporting evidence is not reporting the evidence base, it's building a\ncase for a conclusion already reached."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The \"Findings that don't support the goal\" and \"WEIRD-skew flags\" sections\nare mandatory, not optional appendices — a brief with an empty first\nsection on a well-studied behaviour is more likely an incomplete search\nthan a genuinely one-sided evidence base.\n\n```markdown\n# Evidence Scan Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
+        },
+        {
+          "heading": "What's already been tried",
+          "markdown": "- <intervention/approach 1> — <population/setting it was tried in> —\n  <effect reported, with size/direction if available> — <confidence: e.g.\n  single pilot / multiple studies / RCT / meta-analysis>\n- <intervention/approach 2> — <...>"
+        },
+        {
+          "heading": "Findings that don't support the goal (mandatory — state \"none found in",
+          "markdown": "the time available\" explicitly if genuinely none, do not omit the section)\n- <null result, contradicting result, or backfire effect> — <population/\n  setting> — <what this implies for the current program>"
+        },
+        {
+          "heading": "WEIRD-skew flags (mandatory — per finding above, not once for the whole brief)",
+          "markdown": "- <finding> — <population/setting it was actually measured in, vs. the\n  target population/setting named in the program goal> — <what specifically\n  should be validated locally before trusting it as-is>"
+        },
+        {
+          "heading": "Evidence gaps",
+          "markdown": "<what's asked by the program goal that the available literature simply\ndoesn't address — a real gap, stated plainly, is more useful than a\nstretched analogy to a loosely related study>"
+        },
+        {
+          "heading": "Confidence in this scan",
+          "markdown": "<how much time/how many sources this scan covered, and what a fuller\nreview would need to check that this one couldn't>\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **One-sided search.** Searching only for evidence that the named\n  intervention or approach works, rather than for evidence on the\n  behaviour/population generally, produces a brief that confirms rather\n  than informs. If every finding points the same direction, check whether\n  the search terms themselves were leading.\n- **Analogy laundering.** Citing a study on a loosely related behaviour or\n  a very different population as if it directly answers the program goal,\n  without naming the gap in the \"WEIRD-skew flags\" or \"Evidence gaps\"\n  section. A study on urban US college students' savings behaviour is not\n  silently transferable to rural smallholder farmers — say so if that's\n  the best evidence available.\n- **Confidence collapse.** Treating a single small pilot and a replicated\n  RCT as equally strong evidence because both get reported as \"a study\n  found...\" The confidence/GRADE-style qualifier in each bullet exists\n  specifically to prevent this.\n- **Padding to look thorough.** Listing many superficially similar studies\n  that all report the same underlying finding inflates the appearance of\n  a rich evidence base without adding information. Fewer, more clearly\n  characterized findings beat a long list of redundant ones.\n- **Treating \"no evidence found\" as \"doesn't work.\"** An REA is\n  time-bounded and WEIRD-skewed by construction (see `weird_context`\n  above) — absence of published evidence for this exact population is\n  not evidence of absence. The \"Evidence gaps\" section exists to make that\n  distinction explicit rather than letting a thin scan read as a null\n  result."
         }
       ]
     },
@@ -197,6 +322,12 @@
           "description": "The program or campaign goal as originally stated, plus whatever context is available on the target population, setting, and known constraints (budget, delivery channel, timeline).",
           "source": "user",
           "required": true
+        },
+        {
+          "type": "evidence_scan_brief",
+          "description": "Optional prior evidence scan for this goal/population/context, if evidence-base-scoper has already run on the same input. When present, use it to ground candidate generation and the Effectiveness/Impact scoring columns in what's already known to work or not, rather than scoring from intuition alone.",
+          "source": "skill-output",
+          "required": false
         }
       ],
       "outputs": [
@@ -208,7 +339,7 @@
       "authors": [
         "Nikhil Ravichandar"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "sections": [
         {
           "heading": "What it does",
@@ -220,23 +351,27 @@
         },
         {
           "heading": "What it draws on",
-          "markdown": "The Behaviour Change Wheel's \"select target behaviour\" step: generate a\nreasonably exhaustive list of candidate behaviours that could plausibly\nachieve the stated goal, then score each against the APEASE criteria —\n**A**ffordability, **P**racticability, **E**ffectiveness (and cost-\neffectiveness), **A**cceptability, **S**ide-effects/safety, **E**quity —\nplus impact (how much changing this behaviour would move the goal) and\nspillover (whether changing it makes other useful behaviours more or less\nlikely). The highest-scoring candidate becomes the target; the rest are\nkept as a ranked shortlist rather than discarded, since diagnosis on the\ntop choice sometimes fails and a team needs a documented next option."
+          "markdown": "The Behaviour Change Wheel's \"select target behaviour\" step: generate a\nreasonably exhaustive list of candidate behaviours that could plausibly\nachieve the stated goal, then score each against the APEASE criteria —\n**A**ffordability, **P**racticability, **E**ffectiveness (and cost-\neffectiveness), **A**cceptability, **S**ide-effects/safety, **E**quity —\nplus impact (how much changing this behaviour would move the goal) and\nspillover (whether changing it makes other useful behaviours more or less\nlikely). The highest-scoring candidate becomes the target; the rest are\nkept as a ranked shortlist rather than discarded, since diagnosis on the\ntop choice sometimes fails and a team needs a documented next option.\n\nCandidate generation must not stop at whatever channels or products the\ninput happens to name. The input's mentioned infrastructure (an existing\nproduct, an existing course, a named delivery channel) describes what's\nalready built, not the boundary of what counts as a candidate behaviour —\nat least one candidate must come from outside that named infrastructure, or\nthe shortlist is just ranking variants of the same idea.\n\nIf an `evidence_scan_brief` is available (from\n[evidence-base-scoper](../evidence-base-scoper)), its \"what's already been\ntried\" and \"findings that don't support the goal\" sections should visibly\nchange the Effectiveness and Impact scores in the table below — a\ncandidate the evidence base already shows underperforms shouldn't score the\nsame as one with no prior evidence either way."
         },
         {
           "heading": "Output template",
-          "markdown": "```markdown\n# Target Behaviour Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
+          "markdown": "The scoring table is mandatory for every candidate, including the one\nselected — a rationale paragraph is not a substitute for it. Score each\ncell `+` (favors this candidate), `-` (counts against it), or `0`\n(neutral/no clear effect), each with a one-clause reason; a column of bare\nsymbols with no reasons doesn't count as scored. At least one candidate row\nmust fall outside the infrastructure named in the input.\n\n```markdown\n# Target Behaviour Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
+        },
+        {
+          "heading": "Candidate scoring",
+          "markdown": "| Candidate behaviour | A | P | E | A | S | E | Impact | Spillover |\n|---|---|---|---|---|---|---|---|---|\n| <candidate 1> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> |\n| <candidate 2> | ... | | | | | | | |\n| <candidate 3, from outside the named infrastructure> | ... | | | | | | | |\n\n(Columns, in APEASE order: Affordability, Practicability, Effectiveness,\nAcceptability, Side-effects/safety, Equity.)"
         },
         {
           "heading": "Selected target behaviour",
           "markdown": "- **Who:** <actor — e.g. \"first-time mothers in program clinics\">\n- **What:** <single observable action — e.g. \"attend the 6-week postnatal check\">\n- **When:** <window — e.g. \"within 6-8 weeks of delivery\">\n- **One-sentence behaviour statement:** <Who does What, by When — no \"and\">"
         },
         {
-          "heading": "Why this one (APEASE + impact rationale)",
-          "markdown": "<2-4 sentences on the scoring logic that put this above the alternatives>"
+          "heading": "Why this one",
+          "markdown": "<2-4 sentences pointing at the specific table cells that decided it — not a\nrestatement of the table, the tie-breaker reasoning where candidates were\nclose>"
         },
         {
           "heading": "Candidate shortlist (ranked, not discarded)",
-          "markdown": "1. <candidate behaviour> — <why it ranked below the selected one>\n2. <candidate behaviour> — <why it ranked below the selected one>\n3. <candidate behaviour> — <why it ranked below the selected one>"
+          "markdown": "1. <candidate behaviour> — <why it ranked below the selected one, tied to its row above>\n2. <candidate behaviour> — <why it ranked below the selected one, tied to its row above>\n3. <candidate behaviour> — <why it ranked below the selected one, tied to its row above>"
         },
         {
           "heading": "Open questions / assumptions to check",
@@ -244,7 +379,89 @@
         },
         {
           "heading": "Known failure modes",
-          "markdown": "- **Compound behaviours slip through.** \"Attend antenatal care and adhere to\n  iron supplementation\" is two behaviours wearing a trench coat. If the\n  output statement needs \"and\" to describe the action, split it before\n  passing it downstream — this skill's job is exactly one behaviour per run.\n- **Outcome dressed up as behaviour.** \"Reduce anemia\" is a health outcome,\n  not something anyone *does*. If the selected behaviour isn't something a\n  specific person could be observed doing at a specific moment, it hasn't\n  actually been defined yet.\n- **Selecting for measurability over impact.** The easiest behaviour to\n  observe (e.g. app logins) is sometimes prioritized over the behaviour that\n  actually drives the goal (e.g. offline saving). APEASE scoring should\n  catch this, but only if impact is scored honestly rather than deferred to\n  \"whatever we can already measure.\"\n- **No real alternatives generated.** If the candidate list is padded with\n  strawmen so the preferred behaviour wins, the shortlist stops being useful\n  as a fallback. Push for candidates that a reasonable person could have\n  picked first.\n- **Context collapse.** Run on a goal statement with no population or\n  setting context, the output's \"who\" will be generic and the downstream\n  diagnosis will inherit that vagueness. Push back to the user for at least\n  a rough population and setting before finalizing."
+          "markdown": "- **Compound behaviours slip through.** \"Attend antenatal care and adhere to\n  iron supplementation\" is two behaviours wearing a trench coat. If the\n  output statement needs \"and\" to describe the action, split it before\n  passing it downstream — this skill's job is exactly one behaviour per run.\n- **Outcome dressed up as behaviour.** \"Reduce anemia\" is a health outcome,\n  not something anyone *does*. If the selected behaviour isn't something a\n  specific person could be observed doing at a specific moment, it hasn't\n  actually been defined yet.\n- **Selecting for measurability over impact.** The easiest behaviour to\n  observe (e.g. app logins) is sometimes prioritized over the behaviour that\n  actually drives the goal (e.g. offline saving). APEASE scoring should\n  catch this, but only if impact is scored honestly rather than deferred to\n  \"whatever we can already measure.\"\n- **No real alternatives generated.** If the candidate list is padded with\n  strawmen so the preferred behaviour wins, the shortlist stops being useful\n  as a fallback. Push for candidates that a reasonable person could have\n  picked first. A scoring table filled in *after* the choice is already made\n  looks identical to one that drove the choice — if every row conveniently\n  favors the same candidate across all eight columns, that's a signal the\n  scoring was reverse-engineered, not applied.\n- **Anchoring on named infrastructure.** Restating the input's existing\n  products/channels as the only candidates (e.g. \"deposit into the savings\n  product\" vs. \"open the app\") isn't real alternative generation even if it\n  produces three distinct rows — see \"What it draws on\" above.\n- **Context collapse.** Run on a goal statement with no population or\n  setting context, the output's \"who\" will be generic and the downstream\n  diagnosis will inherit that vagueness. Push back to the user for at least\n  a rough population and setting before finalizing."
+        }
+      ]
+    },
+    {
+      "slug": "researcher-bias-self-audit",
+      "name": "researcher-bias-self-audit",
+      "title": "Researcher Bias Self-Audit",
+      "description": "Use when a research team is about to diagnose barriers or design an intervention and no one has surfaced the team's own prior beliefs about why the target population behaves the way it does. Invoke before comb-barrier-decomposer, ideally alongside evidence-base-scoper, at the start of a project and again before any major diagnosis or design phase — this is a periodic check, not a one-time gate. Do not invoke expecting it to resolve or correct the biases it finds; it only surfaces and structures them for a human to act on.",
+      "category": "researcher-calibration",
+      "stage": "prepare",
+      "evidence_base": [
+        {
+          "framework": "Confirmation bias in hypothesis testing",
+          "citation": "Klayman, J. (1995). Varieties of confirmation bias. Psychology of Learning and Motivation, 32, 385-418."
+        },
+        {
+          "framework": "Debiasing training and self-correction",
+          "citation": "Lilienfeld, S. O., Ammirati, R., & Landfield, K. (2009). Giving debiasing away: Can psychological research on correcting cognitive errors promote human welfare? Perspectives on Psychological Science, 4(4), 390-398."
+        }
+      ],
+      "weird_context": {
+        "status": "untested-outside-weird",
+        "note": "The debiasing and metacognition literature this skill draws on is itself drawn overwhelmingly from WEIRD research populations and settings (Henrich, Heine, & Norenzayan, 2010, \"The weirdest people in the world?\", Behavioral and Brain Sciences, 33(2-3), 61-83) — a pointed irony for a skill about checking researchers' own priors. The *technique* (forcing falsifiability and a named disconfirming observation) is general-purpose, but treat its effectiveness as unvalidated outside the populations the source studies were run on, same as any other skill in this library would be required to."
+      },
+      "inputs": [
+        {
+          "type": "researcher_assumption_statement",
+          "description": "The researcher's own short, honest answers to the fixed prompts named in this io type's taxonomy entry, given before looking at any diagnostic data on the actual target population.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bias_audit_report",
+          "description": "A structured flag list surfacing which stated assumptions are unfalsifiable as written, default to a WEIRD population as the implicit norm, or lack a named disconfirming observation."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Takes a researcher's own stated assumptions about why a target population\nbehaves as it does and flags which of those assumptions are unfalsifiable,\nimplicitly assume a WEIRD-default population, or have no named observation\nthat would change the researcher's mind — before those assumptions quietly\nbecome the barrier hypotheses in a later diagnosis."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A project is starting and the research team hasn't yet written down what\n  they already believe about why the target population behaves as it does,\n  before looking at any data.\n- Before [comb-barrier-decomposer](../comb-barrier-decomposer) runs, so its\n  barrier hypotheses can be checked against what the researchers already\n  believed going in, rather than silently reproducing it.\n- Periodically during a long project — priors drift and harden over time,\n  so this is meant to be re-run at each major diagnosis or design phase,\n  not just once at kickoff.\n- Do **not** invoke expecting a fixed intervention or training plan out the\n  other end. A skill that both surfaces a researcher's biases and prescribes\n  how to fix their thinking is two skills — this one only does the former."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Klayman's account of confirmation bias: people don't just fail to seek\ndisconfirming evidence, they often can't specify what disconfirming\nevidence would even look like, because the belief was never stated in\nfalsifiable form. The self-audit's fixed prompts are built to force that\nspecification — asking not just \"what do you believe?\" but \"what would\nchange your mind?\" and \"what's the most similar population you've actually\nworked with?\" surfaces both the belief and its evidentiary basis (or lack\nof one) in the same pass. Lilienfeld et al.'s review of debiasing training\nis the basis for treating this as a structuring/surfacing exercise rather\nthan a correction exercise — their finding is that durable debiasing needs\ndeliberate practice against specific, named errors, not a one-off warning;\na single audit report doesn't produce that practice, it just gives the\nteam something concrete to practice against."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "Every flagged assumption needs a concrete rewrite or a concrete follow-up\nquestion — a flag with no actionable next step is just a criticism, not an\naudit. The \"no flags raised\" case is legitimate but should be rare; if nothing\nin the statement is flaggable, that itself is worth a one-line sanity check\nin the report.\n\n```markdown\n# Researcher Bias Self-Audit\n\n**Assumption statement (as given):** <verbatim>"
+        },
+        {
+          "heading": "Unfalsifiable assumptions",
+          "markdown": "- <assumption, quoted or closely paraphrased> — **Why unfalsifiable:**\n  <what observation could never contradict it as currently worded> —\n  **Rewrite as falsifiable:** <a version of the same belief that some\n  specific, obtainable observation could actually contradict>"
+        },
+        {
+          "heading": "Default-to-WEIRD priors",
+          "markdown": "- <assumption> — **Implicit norm assumed:** <e.g. assumes salaried income,\n  nuclear-household decision-making, individual rather than collective\n  financial choices> — **What to check locally:** <the specific local fact\n  that would confirm or override this norm for the actual target population>"
+        },
+        {
+          "heading": "No named disconfirming observation",
+          "markdown": "- <assumption> — **\"What would change your mind?\" answer given:**\n  <verbatim, or \"none given\" if the prompt wasn't answered concretely> —\n  **Risk:** <what happens downstream if this belief is never actually\n  tested because no one specified how it could be wrong>"
+        },
+        {
+          "heading": "Population-transfer risk",
+          "markdown": "- <assumption> — **Most similar population researcher has personally\n  worked with:** <as stated> — **Stated similarity to target population:**\n  <as stated> — **Gap risk:** <what's different enough between the two\n  that experience with one may not transfer>"
+        },
+        {
+          "heading": "Re-audit trigger",
+          "markdown": "<when this should be re-run for this project — e.g. before diagnosis\nbegins, before design begins, or after a stated number of weeks/major\nfindings>\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Performative self-awareness.** Answering the prompts with what sounds\n  appropriately humble (\"I could be wrong about anything\") rather than a\n  specific, checkable belief produces a statement with nothing real to\n  flag. The audit can only work on what's actually stated — vague\n  humility isn't more auditable than vague certainty.\n- **Treating a completed audit as a resolved bias.** This skill's output is\n  a flag list, not evidence the flagged assumption was corrected. Passing\n  \"audited\" straight to intervention design as if the flagged priors are\n  now neutralized skips the actual field-testing the diagnostic skill and\n  the disconfirming observations are meant to prompt.\n- **One-time use on a multi-month project.** Priors harden and new ones\n  form as a project proceeds. An audit run once at kickoff and never\n  again will miss the assumptions that calcified during diagnosis itself\n  — the \"Re-audit trigger\" field exists so this isn't left to memory.\n- **Auditor and subject as the same unchecked person.** If the person\n  running this skill is also the sole author of the assumption statement,\n  with no one else reviewing the flags, self-serving under-flagging is\n  possible and won't be visible in the report itself. Where feasible, have\n  a second team member read the flagged report against the original\n  statement.\n- **Confusing this with the target-population evidence base.** This skill\n  audits the *researcher's* priors; it does not survey external evidence\n  on the population — that's [evidence-base-scoper](../evidence-base-scoper).\n  Running only this one and treating it as if the population itself has now\n  been evidenced leaves the actual evidence gap unaddressed."
         }
       ]
     }
@@ -259,6 +476,13 @@
         "stage": "diagnose"
       },
       {
+        "id": "evidence-base-scoper",
+        "kind": "skill",
+        "label": "Evidence Base Scoper",
+        "category": "evidence-scoping",
+        "stage": "prepare"
+      },
+      {
         "id": "key-behaviour-definer",
         "kind": "skill",
         "label": "Key Behaviour Definer",
@@ -266,9 +490,21 @@
         "stage": "define"
       },
       {
+        "id": "researcher-bias-self-audit",
+        "kind": "skill",
+        "label": "Researcher Bias Self-Audit",
+        "category": "researcher-calibration",
+        "stage": "prepare"
+      },
+      {
         "id": "external:program_goal_statement",
         "kind": "external-input",
         "label": "Program goal statement"
+      },
+      {
+        "id": "external:researcher_assumption_statement",
+        "kind": "external-input",
+        "label": "Researcher assumption statement"
       }
     ],
     "edges": [
@@ -278,9 +514,29 @@
         "via": "target_behaviour_brief"
       },
       {
+        "from": "researcher-bias-self-audit",
+        "to": "comb-barrier-decomposer",
+        "via": "bias_audit_report"
+      },
+      {
+        "from": "external:program_goal_statement",
+        "to": "evidence-base-scoper",
+        "via": "program_goal_statement"
+      },
+      {
         "from": "external:program_goal_statement",
         "to": "key-behaviour-definer",
         "via": "program_goal_statement"
+      },
+      {
+        "from": "evidence-base-scoper",
+        "to": "key-behaviour-definer",
+        "via": "evidence_scan_brief"
+      },
+      {
+        "from": "external:researcher_assumption_statement",
+        "to": "researcher-bias-self-audit",
+        "via": "researcher_assumption_statement"
       }
     ],
     "terminalOutputs": [

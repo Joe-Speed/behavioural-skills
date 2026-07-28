@@ -39,6 +39,16 @@ inputs:
       specific behaviour statement works.
     source: skill-output
     required: true
+  - type: bias_audit_report
+    description: >-
+      Optional researcher bias audit for this project, if
+      researcher-bias-self-audit has already run. When present, treat its
+      flagged assumptions as barrier hypotheses to actively test via their
+      diagnostic questions, not as barriers to assume true — a flagged
+      prior becoming a hypothesis without independent field evidence just
+      relocates the bias rather than checking it.
+    source: skill-output
+    required: false
 outputs:
   - type: comb_barrier_hypotheses
     description: >-
@@ -47,7 +57,7 @@ outputs:
       would discriminate it from the others.
 authors:
   - Nikhil Ravichandar
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -85,9 +95,37 @@ the three components are constructed to be jointly exhaustive, a rigorous
 decomposition should be able to state at least one hypothesis per
 sub-component even if some are quickly ruled out — the discipline is in
 naming what would distinguish a real barrier from a plausible-sounding one,
-not in generating the longest list.
+not in generating the longest list. One hypothesis per sub-component is a
+floor, not a ceiling — if two genuinely distinct, non-trivial hypotheses
+compete for the same sub-component, list both rather than merging or
+dropping one to fit a one-bullet shape.
+
+Every candidate Capability hypothesis must pass the persistence test before
+it's placed: **would this barrier persist even if the environment fully
+supported the person (full information, full access, no social cost)?** If
+yes, it's Capability. If no — if the person would be fine once the
+environment changed — it's Opportunity, not Capability, no matter how much
+it resembles "doesn't know how" or "doesn't understand." This is the single
+most common mislabel in COM-B application and the template below makes
+showing this check mandatory, not optional.
+
+If a `bias_audit_report` is available (from
+[researcher-bias-self-audit](../researcher-bias-self-audit)), cross-check
+its flagged assumptions against the hypothesis list below: a flagged prior
+that quietly reappears as a hypothesis needs its own diagnostic question
+like any other, not a pass on the strength of already having been named.
 
 ## Output template
+
+Every Capability hypothesis requires its persistence-test line — a
+hypothesis placed under Capability without one is incomplete, not just
+under-documented. Every diagnostic question requires its discrimination
+line: state the different answer each hypothesis under it predicts; a
+question that would get the same answer either way isn't diagnostic and
+belongs back in the hypothesis stage, not in this section. List more than
+one hypothesis per sub-component whenever more than one is genuinely
+distinct and non-trivial — do not compress two competing ideas into one
+bullet.
 
 ```markdown
 # COM-B Barrier Hypotheses
@@ -97,31 +135,49 @@ not in generating the longest list.
 ## Capability
 ### Physical
 - **Hypothesis:** <specific barrier — e.g. "lacks the physical skill to complete the form unassisted">
+  **Persistence test:** <would this persist with full information/access/social support? state the answer and why>
   **Diagnostic question:** <question whose answer would confirm/rule this out>
+  **Discriminates because:** <the different answer this hypothesis predicts vs. the other hypotheses in this document>
 ### Psychological
-- **Hypothesis:** <e.g. "doesn't know the deadline exists">
+- **Hypothesis:** <e.g. "can't translate general awareness into a plan that fits their specific, variable schedule">
+  **Persistence test:** <...>
   **Diagnostic question:** <...>
+  **Discriminates because:** <...>
 
 ## Opportunity
 ### Physical
 - **Hypothesis:** <e.g. "the clinic is only open during work hours">
   **Diagnostic question:** <...>
+  **Discriminates because:** <...>
 ### Social
 - **Hypothesis:** <e.g. "attending would signal something the person wants to avoid signaling">
   **Diagnostic question:** <...>
+  **Discriminates because:** <...>
 
 ## Motivation
 ### Reflective
 - **Hypothesis:** <e.g. "doesn't believe the behaviour will produce the promised benefit">
   **Diagnostic question:** <...>
+  **Discriminates because:** <...>
 ### Automatic
 - **Hypothesis:** <e.g. "competing habitual behaviour crowds out the window to act">
   **Diagnostic question:** <...>
+  **Discriminates because:** <...>
 
 ## Most likely barrier(s), pending diagnostic answers
-<1-3 sentences ranking which hypotheses seem most probable given whatever
-context is available, flagged clearly as provisional until the diagnostic
-questions are actually answered in the field>
+
+Score every hypothesis above on two criteria before ranking — a ranking
+with no visible scoring is indistinguishable from an unexamined first
+guess:
+
+| Hypothesis | Context support (does existing context make this more/less likely, and why) | Field cost (how cheap/fast is its diagnostic question to actually run) |
+|---|---|---|
+| <hypothesis 1> | <...> | <...> |
+| <hypothesis 2> | <...> | <...> |
+
+<1-3 sentences naming the top 1-2 hypotheses by that table, flagged clearly
+as provisional until the diagnostic questions are actually answered in the
+field — not a restatement of intuition the table wasn't used to reach>
 ```
 
 ## Known failure modes
@@ -133,14 +189,17 @@ questions are actually answered in the field>
   hypothesis yet.
 - **Capability/Opportunity confusion.** "Doesn't know how" (capability) and
   "was never told" (opportunity, if the information was never made
-  available to them) get mislabeled constantly. The distinguishing test is
-  whether the barrier would persist even if the environment fully
-  supported the person — if yes, it's capability; if the environment is
-  actually the blocker, it's opportunity.
+  available to them) get mislabeled constantly — including by careful
+  attempts, which is exactly why the persistence-test line in the template
+  is mandatory rather than left as background judgment. A Capability
+  hypothesis whose persistence-test answer is actually "no, they'd be fine
+  if the environment changed" is a mislabeled Opportunity hypothesis, full
+  stop, regardless of how the sentence is worded.
 - **Non-discriminating questions.** A diagnostic question that would get
   the same answer regardless of which hypothesis is true isn't
-  discriminating — it's just a survey item. Each question should be
-  chosen because a different hypothesis predicts a different answer.
+  discriminating — it's just a survey item. If the "Discriminates because"
+  line can't name a different predicted answer per hypothesis, the
+  question needs to change, not just the write-up.
 - **Running on a compound or vague behaviour.** If the input behaviour still
   contains "and" or lacks a clear who/what/when, the barriers produced will
   quietly diagnose whichever half of the behaviour was easiest to picture,

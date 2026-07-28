@@ -30,10 +30,25 @@ categories:
   - id: cultural-context
     label: Cultural Context
     description: Assessing how a cultural or contextual lens changes what will work.
+  - id: evidence-scoping
+    label: Evidence Scoping
+    description: Surveying existing evidence for a behaviour or context before diagnosis or design begins.
+  - id: researcher-calibration
+    label: Researcher Calibration
+    description: >-
+      Checking the research team's own priors, assumptions, or evidence gaps
+      before they shape downstream diagnosis or design. Distinct from
+      Cultural Context, which is about the target population rather than
+      the researcher.
 
 # A research stage is orthogonal to category: it's where in a project
 # timeline a skill is normally invoked, independent of what it does.
 stages:
+  - id: prepare
+    label: Prepare
+    description: >-
+      Groundwork before defining a target behaviour: gathering evidence and
+      checking the research team's own priors.
   - id: define
     label: Define
     description: Establishing what behaviour, population, or outcome the work is about.
@@ -79,4 +94,34 @@ io_types:
       Competing Capability / Opportunity / Motivation barrier hypotheses for
       one target behaviour, each with the diagnostic question(s) that would
       discriminate it from the others.
+    user_suppliable: false
+
+  - id: evidence_scan_brief
+    label: Evidence scan brief
+    description: >-
+      A structured summary of existing evidence for a target behaviour,
+      population, or context: what's already been tried, effect sizes where
+      available, contradicting or null findings, and which specific
+      findings are WEIRD-skewed.
+    user_suppliable: false
+
+  - id: researcher_assumption_statement
+    label: Researcher assumption statement
+    description: >-
+      A researcher's own short, honest answers to a fixed set of self-report
+      prompts about their prior beliefs on why the target population
+      behaves as it does, given before looking at any diagnostic data: what
+      they already believe is causing the behaviour gap, what population
+      they've personally worked with most and how similar it is to this
+      one, and what observation would change their mind.
+    user_suppliable: true
+
+  - id: bias_audit_report
+    label: Bias audit report
+    description: >-
+      A structured flag list surfacing which parts of a researcher's stated
+      prior assumptions are unfalsifiable as written, default to a WEIRD
+      population as the implicit norm, or lack a named disconfirming
+      observation. Not a pass/fail score, and not a debiasing plan — only a
+      surfacing of what's already there.
     user_suppliable: false

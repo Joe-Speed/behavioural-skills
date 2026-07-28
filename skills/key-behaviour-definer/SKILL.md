@@ -38,6 +38,15 @@ inputs:
       constraints (budget, delivery channel, timeline).
     source: user
     required: true
+  - type: evidence_scan_brief
+    description: >-
+      Optional prior evidence scan for this goal/population/context, if
+      evidence-base-scoper has already run on the same input. When present,
+      use it to ground candidate generation and the Effectiveness/Impact
+      scoring columns in what's already known to work or not, rather than
+      scoring from intuition alone.
+    source: skill-output
+    required: false
 outputs:
   - type: target_behaviour_brief
     description: >-
@@ -46,7 +55,7 @@ outputs:
       the reasoning for why the top choice won.
 authors:
   - Nikhil Ravichandar
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -81,12 +90,44 @@ likely). The highest-scoring candidate becomes the target; the rest are
 kept as a ranked shortlist rather than discarded, since diagnosis on the
 top choice sometimes fails and a team needs a documented next option.
 
+Candidate generation must not stop at whatever channels or products the
+input happens to name. The input's mentioned infrastructure (an existing
+product, an existing course, a named delivery channel) describes what's
+already built, not the boundary of what counts as a candidate behaviour —
+at least one candidate must come from outside that named infrastructure, or
+the shortlist is just ranking variants of the same idea.
+
+If an `evidence_scan_brief` is available (from
+[evidence-base-scoper](../evidence-base-scoper)), its "what's already been
+tried" and "findings that don't support the goal" sections should visibly
+change the Effectiveness and Impact scores in the table below — a
+candidate the evidence base already shows underperforms shouldn't score the
+same as one with no prior evidence either way.
+
 ## Output template
+
+The scoring table is mandatory for every candidate, including the one
+selected — a rationale paragraph is not a substitute for it. Score each
+cell `+` (favors this candidate), `-` (counts against it), or `0`
+(neutral/no clear effect), each with a one-clause reason; a column of bare
+symbols with no reasons doesn't count as scored. At least one candidate row
+must fall outside the infrastructure named in the input.
 
 ```markdown
 # Target Behaviour Brief
 
 **Program goal (as given):** <verbatim or lightly cleaned goal statement>
+
+## Candidate scoring
+
+| Candidate behaviour | A | P | E | A | S | E | Impact | Spillover |
+|---|---|---|---|---|---|---|---|---|
+| <candidate 1> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> | <+/-/0: reason> |
+| <candidate 2> | ... | | | | | | | |
+| <candidate 3, from outside the named infrastructure> | ... | | | | | | | |
+
+(Columns, in APEASE order: Affordability, Practicability, Effectiveness,
+Acceptability, Side-effects/safety, Equity.)
 
 ## Selected target behaviour
 - **Who:** <actor — e.g. "first-time mothers in program clinics">
@@ -94,13 +135,15 @@ top choice sometimes fails and a team needs a documented next option.
 - **When:** <window — e.g. "within 6-8 weeks of delivery">
 - **One-sentence behaviour statement:** <Who does What, by When — no "and">
 
-## Why this one (APEASE + impact rationale)
-<2-4 sentences on the scoring logic that put this above the alternatives>
+## Why this one
+<2-4 sentences pointing at the specific table cells that decided it — not a
+restatement of the table, the tie-breaker reasoning where candidates were
+close>
 
 ## Candidate shortlist (ranked, not discarded)
-1. <candidate behaviour> — <why it ranked below the selected one>
-2. <candidate behaviour> — <why it ranked below the selected one>
-3. <candidate behaviour> — <why it ranked below the selected one>
+1. <candidate behaviour> — <why it ranked below the selected one, tied to its row above>
+2. <candidate behaviour> — <why it ranked below the selected one, tied to its row above>
+3. <candidate behaviour> — <why it ranked below the selected one, tied to its row above>
 
 ## Open questions / assumptions to check
 <anything the definer had to guess at from limited program context>
@@ -124,7 +167,14 @@ top choice sometimes fails and a team needs a documented next option.
 - **No real alternatives generated.** If the candidate list is padded with
   strawmen so the preferred behaviour wins, the shortlist stops being useful
   as a fallback. Push for candidates that a reasonable person could have
-  picked first.
+  picked first. A scoring table filled in *after* the choice is already made
+  looks identical to one that drove the choice — if every row conveniently
+  favors the same candidate across all eight columns, that's a signal the
+  scoring was reverse-engineered, not applied.
+- **Anchoring on named infrastructure.** Restating the input's existing
+  products/channels as the only candidates (e.g. "deposit into the savings
+  product" vs. "open the app") isn't real alternative generation even if it
+  produces three distinct rows — see "What it draws on" above.
 - **Context collapse.** Run on a goal statement with no population or
   setting context, the output's "who" will be generic and the downstream
   diagnosis will inherit that vagueness. Push back to the user for at least

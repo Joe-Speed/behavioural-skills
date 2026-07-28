@@ -109,20 +109,24 @@ isn't stale) on every pull request.
 
 | Skill | Category | Stage | Consumes | Produces |
 |---|---|---|---|---|
-| [key-behaviour-definer](skills/key-behaviour-definer) | Behaviour Definition | Define | a program goal statement (user-supplied) | a target behaviour brief |
-| [comb-barrier-decomposer](skills/comb-barrier-decomposer) | Diagnosis | Diagnose | a target behaviour brief | COM-B barrier hypotheses |
+| [evidence-base-scoper](skills/evidence-base-scoper) | Evidence Scoping | Prepare | a program goal statement (user-supplied) | an evidence scan brief |
+| [researcher-bias-self-audit](skills/researcher-bias-self-audit) | Researcher Calibration | Prepare | a researcher assumption statement (user-supplied) | a bias audit report |
+| [key-behaviour-definer](skills/key-behaviour-definer) | Behaviour Definition | Define | a program goal statement (user-supplied), optionally an evidence scan brief | a target behaviour brief |
+| [comb-barrier-decomposer](skills/comb-barrier-decomposer) | Diagnosis | Diagnose | a target behaviour brief, optionally a bias audit report | COM-B barrier hypotheses |
 
-`comb-barrier-decomposer` consumes `key-behaviour-definer`'s output — this
-chain is derived automatically by `scripts/build-index.js` from the two
-skills' frontmatter, not hand-wired, and is visible on each skill's page as
-its declared inputs/outputs.
+`comb-barrier-decomposer` consumes `key-behaviour-definer`'s output, and
+both `evidence-base-scoper` and `researcher-bias-self-audit` optionally
+feed into the definer and decomposer respectively — this chain is derived
+automatically by `scripts/build-index.js` from the skills' frontmatter,
+not hand-wired, and is visible on each skill's page as its declared
+inputs/outputs.
 
 ## Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for candidate skills we're actively looking
-for — starting with the pre-intervention gap: nothing in the catalogue yet
-covers the evidence-gathering and researcher-bias-checking work that
-happens *before* a target behaviour is defined.
+See [ROADMAP.md](ROADMAP.md) for what's next. The pre-intervention gap
+it originally called for — evidence-gathering and researcher-bias-checking
+before a target behaviour is defined — is now built (the first two rows
+above); the roadmap tracks what's still open.
 
 ## Contributing
 
