@@ -40,8 +40,17 @@
 
   function firstSentence(text) {
     const clean = text.replace(/\s+/g, " ").trim();
-    const idx = clean.indexOf(". ");
-    return idx > 0 && idx < 220 ? clean.slice(0, idx + 1) : clean.slice(0, 220);
+    // Trigger descriptions end sentences in ".", "?", or "!" (optionally
+    // followed by a closing quote), and abbreviations like "e.g." must not
+    // be mistaken for a sentence end. If none found within budget, fall
+    // back to the last whole word that fits, with an ellipsis — never
+    // slice mid-word.
+    const match = clean.match(/^.{1,220}?(?<!\be\.g)(?<!\bi\.e)(?<!\betc)[.!?]["')]?(?=\s|$)/);
+    if (match) return match[0];
+    if (clean.length <= 220) return clean;
+    const truncated = clean.slice(0, 220);
+    const lastSpace = truncated.lastIndexOf(" ");
+    return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "…";
   }
 
   function renderChips(container, items, activeSet) {

@@ -112,6 +112,21 @@ function renderInstallPanel({ withSelection = false } = {}) {
       }
 
       <div class="install-terminal-slot"></div>
+
+      <details class="install-advanced">
+        <summary>Advanced</summary>
+        <div class="install-advanced-grid">
+          <div>
+            <p class="install-advanced-label">Project root</p>
+            <div class="install-cd-slot"></div>
+          </div>
+          <div>
+            <p class="install-advanced-label">Verify</p>
+            <div class="install-verify-slot"></div>
+          </div>
+        </div>
+        <p class="install-path-note">Selected skills are installed into <code>skills/</code> in your project, unmodified.</p>
+      </details>
     </div>
   `;
 }
@@ -123,15 +138,27 @@ function renderInstallPanel({ withSelection = false } = {}) {
 // changes elsewhere (e.g. a checkbox toggle).
 function bindInstallPanel(panel, getSlugs) {
   const slot = panel.querySelector(".install-terminal-slot");
+  const cdSlot = panel.querySelector(".install-cd-slot");
+  const verifySlot = panel.querySelector(".install-verify-slot");
   const select = panel.querySelector(".platform-input");
   const hint = panel.querySelector("[data-install-hint]");
 
   function refresh() {
     const slugs = getSlugs();
     const platform = select.value;
+    const isWindows = platform === "windows";
+    const lang = isWindows ? "powershell" : "bash";
+
     const command = buildInstallCommand(slugs, platform);
-    slot.innerHTML = renderTerminal(command, platform === "windows" ? "powershell" : "bash");
+    slot.innerHTML = renderTerminal(command, lang);
     bindTerminalCopyButtons(slot);
+
+    cdSlot.innerHTML = renderTerminal(isWindows ? "cd C:\\path\\to\\your-project" : "cd /path/to/your-project", lang);
+    bindTerminalCopyButtons(cdSlot);
+
+    verifySlot.innerHTML = renderTerminal(isWindows ? "dir skills" : "ls skills/", lang);
+    bindTerminalCopyButtons(verifySlot);
+
     if (hint) hint.hidden = slugs.length > 0;
   }
 
