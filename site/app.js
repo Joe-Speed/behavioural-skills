@@ -136,6 +136,42 @@ function renderInstallPanel({ withSelection = false } = {}) {
   `;
 }
 
+// Native <details> snaps open/closed with no transition. Animates the
+// body's height instead: on open, set it to 0 then to scrollHeight so the
+// browser has a start and end value to transition between; on close, the
+// reverse, only flipping the `open` attribute off once the transition ends.
+function bindAdvancedUnfurl(details) {
+  const summary = details.querySelector("summary");
+  const body = details.querySelector(".install-advanced-body");
+  if (!summary || !body) return;
+
+  summary.addEventListener("click", (evt) => {
+    evt.preventDefault();
+
+    if (details.open) {
+      const startHeight = body.getBoundingClientRect().height;
+      body.style.height = `${startHeight}px`;
+      body.getBoundingClientRect(); // force reflow so the next line transitions
+      body.style.height = "0px";
+      body.addEventListener(
+        "transitionend",
+        () => {
+          details.open = false;
+          body.style.height = "";
+        },
+        { once: true }
+      );
+    } else {
+      details.open = true;
+      const endHeight = body.scrollHeight;
+      body.style.height = "0px";
+      body.getBoundingClientRect();
+      body.style.height = `${endHeight}px`;
+      body.addEventListener("transitionend", () => { body.style.height = ""; }, { once: true });
+    }
+  });
+}
+
 // Wires up a panel rendered by renderInstallPanel(). getSlugs() is called on
 // every render to get the current skill slug list, so the catalogue can pass
 // a closure over its live selection while skill.html passes a fixed one.
@@ -147,6 +183,7 @@ function bindInstallPanel(panel, getSlugs) {
   const verifySlot = panel.querySelector(".install-verify-slot");
   const select = panel.querySelector(".platform-input");
   const hint = panel.querySelector("[data-install-hint]");
+  bindAdvancedUnfurl(panel.querySelector(".install-advanced"));
 
   function refresh() {
     const slugs = getSlugs();

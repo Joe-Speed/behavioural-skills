@@ -456,6 +456,12 @@ main {
 .install-advanced-body {
   padding: 1rem;
   border-top: 1px solid var(--border);
+  overflow: hidden;
+  transition: height 0.22s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .install-advanced-body { transition: none; }
 }
 
 .install-advanced-grid {
