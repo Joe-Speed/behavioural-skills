@@ -114,18 +114,23 @@ function renderInstallPanel({ withSelection = false } = {}) {
       <div class="install-terminal-slot"></div>
 
       <details class="install-advanced">
-        <summary>Advanced</summary>
-        <div class="install-advanced-grid">
-          <div>
-            <p class="install-advanced-label">Project root</p>
-            <div class="install-cd-slot"></div>
+        <summary>
+          <span>Advanced</span>
+          <svg class="install-advanced-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="install-advanced-body">
+          <div class="install-advanced-grid">
+            <div>
+              <p class="install-advanced-label">Project root</p>
+              <div class="install-cd-slot"></div>
+            </div>
+            <div>
+              <p class="install-advanced-label">Verify</p>
+              <div class="install-verify-slot"></div>
+            </div>
           </div>
-          <div>
-            <p class="install-advanced-label">Verify</p>
-            <div class="install-verify-slot"></div>
-          </div>
+          <p class="install-path-note">Selected skills are installed into <code>skills/</code> in your project, unmodified.</p>
         </div>
-        <p class="install-path-note">Selected skills are installed into <code>skills/</code> in your project, unmodified.</p>
       </details>
     </div>
   `;
