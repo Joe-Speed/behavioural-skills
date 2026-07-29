@@ -5,6 +5,26 @@ cleanly into a skill written by someone else, months later, who never
 talked to them. That only works if every contributor holds the same line
 on what counts as one skill. This document is that line.
 
+## Two ways to propose a skill
+
+**Sketch it in the browser** — the site's [Propose a
+Skill](https://joe-speed.github.io/behavioural-skills/propose.html) page.
+Fill in the form and it opens a pre-filled GitHub issue (labeled
+`new-skill-proposal`) with your draft, using no more than a GitHub
+account — no YAML, no local setup. This is a first-draft/discussion step,
+not a way to publish a skill directly: someone still has to turn an
+accepted issue into a real `skills/<name>/SKILL.md` following the rest of
+this document before it shows up in the catalogue. (If a deployment sets
+`SUBMISSION_ENDPOINT` in `site/propose.js`, it posts there instead of
+opening an issue — same form, same payload shape, different destination.)
+
+**Write the YAML directly** — copy `templates/skill-template/SKILL.md`
+into `skills/<your-skill-name>/`, fill in the frontmatter and body
+sections below, run `npm run validate` and `npm run build`, and open a
+PR. This is the only path that actually produces a live skill — the form
+above is just a lower-friction way to get a draft in front of people
+before someone does this step.
+
 ## The atomicity rule
 
 > A skill is one thing a behavioural scientist does — narrow enough that you can describe it in a single sentence without using the word "and."
