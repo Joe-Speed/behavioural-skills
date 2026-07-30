@@ -43,6 +43,17 @@ inputs:
       diagnostic data on the actual target population.
     source: user
     required: true
+  - type: intervention_post_mortem_brief
+    description: >-
+      Optional post-mortem for a prior attempt on this or a related
+      program, if prior-intervention-post-mortem-reader has already run.
+      When present, cross-check its "Causal claim check" section against
+      the fresh assumption statement — a causal story the post-mortem
+      already found unsupported by data, restated here as a fresh belief
+      about why the population behaves as it does, is the same unaudited
+      assumption reappearing rather than a new one.
+    source: skill-output
+    required: false
 outputs:
   - type: bias_audit_report
     description: >-
@@ -51,7 +62,7 @@ outputs:
       implicit norm, or lack a named disconfirming observation.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -92,6 +103,14 @@ than a correction exercise — their finding is that durable debiasing needs
 deliberate practice against specific, named errors, not a one-off warning;
 a single audit report doesn't produce that practice, it just gives the
 team something concrete to practice against.
+
+If an `intervention_post_mortem_brief` is available (from
+[prior-intervention-post-mortem-reader](../prior-intervention-post-mortem-reader)),
+its "Causal claim check" already tested one causal story against actual
+data — cross-check the fresh assumption statement against it. A belief the
+post-mortem already found unsupported, restated here as if it were newly
+being examined, is the same unaudited assumption reappearing under a new
+label, not independent evidence.
 
 ## Output template
 
@@ -229,3 +248,7 @@ any of the audience-context or field data existed.
   on the population — that's [evidence-base-scoper](../evidence-base-scoper).
   Running only this one and treating it as if the population itself has now
   been evidenced leaves the actual evidence gap unaddressed.
+- **Relabeled post-mortem claim.** A causal story already checked and
+  found unsupported by [prior-intervention-post-mortem-reader](../prior-intervention-post-mortem-reader)
+  can resurface here as a "fresh" assumption if no one cross-checks it —
+  flag it as the same unaudited belief, not as independent input.

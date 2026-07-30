@@ -13,7 +13,7 @@
     return;
   }
 
-  bindCommandPalette(data.skills);
+  bindCommandPalette(data);
 
   const activeCategories = new Set();
   const activeStages = new Set();

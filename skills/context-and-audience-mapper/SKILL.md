@@ -59,7 +59,7 @@ outputs:
       without having been confirmed locally.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -91,21 +91,41 @@ EAST's "Timely" and "Easy" dimensions only mean something once the actual
 physical and social moment the behaviour choice occurs in is known — not a
 generic description of the audience's demographics. Contextual inquiry's
 discipline of describing an environment as actually observed, rather than
-as reported secondhand by a stakeholder who doesn't live in it, is why the
-output template below requires a specific decision moment and real
-(not proposed) channels. Datta & Mullainathan's account of behavioural
-design in development programs is the basis for the mandatory WEIRD-default
-check: a brief that assumes formal banking, smartphone ownership, or
-literate-first materials without confirming any of them for this specific
-population isn't mapping context, it's importing a different one.
+as reported secondhand by a stakeholder who doesn't live in it, applies to
+every section below, not just channels — the output template requires a
+source (directly observed, reported by someone who lives it, or general
+literature about the country/sector rather than this specific population)
+for the decision moment and constraints, same as it already does for
+channels. Datta & Mullainathan's account of behavioural design in
+development programs is the basis for the mandatory WEIRD-default check —
+and that check is not limited to infrastructure. The WEIRD framing's
+"individualism" component means *who has decision authority* is itself a
+common default: treating the named population as the autonomous
+decision-maker, when a household or group actually holds that authority,
+is as much a WEIRD default as assuming a bank account or a smartphone, and
+the assumption check below must consider it explicitly, not just physical
+infrastructure.
+
+When the input only supports a broad, honest operationalization (a whole
+state or region, not a named district or market), narrow to the most
+specific subgroup the input actually supports and route the remaining
+breadth to Open Questions — do not invent a specific place, clinic, or
+market the input never named just to look more specific. A narrower-than-
+warranted guess that turns out wrong is worse than an honestly-scoped
+population with the gap named.
 
 ## Output template
 
 The decision moment and existing-channel list are mandatory, not optional
 colour — a brief with a generic "who" and no specific moment or channel
-hasn't mapped anything yet. The WEIRD-default assumption check is mandatory
-even when the answer is "confirmed, no gap found" — state that explicitly
-rather than omitting the section.
+hasn't mapped anything yet. Every section that describes the population or
+its context must state whether that description is directly observed,
+reported by someone who lives it, or drawn from general literature about
+the country/sector rather than this specific population — an unsourced
+specific claim is indistinguishable from an invented one. The WEIRD-default
+assumption check is mandatory even when the answer is "confirmed, no gap
+found" — state that explicitly rather than omitting the section, and it
+must consider decision-making authority, not only physical infrastructure.
 
 ```markdown
 # Audience & Context Brief
@@ -114,13 +134,18 @@ rather than omitting the section.
 
 ## Population, as named vs. as operationalized
 - **As named in the input:** <the funder/stakeholder's label, verbatim>
-- **Operationalized:** <specific, observable subgroup — e.g. "women aged
-  25-50 running fixed daily produce stalls in two named markets," not
-  "smallholder farmers" generally>
+- **Operationalized:** <the narrowest subgroup the input actually
+  supports — e.g. "women aged 25-50 running fixed daily produce stalls in
+  two named markets," not "smallholder farmers" generally. If the input
+  only supports a broad operationalization, say so here and route the
+  specific gap to Open Questions rather than naming a place, clinic, or
+  market the input never mentioned.>
 
 ## Decision moment
 - **Where/when the behaviour choice actually gets made:** <the specific
-  physical and social moment — not a general time of day>
+  physical and social moment — not a general time of day> — **Source:**
+  <directly observed / reported by someone who lives it / general
+  literature about this country or sector, not this specific population>
 - **Who else is present or influential at that moment:** <...>
 
 ## Existing channels and touchpoints (real, not proposed)
@@ -137,7 +162,9 @@ to this context map.)
 
 ## WEIRD-default assumption check (mandatory — state "none found" explicitly if genuinely none)
 - <assumption in the input that defaults to Western/formal/literate/
-  connected infrastructure> — **Confirmed locally?** <yes/no/unknown> —
+  connected infrastructure, OR to the named population being the
+  autonomous decision-maker when a household/group may hold that
+  authority instead> — **Confirmed locally?** <yes/no/unknown> —
   **What to check before relying on it:** <...>
 
 ## Open questions / what still needs field confirmation
@@ -167,7 +194,9 @@ shocks.
 
 ## Decision moment
 - **Where/when:** End-of-day cash count at the stall, cash still in hand,
-  in the 15-30 minutes before closing up and travelling home.
+  in the 15-30 minutes before closing up and travelling home. —
+  **Source:** Reported by someone who lives it (one prior field visit to
+  Gikomba), not independently confirmed for Toi.
 - **Who else present/influential:** Neighbouring stallholders (visible
   cash-counting invites informal borrowing requests); often a
   spouse/family member waiting to receive the day's takings at home.
@@ -216,6 +245,21 @@ based on one prior field visit to Gikomba only, not confirmed for Toi.
   infrastructure that hasn't been confirmed for this specific population,
   and not naming it in the assumption check, silently imports a different
   context than the one actually being mapped.
+- **Autonomy default.** Treating the named population as the individual,
+  autonomous decision-maker for the target behaviour by default, when a
+  household, spouse, or elder actually holds go/no-go authority, is a
+  WEIRD default just as much as an infrastructure assumption — and the
+  easiest one to miss, since it's not on any checklist of physical
+  requirements.
+- **Fabricated specificity.** Narrowing to a named district, clinic, or
+  market that the input never mentioned, in order to satisfy the
+  "operationalized" section's specificity bar, is worse than an honestly
+  broad operationalization with the gap named in Open Questions — a wrong
+  specific claim misleads with false confidence; a flagged gap doesn't.
+- **Unsourced claims.** A decision-moment or constraint description with no
+  stated source reads identically whether it came from direct observation
+  or from general knowledge about the country or sector — the "Source"
+  field exists so a reader can tell which, and weight it accordingly.
 - **Confusing this with segmentation.** This skill characterizes one
   population's context in depth; it does not divide a population into
   multiple behaviourally distinct personas. If the real need is "which of

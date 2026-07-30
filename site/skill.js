@@ -12,12 +12,12 @@
 
   const skill = data.skills.find((s) => s.slug === slug);
   if (!skill) {
-    main.innerHTML = `<p class="empty-state">No skill found for slug "${slug}". <a href="index.html">Back to catalogue</a>.</p>`;
+    main.innerHTML = `<p class="empty-state">No skill found for slug "${slug}". <a href="./">Back to catalogue</a>.</p>`;
     return;
   }
 
   document.title = `Behavioural Skills — ${skill.title}`;
-  bindCommandPalette(data.skills);
+  bindCommandPalette(data);
 
   function producersOf(ioType, excludeSlug) {
     return data.graph.edges
@@ -98,7 +98,7 @@
 
     <div class="skill-body">${sectionsHtml}</div>
 
-    <h2>Version history <a class="whats-new-link" href="whats-new.html">See all skills' updates &rarr;</a></h2>
+    <h2>Version history <a class="whats-new-link" href="whats-new">See all skills' updates &rarr;</a></h2>
     ${renderChangelog(skill.changelog)}
   `;
 

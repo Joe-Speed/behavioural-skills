@@ -146,8 +146,57 @@ io_types:
     label: Evaluation design brief
     description: >-
       A pre-registration-style plan for measuring one target behaviour:
-      primary outcome metric, comparison condition, minimum detectable
-      effect, data-source feasibility, and any mediating measures needed
+      primary outcome metric, comparison condition, minimum effect worth
+      detecting, data-source feasibility, and any mediating measures needed
       to evaluate a specific barrier hypothesis, locked in before data
       collection starts.
+    user_suppliable: false
+
+  - id: intervention_lever_brief
+    label: Intervention lever brief
+    description: >-
+      Candidate intervention functions for one confirmed COM-B barrier,
+      derived from the Behaviour Change Wheel's published function-to-
+      component linkage matrix rather than free-generated, each scored for
+      feasibility and — for the top candidate — broken down into concrete
+      behaviour change techniques.
+    user_suppliable: false
+
+  - id: affirmation_context_statement
+    label: Affirmation context statement
+    description: >-
+      A plain-language description of the target population and the
+      specific evaluative or stigmatized domain a values-affirmation
+      exercise needs to buffer against (e.g. financial shame, academic
+      underperformance, a health stigma), plus whatever is known about
+      which values are actually meaningful to this population.
+    user_suppliable: true
+
+  - id: values_affirmation_script
+    label: Values-affirmation script
+    description: >-
+      A drafted values-affirmation writing exercise following the
+      standard self-affirmation protocol — a locally adapted value
+      category list, a selection prompt, and a structured writing prompt —
+      plus delivery notes (timing, frequency ceiling) and an explicit
+      caution against using it as a substitute for structural fixes.
+    user_suppliable: false
+
+  - id: prior_intervention_record
+    label: Prior intervention record
+    description: >-
+      A team's own raw, unstructured account of an intervention they
+      already tried: what was planned, what they believe happened, and why
+      they believe it succeeded or failed — given before checking that
+      belief against whatever data was actually collected.
+    user_suppliable: true
+
+  - id: intervention_post_mortem_brief
+    label: Intervention post-mortem brief
+    description: >-
+      A structured retrospective distinguishing what was planned from what
+      was actually implemented, classifying the outcome as an implementation
+      failure or an idea failure, and checking the team's causal story
+      against what data was actually collected — not a recommendation of
+      what to do next.
     user_suppliable: false

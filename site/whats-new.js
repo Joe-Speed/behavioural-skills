@@ -9,7 +9,7 @@
     return;
   }
 
-  bindCommandPalette(data.skills);
+  bindCommandPalette(data);
 
   // Each skill's changelog is derived from git log by scripts/build-index.js
   // (see getChangelog there) — this just flattens every skill's entries into

@@ -67,6 +67,18 @@ function checkGraphIntegrity(index) {
   return errors;
 }
 
+// GitHub Pages resolves an extensionless path (e.g. "workflow") to the
+// matching ".html" file transparently — internal nav links rely on this so
+// URLs don't show ".html". A link "exists" here if the literal path does,
+// or (for an extensionless path with no trailing slash) its ".html" file
+// does, mirroring what Pages will actually do.
+function localLinkExists(baseDir, link) {
+  const resolved = path.join(baseDir, link);
+  if (fs.existsSync(resolved)) return true;
+  if (!link.endsWith("/") && !path.extname(link)) return fs.existsSync(`${resolved}.html`);
+  return false;
+}
+
 function checkLocalLinks() {
   const errors = [];
   const linkPattern = /(?:href|src)="([^"]+)"/g;
@@ -78,7 +90,7 @@ function checkLocalLinks() {
     while ((match = linkPattern.exec(content))) {
       const link = match[1];
       if (/^https?:\/\//.test(link) || link.startsWith("#") || link.includes("?")) continue;
-      if (!fs.existsSync(path.join(path.dirname(file), link))) {
+      if (!localLinkExists(path.dirname(file), link)) {
         errors.push(`${relFile} references missing local file "${link}"`);
       }
     }

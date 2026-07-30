@@ -212,7 +212,7 @@ function escapeHtmlAttr(str) {
 // Twitter, etc.) sees no per-skill title or description there. This writes
 // one static, real-metadata redirect page per skill instead — the
 // shareable link a "Copy shareable link" button on the skill page hands
-// out, distinct from the skill.html URL used for in-site browsing.
+// out, distinct from the skill?slug= URL used for in-site browsing.
 function shortDescription(skill) {
   const whatItDoes = (skill.sections || []).find((s) => s.heading === "What it does");
   const text = (whatItDoes ? whatItDoes.markdown : skill.description || "")
@@ -231,7 +231,7 @@ function writeSharePages(index, dir = SHARE_DIR) {
   for (const skill of index.skills) {
     const title = `${skill.title} — Behavioural Skills`;
     const description = shortDescription(skill);
-    const canonical = `${SITE_BASE_URL}/skill.html?slug=${skill.slug}`;
+    const canonical = `${SITE_BASE_URL}/skill?slug=${skill.slug}`;
 
     const html = `<!doctype html>
 <html lang="en">

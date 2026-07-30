@@ -49,6 +49,17 @@ inputs:
       headline outcome.
     source: skill-output
     required: false
+  - type: intervention_lever_brief
+    description: >-
+      Optional candidate intervention levers for this target behaviour, if
+      intervention-lever-selector has already run. When present, use its
+      described rollout shape (e.g. phased vs. simultaneous, which group if
+      any is held back) to determine the Comparison condition instead of
+      assuming one; when absent, the Comparison condition section must
+      state its assumption explicitly rather than treating an invented
+      rollout design as given.
+    source: skill-output
+    required: false
 outputs:
   - type: evaluation_design_brief
     description: >-
@@ -59,7 +70,7 @@ outputs:
       collection starts.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -92,14 +103,37 @@ data collection, specifically so it can't be redefined afterward to match
 whichever measure happened to move (HARKing). The output template's
 mandatory pre-registration statement operationalizes this directly — it
 exists to be checked against later, not just written once and forgotten.
-Duflo, Glennerster & Kremer's toolkit is the basis for treating "minimum
-detectable effect" as a designed choice tied to what the program actually
-needs to see to be worth continuing, not a statistical-convention default
-(e.g. reflexively powering for a small effect regardless of program
-stakes). Data-source feasibility is checked explicitly because a plan that
-assumes a measure exists — because similar programs report it — without
-confirming it's actually collectible here, at the needed frequency, isn't
-a measurement plan yet.
+
+Duflo, Glennerster & Kremer's toolkit is the basis for treating the
+program's minimum effect worth detecting as a designed choice tied to what
+it actually needs to see to be worth continuing, not a statistical-
+convention default. Note what this section is *not*: "minimum detectable
+effect" is also a term of art in power analysis (the smallest effect a
+study is statistically powered to find, given sample size and baseline
+variance) — that is a different, narrower calculation this skill does not
+perform. This section is the program-value input such a power calculation
+would need, not a substitute for one. If no sponsor-stated threshold is
+available, say so explicitly and mark the number provisional in Open
+Questions — inventing a plausible-sounding programmatic rationale to fill
+the gap is exactly the failure mode this discipline exists to prevent.
+
+Comparison condition depends on knowing the intervention's rollout shape
+(phased vs. simultaneous, is anything held back) at least as much as the
+mediating-measures section depends on `comb_barrier_hypotheses` — but only
+the latter dependency was originally declared as an input. If an
+`intervention_lever_brief` is available, use its described rollout to
+ground the comparison condition; if not, state the assumed rollout
+explicitly as unconfirmed rather than presenting an invented design as
+given.
+
+Data-source feasibility is checked explicitly because a plan that assumes a
+measure exists — because similar programs report it — without confirming
+it's actually collectible here, at the needed frequency, isn't a
+measurement plan yet. A measure that is directly observing the right
+construct can still be gamed or degraded in how it's *recorded* — e.g. an
+incentive tied to a metric distorting how that metric gets reported — and
+that risk belongs in this section too, distinct from having picked the
+wrong construct in the first place.
 
 ## Output template
 
@@ -107,7 +141,10 @@ The primary outcome, comparison condition, and pre-registration statement
 are mandatory — an evaluation brief that only lists metrics without a
 comparison condition or a locked-in commitment is a wishlist, not a design.
 If a `comb_barrier_hypotheses` input is available, at least one mediating
-measure tied to one of its hypotheses is also mandatory.
+measure tied to one of its hypotheses is also mandatory; if it is not
+available, say so explicitly in that section rather than omitting it —
+an absent section and a checked absence look identical to a downstream
+reader unless the latter is written out.
 
 ```markdown
 # Evaluation Design Brief
@@ -118,35 +155,47 @@ measure tied to one of its hypotheses is also mandatory.
 <the one measure that would make the team say "this worked" — must
 observe the target behaviour itself, not a proxy adopted for convenience;
 if a proxy is genuinely necessary, name the substitution explicitly and
-say what gap it leaves>
+say what gap it leaves. Separately, name any risk that the *recording* of
+this measure (not the construct itself) could be gamed or degraded — e.g.
+an incentive tied to the same number distorting how it gets reported.>
 
 ## Comparison condition
 <what "no effect" looks like — a control group, a randomized waitlist, or
 a named historical baseline; "pre/post on the same group only" is not a
-comparison condition, state plainly if that's the fallback and why>
+comparison condition, state plainly if that's the fallback and why. If an
+`intervention_lever_brief` names the rollout shape, ground this in that;
+if not, state the assumed rollout explicitly as unconfirmed rather than
+presenting an invented design as settled.>
 
-## Minimum detectable effect
+## Minimum effect worth detecting
 <the smallest effect size worth caring about, tied to what the program
-needs to see to justify continuing — not a default pulled from statistical
-convention>
+needs to see to justify continuing — not a statistical power calculation,
+and not a default pulled from convention. If no sponsor-stated threshold is
+available, say so explicitly here and mark the number provisional in Open
+Questions, rather than manufacturing a programmatic rationale to fill the
+gap.>
 
 ## Data source feasibility
 <where the primary outcome's data will actually come from, whether it
 exists today at the frequency needed, and who would need to grant access —
 "assumed available" is not a feasibility check>
 
-## Mediating measures (mandatory if `comb_barrier_hypotheses` is available)
-- <hypothesis from the barrier diagnosis> — <measure that would let this
-  specific hypothesis be evaluated post-hoc, distinct from the primary
-  outcome>
+## Mediating measures
+<mandatory if `comb_barrier_hypotheses` is available — one row per
+hypothesis, each with a measure distinct from the primary outcome that
+would let that specific hypothesis be evaluated post-hoc. If no barrier
+diagnosis is available for this target behaviour, write that explicitly
+("Not applicable — no comb_barrier_hypotheses input for this run") rather
+than leaving the section out.>
 
 ## Pre-registration statement
-<one locked-in sentence naming the primary outcome and minimum detectable
-effect, dated, so it cannot be quietly redefined after seeing results>
+<one locked-in sentence naming the primary outcome and the minimum effect
+worth detecting, dated, so neither can be quietly redefined after seeing
+results>
 
 ## Open questions
-<anything this brief had to assume about data access or timeline that
-needs confirming before the plan is final>
+<anything this brief had to assume about data access, rollout design, or
+the decision threshold that needs confirming before the plan is final>
 ```
 
 ## Worked example

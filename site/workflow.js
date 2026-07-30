@@ -17,7 +17,7 @@
     return;
   }
 
-  bindCommandPalette(data.skills);
+  bindCommandPalette(data);
   bindCopyButton(copyMdBtn, "Copied");
 
   const skillsBySlug = new Map(data.skills.map((s) => [s.slug, s]));

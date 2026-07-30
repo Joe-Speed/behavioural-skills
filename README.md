@@ -104,8 +104,11 @@ npm run validate   # schema + taxonomy + trigger-phrasing + dangling-input check
 npm run build       # regenerates site/data/index.json
 npm run test:site   # checks the generated site data is fresh and consistent
 
-npx serve site       # or: python3 -m http.server --directory site
-                      # then open http://localhost:3000 (or 8000)
+npx serve site       # then open http://localhost:3000
+                      # site/serve.json enables clean URLs (no .html in the
+                      # address bar), matching how GitHub Pages actually
+                      # resolves them. python3 -m http.server doesn't honor
+                      # that config, so links like /workflow will 404 there.
 ```
 
 CI runs `validate` and `test:site` (which itself checks the committed index

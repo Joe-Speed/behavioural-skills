@@ -787,6 +787,16 @@ form.propose button {
   overflow-y: auto;
 }
 
+.command-palette-group-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  padding: 0.6rem 0.75rem 0.3rem;
+}
+
 .command-palette-result {
   display: flex;
   align-items: center;
@@ -800,6 +810,21 @@ form.propose button {
 }
 
 .command-palette-result.active { background: var(--accent-soft); }
+
+.command-palette-result-main {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.command-palette-result-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  color: var(--ink-muted);
+}
+
+.command-palette-result.active .command-palette-result-icon { color: var(--accent); }
 
 .command-palette-result-title { color: var(--ink); }
 

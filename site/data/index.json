@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T12:53:32.318Z",
+  "generatedAt": "2026-07-30T15:19:05.134Z",
   "taxonomy": {
     "categories": [
       {
@@ -136,7 +136,37 @@
       {
         "id": "evaluation_design_brief",
         "label": "Evaluation design brief",
-        "description": "A pre-registration-style plan for measuring one target behaviour: primary outcome metric, comparison condition, minimum detectable effect, data-source feasibility, and any mediating measures needed to evaluate a specific barrier hypothesis, locked in before data collection starts.",
+        "description": "A pre-registration-style plan for measuring one target behaviour: primary outcome metric, comparison condition, minimum effect worth detecting, data-source feasibility, and any mediating measures needed to evaluate a specific barrier hypothesis, locked in before data collection starts.",
+        "user_suppliable": false
+      },
+      {
+        "id": "intervention_lever_brief",
+        "label": "Intervention lever brief",
+        "description": "Candidate intervention functions for one confirmed COM-B barrier, derived from the Behaviour Change Wheel's published function-to- component linkage matrix rather than free-generated, each scored for feasibility and — for the top candidate — broken down into concrete behaviour change techniques.",
+        "user_suppliable": false
+      },
+      {
+        "id": "affirmation_context_statement",
+        "label": "Affirmation context statement",
+        "description": "A plain-language description of the target population and the specific evaluative or stigmatized domain a values-affirmation exercise needs to buffer against (e.g. financial shame, academic underperformance, a health stigma), plus whatever is known about which values are actually meaningful to this population.",
+        "user_suppliable": true
+      },
+      {
+        "id": "values_affirmation_script",
+        "label": "Values-affirmation script",
+        "description": "A drafted values-affirmation writing exercise following the standard self-affirmation protocol — a locally adapted value category list, a selection prompt, and a structured writing prompt — plus delivery notes (timing, frequency ceiling) and an explicit caution against using it as a substitute for structural fixes.",
+        "user_suppliable": false
+      },
+      {
+        "id": "prior_intervention_record",
+        "label": "Prior intervention record",
+        "description": "A team's own raw, unstructured account of an intervention they already tried: what was planned, what they believe happened, and why they believe it succeeded or failed — given before checking that belief against whatever data was actually collected.",
+        "user_suppliable": true
+      },
+      {
+        "id": "intervention_post_mortem_brief",
+        "label": "Intervention post-mortem brief",
+        "description": "A structured retrospective distinguishing what was planned from what was actually implemented, classifying the outcome as an implementation failure or an idea failure, and checking the team's causal story against what data was actually collected — not a recommendation of what to do next.",
         "user_suppliable": false
       }
     ]
@@ -300,7 +330,7 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "sections": [
         {
           "heading": "What it does",
@@ -312,19 +342,19 @@
         },
         {
           "heading": "What it draws on",
-          "markdown": "EAST's \"Timely\" and \"Easy\" dimensions only mean something once the actual\nphysical and social moment the behaviour choice occurs in is known — not a\ngeneric description of the audience's demographics. Contextual inquiry's\ndiscipline of describing an environment as actually observed, rather than\nas reported secondhand by a stakeholder who doesn't live in it, is why the\noutput template below requires a specific decision moment and real\n(not proposed) channels. Datta & Mullainathan's account of behavioural\ndesign in development programs is the basis for the mandatory WEIRD-default\ncheck: a brief that assumes formal banking, smartphone ownership, or\nliterate-first materials without confirming any of them for this specific\npopulation isn't mapping context, it's importing a different one."
+          "markdown": "EAST's \"Timely\" and \"Easy\" dimensions only mean something once the actual\nphysical and social moment the behaviour choice occurs in is known — not a\ngeneric description of the audience's demographics. Contextual inquiry's\ndiscipline of describing an environment as actually observed, rather than\nas reported secondhand by a stakeholder who doesn't live in it, applies to\nevery section below, not just channels — the output template requires a\nsource (directly observed, reported by someone who lives it, or general\nliterature about the country/sector rather than this specific population)\nfor the decision moment and constraints, same as it already does for\nchannels. Datta & Mullainathan's account of behavioural design in\ndevelopment programs is the basis for the mandatory WEIRD-default check —\nand that check is not limited to infrastructure. The WEIRD framing's\n\"individualism\" component means *who has decision authority* is itself a\ncommon default: treating the named population as the autonomous\ndecision-maker, when a household or group actually holds that authority,\nis as much a WEIRD default as assuming a bank account or a smartphone, and\nthe assumption check below must consider it explicitly, not just physical\ninfrastructure.\n\nWhen the input only supports a broad, honest operationalization (a whole\nstate or region, not a named district or market), narrow to the most\nspecific subgroup the input actually supports and route the remaining\nbreadth to Open Questions — do not invent a specific place, clinic, or\nmarket the input never named just to look more specific. A narrower-than-\nwarranted guess that turns out wrong is worse than an honestly-scoped\npopulation with the gap named."
         },
         {
           "heading": "Output template",
-          "markdown": "The decision moment and existing-channel list are mandatory, not optional\ncolour — a brief with a generic \"who\" and no specific moment or channel\nhasn't mapped anything yet. The WEIRD-default assumption check is mandatory\neven when the answer is \"confirmed, no gap found\" — state that explicitly\nrather than omitting the section.\n\n```markdown\n# Audience & Context Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
+          "markdown": "The decision moment and existing-channel list are mandatory, not optional\ncolour — a brief with a generic \"who\" and no specific moment or channel\nhasn't mapped anything yet. Every section that describes the population or\nits context must state whether that description is directly observed,\nreported by someone who lives it, or drawn from general literature about\nthe country/sector rather than this specific population — an unsourced\nspecific claim is indistinguishable from an invented one. The WEIRD-default\nassumption check is mandatory even when the answer is \"confirmed, no gap\nfound\" — state that explicitly rather than omitting the section, and it\nmust consider decision-making authority, not only physical infrastructure.\n\n```markdown\n# Audience & Context Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
         },
         {
           "heading": "Population, as named vs. as operationalized",
-          "markdown": "- **As named in the input:** <the funder/stakeholder's label, verbatim>\n- **Operationalized:** <specific, observable subgroup — e.g. \"women aged\n  25-50 running fixed daily produce stalls in two named markets,\" not\n  \"smallholder farmers\" generally>"
+          "markdown": "- **As named in the input:** <the funder/stakeholder's label, verbatim>\n- **Operationalized:** <the narrowest subgroup the input actually\n  supports — e.g. \"women aged 25-50 running fixed daily produce stalls in\n  two named markets,\" not \"smallholder farmers\" generally. If the input\n  only supports a broad operationalization, say so here and route the\n  specific gap to Open Questions rather than naming a place, clinic, or\n  market the input never mentioned.>"
         },
         {
           "heading": "Decision moment",
-          "markdown": "- **Where/when the behaviour choice actually gets made:** <the specific\n  physical and social moment — not a general time of day>\n- **Who else is present or influential at that moment:** <...>"
+          "markdown": "- **Where/when the behaviour choice actually gets made:** <the specific\n  physical and social moment — not a general time of day> — **Source:**\n  <directly observed / reported by someone who lives it / general\n  literature about this country or sector, not this specific population>\n- **Who else is present or influential at that moment:** <...>"
         },
         {
           "heading": "Existing channels and touchpoints (real, not proposed)",
@@ -336,7 +366,7 @@
         },
         {
           "heading": "WEIRD-default assumption check (mandatory — state \"none found\" explicitly if genuinely none)",
-          "markdown": "- <assumption in the input that defaults to Western/formal/literate/\n  connected infrastructure> — **Confirmed locally?** <yes/no/unknown> —\n  **What to check before relying on it:** <...>"
+          "markdown": "- <assumption in the input that defaults to Western/formal/literate/\n  connected infrastructure, OR to the named population being the\n  autonomous decision-maker when a household/group may hold that\n  authority instead> — **Confirmed locally?** <yes/no/unknown> —\n  **What to check before relying on it:** <...>"
         },
         {
           "heading": "Open questions / what still needs field confirmation",
@@ -352,7 +382,7 @@
         },
         {
           "heading": "Decision moment",
-          "markdown": "- **Where/when:** End-of-day cash count at the stall, cash still in hand,\n  in the 15-30 minutes before closing up and travelling home.\n- **Who else present/influential:** Neighbouring stallholders (visible\n  cash-counting invites informal borrowing requests); often a\n  spouse/family member waiting to receive the day's takings at home."
+          "markdown": "- **Where/when:** End-of-day cash count at the stall, cash still in hand,\n  in the 15-30 minutes before closing up and travelling home. —\n  **Source:** Reported by someone who lives it (one prior field visit to\n  Gikomba), not independently confirmed for Toi.\n- **Who else present/influential:** Neighbouring stallholders (visible\n  cash-counting invites informal borrowing requests); often a\n  spouse/family member waiting to receive the day's takings at home."
         },
         {
           "heading": "Existing channels and touchpoints (real, not proposed)",
@@ -372,10 +402,16 @@
         },
         {
           "heading": "Known failure modes",
-          "markdown": "- **Restating the label.** Repeating \"smallholder farmers\" or \"gig\n  workers\" verbatim as the operationalized population is not context — it's\n  the same abstraction with a longer sentence around it.\n- **Inventing channels.** Listing a channel that would be convenient for a\n  future intervention (a WhatsApp group that doesn't exist yet) as if it\n  already reaches this population conflates context-mapping with\n  intervention design.\n- **Single-anecdote context.** Treating one interview, one field visit, or\n  one team member's assumption as if it characterizes the whole\n  population's decision moment. Flag this as a gap in \"Open questions\"\n  rather than presenting it as settled — see the worked example above.\n- **Unflagged WEIRD defaults.** Assuming banking, literacy, or connectivity\n  infrastructure that hasn't been confirmed for this specific population,\n  and not naming it in the assumption check, silently imports a different\n  context than the one actually being mapped.\n- **Confusing this with segmentation.** This skill characterizes one\n  population's context in depth; it does not divide a population into\n  multiple behaviourally distinct personas. If the real need is \"which of\n  several groups should we target,\" that's a different job — don't force\n  this skill to do both."
+          "markdown": "- **Restating the label.** Repeating \"smallholder farmers\" or \"gig\n  workers\" verbatim as the operationalized population is not context — it's\n  the same abstraction with a longer sentence around it.\n- **Inventing channels.** Listing a channel that would be convenient for a\n  future intervention (a WhatsApp group that doesn't exist yet) as if it\n  already reaches this population conflates context-mapping with\n  intervention design.\n- **Single-anecdote context.** Treating one interview, one field visit, or\n  one team member's assumption as if it characterizes the whole\n  population's decision moment. Flag this as a gap in \"Open questions\"\n  rather than presenting it as settled — see the worked example above.\n- **Unflagged WEIRD defaults.** Assuming banking, literacy, or connectivity\n  infrastructure that hasn't been confirmed for this specific population,\n  and not naming it in the assumption check, silently imports a different\n  context than the one actually being mapped.\n- **Autonomy default.** Treating the named population as the individual,\n  autonomous decision-maker for the target behaviour by default, when a\n  household, spouse, or elder actually holds go/no-go authority, is a\n  WEIRD default just as much as an infrastructure assumption — and the\n  easiest one to miss, since it's not on any checklist of physical\n  requirements.\n- **Fabricated specificity.** Narrowing to a named district, clinic, or\n  market that the input never mentioned, in order to satisfy the\n  \"operationalized\" section's specificity bar, is worse than an honestly\n  broad operationalization with the gap named in Open Questions — a wrong\n  specific claim misleads with false confidence; a flagged gap doesn't.\n- **Unsourced claims.** A decision-moment or constraint description with no\n  stated source reads identically whether it came from direct observation\n  or from general knowledge about the country or sector — the \"Source\"\n  field exists so a reader can tell which, and weight it accordingly.\n- **Confusing this with segmentation.** This skill characterizes one\n  population's context in depth; it does not divide a population into\n  multiple behaviourally distinct personas. If the real need is \"which of\n  several groups should we target,\" that's a different job — don't force\n  this skill to do both."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-07-30",
+          "summary": "Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder"
+        }
+      ]
     },
     {
       "slug": "evaluation-design-scoper",
@@ -410,6 +446,12 @@
           "description": "Optional barrier diagnosis for this target behaviour, if comb-barrier-decomposer has already run. When present, use its hypotheses to name mediating measures that would let a specific diagnostic question actually be evaluated post-hoc, not just the headline outcome.",
           "source": "skill-output",
           "required": false
+        },
+        {
+          "type": "intervention_lever_brief",
+          "description": "Optional candidate intervention levers for this target behaviour, if intervention-lever-selector has already run. When present, use its described rollout shape (e.g. phased vs. simultaneous, which group if any is held back) to determine the Comparison condition instead of assuming one; when absent, the Comparison condition section must state its assumption explicitly rather than treating an invented rollout design as given.",
+          "source": "skill-output",
+          "required": false
         }
       ],
       "outputs": [
@@ -421,7 +463,7 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "sections": [
         {
           "heading": "What it does",
@@ -433,39 +475,39 @@
         },
         {
           "heading": "What it draws on",
-          "markdown": "Olken's account of pre-analysis plans: an evaluation's credibility depends\non locking in the primary outcome and the effect size that matters *before*\ndata collection, specifically so it can't be redefined afterward to match\nwhichever measure happened to move (HARKing). The output template's\nmandatory pre-registration statement operationalizes this directly — it\nexists to be checked against later, not just written once and forgotten.\nDuflo, Glennerster & Kremer's toolkit is the basis for treating \"minimum\ndetectable effect\" as a designed choice tied to what the program actually\nneeds to see to be worth continuing, not a statistical-convention default\n(e.g. reflexively powering for a small effect regardless of program\nstakes). Data-source feasibility is checked explicitly because a plan that\nassumes a measure exists — because similar programs report it — without\nconfirming it's actually collectible here, at the needed frequency, isn't\na measurement plan yet."
+          "markdown": "Olken's account of pre-analysis plans: an evaluation's credibility depends\non locking in the primary outcome and the effect size that matters *before*\ndata collection, specifically so it can't be redefined afterward to match\nwhichever measure happened to move (HARKing). The output template's\nmandatory pre-registration statement operationalizes this directly — it\nexists to be checked against later, not just written once and forgotten.\n\nDuflo, Glennerster & Kremer's toolkit is the basis for treating the\nprogram's minimum effect worth detecting as a designed choice tied to what\nit actually needs to see to be worth continuing, not a statistical-\nconvention default. Note what this section is *not*: \"minimum detectable\neffect\" is also a term of art in power analysis (the smallest effect a\nstudy is statistically powered to find, given sample size and baseline\nvariance) — that is a different, narrower calculation this skill does not\nperform. This section is the program-value input such a power calculation\nwould need, not a substitute for one. If no sponsor-stated threshold is\navailable, say so explicitly and mark the number provisional in Open\nQuestions — inventing a plausible-sounding programmatic rationale to fill\nthe gap is exactly the failure mode this discipline exists to prevent.\n\nComparison condition depends on knowing the intervention's rollout shape\n(phased vs. simultaneous, is anything held back) at least as much as the\nmediating-measures section depends on `comb_barrier_hypotheses` — but only\nthe latter dependency was originally declared as an input. If an\n`intervention_lever_brief` is available, use its described rollout to\nground the comparison condition; if not, state the assumed rollout\nexplicitly as unconfirmed rather than presenting an invented design as\ngiven.\n\nData-source feasibility is checked explicitly because a plan that assumes a\nmeasure exists — because similar programs report it — without confirming\nit's actually collectible here, at the needed frequency, isn't a\nmeasurement plan yet. A measure that is directly observing the right\nconstruct can still be gamed or degraded in how it's *recorded* — e.g. an\nincentive tied to a metric distorting how that metric gets reported — and\nthat risk belongs in this section too, distinct from having picked the\nwrong construct in the first place."
         },
         {
           "heading": "Output template",
-          "markdown": "The primary outcome, comparison condition, and pre-registration statement\nare mandatory — an evaluation brief that only lists metrics without a\ncomparison condition or a locked-in commitment is a wishlist, not a design.\nIf a `comb_barrier_hypotheses` input is available, at least one mediating\nmeasure tied to one of its hypotheses is also mandatory.\n\n```markdown\n# Evaluation Design Brief\n\n**Target behaviour:** <who + what + when, carried over verbatim>"
+          "markdown": "The primary outcome, comparison condition, and pre-registration statement\nare mandatory — an evaluation brief that only lists metrics without a\ncomparison condition or a locked-in commitment is a wishlist, not a design.\nIf a `comb_barrier_hypotheses` input is available, at least one mediating\nmeasure tied to one of its hypotheses is also mandatory; if it is not\navailable, say so explicitly in that section rather than omitting it —\nan absent section and a checked absence look identical to a downstream\nreader unless the latter is written out.\n\n```markdown\n# Evaluation Design Brief\n\n**Target behaviour:** <who + what + when, carried over verbatim>"
         },
         {
           "heading": "Primary outcome metric",
-          "markdown": "<the one measure that would make the team say \"this worked\" — must\nobserve the target behaviour itself, not a proxy adopted for convenience;\nif a proxy is genuinely necessary, name the substitution explicitly and\nsay what gap it leaves>"
+          "markdown": "<the one measure that would make the team say \"this worked\" — must\nobserve the target behaviour itself, not a proxy adopted for convenience;\nif a proxy is genuinely necessary, name the substitution explicitly and\nsay what gap it leaves. Separately, name any risk that the *recording* of\nthis measure (not the construct itself) could be gamed or degraded — e.g.\nan incentive tied to the same number distorting how it gets reported.>"
         },
         {
           "heading": "Comparison condition",
-          "markdown": "<what \"no effect\" looks like — a control group, a randomized waitlist, or\na named historical baseline; \"pre/post on the same group only\" is not a\ncomparison condition, state plainly if that's the fallback and why>"
+          "markdown": "<what \"no effect\" looks like — a control group, a randomized waitlist, or\na named historical baseline; \"pre/post on the same group only\" is not a\ncomparison condition, state plainly if that's the fallback and why. If an\n`intervention_lever_brief` names the rollout shape, ground this in that;\nif not, state the assumed rollout explicitly as unconfirmed rather than\npresenting an invented design as settled.>"
         },
         {
-          "heading": "Minimum detectable effect",
-          "markdown": "<the smallest effect size worth caring about, tied to what the program\nneeds to see to justify continuing — not a default pulled from statistical\nconvention>"
+          "heading": "Minimum effect worth detecting",
+          "markdown": "<the smallest effect size worth caring about, tied to what the program\nneeds to see to justify continuing — not a statistical power calculation,\nand not a default pulled from convention. If no sponsor-stated threshold is\navailable, say so explicitly here and mark the number provisional in Open\nQuestions, rather than manufacturing a programmatic rationale to fill the\ngap.>"
         },
         {
           "heading": "Data source feasibility",
           "markdown": "<where the primary outcome's data will actually come from, whether it\nexists today at the frequency needed, and who would need to grant access —\n\"assumed available\" is not a feasibility check>"
         },
         {
-          "heading": "Mediating measures (mandatory if `comb_barrier_hypotheses` is available)",
-          "markdown": "- <hypothesis from the barrier diagnosis> — <measure that would let this\n  specific hypothesis be evaluated post-hoc, distinct from the primary\n  outcome>"
+          "heading": "Mediating measures",
+          "markdown": "<mandatory if `comb_barrier_hypotheses` is available — one row per\nhypothesis, each with a measure distinct from the primary outcome that\nwould let that specific hypothesis be evaluated post-hoc. If no barrier\ndiagnosis is available for this target behaviour, write that explicitly\n(\"Not applicable — no comb_barrier_hypotheses input for this run\") rather\nthan leaving the section out.>"
         },
         {
           "heading": "Pre-registration statement",
-          "markdown": "<one locked-in sentence naming the primary outcome and minimum detectable\neffect, dated, so it cannot be quietly redefined after seeing results>"
+          "markdown": "<one locked-in sentence naming the primary outcome and the minimum effect\nworth detecting, dated, so neither can be quietly redefined after seeing\nresults>"
         },
         {
           "heading": "Open questions",
-          "markdown": "<anything this brief had to assume about data access or timeline that\nneeds confirming before the plan is final>\n```"
+          "markdown": "<anything this brief had to assume about data access, rollout design, or\nthe decision threshold that needs confirming before the plan is final>\n```"
         },
         {
           "heading": "Worked example",
@@ -504,7 +546,13 @@
           "markdown": "- **Proxy substitution.** Swapping the primary outcome for whatever's\n  easiest to measure (app opens instead of an actual deposit) without\n  naming the substitution and the gap it leaves is the single most common\n  way an evaluation brief looks rigorous but measures the wrong thing.\n- **No named comparison condition.** \"We'll check before and after\" is not\n  a comparison condition — anything else that changed over the same period\n  (season, prices, a different program) becomes indistinguishable from the\n  intervention's effect.\n- **Default minimum detectable effect.** Powering a study for whatever\n  effect size a stats template defaults to, rather than the effect size\n  the program actually needs to see to be worth continuing, produces a\n  technically valid but practically meaningless power calculation.\n- **Assumed data feasibility.** Naming a measure because comparable\n  programs report it, without confirming it's actually collectible for\n  this program, at this frequency, with this population's consent — the\n  \"Data source feasibility\" section exists specifically to force this\n  check before it becomes a mid-study surprise.\n- **Retroactive outcome redefinition.** Changing which metric counts as\n  \"the\" primary outcome after seeing which one moved is the exact failure\n  the mandatory, dated pre-registration statement exists to make visible\n  when it happens."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-07-30",
+          "summary": "Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder"
+        }
+      ]
     },
     {
       "slug": "evidence-base-scoper",
@@ -622,6 +670,117 @@
           "summary": "Tighten output templates and build the two pre-intervention skills"
         }
       ]
+    },
+    {
+      "slug": "intervention-lever-selector",
+      "name": "intervention-lever-selector",
+      "title": "Intervention Lever Selector",
+      "description": "Use when comb-barrier-decomposer has produced barrier hypotheses AND fieldwork has since confirmed which specific hypothesis is actually holding the behaviour back — invoke on that one confirmed barrier, not on the full unconfirmed hypothesis set. Invoke when someone asks \"given that this is the barrier, what could we actually do about it?\" Do not invoke on hypotheses that haven't been field-tested yet — route back to comb-barrier-decomposer's diagnostic questions first, or this skill will design levers for a barrier that turns out not to be the real one.",
+      "category": "intervention-design",
+      "stage": "design",
+      "evidence_base": [
+        {
+          "framework": "Behaviour Change Wheel intervention functions and COM-B linkage matrix",
+          "citation": "Michie, S., van Stralen, M. M., & West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. Implementation Science, 6, 42 (see Table 2)."
+        },
+        {
+          "framework": "Behaviour Change Technique Taxonomy (v1)",
+          "citation": "Michie, S., Richardson, M., Johnston, M., et al. (2013). The Behavior Change Technique Taxonomy (v1) of 93 hierarchically clustered techniques. Annals of Behavioral Medicine, 46(1), 81-95."
+        },
+        {
+          "framework": "APEASE criteria for intervention selection",
+          "citation": "Michie, S., Atkins, L., & West, R. (2014). The Behaviour Change Wheel: A Guide to Designing Interventions. Silverback Publishing, pp. 46-48."
+        }
+      ],
+      "weird_context": {
+        "status": "mixed-evidence",
+        "note": "The COM-B-to-function linkage matrix is presented as a mechanistic, theory-driven mapping rather than a cultural claim — which function could plausibly work follows from which COM-B component the barrier sits in, not from a population's cultural background. What is WEIRD- skewed is the Behaviour Change Technique Taxonomy's validation base and worked examples, which are drawn overwhelmingly from UK/US health- behaviour interventions — treat a selected function as portable and a specific BCT's assumed delivery mechanism (a clinic visit, a printed leaflet) as needing local adaptation."
+      },
+      "inputs": [
+        {
+          "type": "comb_barrier_hypotheses",
+          "description": "The barrier hypothesis set from comb-barrier-decomposer, with one specific hypothesis identified as confirmed by field diagnostic answers — state which one in the invocation. Running this on the full unconfirmed set produces levers for a barrier that may not be the real one.",
+          "source": "skill-output",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "intervention_lever_brief",
+          "description": "Candidate intervention functions for one confirmed COM-B barrier, derived from the Behaviour Change Wheel's published function-to- component linkage matrix rather than free-generated, each scored for feasibility and — for the top candidate — broken down into concrete behaviour change techniques."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns one confirmed COM-B barrier into candidate intervention functions\nread off the Behaviour Change Wheel's published linkage matrix — not\nfree-brainstormed — scored for feasibility, with the winning function\nbroken down into concrete, implementable behaviour change techniques."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- Field diagnostic questions from [comb-barrier-decomposer](../comb-barrier-decomposer)\n  have been answered and one hypothesis is confirmed as the actual barrier.\n- Someone asks \"given that this is the barrier, what could we actually do\n  about it?\" or is about to jump straight to an intervention idea (\"let's\n  send a text\") without grounding it in the barrier's COM-B component.\n- Do **not** invoke on the unconfirmed hypothesis list — a lever selected\n  for the wrong barrier is a wasted pilot. Confirm the barrier in the\n  field first."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "The Behaviour Change Wheel names nine intervention functions — Education,\nPersuasion, Incentivisation, Coercion, Training, Restriction, Environmental\nrestructuring, Modelling, Enablement — and publishes a matrix (Michie, van\nStralen & West, 2011, Table 2) linking each COM-B sub-component to the\nfunctions theoretically capable of changing it. That matrix must be\nconsulted directly for the confirmed barrier's specific sub-component —\nreconstructing it from general impression or memory is exactly the kind of\nplausible-but-wrong shortcut this skill exists to prevent; a barrier's\nsub-component (e.g. Opportunity/Social) determines which functions are\neven eligible before feasibility is considered at all. APEASE scoring\n(reused from key-behaviour-definer, same criteria) narrows the eligible\nfunctions to one selection. The Behaviour Change Technique Taxonomy exists\nbecause a selected function (\"Environmental restructuring\") is not yet\nimplementable — it names a category of mechanism, not an action; the\noutput must name a specific BCT, or it hasn't actually specified a lever\nyet."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The confirmed barrier's COM-B sub-component and the applicable-functions\nlist are mandatory and must be traceable to the published matrix, not\ninvented. The selected lever must name a concrete BCT, not just a function\nname.\n\n```markdown\n# Intervention Lever Brief\n\n**Confirmed barrier:** <the one hypothesis from comb_barrier_hypotheses\nthat fieldwork confirmed, carried over verbatim, including which COM-B\nsub-component it belongs to>"
+        },
+        {
+          "heading": "Applicable intervention functions",
+          "markdown": "<per the BCW's COM-B-to-function linkage matrix (Michie, van Stralen &\nWest, 2011, Table 2) for this specific sub-component — consult the source\ndirectly rather than reconstructing it from memory>\n- <function 1> — <why this function's mechanism matches this sub-component,\n  per the matrix>\n- <function 2> — <...>"
+        },
+        {
+          "heading": "Feasibility scoring (APEASE)",
+          "markdown": "| Function | A | P | E | A | S | E |\n|---|---|---|---|---|---|---|\n| <function 1> | <+/-/0: reason> | | | | | |\n| <function 2> | ... | | | | | |\n\n(Columns: Affordability, Practicability, Effectiveness, Acceptability,\nSide-effects/safety, Equity.)"
+        },
+        {
+          "heading": "Selected lever",
+          "markdown": "**Function:** <top-scoring function> — <tie-breaker reasoning, pointing at\nspecific table cells>\n**Concrete technique (BCTTv1):** <a specific, named technique, not a\nrestated function> — <how it would concretely apply to this barrier and\npopulation>"
+        },
+        {
+          "heading": "Rejected functions",
+          "markdown": "<functions the matrix linked to this sub-component but that scored poorly\non feasibility, with why — kept as the next lever to try if the selected\none fails a pilot, not discarded>"
+        },
+        {
+          "heading": "Open questions",
+          "markdown": "<what needs field or pilot confirmation before the selected technique is\nfinalized>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Confirmed barrier (from comb-barrier-decomposer):** \"Opportunity/Social:\nvisible cash-counting/depositing at closing invites informal borrowing\nrequests from neighbouring vendors\" — confirmed in the field as the\ntop-ranked hypothesis from the earlier diagnosis. *(Illustrative —\ncontinues the running example from context-and-audience-mapper through\ncomb-barrier-decomposer; not a real design.)*\n\n```markdown\n# Intervention Lever Brief\n\n**Confirmed barrier:** Opportunity/Social — visible cash-counting/\ndepositing at closing invites informal borrowing requests from\nneighbouring vendors."
+        },
+        {
+          "heading": "Applicable intervention functions",
+          "markdown": "Per the BCW's Opportunity/Social linkage (Michie, van Stralen & West,\n2011, Table 2): Environmental restructuring, Modelling, and Enablement.\n- Environmental restructuring — changing the physical/social environment\n  so the deposit act itself isn't visible to neighbouring vendors.\n- Modelling — a respected peer vendor visibly normalizing discreet deposit\n  as routine, reducing the social salience of any one vendor doing it.\n- Enablement — reducing the practical friction of depositing before others\n  notice (e.g. a faster transaction path)."
+        },
+        {
+          "heading": "Feasibility scoring (APEASE)",
+          "markdown": "| Function | A | P | E | A | S | E |\n|---|---|---|---|---|---|---|\n| Environmental restructuring | +: low-cost, a screen/partition at the existing agent kiosk | +: no new behaviour to teach, works within current routine | +: directly removes the visibility mechanism named in the barrier | +: no reason vendors would object | 0 | 0 |\n| Modelling | 0: no direct cost | -: requires sustained peer-influencer engagement to stand up | 0: plausible but slower and less directly tied to the mechanism | +: socially low-risk | 0 | 0 |\n| Enablement (faster transaction path) | -: would require the mobile money provider to change queue/process | -: outside the program's control in the pilot window | 0 | 0 | 0 | 0 |"
+        },
+        {
+          "heading": "Selected lever",
+          "markdown": "**Function:** Environmental restructuring — wins on Practicability and\nEffectiveness; it's the only function that acts on the visibility\nmechanism directly rather than around it, and needs no external party's\ncooperation to pilot.\n**Concrete technique (BCTTv1):** 12.1 Restructuring the physical\nenvironment — install a small privacy partition or a marked \"quick\ndeposit\" position at the existing M-Pesa agent kiosk inside each market,\nso the deposit transaction is not directly visible to neighbouring stalls."
+        },
+        {
+          "heading": "Rejected functions",
+          "markdown": "- Modelling — kept as the next lever to try if the partition pilot doesn't\n  move the primary outcome; slower to stand up but doesn't require agent\n  cooperation either.\n- Enablement via a faster transaction path — rejected for this pilot since\n  it requires a change from the mobile money provider outside the\n  program's control; worth revisiting if a provider partnership develops."
+        },
+        {
+          "heading": "Open questions",
+          "markdown": "Whether market management will permit a physical partition at the agent\nkiosk — not yet confirmed with either market's vendor association.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Free-brainstormed levers.** Generating candidate levers from intuition\n  instead of the published COM-B-to-function matrix defeats the entire\n  point — the matrix exists because not every function is theoretically\n  capable of changing every kind of barrier, and skipping it risks\n  selecting one that can't work by construction.\n- **Function without technique.** Stopping at a function name\n  (\"Environmental restructuring\") without naming a specific BCT is not yet\n  a lever — it's a category. Someone still has to decide what changes.\n- **Feasibility blind spots.** Selecting a function that requires\n  infrastructure, authority, or a partner's cooperation the implementer\n  doesn't actually have, without that showing up as a negative\n  Practicability score, produces a lever that looks selected but can't be\n  piloted.\n- **Running on an unconfirmed hypothesis.** Selecting levers for a barrier\n  that diagnostic questions haven't actually confirmed risks designing\n  for the wrong problem — the \"confirmed barrier\" input exists specifically\n  to prevent this.\n- **Function/technique conflation.** Treating \"Environmental restructuring\"\n  and \"install a partition\" as interchangeable labels for the same thing\n  loses the distinction the BCTTv1 exists to enforce — one is a category\n  covering many possible techniques, the other is one specific instance."
+        }
+      ],
+      "changelog": []
     },
     {
       "slug": "key-behaviour-definer",
@@ -750,8 +909,128 @@
           "version": "0.2.0",
           "date": "2026-07-28",
           "summary": "Tighten output templates and build the two pre-intervention skills"
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-07-30",
+          "summary": "Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder"
         }
       ]
+    },
+    {
+      "slug": "prior-intervention-post-mortem-reader",
+      "name": "prior-intervention-post-mortem-reader",
+      "title": "Prior Intervention Post-Mortem Reader",
+      "description": "Use when a team has a documented account of an intervention they already tried and is about to decide whether to retry, adapt, or abandon the underlying idea based on that account, without having checked whether the outcome actually reflects the idea failing or the implementation failing. Invoke before evidence-base-scoper or key-behaviour-definer re-run on the same program goal, so the team's own history informs those rather than being silently repeated or silently ignored. Do not invoke without an actual documented record of what happened — a team's undocumented memory that \"it didn't really work\" is not enough raw material for this skill's structural checks.",
+      "category": "risk-review",
+      "stage": "prepare",
+      "evidence_base": [
+        {
+          "framework": "Process evaluation of complex interventions (fidelity, dose, reach, context)",
+          "citation": "Moore, G. F., Audrey, S., Barker, M., et al. (2015). Process evaluation of complex interventions: Medical Research Council guidance. BMJ, 350, h1258."
+        },
+        {
+          "framework": "Implementation fidelity's effect on program outcomes",
+          "citation": "Durlak, J. A., & DuPre, E. P. (2008). Implementation matters: A review of research on the influence of implementation on program outcomes. American Journal of Community Psychology, 41(3-4), 327-350."
+        }
+      ],
+      "weird_context": {
+        "status": "mixed-evidence",
+        "note": "The implementation-vs-idea-failure distinction is a general evaluation-methodology point, not a claim about any specific population — it applies to judging any program, anywhere. What is WEIRD-skewed is the MRC framework's own worked examples and evidence base, drawn overwhelmingly from UK health-service interventions; treat the four-dimension structure (fidelity/dose/reach/context) as portable and the specific thresholds or worked cases in the source literature as needing local judgment."
+      },
+      "inputs": [
+        {
+          "type": "prior_intervention_record",
+          "description": "The team's own raw account of what was planned, what they believe happened, and why they believe it succeeded or failed — given before this skill checks that belief against whatever data was actually collected.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "intervention_post_mortem_brief",
+          "description": "A structured retrospective distinguishing what was planned from what was actually implemented, classifying the outcome as an implementation failure or an idea failure (or stating that the data available cannot yet tell), and checking the team's causal story against what data was actually collected."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns a team's raw account of a prior intervention attempt into a\nstructured retrospective that separates what was planned from what was\nactually implemented, classifies the outcome as an implementation failure\nor an idea failure, and checks the team's own causal story against what\ndata was actually collected."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A team has a documented account of a prior attempt and is about to\n  decide to retry, adapt, or abandon the underlying idea based on that\n  account alone.\n- Before [evidence-base-scoper](../evidence-base-scoper) or\n  [key-behaviour-definer](../key-behaviour-definer) re-run on the same\n  program goal, so the team's own history is checked rather than silently\n  repeated (retrying an approach that already failed for implementation\n  reasons) or silently ignored (abandoning an idea that was never actually\n  tested).\n- Someone says \"we tried this before and it didn't work\" as if that\n  settles whether the idea itself is bad.\n- Do **not** invoke without an actual record of what happened — vague\n  recollection with no documented fidelity, dose, reach, or outcome data\n  gives this skill nothing to structure. Ask the team to write down what\n  they actually remember first, even informally."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "The MRC's process evaluation framework treats fidelity (was it delivered\nas designed), dose (how much of it actually reached people), reach (what\nshare of the intended population was exposed), and context (what changed\nin the delivery environment) as the dimensions that separate \"did we\nactually do the thing\" from \"did the thing work\" — a program can fail on\nany of the first three while the underlying idea remains untested. Durlak\n& DuPre's finding that implementation quality substantially moderates\noutcomes is why \"the idea failed\" is never a conclusion this skill lets\nstand without first checking those four dimensions; a null result with\nthin fidelity/dose/reach data supports \"cannot yet tell,\" not \"the idea\ndoesn't work.\" The causal-claim check applies the same falsifiability\ndiscipline [researcher-bias-self-audit](../researcher-bias-self-audit)\napplies to fresh assumption statements — here, to a team's story about why\na past attempt succeeded or failed."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The Planned-vs-Implemented section and the Implementation failure vs. idea\nfailure classification are both mandatory. \"Cannot yet tell\" is a\nlegitimate answer for the classification when fidelity/dose/reach data is\ntoo thin to distinguish the two — forcing a firm classification onto weak\ndata is worse than naming the gap.\n\n```markdown\n# Intervention Post-Mortem Brief\n\n**Prior intervention (as given):** <verbatim or lightly cleaned account>"
+        },
+        {
+          "heading": "What was planned",
+          "markdown": "<the intervention as originally designed — target behaviour, mechanism,\nintended delivery>"
+        },
+        {
+          "heading": "What was actually implemented",
+          "markdown": "- **Fidelity:** <was it delivered as designed, or did the actual delivery\n  diverge — and how>\n- **Dose:** <how much of it actually reached people — frequency/intensity\n  actually delivered vs. what was planned>\n- **Reach:** <what share of the intended population was actually exposed\n  to it>\n- **Context:** <what changed in the delivery environment relative to what\n  was assumed when it was designed>"
+        },
+        {
+          "heading": "Outcome as observed",
+          "markdown": "<what data was actually collected, with a confidence qualifier — a single\ninformal observation and a systematically tracked metric are not equally\nstrong evidence, state which this is>"
+        },
+        {
+          "heading": "Causal claim check",
+          "markdown": "- **Team's stated reason for the outcome:** <verbatim or closely\n  paraphrased>\n- **Does the collected data actually support this claim?** <yes / no /\n  partially — name the specific data point that does or doesn't support it>\n- **Alternative explanation the data doesn't rule out:** <...>"
+        },
+        {
+          "heading": "Implementation failure vs. idea failure (mandatory classification)",
+          "markdown": "<state which this looks like, given the fidelity/dose/reach/context\nfindings above, or state \"cannot yet tell\" explicitly if that data is too\nthin to distinguish them>"
+        },
+        {
+          "heading": "Factors to address before any retry",
+          "markdown": "<descriptive, not a redesign — what this post-mortem surfaced as\nunaddressed, for whoever designs the next attempt to work from>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Prior intervention (as given):** \"We ran a 3-month SMS reminder program\nto improve adherence to a daily medication for enrolled patients. We sent\none reminder text per day at 8am. Adherence, measured by pharmacy refill\nrecords, barely moved. Our take is that patients just don't care enough\nabout their health to act on a reminder.\" *(Illustrative — not a real\nprogram or dataset.)*\n\n```markdown\n# Intervention Post-Mortem Brief\n\n**Prior intervention (as given):** A 3-month SMS reminder program sending\none daily 8am text to improve medication adherence, measured via pharmacy\nrefill records; adherence barely moved, and the team's take is that\npatients don't care enough to act on a reminder."
+        },
+        {
+          "heading": "What was planned",
+          "markdown": "Daily 8am SMS reminder to each enrolled patient, intended to prompt the\nsame-day medication-taking behaviour, for 3 months."
+        },
+        {
+          "heading": "What was actually implemented",
+          "markdown": "- **Fidelity:** Not fully as designed — the SMS gateway's delivery logs\n  (once checked) show roughly 30% of messages failed silently on a subset\n  of carriers, with no fallback or resend.\n- **Dose:** For patients on affected carriers, effective dose was closer\n  to 2 reminders/week than the planned 7 — a large gap between planned and\n  actual exposure.\n- **Reach:** All enrolled patients were nominally in scope, but the\n  carrier issue meant reach to a *working* reminder was uneven and was not\n  segmented or reported at the time.\n- **Context:** No change reported in the delivery environment itself\n  (clinic operations, patient population) during the 3 months."
+        },
+        {
+          "heading": "Outcome as observed",
+          "markdown": "Pharmacy refill records (a systematically tracked administrative measure,\nnot a self-report) show adherence essentially flat — moderate-confidence\nevidence on the outcome measure itself, but confounded by the fidelity gap\nabove, since the actual intervention delivered was substantially weaker\nthan the one being evaluated."
+        },
+        {
+          "heading": "Causal claim check",
+          "markdown": "- **Team's stated reason for the outcome:** Patients don't care enough\n  about their health to act on a reminder.\n- **Does the collected data actually support this claim?** No direct\n  support — no patient-level data on message receipt, engagement, or\n  attitude was collected; the claim is an inference from the flat outcome\n  alone, not from any data about patient motivation.\n- **Alternative explanation the data doesn't rule out:** A substantial\n  share of patients may never have reliably received the reminder at all,\n  given the ~30% carrier-level delivery failure — motivation was never\n  actually tested against a fully-delivered intervention."
+        },
+        {
+          "heading": "Implementation failure vs. idea failure",
+          "markdown": "Cannot yet tell whether the reminder *idea* fails, but there is a\nconfirmed implementation failure (the carrier delivery gap) substantial\nenough that the idea has not actually been fairly tested yet. The team's\ncausal claim about patient motivation is not supported by the data\ncollected."
+        },
+        {
+          "heading": "Factors to address before any retry",
+          "markdown": "Confirm SMS delivery success at the individual-message level (not just\nenrollment), across all patient carriers, before attributing any future\nflat result to the reminder concept itself rather than to delivery\nfailure.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Implementation/idea conflation.** Concluding \"the idea doesn't work\"\n  from an outcome that a fidelity/dose/reach check would show was never\n  actually delivered as designed — the central failure mode this skill\n  exists to prevent, and the worked example above is a direct illustration\n  of it.\n- **Unchecked causal story.** Accepting the team's stated reason for the\n  outcome without checking it against what data was actually collected —\n  a plausible-sounding story is not evidence, even when the team believes\n  it sincerely.\n- **One post-mortem, treated as universal.** Applying a single\n  retrospective's conclusions to a future attempt in a materially\n  different context (different population, delivery channel, timeframe)\n  without re-checking whether the same factors apply.\n- **Prescribing a redesign.** This skill surfaces what happened and why\n  it's ambiguous or not; it does not design the next intervention. A\n  post-mortem that jumps to \"here's what we should build instead\" has\n  drifted into intervention design, a different skill's job.\n- **Forced classification on thin data.** Picking \"implementation failure\"\n  or \"idea failure\" when fidelity/dose/reach/context data is too sparse to\n  actually distinguish them is less honest than stating \"cannot yet tell\"\n  — a firm-sounding wrong classification is worse than an admitted gap."
+        }
+      ],
+      "changelog": []
     },
     {
       "slug": "researcher-bias-self-audit",
@@ -780,6 +1059,12 @@
           "description": "The researcher's own short, honest answers to the fixed prompts named in this io type's taxonomy entry, given before looking at any diagnostic data on the actual target population.",
           "source": "user",
           "required": true
+        },
+        {
+          "type": "intervention_post_mortem_brief",
+          "description": "Optional post-mortem for a prior attempt on this or a related program, if prior-intervention-post-mortem-reader has already run. When present, cross-check its \"Causal claim check\" section against the fresh assumption statement — a causal story the post-mortem already found unsupported by data, restated here as a fresh belief about why the population behaves as it does, is the same unaudited assumption reappearing rather than a new one.",
+          "source": "skill-output",
+          "required": false
         }
       ],
       "outputs": [
@@ -791,7 +1076,7 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "sections": [
         {
           "heading": "What it does",
@@ -803,7 +1088,7 @@
         },
         {
           "heading": "What it draws on",
-          "markdown": "Klayman's account of confirmation bias: people don't just fail to seek\ndisconfirming evidence, they often can't specify what disconfirming\nevidence would even look like, because the belief was never stated in\nfalsifiable form. The self-audit's fixed prompts are built to force that\nspecification — asking not just \"what do you believe?\" but \"what would\nchange your mind?\" and \"what's the most similar population you've actually\nworked with?\" surfaces both the belief and its evidentiary basis (or lack\nof one) in the same pass. Lilienfeld et al.'s review of debiasing training\nis the basis for treating this as a structuring/surfacing exercise rather\nthan a correction exercise — their finding is that durable debiasing needs\ndeliberate practice against specific, named errors, not a one-off warning;\na single audit report doesn't produce that practice, it just gives the\nteam something concrete to practice against."
+          "markdown": "Klayman's account of confirmation bias: people don't just fail to seek\ndisconfirming evidence, they often can't specify what disconfirming\nevidence would even look like, because the belief was never stated in\nfalsifiable form. The self-audit's fixed prompts are built to force that\nspecification — asking not just \"what do you believe?\" but \"what would\nchange your mind?\" and \"what's the most similar population you've actually\nworked with?\" surfaces both the belief and its evidentiary basis (or lack\nof one) in the same pass. Lilienfeld et al.'s review of debiasing training\nis the basis for treating this as a structuring/surfacing exercise rather\nthan a correction exercise — their finding is that durable debiasing needs\ndeliberate practice against specific, named errors, not a one-off warning;\na single audit report doesn't produce that practice, it just gives the\nteam something concrete to practice against.\n\nIf an `intervention_post_mortem_brief` is available (from\n[prior-intervention-post-mortem-reader](../prior-intervention-post-mortem-reader)),\nits \"Causal claim check\" already tested one causal story against actual\ndata — cross-check the fresh assumption statement against it. A belief the\npost-mortem already found unsupported, restated here as if it were newly\nbeing examined, is the same unaudited assumption reappearing under a new\nlabel, not independent evidence."
         },
         {
           "heading": "Output template",
@@ -855,7 +1140,7 @@
         },
         {
           "heading": "Known failure modes",
-          "markdown": "- **Performative self-awareness.** Answering the prompts with what sounds\n  appropriately humble (\"I could be wrong about anything\") rather than a\n  specific, checkable belief produces a statement with nothing real to\n  flag. The audit can only work on what's actually stated — vague\n  humility isn't more auditable than vague certainty.\n- **Treating a completed audit as a resolved bias.** This skill's output is\n  a flag list, not evidence the flagged assumption was corrected. Passing\n  \"audited\" straight to intervention design as if the flagged priors are\n  now neutralized skips the actual field-testing the diagnostic skill and\n  the disconfirming observations are meant to prompt.\n- **One-time use on a multi-month project.** Priors harden and new ones\n  form as a project proceeds. An audit run once at kickoff and never\n  again will miss the assumptions that calcified during diagnosis itself\n  — the \"Re-audit trigger\" field exists so this isn't left to memory.\n- **Auditor and subject as the same unchecked person.** If the person\n  running this skill is also the sole author of the assumption statement,\n  with no one else reviewing the flags, self-serving under-flagging is\n  possible and won't be visible in the report itself. Where feasible, have\n  a second team member read the flagged report against the original\n  statement.\n- **Confusing this with the target-population evidence base.** This skill\n  audits the *researcher's* priors; it does not survey external evidence\n  on the population — that's [evidence-base-scoper](../evidence-base-scoper).\n  Running only this one and treating it as if the population itself has now\n  been evidenced leaves the actual evidence gap unaddressed."
+          "markdown": "- **Performative self-awareness.** Answering the prompts with what sounds\n  appropriately humble (\"I could be wrong about anything\") rather than a\n  specific, checkable belief produces a statement with nothing real to\n  flag. The audit can only work on what's actually stated — vague\n  humility isn't more auditable than vague certainty.\n- **Treating a completed audit as a resolved bias.** This skill's output is\n  a flag list, not evidence the flagged assumption was corrected. Passing\n  \"audited\" straight to intervention design as if the flagged priors are\n  now neutralized skips the actual field-testing the diagnostic skill and\n  the disconfirming observations are meant to prompt.\n- **One-time use on a multi-month project.** Priors harden and new ones\n  form as a project proceeds. An audit run once at kickoff and never\n  again will miss the assumptions that calcified during diagnosis itself\n  — the \"Re-audit trigger\" field exists so this isn't left to memory.\n- **Auditor and subject as the same unchecked person.** If the person\n  running this skill is also the sole author of the assumption statement,\n  with no one else reviewing the flags, self-serving under-flagging is\n  possible and won't be visible in the report itself. Where feasible, have\n  a second team member read the flagged report against the original\n  statement.\n- **Confusing this with the target-population evidence base.** This skill\n  audits the *researcher's* priors; it does not survey external evidence\n  on the population — that's [evidence-base-scoper](../evidence-base-scoper).\n  Running only this one and treating it as if the population itself has now\n  been evidenced leaves the actual evidence gap unaddressed.\n- **Relabeled post-mortem claim.** A causal story already checked and\n  found unsupported by [prior-intervention-post-mortem-reader](../prior-intervention-post-mortem-reader)\n  can resurface here as a \"fresh\" assumption if no one cross-checks it —\n  flag it as the same unaudited belief, not as independent input."
         }
       ],
       "changelog": [
@@ -865,6 +1150,131 @@
           "summary": "Tighten output templates and build the two pre-intervention skills"
         }
       ]
+    },
+    {
+      "slug": "values-affirmation-drafter",
+      "name": "values-affirmation-drafter",
+      "title": "Values-Affirmation Drafter",
+      "description": "Use when an intervention needs to buffer a specific population against a named evaluative or stigmatized concern (financial shame, academic underperformance, a health stigma) before or around the moment they would otherwise feel judged or defensive, and no values-affirmation exercise has been drafted yet. Invoke once the target population and the specific threat domain are named, not just \"make people feel better.\" Do not invoke as a way to address a structural or material barrier (lack of money, lack of access, lack of time) — a values-affirmation exercise buffers the psychological response to a threat, it does not remove the threat's underlying cause.",
+      "category": "intervention-design",
+      "stage": "design",
+      "evidence_base": [
+        {
+          "framework": "Self-affirmation theory and applied self-affirmation interventions",
+          "citation": "Cohen, G. L., & Sherman, D. K. (2014). The psychology of change: Self-affirmation and social psychological intervention. Annual Review of Psychology, 65, 333-371."
+        },
+        {
+          "framework": "Self-affirmation theory (mechanism)",
+          "citation": "Sherman, D. K., & Cohen, G. L. (2006). The psychology of self-defense: Self-affirmation theory. Advances in Experimental Social Psychology, 38, 183-242."
+        },
+        {
+          "framework": "Documented heterogeneity in self-affirmation effects",
+          "citation": "Hanselman, P., Sinclair, K. R., & Borman, G. D. (2017). New evidence on self-affirmation effects and theorized sources of heterogeneity from large-scale replications. Journal of Educational Psychology, 109(3), 405-424."
+        }
+      ],
+      "weird_context": {
+        "status": "mixed-evidence",
+        "note": "The overwhelming majority of self-affirmation RCTs were run in US school settings (Henrich, Heine, & Norenzayan, 2010, \"The weirdest people in the world?\", Behavioral and Brain Sciences, 33(2-3), 61-83) — and Hanselman et al.'s large-scale replications found the effect itself is heterogeneous even within that WEIRD population, moderated by factors not fully understood. Treat a positive published effect as \"worked in some US school contexts, with real variation,\" not as a universal effect this skill's output can guarantee anywhere."
+      },
+      "inputs": [
+        {
+          "type": "affirmation_context_statement",
+          "description": "The target population and the specific evaluative or stigmatized domain the exercise needs to buffer against, plus whatever is known about which values are actually meaningful to this population.",
+          "source": "user",
+          "required": true
+        },
+        {
+          "type": "audience_context_brief",
+          "description": "Optional context map for this population, if context-and-audience-mapper has already run. When present, use its operationalized population and any noted cultural/value information to adapt the value category list, instead of defaulting to the standard US-derived list.",
+          "source": "skill-output",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "type": "values_affirmation_script",
+          "description": "A drafted values-affirmation writing exercise following the standard self-affirmation protocol — a locally adapted value category list, a selection prompt, and a structured writing prompt — plus delivery notes and an explicit caution against using it as a substitute for structural fixes."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns a population's named evaluative-threat domain into a structured\nvalues-affirmation writing exercise — value selection plus a guided\nwriting prompt — with delivery timing guidance and a non-substitute\ncaution against treating it as a structural fix."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A population is about to face, or repeatedly faces, a specific moment\n  where a stigmatized or evaluative concern (financial shame, academic\n  underperformance, a health stigma) could trigger defensiveness that\n  works against the program's goal.\n- Someone asks for \"something to help people feel less judged/defensive\n  about X before we ask them to do Y.\"\n- Do **not** invoke to address a structural or material barrier directly —\n  if the actual problem is that a service is unaffordable, inaccessible,\n  or unavailable, an affirmation exercise buffers the psychological\n  response to that fact, it does not change the fact. Route a structural\n  problem to intervention design aimed at the structure itself."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Cohen & Sherman's applied self-affirmation protocol: ask someone to\nidentify a personally important value unrelated to the threatened domain,\nthen write briefly about why it matters and a specific time it mattered to\nthem. Sherman & Cohen's account of the mechanism — affirming a valued\nself-domain broadens perspective and reduces the need to defensively\ndismiss threatening information in an unrelated domain — is why the\nwriting prompt's two-part structure (why it matters, a specific time) is\nnot optional decoration; a vaguer prompt (\"write about something you\nvalue\") does not reliably produce the self-affirming effect the mechanism\ndepends on. Hanselman et al.'s replication findings are the basis for the\nmandatory heterogeneity caveat: this intervention's effect size varies by\nfactors not fully mapped even within similar populations, so the output\nmust flag that variation rather than imply a guaranteed effect."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The non-substitute caution and the heterogeneity caveat are mandatory, not\noptional disclaimers — an affirmation script presented without either\ninvites exactly the two most serious misuses of this technique.\n\n```markdown\n# Values-Affirmation Script\n\n**Target population & threat domain (as given):** <verbatim>"
+        },
+        {
+          "heading": "Value category list",
+          "markdown": "<adapt to what's locally/culturally meaningful for this population, using\nany input from an audience_context_brief if available — do not transplant\nthe standard US-derived list (relationships, religion, art, humor,\nspontaneity, social skills, athletics, music, career, education,\ncreativity) uncritically if there is reason to think it doesn't fit>\n- <value 1>\n- <value 2>\n- <...>"
+        },
+        {
+          "heading": "Selection prompt",
+          "markdown": "<verbatim instruction asking the person to identify, from the list above,\nthe value most personally important to them>"
+        },
+        {
+          "heading": "Writing prompt (two-part structure — both parts required)",
+          "markdown": "1. <why this value is important to you>\n2. <describe a specific time this value mattered to you>"
+        },
+        {
+          "heading": "Delivery notes",
+          "markdown": "- **Timing:** <must precede the threat-relevant evaluative moment, not\n  follow it — an affirmation written after the threatening event has\n  already occurred does not buffer it>\n- **Duration:** <brief — the source protocol uses roughly 5-10 minutes>\n- **Frequency ceiling:** <state the risk of diminishing or reversed effect\n  if administered too often to the same person, per the source literature>"
+        },
+        {
+          "heading": "Non-substitute caution (mandatory)",
+          "markdown": "<state plainly what structural or material barrier, if any, this exercise\ndoes NOT fix, and that it should not be presented or relied on as if it\ndid>"
+        },
+        {
+          "heading": "Heterogeneity caveat (mandatory)",
+          "markdown": "<name what about this specific population or context is unconfirmed\nrelative to the published studies, per Hanselman et al.'s documented\neffect variation — a null pilot result should be checked against these\nfactors before concluding the technique itself failed>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Affirmation context statement (as given):** \"A financial-literacy\nprogram for first-generation college students. Many avoid asking questions\nin workshops or one-on-one advising sessions because they feel judged or\nembarrassed discussing money — not knowing how credit scores work, or\nhaving to say they can't afford something classmates take for granted.\"\n*(Illustrative — not a real program.)*\n\n```markdown\n# Values-Affirmation Script\n\n**Target population & threat domain (as given):** First-generation college\nstudents in a financial-literacy program, who avoid engaging in workshops\nor advising sessions from embarrassment about their financial knowledge or\nmeans relative to peers."
+        },
+        {
+          "heading": "Value category list",
+          "markdown": "Relationships with family (frequently a stronger value anchor for\nfirst-gen students than the standard list's generic \"relationships with\nfriends/family\"), being the first in their family to attend college,\nindependence/self-reliance, learning and personal growth, community or\ncultural belonging, work ethic. Adapted from the standard list's\n\"relationships,\" \"education,\" and \"career\" categories toward what\nfirst-gen-specific research and campus advising literature more commonly\nreport as salient for this population; the \"art,\" \"athletics,\" and\n\"music\" categories from the standard list are kept but not emphasized."
+        },
+        {
+          "heading": "Selection prompt",
+          "markdown": "\"From the list above, choose the one value that is most personally\nimportant to you — not the one you think you should pick, the one that\nactually matters most to you.\""
+        },
+        {
+          "heading": "Writing prompt",
+          "markdown": "1. Write a few sentences about why this value is important to you.\n2. Describe a specific time this value mattered to you or guided what you\n   did."
+        },
+        {
+          "heading": "Delivery notes",
+          "markdown": "- **Timing:** Administered at the start of the workshop or advising\n  session, before any financial-knowledge content or questions are\n  introduced — not afterward, once embarrassment may already have been\n  triggered.\n- **Duration:** Approximately 5-10 minutes, before the session's main\n  content begins.\n- **Frequency ceiling:** Not every session — repeated administration to\n  the same student across many sessions risks a diminished or reversed\n  effect per the source literature; consider administering at first\n  contact and at most one or two subsequent milestone sessions."
+        },
+        {
+          "heading": "Non-substitute caution",
+          "markdown": "This exercise does not address the actual financial constraints (cost of\nattendance, family financial pressure, lack of prior exposure to financial\nconcepts) driving the embarrassment — it may reduce defensive avoidance of\nthe workshop content itself, but the program's financial aid, cost, and\ncurriculum-accessibility design must be evaluated on their own terms, not\nassumed solved because this exercise is in place."
+        },
+        {
+          "heading": "Heterogeneity caveat",
+          "markdown": "Hanselman et al.'s replications found self-affirmation effects vary by\nfactors including prior academic performance and the specific framing of\nthe threat — neither has been confirmed for this financial-literacy\ncontext, which is a different domain than the academic-performance\nsetting most of the replication literature covers. A null result in a\npilot here should prompt checking these moderators, not an immediate\nconclusion that the technique doesn't work for this population.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Uncritical list transplant.** Using the standard US-derived value list\n  without checking whether it actually reflects what this population\n  values is the most common way this skill's output looks complete but\n  isn't locally grounded.\n- **Vague writing prompt.** A prompt that skips the \"why it matters\" or\n  \"specific time\" parts, or merges them into one vague instruction, is not\n  the protocol this skill's evidence base validated — the two-part\n  structure is the mechanism, not decoration.\n- **Wrong-moment delivery.** Administering the exercise after the\n  threatening moment (e.g. after a student has already been embarrassed in\n  a session) cannot buffer an event that already happened.\n- **Over-frequent administration.** Repeating the exercise until its\n  effect wears off or reverses, with no stated frequency ceiling, is a\n  documented risk this skill's delivery notes exist to flag.\n- **Used as a structural substitute.** Presenting this exercise as if it\n  addresses the underlying material or structural barrier — the single\n  most serious misuse, and the reason the non-substitute caution is\n  mandatory, not optional.\n- **Null result treated as universal failure.** Concluding \"self-\n  affirmation doesn't work for this population\" from one pilot's null\n  result, without checking it against the documented heterogeneity\n  moderators, mistakes one context's result for a general finding."
+        }
+      ],
+      "changelog": []
     }
   ],
   "graph": {
@@ -898,11 +1308,25 @@
         "stage": "prepare"
       },
       {
+        "id": "intervention-lever-selector",
+        "kind": "skill",
+        "label": "Intervention Lever Selector",
+        "category": "intervention-design",
+        "stage": "design"
+      },
+      {
         "id": "key-behaviour-definer",
         "kind": "skill",
         "label": "Key Behaviour Definer",
         "category": "behaviour-definition",
         "stage": "define"
+      },
+      {
+        "id": "prior-intervention-post-mortem-reader",
+        "kind": "skill",
+        "label": "Prior Intervention Post-Mortem Reader",
+        "category": "risk-review",
+        "stage": "prepare"
       },
       {
         "id": "researcher-bias-self-audit",
@@ -912,14 +1336,31 @@
         "stage": "prepare"
       },
       {
+        "id": "values-affirmation-drafter",
+        "kind": "skill",
+        "label": "Values-Affirmation Drafter",
+        "category": "intervention-design",
+        "stage": "design"
+      },
+      {
         "id": "external:program_goal_statement",
         "kind": "external-input",
         "label": "Program goal statement"
       },
       {
+        "id": "external:prior_intervention_record",
+        "kind": "external-input",
+        "label": "Prior intervention record"
+      },
+      {
         "id": "external:researcher_assumption_statement",
         "kind": "external-input",
         "label": "Researcher assumption statement"
+      },
+      {
+        "id": "external:affirmation_context_statement",
+        "kind": "external-input",
+        "label": "Affirmation context statement"
       }
     ],
     "edges": [
@@ -949,9 +1390,19 @@
         "via": "comb_barrier_hypotheses"
       },
       {
+        "from": "intervention-lever-selector",
+        "to": "evaluation-design-scoper",
+        "via": "intervention_lever_brief"
+      },
+      {
         "from": "external:program_goal_statement",
         "to": "evidence-base-scoper",
         "via": "program_goal_statement"
+      },
+      {
+        "from": "comb-barrier-decomposer",
+        "to": "intervention-lever-selector",
+        "via": "comb_barrier_hypotheses"
       },
       {
         "from": "external:program_goal_statement",
@@ -969,9 +1420,29 @@
         "via": "audience_context_brief"
       },
       {
+        "from": "external:prior_intervention_record",
+        "to": "prior-intervention-post-mortem-reader",
+        "via": "prior_intervention_record"
+      },
+      {
         "from": "external:researcher_assumption_statement",
         "to": "researcher-bias-self-audit",
         "via": "researcher_assumption_statement"
+      },
+      {
+        "from": "prior-intervention-post-mortem-reader",
+        "to": "researcher-bias-self-audit",
+        "via": "intervention_post_mortem_brief"
+      },
+      {
+        "from": "external:affirmation_context_statement",
+        "to": "values-affirmation-drafter",
+        "via": "affirmation_context_statement"
+      },
+      {
+        "from": "context-and-audience-mapper",
+        "to": "values-affirmation-drafter",
+        "via": "audience_context_brief"
       }
     ],
     "terminalOutputs": [
@@ -979,6 +1450,12 @@
         "type": "evaluation_design_brief",
         "producedBy": [
           "evaluation-design-scoper"
+        ]
+      },
+      {
+        "type": "values_affirmation_script",
+        "producedBy": [
+          "values-affirmation-drafter"
         ]
       }
     ]
