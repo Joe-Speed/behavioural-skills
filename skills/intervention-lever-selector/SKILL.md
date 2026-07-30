@@ -60,7 +60,7 @@ outputs:
       behaviour change techniques.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -104,8 +104,14 @@ yet.
 
 The confirmed barrier's COM-B sub-component and the applicable-functions
 list are mandatory and must be traceable to the published matrix, not
-invented. The selected lever must name a concrete BCT, not just a function
-name.
+invented. Where the source (Michie, van Stralen & West, 2011, Table 2)
+isn't directly at hand to check cell-by-cell, each function listed must
+carry an explicit confidence marker — high confidence for a linkage this
+skill is applying with strong recall of the actual table, lower confidence
+for one applied from general impression — rather than presenting every
+function with the same unearned certainty. Low-confidence entries should
+be verified against the source before the brief is treated as final. The
+selected lever must name a concrete BCT, not just a function name.
 
 ```markdown
 # Intervention Lever Brief
@@ -116,11 +122,12 @@ sub-component it belongs to>
 
 ## Applicable intervention functions
 <per the BCW's COM-B-to-function linkage matrix (Michie, van Stralen &
-West, 2011, Table 2) for this specific sub-component — consult the source
-directly rather than reconstructing it from memory>
+West, 2011, Table 2) for this specific sub-component>
 - <function 1> — <why this function's mechanism matches this sub-component,
-  per the matrix>
-- <function 2> — <...>
+  per the matrix> — **Confidence this linkage is correct:** <high — applied
+  directly from the published table / lower — applied from general
+  recall, verify against the source before finalizing>
+- <function 2> — <...> — **Confidence:** <...>
 
 ## Feasibility scoring (APEASE)
 | Function | A | P | E | A | S | E |
@@ -168,11 +175,17 @@ neighbouring vendors.
 Per the BCW's Opportunity/Social linkage (Michie, van Stralen & West,
 2011, Table 2): Environmental restructuring, Modelling, and Enablement.
 - Environmental restructuring — changing the physical/social environment
-  so the deposit act itself isn't visible to neighbouring vendors.
+  so the deposit act itself isn't visible to neighbouring vendors. —
+  **Confidence:** High — Opportunity/Social's link to Environmental
+  restructuring is a central, well-recalled cell of the published matrix.
 - Modelling — a respected peer vendor visibly normalizing discreet deposit
-  as routine, reducing the social salience of any one vendor doing it.
+  as routine, reducing the social salience of any one vendor doing it. —
+  **Confidence:** High.
 - Enablement — reducing the practical friction of depositing before others
-  notice (e.g. a faster transaction path).
+  notice (e.g. a faster transaction path). — **Confidence:** Lower —
+  Enablement is applied here from general recall of the matrix's broad
+  reach across most Opportunity/Motivation cells rather than a specific
+  memory of this exact cell; verify against Table 2 before finalizing.
 
 ## Feasibility scoring (APEASE)
 | Function | A | P | E | A | S | E |
@@ -227,3 +240,8 @@ kiosk — not yet confirmed with either market's vendor association.
   and "install a partition" as interchangeable labels for the same thing
   loses the distinction the BCTTv1 exists to enforce — one is a category
   covering many possible techniques, the other is one specific instance.
+- **Unearned certainty.** Listing every applicable function with the same
+  confident tone regardless of how well the specific matrix cell is
+  actually recalled versus generally inferred misrepresents a guess as a
+  sourced fact — the mandatory confidence marker exists so a reader knows
+  which functions need checking against Table 2 before the brief is final.

@@ -56,7 +56,7 @@ outputs:
       against what data was actually collected.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -105,10 +105,19 @@ a past attempt succeeded or failed.
 ## Output template
 
 The Planned-vs-Implemented section and the Implementation failure vs. idea
-failure classification are both mandatory. "Cannot yet tell" is a
-legitimate answer for the classification when fidelity/dose/reach data is
-too thin to distinguish the two — forcing a firm classification onto weak
-data is worse than naming the gap.
+failure classification are both mandatory and carry equal weight — the
+classification is not a formality tacked onto the end of the detailed
+sections above it. "Cannot yet tell" is a legitimate, and often correct,
+answer for the classification when fidelity/dose/reach data is too thin to
+distinguish the two; forcing a firm classification onto weak data is worse
+than naming the gap, and the accumulated detail in the sections above must
+not create pressure toward a firm-sounding conclusion the data doesn't
+support. Every bullet in "What was actually implemented," not only
+"Outcome as observed," must state whether it's a confirmed fact from the
+record or an inference/hypothesis the record doesn't establish — the input
+stating a scheduling choice's reason (e.g. "the hall was only available at
+2pm") does not confirm that reason as the cause of a downstream outcome
+(e.g. low attendance) unless the record separately says so.
 
 ```markdown
 # Intervention Post-Mortem Brief
@@ -121,13 +130,17 @@ intended delivery>
 
 ## What was actually implemented
 - **Fidelity:** <was it delivered as designed, or did the actual delivery
-  diverge — and how>
+  diverge — and how> — **Basis:** <confirmed by the record / inferred,
+  not directly stated>
 - **Dose:** <how much of it actually reached people — frequency/intensity
-  actually delivered vs. what was planned>
+  actually delivered vs. what was planned> — **Basis:** <confirmed /
+  inferred>
 - **Reach:** <what share of the intended population was actually exposed
-  to it>
+  to it> — **Basis:** <confirmed / inferred>
 - **Context:** <what changed in the delivery environment relative to what
-  was assumed when it was designed>
+  was assumed when it was designed — do not present a plausible cause for
+  a downstream outcome as confirmed unless the record itself connects
+  them> — **Basis:** <confirmed / inferred>
 
 ## Outcome as observed
 <what data was actually collected, with a confidence qualifier — a single
@@ -144,7 +157,10 @@ strong evidence, state which this is>
 ## Implementation failure vs. idea failure (mandatory classification)
 <state which this looks like, given the fidelity/dose/reach/context
 findings above, or state "cannot yet tell" explicitly if that data is too
-thin to distinguish them>
+thin to distinguish them — a specific-but-approximate figure (e.g. "roughly
+15%") is enough to support a firm classification on its own dimension; it
+is a thin-data case only when the dimension needed to decide is genuinely
+undocumented, not merely imprecise>
 
 ## Factors to address before any retry
 <descriptive, not a redesign — what this post-mortem surfaced as
@@ -175,15 +191,19 @@ same-day medication-taking behaviour, for 3 months.
 ## What was actually implemented
 - **Fidelity:** Not fully as designed — the SMS gateway's delivery logs
   (once checked) show roughly 30% of messages failed silently on a subset
-  of carriers, with no fallback or resend.
+  of carriers, with no fallback or resend. — **Basis:** Confirmed by the
+  gateway's own delivery logs.
 - **Dose:** For patients on affected carriers, effective dose was closer
   to 2 reminders/week than the planned 7 — a large gap between planned and
-  actual exposure.
+  actual exposure. — **Basis:** Confirmed, derived directly from the
+  delivery-log failure rate above.
 - **Reach:** All enrolled patients were nominally in scope, but the
   carrier issue meant reach to a *working* reminder was uneven and was not
-  segmented or reported at the time.
+  segmented or reported at the time. — **Basis:** Confirmed that reach was
+  uneven; which specific patients were affected is inferred, not logged.
 - **Context:** No change reported in the delivery environment itself
-  (clinic operations, patient population) during the 3 months.
+  (clinic operations, patient population) during the 3 months. —
+  **Basis:** Confirmed by the record (absence of a reported change).
 
 ## Outcome as observed
 Pharmacy refill records (a systematically tracked administrative measure,
@@ -241,3 +261,9 @@ failure.
   or "idea failure" when fidelity/dose/reach/context data is too sparse to
   actually distinguish them is less honest than stating "cannot yet tell"
   — a firm-sounding wrong classification is worse than an admitted gap.
+- **Plausible cause smuggled in as fact.** Writing a plausible explanation
+  for a scheduling or delivery choice's effect (e.g. "the 2pm slot
+  conflicted with market hours") into the Context bullet without a
+  **Basis** marking it as inferred rather than confirmed makes an unchecked
+  hypothesis read exactly like an established finding — the same problem
+  the causal-claim check exists to catch, relocated one section earlier.

@@ -43,22 +43,41 @@ Both are visible on the site's [Workflow Builder](site/workflow.html) —
 drag skills into a sequence and it flags any step whose required input
 isn't yet produced earlier in that sequence.
 
+## The design and post-mortem gaps — built
+
+The three entries this doc used to list here are now built:
+
+- **[intervention-lever-selector](skills/intervention-lever-selector)** —
+  the intervention-design skill: turns one field-confirmed COM-B barrier
+  into candidate levers read off the Behaviour Change Wheel's published
+  linkage matrix, not free-generated, scored and broken into a concrete
+  technique. Category `intervention-design`, stage `design`. Closes the
+  gap between diagnosis (`comb-barrier-decomposer`) and design that this
+  catalogue previously jumped straight over.
+- **[values-affirmation-drafter](skills/values-affirmation-drafter)** —
+  README's own intro named this as a canonical example of what belongs in
+  this library; it's now actually built. Category `intervention-design`,
+  stage `design`.
+- **[prior-intervention-post-mortem-reader](skills/prior-intervention-post-mortem-reader)**
+  — structures what a team already tried and why it did or didn't work,
+  separating implementation failure from idea failure, distinct from
+  `evidence-base-scoper`'s external-literature focus. Category
+  `risk-review`, stage `prepare`. Optionally feeds
+  `researcher-bias-self-audit`.
+
+All three are visible on the site's [Workflow Builder](site/workflow.html).
+
 ## Also worth considering (not yet scoped)
 
-- **Values-affirmation drafter** — README's own intro names this as a
-  canonical example of what belongs in this library (drafting a values-
-  affirmation prompt for a named target population, per Cohen & Sherman's
-  self-affirmation literature), but it's never actually been built.
-  Probably the most concrete, best-evidenced gap left.
-- **Prior intervention post-mortem reader** — structures what a team
-  already tried and why it did or didn't work, distinct from
-  `evidence-base-scoper`'s external-literature focus (this one is about
-  the team's own history, not the published record).
-- **Intervention-design skill** — the catalogue jumps from diagnosis
-  (`comb-barrier-decomposer`) straight to nothing; there's no skill yet in
-  the `intervention-design` category turning a confirmed barrier
-  hypothesis into candidate levers or messages (e.g. the Behaviour Change
-  Wheel's nine intervention functions) once it's confirmed in the field.
+- **Message/content drafter for a selected lever** — `intervention-lever-selector`
+  names a concrete behaviour change technique; nothing yet turns that
+  technique into the actual message, script, or interface copy a field
+  team would deliver.
+- **Measurement feasibility check specific to a chosen data source** —
+  `evaluation-design-scoper` checks whether a primary outcome is
+  collectible in principle; a deeper skill could pilot-test an actual data
+  pipeline (e.g. a specific administrative dataset's completeness) before
+  a full evaluation commits to it.
 
 ## How to turn one of these into a real skill
 

@@ -123,14 +123,20 @@ isn't stale) on every pull request.
 | [researcher-bias-self-audit](skills/researcher-bias-self-audit) | Researcher Calibration | Prepare | a researcher assumption statement (user-supplied) | a bias audit report |
 | [key-behaviour-definer](skills/key-behaviour-definer) | Behaviour Definition | Define | a program goal statement (user-supplied), optionally an evidence scan brief and an audience & context brief | a target behaviour brief |
 | [comb-barrier-decomposer](skills/comb-barrier-decomposer) | Diagnosis | Diagnose | a target behaviour brief, optionally a bias audit report | COM-B barrier hypotheses |
-| [evaluation-design-scoper](skills/evaluation-design-scoper) | Measurement | Test | a target behaviour brief, optionally COM-B barrier hypotheses | an evaluation design brief |
+| [intervention-lever-selector](skills/intervention-lever-selector) | Intervention Design | Design | one field-confirmed COM-B barrier hypothesis | an intervention lever brief |
+| [values-affirmation-drafter](skills/values-affirmation-drafter) | Intervention Design | Design | an affirmation context statement (user-supplied), optionally an audience & context brief | a values-affirmation script |
+| [evaluation-design-scoper](skills/evaluation-design-scoper) | Measurement | Test | a target behaviour brief, optionally COM-B barrier hypotheses and an intervention lever brief | an evaluation design brief |
+| [prior-intervention-post-mortem-reader](skills/prior-intervention-post-mortem-reader) | Risk & Pre-Mortem | Prepare | a prior intervention record (user-supplied) | an intervention post-mortem brief |
 
 `comb-barrier-decomposer` consumes `key-behaviour-definer`'s output, which
 in turn optionally consumes both `evidence-base-scoper`'s and
 `context-and-audience-mapper`'s output; `researcher-bias-self-audit`
-optionally feeds `comb-barrier-decomposer`; and `evaluation-design-scoper`
-consumes `key-behaviour-definer`'s output, optionally alongside
-`comb-barrier-decomposer`'s. This chain is derived automatically by
+optionally consumes `prior-intervention-post-mortem-reader`'s output and
+optionally feeds `comb-barrier-decomposer`; `intervention-lever-selector`
+consumes one field-confirmed hypothesis from `comb-barrier-decomposer`;
+and `evaluation-design-scoper` consumes `key-behaviour-definer`'s output,
+optionally alongside `comb-barrier-decomposer`'s and
+`intervention-lever-selector`'s. This chain is derived automatically by
 `scripts/build-index.js` from the skills' frontmatter, not hand-wired —
 visible on each skill's page as its declared inputs/outputs, and as an
 interactive drag-and-drop sequence on the site's

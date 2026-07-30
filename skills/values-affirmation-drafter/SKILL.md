@@ -4,14 +4,15 @@ title: Values-Affirmation Drafter
 description: >-
   Use when an intervention needs to buffer a specific population against a
   named evaluative or stigmatized concern (financial shame, academic
-  underperformance, a health stigma) before or around the moment they would
-  otherwise feel judged or defensive, and no values-affirmation exercise
-  has been drafted yet. Invoke once the target population and the specific
-  threat domain are named, not just "make people feel better." Do not
-  invoke as a way to address a structural or material barrier (lack of
-  money, lack of access, lack of time) — a values-affirmation exercise
-  buffers the psychological response to a threat, it does not remove the
-  threat's underlying cause.
+  underperformance, a health stigma, exposure/visibility risk) before or
+  around the moment they would otherwise feel judged or defensive, and no
+  values-affirmation exercise has been drafted yet. Invoke once the target
+  population and the specific threat domain are named, not just "make
+  people feel better." Do not invoke as a way to address a structural,
+  material, or design barrier (lack of money, lack of access, lack of
+  time, a program design that exposes people to being seen or judged) — a
+  values-affirmation exercise buffers the psychological response to a
+  threat, it does not remove the threat's underlying cause.
 category: intervention-design
 stage: design
 evidence_base:
@@ -69,7 +70,7 @@ outputs:
       substitute for structural fixes.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.2.0
 ---
 
 ## What it does
@@ -87,11 +88,13 @@ caution against treating it as a structural fix.
   works against the program's goal.
 - Someone asks for "something to help people feel less judged/defensive
   about X before we ask them to do Y."
-- Do **not** invoke to address a structural or material barrier directly —
-  if the actual problem is that a service is unaffordable, inaccessible,
-  or unavailable, an affirmation exercise buffers the psychological
-  response to that fact, it does not change the fact. Route a structural
-  problem to intervention design aimed at the structure itself.
+- Do **not** invoke to address a structural, material, or design barrier
+  directly — if the actual problem is that a service is unaffordable,
+  inaccessible, unavailable, or exposes people to being seen or judged by
+  its design (a visible location, a public list, a conspicuous process),
+  an affirmation exercise buffers the psychological response to that fact,
+  it does not change the fact. Route a structural or design problem to
+  intervention design aimed at the structure itself.
 
 ## What it draws on
 
@@ -109,6 +112,17 @@ mandatory heterogeneity caveat: this intervention's effect size varies by
 factors not fully mapped even within similar populations, so the output
 must flag that variation rather than imply a guaranteed effect.
 
+If no `audience_context_brief` is available, the value list is this
+skill's own best guess at cultural fit, not a locally-grounded adaptation
+— the output must say so explicitly and recommend confirming the list
+with someone from or close to the target population before it's used,
+rather than presenting an unconfirmed guess with the same confidence as a
+brief-informed adaptation. The frequency-ceiling guidance in Delivery
+notes is drawn from single- or few-session study designs; for a delivery
+pattern the cited literature doesn't cover (e.g. a recurring outreach
+contact over months), say that explicitly and mark the stated ceiling as
+an extrapolated program judgment, not a literature-derived number.
+
 ## Output template
 
 The non-substitute caution and the heterogeneity caveat are mandatory, not
@@ -118,14 +132,22 @@ invites exactly the two most serious misuses of this technique.
 ```markdown
 # Values-Affirmation Script
 
-**Target population & threat domain (as given):** <verbatim>
+**Target population & threat domain (as given):** <condensed restatement
+of the input, not a mid-sentence quote — close enough to verbatim that
+nothing is misrepresented>
 
 ## Value category list
 <adapt to what's locally/culturally meaningful for this population, using
 any input from an audience_context_brief if available — do not transplant
 the standard US-derived list (relationships, religion, art, humor,
 spontaneity, social skills, athletics, music, career, education,
-creativity) uncritically if there is reason to think it doesn't fit>
+creativity) uncritically if there is reason to think it doesn't fit, and
+actively drop any category that could reinforce the threat rather than
+merely fail to resonate (e.g. a faith-linked category where the stigma
+itself is partly moral/religious in nature). If no `audience_context_brief`
+is available, say so explicitly here and label this list an unconfirmed
+adaptation pending local confirmation — do not present it with the same
+confidence as a brief-informed list.>
 - <value 1>
 - <value 2>
 - <...>
@@ -250,3 +272,13 @@ conclusion that the technique doesn't work for this population.
   affirmation doesn't work for this population" from one pilot's null
   result, without checking it against the documented heterogeneity
   moderators, mistakes one context's result for a general finding.
+- **Unflagged guesswork.** Producing a locally-adapted-looking value list
+  when no `audience_context_brief` was actually available, with the same
+  confident framing as a brief-informed adaptation, misrepresents an
+  unconfirmed guess as grounded research.
+- **Structural barrier mistaken for the only kind.** Treating "structural
+  or material barrier" as limited to resource scarcity (cost, access,
+  time) misses design-driven exposure risk (a visibly parked van, a public
+  sign-up list) and community-level norm barriers — both are just as much
+  outside this skill's scope as a funding gap, and the non-substitute
+  caution must name them when they're the actual barrier.
