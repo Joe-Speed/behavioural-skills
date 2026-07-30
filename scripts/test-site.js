@@ -4,15 +4,33 @@
 // surface as a blank page or a broken link once the site is deployed.
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
-const { computeIndex, OUT_PATH } = require("./build-index.js");
+const { computeIndex, OUT_PATH, SHARE_DIR, writeSharePages } = require("./build-index.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const SITE_DIR = path.join(ROOT, "site");
 
+function findHtmlFiles(dir) {
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...findHtmlFiles(full));
+    else if (entry.name.endsWith(".html")) out.push(full);
+  }
+  return out;
+}
+
+// generatedAt and each skill's changelog are both derived at build time from
+// live state (a timestamp, and git log) rather than from skills/ content —
+// stripped before comparing so a skill's changelog gaining a real entry
+// on the next commit doesn't itself count as "stale relative to skills/".
 function stripVolatile(index) {
   const { generatedAt, ...rest } = index;
-  return rest;
+  return {
+    ...rest,
+    skills: rest.skills.map(({ changelog, ...skill }) => skill),
+  };
 }
 
 // Catches "forgot to run npm run build before committing" — the committed
@@ -52,18 +70,53 @@ function checkGraphIntegrity(index) {
 function checkLocalLinks() {
   const errors = [];
   const linkPattern = /(?:href|src)="([^"]+)"/g;
-  const htmlFiles = fs.readdirSync(SITE_DIR).filter((f) => f.endsWith(".html"));
 
-  for (const file of htmlFiles) {
-    const content = fs.readFileSync(path.join(SITE_DIR, file), "utf8");
+  for (const file of findHtmlFiles(SITE_DIR)) {
+    const content = fs.readFileSync(file, "utf8");
+    const relFile = path.relative(SITE_DIR, file);
     let match;
     while ((match = linkPattern.exec(content))) {
       const link = match[1];
       if (/^https?:\/\//.test(link) || link.startsWith("#") || link.includes("?")) continue;
-      if (!fs.existsSync(path.join(SITE_DIR, link))) {
-        errors.push(`${file} references missing local file "${link}"`);
+      if (!fs.existsSync(path.join(path.dirname(file), link))) {
+        errors.push(`${relFile} references missing local file "${link}"`);
       }
     }
+  }
+  return errors;
+}
+
+// Same "forgot to run npm run build" check as checkIndexFreshness, for the
+// generated per-skill share pages under site/s/. Renders a fresh copy into
+// a scratch directory rather than touching site/s/ itself.
+function checkSharePagesFreshness(index) {
+  if (!fs.existsSync(SHARE_DIR)) {
+    return [`site/s/ does not exist — run "npm run build"`];
+  }
+
+  const readDir = (dir) =>
+    new Map(
+      fs
+        .readdirSync(dir)
+        .filter((f) => f.endsWith(".html"))
+        .map((f) => [f, fs.readFileSync(path.join(dir, f), "utf8")])
+    );
+
+  const committed = readDir(SHARE_DIR);
+
+  const scratchDir = fs.mkdtempSync(path.join(os.tmpdir(), "share-pages-"));
+  writeSharePages(index, scratchDir);
+  const fresh = readDir(scratchDir);
+  fs.rmSync(scratchDir, { recursive: true, force: true });
+
+  const errors = [];
+  for (const [file, freshContent] of fresh) {
+    if (!committed.has(file)) errors.push(`site/s/${file} is missing — run "npm run build"`);
+    else if (committed.get(file) !== freshContent)
+      errors.push(`site/s/${file} is stale relative to skills/ — run "npm run build" and commit the result`);
+  }
+  for (const file of committed.keys()) {
+    if (!fresh.has(file)) errors.push(`site/s/${file} has no matching skill — run "npm run build"`);
   }
   return errors;
 }
@@ -72,6 +125,7 @@ function main() {
   const index = computeIndex();
   const checks = [
     ["site/data/index.json is up to date with skills/", checkIndexFreshness()],
+    ["site/s/ share pages are up to date with skills/", checkSharePagesFreshness(index)],
     ["dependency graph is internally consistent", checkGraphIntegrity(index)],
     ["all local asset references resolve", checkLocalLinks()],
   ];

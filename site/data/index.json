@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T15:37:22.639Z",
+  "generatedAt": "2026-07-30T12:53:32.318Z",
   "taxonomy": {
     "categories": [
       {
@@ -51,6 +51,11 @@
         "id": "researcher-calibration",
         "label": "Researcher Calibration",
         "description": "Checking the research team's own priors, assumptions, or evidence gaps before they shape downstream diagnosis or design. Distinct from Cultural Context, which is about the target population rather than the researcher."
+      },
+      {
+        "id": "context-mapping",
+        "label": "Context Mapping",
+        "description": "Characterizing the specific population, setting, and touchpoints a behaviour actually occurs in, before that context is assumed from a funder's abstract label rather than checked."
       }
     ],
     "stages": [
@@ -120,6 +125,18 @@
         "id": "bias_audit_report",
         "label": "Bias audit report",
         "description": "A structured flag list surfacing which parts of a researcher's stated prior assumptions are unfalsifiable as written, default to a WEIRD population as the implicit norm, or lack a named disconfirming observation. Not a pass/fail score, and not a debiasing plan — only a surfacing of what's already there.",
+        "user_suppliable": false
+      },
+      {
+        "id": "audience_context_brief",
+        "label": "Audience & context brief",
+        "description": "The target population operationalized as a specific, observable subgroup; the decision moment where the behaviour choice actually gets made; the channels already reaching this population today; and which of the input's assumptions default to WEIRD infrastructure without having been confirmed locally.",
+        "user_suppliable": false
+      },
+      {
+        "id": "evaluation_design_brief",
+        "label": "Evaluation design brief",
+        "description": "A pre-registration-style plan for measuring one target behaviour: primary outcome metric, comparison condition, minimum detectable effect, data-source feasibility, and any mediating measures needed to evaluate a specific barrier hypothesis, locked in before data collection starts.",
         "user_suppliable": false
       }
     ]
@@ -204,10 +221,290 @@
           "markdown": "Score every hypothesis above on two criteria before ranking — a ranking\nwith no visible scoring is indistinguishable from an unexamined first\nguess:\n\n| Hypothesis | Context support (does existing context make this more/less likely, and why) | Field cost (how cheap/fast is its diagnostic question to actually run) |\n|---|---|---|\n| <hypothesis 1> | <...> | <...> |\n| <hypothesis 2> | <...> | <...> |\n\n<1-3 sentences naming the top 1-2 hypotheses by that table, flagged clearly\nas provisional until the diagnostic questions are actually answered in the\nfield — not a restatement of intuition the table wasn't used to reach>\n```"
         },
         {
+          "heading": "Worked example",
+          "markdown": "**Target behaviour (from key-behaviour-definer):** \"Female stall vendors\nin Gikomba/Toi markets deposit that day's net cash surplus into an M-Pesa\nsavings wallet before leaving the market, each trading day.\" *(Continues\nthe running example from context-and-audience-mapper and\nkey-behaviour-definer; illustrative, not a real diagnosis.)*\n\n```markdown\n# COM-B Barrier Hypotheses\n\n**Target behaviour:** Female stall vendors in Gikomba/Toi markets deposit\nthat day's net cash surplus into an M-Pesa savings wallet before leaving\nthe market, each trading day."
+        },
+        {
+          "heading": "Capability",
+          "markdown": "### Physical\n- **Hypothesis:** Lacks fluency with the specific M-Pesa savings-lock menu\n  sequence (distinct from ordinary send-money use, which vendors already\n  do daily).\n  **Persistence test:** Would persist even with full information/access —\n  this is a specific-skill gap, not an access gap. Capability confirmed.\n  **Diagnostic question:** Can the vendor complete a savings-lock deposit\n  unassisted when asked to demonstrate it?\n  **Discriminates because:** An Opportunity-only barrier would predict\n  success once handed a working phone/agent; this predicts failure even\n  then.\n### Psychological\n- **Hypothesis:** Can't reliably estimate \"net cash surplus\" without\n  formal bookkeeping, so has nothing confident to deposit.\n  **Persistence test:** Would persist even with full market access and\n  no social cost — this is a calculation-capability gap. Capability\n  confirmed.\n  **Diagnostic question:** Given a day's sales and costs verbally, can the\n  vendor state a surplus figure within a plausible range?\n  **Discriminates because:** A Motivation barrier would predict the\n  vendor *could* state a figure but chooses not to act on it; this\n  predicts she can't state one confidently at all."
+        },
+        {
+          "heading": "Opportunity",
+          "markdown": "### Physical\n- **Hypothesis:** M-Pesa agent queue at closing time is long enough that\n  depositing costs stall-minding time vendors won't spend.\n  **Diagnostic question:** What is the average agent wait time at closing\n  hour vs. mid-day?\n  **Discriminates because:** If wait time is short, this barrier is ruled\n  out regardless of what vendors say about \"not having time.\"\n### Social\n- **Hypothesis:** Visible cash-counting/depositing at closing invites\n  informal borrowing requests from neighbouring vendors (named in the\n  audience_context_brief).\n  **Diagnostic question:** Do vendors report changing behaviour (timing,\n  location) specifically to avoid being seen with cash?\n  **Discriminates because:** A purely physical-Opportunity barrier\n  wouldn't predict vendors actively concealing the act itself."
+        },
+        {
+          "heading": "Motivation",
+          "markdown": "### Reflective\n- **Hypothesis:** Doesn't trust mobile-money savings products to hold\n  value as reliably as cash-in-hand or a *chama*.\n  **Diagnostic question:** Asked directly, does the vendor rank M-Pesa\n  savings below *chama* or cash-at-home for trustworthiness?\n  **Discriminates because:** A Capability or Opportunity barrier wouldn't\n  produce a stated trust ranking; only a Motivation barrier would.\n### Automatic\n- **Hypothesis:** Habitual full hand-over of the day's cash to a spouse/\n  household member at home crowds out any deposit step beforehand.\n  **Diagnostic question:** Does the vendor report the hand-over happening\n  \"automatically,\" without a decision point, on most days?\n  **Discriminates because:** A reflective-Motivation barrier would involve\n  a considered choice each day; this predicts no decision point at all."
+        },
+        {
+          "heading": "Most likely barrier(s), pending diagnostic answers",
+          "markdown": "| Hypothesis | Context support | Field cost |\n|---|---|---|\n| Opportunity/Social: visible cash invites borrowing requests | High — directly named in the audience_context_brief's environmental constraints | Low — one round of vendor interviews |\n| Motivation/Automatic: habitual full hand-over at home | Medium — plausible given context, not yet directly observed | Low — same interview round |\n| Capability/Psychological: can't estimate surplus | Medium — informal bookkeeping is common in this sector generally | Medium — needs a short verbal-estimation exercise, not just a question |\n\nThe Opportunity/Social hypothesis is the top provisional candidate — it is\nboth the most directly supported by existing context data and the\ncheapest to confirm — but this remains provisional until the diagnostic\nquestions above are actually run in the field.\n```"
+        },
+        {
           "heading": "Known failure modes",
           "markdown": "- **Motivation as a dumping ground.** It's easy to label every unexplained\n  non-behaviour \"lack of motivation\" because it requires no further\n  evidence. If a hypothesis can't be stated specifically enough to produce\n  a diagnostic question that could rule it *out*, it isn't a real\n  hypothesis yet.\n- **Capability/Opportunity confusion.** \"Doesn't know how\" (capability) and\n  \"was never told\" (opportunity, if the information was never made\n  available to them) get mislabeled constantly — including by careful\n  attempts, which is exactly why the persistence-test line in the template\n  is mandatory rather than left as background judgment. A Capability\n  hypothesis whose persistence-test answer is actually \"no, they'd be fine\n  if the environment changed\" is a mislabeled Opportunity hypothesis, full\n  stop, regardless of how the sentence is worded.\n- **Non-discriminating questions.** A diagnostic question that would get\n  the same answer regardless of which hypothesis is true isn't\n  discriminating — it's just a survey item. If the \"Discriminates because\"\n  line can't name a different predicted answer per hypothesis, the\n  question needs to change, not just the write-up.\n- **Running on a compound or vague behaviour.** If the input behaviour still\n  contains \"and\" or lacks a clear who/what/when, the barriers produced will\n  quietly diagnose whichever half of the behaviour was easiest to picture,\n  not the behaviour as actually specified.\n- **Treating the ranked barriers as confirmed.** This skill produces\n  hypotheses and the questions to test them, not a diagnosis. Passing the\n  \"most likely barrier\" straight to intervention design without answering\n  the diagnostic questions in the field skips the step the questions exist\n  for."
         }
+      ],
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-07-23",
+          "summary": "Initial scaffold: schema, two worked-example skills, tooling, static site, CI"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-28",
+          "summary": "Tighten output templates and build the two pre-intervention skills"
+        }
       ]
+    },
+    {
+      "slug": "context-and-audience-mapper",
+      "name": "context-and-audience-mapper",
+      "title": "Context & Audience Mapper",
+      "description": "Use when a program goal names its target population only in the abstract identity terms a funder or stakeholder would use (e.g. \"smallholder farmers\", \"gig workers\", \"first-time mothers\") with no detail on the actual setting, decision moment, or channels already reaching them. Invoke alongside or just before key-behaviour-definer, on the same raw program goal statement, so the \"who\" in a target behaviour brief is a specific observed context rather than a restated label. Do not invoke once the population's decision moment and existing channels are already documented at that level of detail — re-running this on an already-mapped context just restates what's known.",
+      "category": "context-mapping",
+      "stage": "prepare",
+      "evidence_base": [
+        {
+          "framework": "EAST framework — Easy, Attractive, Social, Timely",
+          "citation": "Service, O., Hallsworth, M., Halpern, D., Algate, F., Gallagher, R., Nguyen, S., Ruda, S., & Sanders, M. (2014). EAST: Four Simple Ways to Apply Behavioural Insights. The Behavioural Insights Team."
+        },
+        {
+          "framework": "Contextual inquiry",
+          "citation": "Beyer, H., & Holtzblatt, K. (1997). Contextual Design: Defining Customer-Centered Systems. Morgan Kaufmann Publishers, Ch. 3."
+        },
+        {
+          "framework": "Context-specificity in behavioural design for development programs",
+          "citation": "Datta, S., & Mullainathan, S. (2014). Behavioral design: A new approach to development policy. Review of Income and Wealth, 60(1), 7-35."
+        }
+      ],
+      "weird_context": {
+        "status": "mixed-evidence",
+        "note": "EAST was developed and validated primarily in UK public-sector contexts, and contextual inquiry as a method originated in Western commercial product design — but the technique this skill operationalizes (describe the actual decision moment and existing channels rather than working from a funder's abstract label) exists specifically as a check against assuming a WEIRD-default context. Treat the *discipline* as portable and the source literature's worked examples as needing local replacement, not extension."
+      },
+      "inputs": [
+        {
+          "type": "program_goal_statement",
+          "description": "The program or campaign goal as originally stated, plus whatever context is available on the target population and setting. The same raw input key-behaviour-definer and evidence-base-scoper take — this skill can run in parallel with either, not necessarily after them.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "audience_context_brief",
+          "description": "The target population operationalized as a specific, observable subgroup; the decision moment where the behaviour choice actually gets made; the channels already reaching this population today; and which of the input's assumptions default to WEIRD infrastructure without having been confirmed locally."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns a program goal's abstract population label into a specific, observed\ndecision moment, an existing-channel list, and a named check for which of\nthe input's assumptions default to WEIRD infrastructure — before that\ncontext gets assumed rather than checked."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A program goal names its population only the way a funder or stakeholder\n  would (\"smallholder farmers\", \"gig workers\", \"first-time mothers\") with\n  no detail on where, when, or how the target behaviour choice actually\n  gets made.\n- Before [key-behaviour-definer](../key-behaviour-definer)'s \"who\" is\n  written, or when an existing target behaviour brief's \"who\" still just\n  restates the funder's language.\n- Someone asks \"who exactly are we talking about, and where does this\n  decision actually happen for them?\"\n- Do **not** invoke once the decision moment and existing channels are\n  already documented at this level of detail — this skill's job is done;\n  hand the output straight to key-behaviour-definer instead of re-running\n  it."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "EAST's \"Timely\" and \"Easy\" dimensions only mean something once the actual\nphysical and social moment the behaviour choice occurs in is known — not a\ngeneric description of the audience's demographics. Contextual inquiry's\ndiscipline of describing an environment as actually observed, rather than\nas reported secondhand by a stakeholder who doesn't live in it, is why the\noutput template below requires a specific decision moment and real\n(not proposed) channels. Datta & Mullainathan's account of behavioural\ndesign in development programs is the basis for the mandatory WEIRD-default\ncheck: a brief that assumes formal banking, smartphone ownership, or\nliterate-first materials without confirming any of them for this specific\npopulation isn't mapping context, it's importing a different one."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The decision moment and existing-channel list are mandatory, not optional\ncolour — a brief with a generic \"who\" and no specific moment or channel\nhasn't mapped anything yet. The WEIRD-default assumption check is mandatory\neven when the answer is \"confirmed, no gap found\" — state that explicitly\nrather than omitting the section.\n\n```markdown\n# Audience & Context Brief\n\n**Program goal (as given):** <verbatim or lightly cleaned goal statement>"
+        },
+        {
+          "heading": "Population, as named vs. as operationalized",
+          "markdown": "- **As named in the input:** <the funder/stakeholder's label, verbatim>\n- **Operationalized:** <specific, observable subgroup — e.g. \"women aged\n  25-50 running fixed daily produce stalls in two named markets,\" not\n  \"smallholder farmers\" generally>"
+        },
+        {
+          "heading": "Decision moment",
+          "markdown": "- **Where/when the behaviour choice actually gets made:** <the specific\n  physical and social moment — not a general time of day>\n- **Who else is present or influential at that moment:** <...>"
+        },
+        {
+          "heading": "Existing channels and touchpoints (real, not proposed)",
+          "markdown": "- <channel/touchpoint already reaching this population today, with how\n  you know it reaches them> — <reach/frequency, if known>\n- <channel 2> — <...>\n\n(A channel that would be convenient for a future intervention but doesn't\ncurrently reach this population belongs to intervention design later, not\nto this context map.)"
+        },
+        {
+          "heading": "Environmental constraints at the decision moment",
+          "markdown": "<physical, social, or economic constraints specific to that moment>"
+        },
+        {
+          "heading": "WEIRD-default assumption check (mandatory — state \"none found\" explicitly if genuinely none)",
+          "markdown": "- <assumption in the input that defaults to Western/formal/literate/\n  connected infrastructure> — **Confirmed locally?** <yes/no/unknown> —\n  **What to check before relying on it:** <...>"
+        },
+        {
+          "heading": "Open questions / what still needs field confirmation",
+          "markdown": "<anything this brief had to infer from limited program context, flagged\nfor someone to actually go check rather than presented as settled>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Program goal (as given):** \"Increase long-term savings among informal-\nsector market vendors in Nairobi so they have a buffer against income\nshocks.\" *(Illustrative — not a real program or dataset.)*\n\n```markdown\n# Audience & Context Brief\n\n**Program goal (as given):** Increase long-term savings among informal-\nsector market vendors in Nairobi so they have a buffer against income\nshocks."
+        },
+        {
+          "heading": "Population, as named vs. as operationalized",
+          "markdown": "- **As named in the input:** \"informal-sector market vendors in Nairobi\"\n- **Operationalized:** Women aged 25-50 running fixed (non-itinerant) daily\n  produce and household-goods stalls in Nairobi's Gikomba and Toi markets —\n  not itinerant hawkers, and not male-dominated stall categories in the\n  same markets, where the daily cash-handling pattern differs."
+        },
+        {
+          "heading": "Decision moment",
+          "markdown": "- **Where/when:** End-of-day cash count at the stall, cash still in hand,\n  in the 15-30 minutes before closing up and travelling home.\n- **Who else present/influential:** Neighbouring stallholders (visible\n  cash-counting invites informal borrowing requests); often a\n  spouse/family member waiting to receive the day's takings at home."
+        },
+        {
+          "heading": "Existing channels and touchpoints (real, not proposed)",
+          "markdown": "- Weekly *chama* (rotating savings group) meetings — most vendors already\n  belong to one.\n- M-Pesa mobile money agent kiosk inside both markets — used daily for\n  business transactions already.\n- Monthly market vendor association meetings — lower attendance, but a\n  standing forum."
+        },
+        {
+          "heading": "Environmental constraints at the decision moment",
+          "markdown": "No secure overnight storage at the stall. Carrying the day's cash home\nafter dark is a physical safety risk vendors already actively manage\n(e.g. leaving before full dark, splitting cash across pockets)."
+        },
+        {
+          "heading": "WEIRD-default assumption check",
+          "markdown": "- Assumption in input: none stated explicitly, but \"savings\" in the\n  program goal implicitly suggests a bank-style individual account. —\n  **Confirmed locally?** No. — **What to check:** Nearest bank branch is\n  ~40 minutes away; M-Pesa mobile money access is near-universal in this\n  group and should be the default savings channel considered, not a\n  bank account."
+        },
+        {
+          "heading": "Open questions / what still needs field confirmation",
+          "markdown": "Whether the \"visible cash-counting invites borrowing requests\" constraint\napplies equally to Gikomba and Toi, or is more pronounced in one market —\nbased on one prior field visit to Gikomba only, not confirmed for Toi.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Restating the label.** Repeating \"smallholder farmers\" or \"gig\n  workers\" verbatim as the operationalized population is not context — it's\n  the same abstraction with a longer sentence around it.\n- **Inventing channels.** Listing a channel that would be convenient for a\n  future intervention (a WhatsApp group that doesn't exist yet) as if it\n  already reaches this population conflates context-mapping with\n  intervention design.\n- **Single-anecdote context.** Treating one interview, one field visit, or\n  one team member's assumption as if it characterizes the whole\n  population's decision moment. Flag this as a gap in \"Open questions\"\n  rather than presenting it as settled — see the worked example above.\n- **Unflagged WEIRD defaults.** Assuming banking, literacy, or connectivity\n  infrastructure that hasn't been confirmed for this specific population,\n  and not naming it in the assumption check, silently imports a different\n  context than the one actually being mapped.\n- **Confusing this with segmentation.** This skill characterizes one\n  population's context in depth; it does not divide a population into\n  multiple behaviourally distinct personas. If the real need is \"which of\n  several groups should we target,\" that's a different job — don't force\n  this skill to do both."
+        }
+      ],
+      "changelog": []
+    },
+    {
+      "slug": "evaluation-design-scoper",
+      "name": "evaluation-design-scoper",
+      "title": "Evaluation Design Scoper",
+      "description": "Use when a target behaviour has been defined and a plan to measure it is about to be assumed rather than actually specified — no named primary outcome, no comparison condition, no minimum detectable effect agreed before rollout. Invoke once key-behaviour-definer has produced a target behaviour brief, and again whenever comb-barrier-decomposer's hypotheses change what a mediating measure needs to capture. Do not invoke before a target behaviour is defined — there is nothing concrete yet to plan measurement for.",
+      "category": "measurement",
+      "stage": "test",
+      "evidence_base": [
+        {
+          "framework": "Pre-analysis plans for field experiments",
+          "citation": "Olken, B. A. (2015). Promises and Perils of Pre-analysis Plans. Journal of Economic Perspectives, 29(3), 61-80."
+        },
+        {
+          "framework": "Statistical power and minimum detectable effect in impact evaluation",
+          "citation": "Duflo, E., Glennerster, R., & Kremer, M. (2007). Using Randomization in Development Economics Research: A Toolkit. In T. P. Schultz & J. Strauss (Eds.), Handbook of Development Economics, Vol. 4, Ch. 61."
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "The statistical methodology (power calculations, pre-registration against HARKing/p-hacking) is general-purpose and not culturally bound. What is not uniform is the data infrastructure the \"Data source feasibility\" section depends on — administrative records, mobile-money transaction logs, or survey infrastructure that would make a chosen primary outcome actually collectible vary enormously by setting, and this skill's output is only as good as that check is honest."
+      },
+      "inputs": [
+        {
+          "type": "target_behaviour_brief",
+          "description": "The single defined target behaviour (who + what + when) to design measurement for. Normally the output of key-behaviour-definer, but any equivalently specific behaviour statement works.",
+          "source": "skill-output",
+          "required": true
+        },
+        {
+          "type": "comb_barrier_hypotheses",
+          "description": "Optional barrier diagnosis for this target behaviour, if comb-barrier-decomposer has already run. When present, use its hypotheses to name mediating measures that would let a specific diagnostic question actually be evaluated post-hoc, not just the headline outcome.",
+          "source": "skill-output",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "type": "evaluation_design_brief",
+          "description": "A pre-registration-style plan for measuring one target behaviour: primary outcome metric, comparison condition, minimum detectable effect, data-source feasibility, and any mediating measures needed to evaluate a specific barrier hypothesis, locked in before data collection starts."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns one defined target behaviour into a locked-in measurement plan —\nprimary outcome, comparison condition, minimum detectable effect, and a\ndata-feasibility check — before an intervention launches and before anyone\ncan quietly redefine \"success\" after seeing which number moved."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A target behaviour brief exists and someone is about to design or launch\n  an intervention with no named primary outcome, no comparison condition,\n  and no agreement on what effect size would actually matter.\n- [comb-barrier-decomposer](../comb-barrier-decomposer) has produced\n  barrier hypotheses and the team needs to know what mediating measure\n  would let those specific hypotheses be evaluated, not just whether the\n  headline outcome moved.\n- Someone asks \"how will we actually know if this worked?\" or \"what\n  counts as success here?\"\n- Do **not** invoke on a vague program goal — route it through\n  [key-behaviour-definer](../key-behaviour-definer) first. There is no\n  single behaviour yet to measure."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Olken's account of pre-analysis plans: an evaluation's credibility depends\non locking in the primary outcome and the effect size that matters *before*\ndata collection, specifically so it can't be redefined afterward to match\nwhichever measure happened to move (HARKing). The output template's\nmandatory pre-registration statement operationalizes this directly — it\nexists to be checked against later, not just written once and forgotten.\nDuflo, Glennerster & Kremer's toolkit is the basis for treating \"minimum\ndetectable effect\" as a designed choice tied to what the program actually\nneeds to see to be worth continuing, not a statistical-convention default\n(e.g. reflexively powering for a small effect regardless of program\nstakes). Data-source feasibility is checked explicitly because a plan that\nassumes a measure exists — because similar programs report it — without\nconfirming it's actually collectible here, at the needed frequency, isn't\na measurement plan yet."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The primary outcome, comparison condition, and pre-registration statement\nare mandatory — an evaluation brief that only lists metrics without a\ncomparison condition or a locked-in commitment is a wishlist, not a design.\nIf a `comb_barrier_hypotheses` input is available, at least one mediating\nmeasure tied to one of its hypotheses is also mandatory.\n\n```markdown\n# Evaluation Design Brief\n\n**Target behaviour:** <who + what + when, carried over verbatim>"
+        },
+        {
+          "heading": "Primary outcome metric",
+          "markdown": "<the one measure that would make the team say \"this worked\" — must\nobserve the target behaviour itself, not a proxy adopted for convenience;\nif a proxy is genuinely necessary, name the substitution explicitly and\nsay what gap it leaves>"
+        },
+        {
+          "heading": "Comparison condition",
+          "markdown": "<what \"no effect\" looks like — a control group, a randomized waitlist, or\na named historical baseline; \"pre/post on the same group only\" is not a\ncomparison condition, state plainly if that's the fallback and why>"
+        },
+        {
+          "heading": "Minimum detectable effect",
+          "markdown": "<the smallest effect size worth caring about, tied to what the program\nneeds to see to justify continuing — not a default pulled from statistical\nconvention>"
+        },
+        {
+          "heading": "Data source feasibility",
+          "markdown": "<where the primary outcome's data will actually come from, whether it\nexists today at the frequency needed, and who would need to grant access —\n\"assumed available\" is not a feasibility check>"
+        },
+        {
+          "heading": "Mediating measures (mandatory if `comb_barrier_hypotheses` is available)",
+          "markdown": "- <hypothesis from the barrier diagnosis> — <measure that would let this\n  specific hypothesis be evaluated post-hoc, distinct from the primary\n  outcome>"
+        },
+        {
+          "heading": "Pre-registration statement",
+          "markdown": "<one locked-in sentence naming the primary outcome and minimum detectable\neffect, dated, so it cannot be quietly redefined after seeing results>"
+        },
+        {
+          "heading": "Open questions",
+          "markdown": "<anything this brief had to assume about data access or timeline that\nneeds confirming before the plan is final>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Target behaviour (from key-behaviour-definer):** \"Female stall vendors\nin Nairobi's Gikomba and Toi markets deposit that day's net cash surplus\ninto an M-Pesa savings wallet before leaving the market, each trading\nday.\" *(Illustrative — continues the running example from\ncontext-and-audience-mapper and key-behaviour-definer; not a real\nprogram.)*\n\n```markdown\n# Evaluation Design Brief\n\n**Target behaviour:** Female stall vendors in Gikomba/Toi markets deposit\nthat day's net cash surplus into an M-Pesa savings wallet before leaving\nthe market, each trading day."
+        },
+        {
+          "heading": "Primary outcome metric",
+          "markdown": "Share of enrolled vendors' trading days with at least one same-day M-Pesa\nsavings-wallet deposit, measured via transaction logs — not self-reported\nsaving, which the evidence base flags as unreliable for this population."
+        },
+        {
+          "heading": "Comparison condition",
+          "markdown": "Randomized waitlist: vendors enrolled in month 2 serve as the comparison\ngroup for vendors enrolled in month 1, rather than pre/post on one group\nalone (market-wide seasonal income shocks would otherwise be\nindistinguishable from a program effect)."
+        },
+        {
+          "heading": "Minimum detectable effect",
+          "markdown": "A 10-percentage-point increase in the share of trading days with a\ndeposit, the threshold the program sponsor has said would justify scaling\npast the pilot markets."
+        },
+        {
+          "heading": "Data source feasibility",
+          "markdown": "M-Pesa transaction logs are technically available via the mobile money\nprovider's API with vendor consent, at daily frequency — confirmed\nfeasible. Household-level savings totals are not independently\nverifiable and are explicitly out of scope for the primary outcome."
+        },
+        {
+          "heading": "Mediating measures",
+          "markdown": "- Motivation/reflective hypothesis (\"doesn't trust mobile savings vs.\n  cash\") — a 3-item trust-in-mobile-savings survey scale, administered\n  pre-enrollment and at 8 weeks.\n- Opportunity/social hypothesis (\"visible saving invites borrowing\n  requests\") — self-reported frequency of borrowing requests at the\n  stall, weekly, for the enrolled group only."
+        },
+        {
+          "heading": "Pre-registration statement",
+          "markdown": "As of 2026-07-30, the primary outcome is locked as share of trading days\nwith an M-Pesa savings deposit, with a minimum detectable effect of 10\npercentage points; this will not be substituted for a different metric\nafter results are observed."
+        },
+        {
+          "heading": "Open questions",
+          "markdown": "Whether the mobile money provider's consent process can realistically be\ncompleted within the market's normal working hours — not yet confirmed\nwith the provider.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Proxy substitution.** Swapping the primary outcome for whatever's\n  easiest to measure (app opens instead of an actual deposit) without\n  naming the substitution and the gap it leaves is the single most common\n  way an evaluation brief looks rigorous but measures the wrong thing.\n- **No named comparison condition.** \"We'll check before and after\" is not\n  a comparison condition — anything else that changed over the same period\n  (season, prices, a different program) becomes indistinguishable from the\n  intervention's effect.\n- **Default minimum detectable effect.** Powering a study for whatever\n  effect size a stats template defaults to, rather than the effect size\n  the program actually needs to see to be worth continuing, produces a\n  technically valid but practically meaningless power calculation.\n- **Assumed data feasibility.** Naming a measure because comparable\n  programs report it, without confirming it's actually collectible for\n  this program, at this frequency, with this population's consent — the\n  \"Data source feasibility\" section exists specifically to force this\n  check before it becomes a mid-study surprise.\n- **Retroactive outcome redefinition.** Changing which metric counts as\n  \"the\" primary outcome after seeing which one moved is the exact failure\n  the mandatory, dated pre-registration statement exists to make visible\n  when it happens."
+        }
+      ],
+      "changelog": []
     },
     {
       "slug": "evidence-base-scoper",
@@ -290,8 +587,39 @@
           "markdown": "<how much time/how many sources this scan covered, and what a fuller\nreview would need to check that this one couldn't>\n```"
         },
         {
+          "heading": "Worked example",
+          "markdown": "**Program goal (as given):** \"Increase long-term savings among informal-\nsector market vendors in Nairobi so they have a buffer against income\nshocks.\" *(Illustrative — continues the running example used across this\nlibrary's other skills; not a real scan.)*\n\n```markdown\n# Evidence Scan Brief\n\n**Program goal (as given):** Increase long-term savings among informal-\nsector market vendors in Nairobi so they have a buffer against income\nshocks."
+        },
+        {
+          "heading": "What's already been tried",
+          "markdown": "- Lockbox commitment savings devices — market women in Busia, Kenya —\n  increased savings and business investment, especially among women who\n  previously lacked a safe way to keep money at home — confidence: single\n  randomized field experiment (Dupas & Robinson, 2013).\n- Rotating savings and credit associations (ROSCAs / *chama*) — same study\n  population — smaller and less consistent effect on measured savings\n  than the lockbox device — confidence: same field experiment, secondary\n  comparison arm."
+        },
+        {
+          "heading": "Findings that don't support the goal",
+          "markdown": "- Formal bank savings accounts — same study population — low take-up and\n  low sustained use, attributed to fees and branch distance — confidence:\n  same field experiment. This directly cautions against assuming a\n  bank-account-based design will work here without addressing access\n  first."
+        },
+        {
+          "heading": "WEIRD-skew flags",
+          "markdown": "- Dupas & Robinson (2013) — measured in rural Busia, Kenya, not urban\n  Nairobi markets — the underlying population is a rare non-WEIRD example\n  in the savings-commitment literature, which is otherwise dominated by\n  US/UK studies, but the rural-vs-urban market setting is still a gap to\n  validate before assuming the effect transfers to Nairobi."
+        },
+        {
+          "heading": "Evidence gaps",
+          "markdown": "No located study measures mobile-money-based (as opposed to physical\nlockbox) commitment savings devices specifically among urban market\nvendors — the closest evidence is a physical-device study in a rural\nsetting, not a mobile-money study in an urban one."
+        },
+        {
+          "heading": "Confidence in this scan",
+          "markdown": "Time-bounded scan of a small number of directly relevant field\nexperiments in comparable Kenyan settings; a fuller review would need to\nsearch specifically for mobile-money savings-product evaluations in\nurban East African markets, which this pass did not locate.\n```"
+        },
+        {
           "heading": "Known failure modes",
           "markdown": "- **One-sided search.** Searching only for evidence that the named\n  intervention or approach works, rather than for evidence on the\n  behaviour/population generally, produces a brief that confirms rather\n  than informs. If every finding points the same direction, check whether\n  the search terms themselves were leading.\n- **Analogy laundering.** Citing a study on a loosely related behaviour or\n  a very different population as if it directly answers the program goal,\n  without naming the gap in the \"WEIRD-skew flags\" or \"Evidence gaps\"\n  section. A study on urban US college students' savings behaviour is not\n  silently transferable to rural smallholder farmers — say so if that's\n  the best evidence available.\n- **Confidence collapse.** Treating a single small pilot and a replicated\n  RCT as equally strong evidence because both get reported as \"a study\n  found...\" The confidence/GRADE-style qualifier in each bullet exists\n  specifically to prevent this.\n- **Padding to look thorough.** Listing many superficially similar studies\n  that all report the same underlying finding inflates the appearance of\n  a rich evidence base without adding information. Fewer, more clearly\n  characterized findings beat a long list of redundant ones.\n- **Treating \"no evidence found\" as \"doesn't work.\"** An REA is\n  time-bounded and WEIRD-skewed by construction (see `weird_context`\n  above) — absence of published evidence for this exact population is\n  not evidence of absence. The \"Evidence gaps\" section exists to make that\n  distinction explicit rather than letting a thin scan read as a null\n  result."
+        }
+      ],
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-07-28",
+          "summary": "Tighten output templates and build the two pre-intervention skills"
         }
       ]
     },
@@ -328,6 +656,12 @@
           "description": "Optional prior evidence scan for this goal/population/context, if evidence-base-scoper has already run on the same input. When present, use it to ground candidate generation and the Effectiveness/Impact scoring columns in what's already known to work or not, rather than scoring from intuition alone.",
           "source": "skill-output",
           "required": false
+        },
+        {
+          "type": "audience_context_brief",
+          "description": "Optional context map for this goal's population, if context-and-audience-mapper has already run on the same input. When present, use its operationalized population and decision moment to write the \"Who\" and \"When\" of the selected behaviour, instead of inheriting the input's abstract population label.",
+          "source": "skill-output",
+          "required": false
         }
       ],
       "outputs": [
@@ -339,7 +673,7 @@
       "authors": [
         "Nikhil Ravichandar"
       ],
-      "version": "0.2.0",
+      "version": "0.3.0",
       "sections": [
         {
           "heading": "What it does",
@@ -351,7 +685,7 @@
         },
         {
           "heading": "What it draws on",
-          "markdown": "The Behaviour Change Wheel's \"select target behaviour\" step: generate a\nreasonably exhaustive list of candidate behaviours that could plausibly\nachieve the stated goal, then score each against the APEASE criteria —\n**A**ffordability, **P**racticability, **E**ffectiveness (and cost-\neffectiveness), **A**cceptability, **S**ide-effects/safety, **E**quity —\nplus impact (how much changing this behaviour would move the goal) and\nspillover (whether changing it makes other useful behaviours more or less\nlikely). The highest-scoring candidate becomes the target; the rest are\nkept as a ranked shortlist rather than discarded, since diagnosis on the\ntop choice sometimes fails and a team needs a documented next option.\n\nCandidate generation must not stop at whatever channels or products the\ninput happens to name. The input's mentioned infrastructure (an existing\nproduct, an existing course, a named delivery channel) describes what's\nalready built, not the boundary of what counts as a candidate behaviour —\nat least one candidate must come from outside that named infrastructure, or\nthe shortlist is just ranking variants of the same idea.\n\nIf an `evidence_scan_brief` is available (from\n[evidence-base-scoper](../evidence-base-scoper)), its \"what's already been\ntried\" and \"findings that don't support the goal\" sections should visibly\nchange the Effectiveness and Impact scores in the table below — a\ncandidate the evidence base already shows underperforms shouldn't score the\nsame as one with no prior evidence either way."
+          "markdown": "The Behaviour Change Wheel's \"select target behaviour\" step: generate a\nreasonably exhaustive list of candidate behaviours that could plausibly\nachieve the stated goal, then score each against the APEASE criteria —\n**A**ffordability, **P**racticability, **E**ffectiveness (and cost-\neffectiveness), **A**cceptability, **S**ide-effects/safety, **E**quity —\nplus impact (how much changing this behaviour would move the goal) and\nspillover (whether changing it makes other useful behaviours more or less\nlikely). The highest-scoring candidate becomes the target; the rest are\nkept as a ranked shortlist rather than discarded, since diagnosis on the\ntop choice sometimes fails and a team needs a documented next option.\n\nCandidate generation must not stop at whatever channels or products the\ninput happens to name. The input's mentioned infrastructure (an existing\nproduct, an existing course, a named delivery channel) describes what's\nalready built, not the boundary of what counts as a candidate behaviour —\nat least one candidate must come from outside that named infrastructure, or\nthe shortlist is just ranking variants of the same idea.\n\nIf an `evidence_scan_brief` is available (from\n[evidence-base-scoper](../evidence-base-scoper)), its \"what's already been\ntried\" and \"findings that don't support the goal\" sections should visibly\nchange the Effectiveness and Impact scores in the table below — a\ncandidate the evidence base already shows underperforms shouldn't score the\nsame as one with no prior evidence either way.\n\nIf an `audience_context_brief` is available (from\n[context-and-audience-mapper](../context-and-audience-mapper)), its\noperationalized population and decision moment should be what \"Who\" and\n\"When\" actually say in the selected target behaviour below — writing a\ngeneric \"who\" when a specific one is already sitting in the input is a\nregression, not a simplification."
         },
         {
           "heading": "Output template",
@@ -378,8 +712,44 @@
           "markdown": "<anything the definer had to guess at from limited program context>\n```"
         },
         {
+          "heading": "Worked example",
+          "markdown": "**Program goal (as given):** \"Increase long-term savings among informal-\nsector market vendors in Nairobi so they have a buffer against income\nshocks.\" Run with an `evidence_scan_brief` (from evidence-base-scoper) and\nan `audience_context_brief` (from context-and-audience-mapper) available.\n*(Illustrative — continues the running example from\ncontext-and-audience-mapper; not a real program.)*\n\n```markdown\n# Target Behaviour Brief\n\n**Program goal (as given):** Increase long-term savings among informal-\nsector market vendors in Nairobi so they have a buffer against income\nshocks."
+        },
+        {
+          "heading": "Candidate scoring",
+          "markdown": "| Candidate behaviour | A | P | E | A | S | E | Impact | Spillover |\n|---|---|---|---|---|---|---|---|---|\n| Deposit day's cash surplus into M-Pesa savings wallet before leaving the market | +: no new product, uses existing agent access | +: fits the decision moment mapped (cash in hand, pre-departure) | +: evidence brief shows commitment-device saving raised deposits in a comparable Kenyan market study | 0: acceptable but visible cash-counting flagged as a social-cost risk in the context brief | 0: no safety issue once cash is off-person sooner | +: reduces post-dark cash-carrying risk already named as a constraint | +: directly targets the buffer-against-shocks goal | +: could reduce informal borrowing-request pressure by moving cash out of sight sooner |\n| Open a formal bank savings account | -: nearest branch ~40 min away per context brief | -: incompatible with same-day decision moment | 0: evidence brief has no local finding either way for formal accounts | -: low take-up risk given distance/fees | 0 | 0 | -: unlikely to be used at the moment savings actually happens | 0 |\n| Join or increase contribution to existing *chama* savings group (outside the named product/channel infrastructure) | +: already-trusted existing channel per context brief | +: weekly meeting cadence already attended | 0: evidence brief flags mixed effect sizes for rotating savings vs. lockbox commitment devices | +: high social acceptability, already normed | 0 | 0 | 0: helps the goal but with slower, less individually-attributable effect | +: reinforces an existing social structure rather than competing with it |\n\n(Columns, in APEASE order: Affordability, Practicability, Effectiveness,\nAcceptability, Side-effects/safety, Equity.)"
+        },
+        {
+          "heading": "Selected target behaviour",
+          "markdown": "- **Who:** Female stall vendors in Nairobi's Gikomba and Toi markets\n  (per audience_context_brief, not \"informal-sector vendors\" generally)\n- **What:** Deposit that day's net cash surplus into an M-Pesa savings\n  wallet\n- **When:** Before leaving the market, each trading day\n- **One-sentence behaviour statement:** Female stall vendors in Gikomba/Toi\n  markets deposit that day's net cash surplus into an M-Pesa savings\n  wallet before leaving the market, each trading day."
+        },
+        {
+          "heading": "Why this one",
+          "markdown": "The M-Pesa deposit candidate is the only one whose Practicability score\nlines up with the actual decision moment named in the context brief\n(cash-in-hand, pre-departure) rather than a moment the behaviour would have\nto be relocated to. The evidence brief's Kenyan lockbox finding gave it the\nonly positive Effectiveness score among the three; the *chama* candidate\nscored just as well on Acceptability but loses on Impact because its\neffect is diffused across a group rather than attributable to this\nprogram's rollout."
+        },
+        {
+          "heading": "Candidate shortlist (ranked, not discarded)",
+          "markdown": "1. Join/increase *chama* contribution — kept as the fallback if M-Pesa\n   agent access turns out to be less reliable than the context brief\n   assumed.\n2. Open a formal bank account — ranked last; the Practicability and\n   Acceptability scores would need the context (branch distance) to\n   change first, not just the messaging."
+        },
+        {
+          "heading": "Open questions / assumptions to check",
+          "markdown": "Whether \"net cash surplus\" is calculable by vendors without formal\nbookkeeping — flagged as an open question in the audience_context_brief's\n\"still needs field confirmation\" section and not yet resolved here.\n```"
+        },
+        {
           "heading": "Known failure modes",
-          "markdown": "- **Compound behaviours slip through.** \"Attend antenatal care and adhere to\n  iron supplementation\" is two behaviours wearing a trench coat. If the\n  output statement needs \"and\" to describe the action, split it before\n  passing it downstream — this skill's job is exactly one behaviour per run.\n- **Outcome dressed up as behaviour.** \"Reduce anemia\" is a health outcome,\n  not something anyone *does*. If the selected behaviour isn't something a\n  specific person could be observed doing at a specific moment, it hasn't\n  actually been defined yet.\n- **Selecting for measurability over impact.** The easiest behaviour to\n  observe (e.g. app logins) is sometimes prioritized over the behaviour that\n  actually drives the goal (e.g. offline saving). APEASE scoring should\n  catch this, but only if impact is scored honestly rather than deferred to\n  \"whatever we can already measure.\"\n- **No real alternatives generated.** If the candidate list is padded with\n  strawmen so the preferred behaviour wins, the shortlist stops being useful\n  as a fallback. Push for candidates that a reasonable person could have\n  picked first. A scoring table filled in *after* the choice is already made\n  looks identical to one that drove the choice — if every row conveniently\n  favors the same candidate across all eight columns, that's a signal the\n  scoring was reverse-engineered, not applied.\n- **Anchoring on named infrastructure.** Restating the input's existing\n  products/channels as the only candidates (e.g. \"deposit into the savings\n  product\" vs. \"open the app\") isn't real alternative generation even if it\n  produces three distinct rows — see \"What it draws on\" above.\n- **Context collapse.** Run on a goal statement with no population or\n  setting context, the output's \"who\" will be generic and the downstream\n  diagnosis will inherit that vagueness. Push back to the user for at least\n  a rough population and setting before finalizing."
+          "markdown": "- **Compound behaviours slip through.** \"Attend antenatal care and adhere to\n  iron supplementation\" is two behaviours wearing a trench coat. If the\n  output statement needs \"and\" to describe the action, split it before\n  passing it downstream — this skill's job is exactly one behaviour per run.\n- **Outcome dressed up as behaviour.** \"Reduce anemia\" is a health outcome,\n  not something anyone *does*. If the selected behaviour isn't something a\n  specific person could be observed doing at a specific moment, it hasn't\n  actually been defined yet.\n- **Selecting for measurability over impact.** The easiest behaviour to\n  observe (e.g. app logins) is sometimes prioritized over the behaviour that\n  actually drives the goal (e.g. offline saving). APEASE scoring should\n  catch this, but only if impact is scored honestly rather than deferred to\n  \"whatever we can already measure.\"\n- **No real alternatives generated.** If the candidate list is padded with\n  strawmen so the preferred behaviour wins, the shortlist stops being useful\n  as a fallback. Push for candidates that a reasonable person could have\n  picked first. A scoring table filled in *after* the choice is already made\n  looks identical to one that drove the choice — if every row conveniently\n  favors the same candidate across all eight columns, that's a signal the\n  scoring was reverse-engineered, not applied.\n- **Anchoring on named infrastructure.** Restating the input's existing\n  products/channels as the only candidates (e.g. \"deposit into the savings\n  product\" vs. \"open the app\") isn't real alternative generation even if it\n  produces three distinct rows — see \"What it draws on\" above.\n- **Context collapse.** Run on a goal statement with no population or\n  setting context, the output's \"who\" will be generic and the downstream\n  diagnosis will inherit that vagueness. Push back to the user for at least\n  a rough population and setting before finalizing, or run\n  [context-and-audience-mapper](../context-and-audience-mapper) first and\n  feed its output in as `audience_context_brief`."
+        }
+      ],
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-07-23",
+          "summary": "Initial scaffold: schema, two worked-example skills, tooling, static site, CI"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-28",
+          "summary": "Tighten output templates and build the two pre-intervention skills"
         }
       ]
     },
@@ -460,8 +830,39 @@
           "markdown": "<when this should be re-run for this project — e.g. before diagnosis\nbegins, before design begins, or after a stated number of weeks/major\nfindings>\n```"
         },
         {
+          "heading": "Worked example",
+          "markdown": "**Assumption statement (as given):** \"They just don't prioritize saving\nthe way we'd expect. I've mostly worked with urban Nairobi tech-sector\nemployees before, and I'd guess this group is fairly similar — people\ngenerally know saving is good for them, so if they're not doing it, it's\nprobably a discipline issue more than anything structural. I'd change my\nmind if I saw hard evidence they're actively trying to save and failing\nfor reasons outside their control.\" *(Illustrative — continues the\nrunning example used across this library's other skills; not a real\naudit.)*\n\n```markdown\n# Researcher Bias Self-Audit\n\n**Assumption statement (as given):** They just don't prioritize saving\nthe way we'd expect. I've mostly worked with urban Nairobi tech-sector\nemployees before, and I'd guess this group is fairly similar — people\ngenerally know saving is good for them, so if they're not doing it, it's\nprobably a discipline issue more than anything structural. I'd change my\nmind if I saw hard evidence they're actively trying to save and failing\nfor reasons outside their control."
+        },
+        {
+          "heading": "Unfalsifiable assumptions",
+          "markdown": "- \"It's probably a discipline issue more than anything structural.\" —\n  **Why unfalsifiable:** Almost any observed structural barrier (agent\n  distance, cash-handling risk) can be redescribed after the fact as \"poor\n  discipline in the face of that barrier,\" so no observation clearly\n  contradicts it as worded. — **Rewrite as falsifiable:** \"If vendors\n  report actively wanting to save and naming a specific structural\n  obstacle (not just 'I forget' or 'I don't feel like it'), that counts\n  against a pure-discipline explanation.\""
+        },
+        {
+          "heading": "Default-to-WEIRD priors",
+          "markdown": "- \"People generally know saving is good for them, so if they're not doing\n  it, it's probably discipline.\" — **Implicit norm assumed:** Individual,\n  formal-sector, salaried saving behaviour (the researcher's own tech-\n  sector reference point) as the default rational baseline. —\n  **What to check locally:** Whether group-based *chama* saving is already\n  functioning as this population's rational savings strategy, just not in\n  the individual-account form the assumption implicitly expects."
+        },
+        {
+          "heading": "No named disconfirming observation",
+          "markdown": "- \"It's probably a discipline issue\" — **\"What would change your mind?\"\n  answer given:** \"Hard evidence they're actively trying to save and\n  failing for reasons outside their control.\" — **Risk:** As worded, this\n  requires proof of *intent* that's hard to observe directly — without a\n  concrete, observable version of this (e.g. a named barrier report), the\n  belief could survive contact with almost any data."
+        },
+        {
+          "heading": "Population-transfer risk",
+          "markdown": "- \"I'd guess this group is fairly similar [to urban tech-sector\n  employees]\" — **Most similar population researcher has personally\n  worked with:** Urban Nairobi tech-sector employees. — **Stated\n  similarity to target population:** Both urban and Nairobi-based, per the\n  researcher. — **Gap risk:** Salaried, banked, formal-sector employment\n  vs. informal daily cash-based vending are different enough in income\n  timing and access to financial infrastructure that \"urban\" alone\n  understates the gap."
+        },
+        {
+          "heading": "Re-audit trigger",
+          "markdown": "Before comb-barrier-decomposer runs, and again after the first round of\nvendor field interviews, since this statement's priors were given before\nany of the audience-context or field data existed.\n```"
+        },
+        {
           "heading": "Known failure modes",
           "markdown": "- **Performative self-awareness.** Answering the prompts with what sounds\n  appropriately humble (\"I could be wrong about anything\") rather than a\n  specific, checkable belief produces a statement with nothing real to\n  flag. The audit can only work on what's actually stated — vague\n  humility isn't more auditable than vague certainty.\n- **Treating a completed audit as a resolved bias.** This skill's output is\n  a flag list, not evidence the flagged assumption was corrected. Passing\n  \"audited\" straight to intervention design as if the flagged priors are\n  now neutralized skips the actual field-testing the diagnostic skill and\n  the disconfirming observations are meant to prompt.\n- **One-time use on a multi-month project.** Priors harden and new ones\n  form as a project proceeds. An audit run once at kickoff and never\n  again will miss the assumptions that calcified during diagnosis itself\n  — the \"Re-audit trigger\" field exists so this isn't left to memory.\n- **Auditor and subject as the same unchecked person.** If the person\n  running this skill is also the sole author of the assumption statement,\n  with no one else reviewing the flags, self-serving under-flagging is\n  possible and won't be visible in the report itself. Where feasible, have\n  a second team member read the flagged report against the original\n  statement.\n- **Confusing this with the target-population evidence base.** This skill\n  audits the *researcher's* priors; it does not survey external evidence\n  on the population — that's [evidence-base-scoper](../evidence-base-scoper).\n  Running only this one and treating it as if the population itself has now\n  been evidenced leaves the actual evidence gap unaddressed."
+        }
+      ],
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-07-28",
+          "summary": "Tighten output templates and build the two pre-intervention skills"
         }
       ]
     }
@@ -474,6 +875,20 @@
         "label": "COM-B Barrier Decomposer",
         "category": "diagnosis",
         "stage": "diagnose"
+      },
+      {
+        "id": "context-and-audience-mapper",
+        "kind": "skill",
+        "label": "Context & Audience Mapper",
+        "category": "context-mapping",
+        "stage": "prepare"
+      },
+      {
+        "id": "evaluation-design-scoper",
+        "kind": "skill",
+        "label": "Evaluation Design Scoper",
+        "category": "measurement",
+        "stage": "test"
       },
       {
         "id": "evidence-base-scoper",
@@ -520,6 +935,21 @@
       },
       {
         "from": "external:program_goal_statement",
+        "to": "context-and-audience-mapper",
+        "via": "program_goal_statement"
+      },
+      {
+        "from": "key-behaviour-definer",
+        "to": "evaluation-design-scoper",
+        "via": "target_behaviour_brief"
+      },
+      {
+        "from": "comb-barrier-decomposer",
+        "to": "evaluation-design-scoper",
+        "via": "comb_barrier_hypotheses"
+      },
+      {
+        "from": "external:program_goal_statement",
         "to": "evidence-base-scoper",
         "via": "program_goal_statement"
       },
@@ -534,6 +964,11 @@
         "via": "evidence_scan_brief"
       },
       {
+        "from": "context-and-audience-mapper",
+        "to": "key-behaviour-definer",
+        "via": "audience_context_brief"
+      },
+      {
         "from": "external:researcher_assumption_statement",
         "to": "researcher-bias-self-audit",
         "via": "researcher_assumption_statement"
@@ -541,9 +976,9 @@
     ],
     "terminalOutputs": [
       {
-        "type": "comb_barrier_hypotheses",
+        "type": "evaluation_design_brief",
         "producedBy": [
-          "comb-barrier-decomposer"
+          "evaluation-design-scoper"
         ]
       }
     ]

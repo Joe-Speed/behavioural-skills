@@ -24,6 +24,7 @@ const GITHUB_REPO = "Joe-Speed/behavioural-skills";
     const data = await loadIndex();
     populateOptions(categorySelect, data.taxonomy.categories);
     populateOptions(stageSelect, data.taxonomy.stages);
+    bindCommandPalette(data.skills);
   } catch (err) {
     console.error(err);
   }

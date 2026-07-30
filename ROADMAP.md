@@ -23,19 +23,42 @@ Both now chain optionally into `key-behaviour-definer` and
 `comb-barrier-decomposer` respectively — see the README's catalogue table
 for the current dependency graph.
 
+## Context and measurement gaps — built
+
+Two more gaps in the pre-intervention chain, closed:
+
+- **[context-and-audience-mapper](skills/context-and-audience-mapper)** —
+  operationalizes a funder's abstract population label into a specific
+  decision moment, real existing channels, and a WEIRD-default assumption
+  check, before `key-behaviour-definer` writes a "who" that's still just
+  the funder's label restated. Category `context-mapping`, stage
+  `prepare`.
+- **[evaluation-design-scoper](skills/evaluation-design-scoper)** — the
+  "measurement feasibility scoper" entry below, built: turns a target
+  behaviour into a locked-in primary outcome, comparison condition,
+  minimum detectable effect, and data-feasibility check, before an
+  intervention launches. Category `measurement`, stage `test`.
+
+Both are visible on the site's [Workflow Builder](site/workflow.html) —
+drag skills into a sequence and it flags any step whose required input
+isn't yet produced earlier in that sequence.
+
 ## Also worth considering (not yet scoped)
 
-- **Measurement feasibility scoper** — before `measurement`-stage skills
-  run, checks whether the data needed to detect the target behaviour at all
-  is realistically collectible in this context.
+- **Values-affirmation drafter** — README's own intro names this as a
+  canonical example of what belongs in this library (drafting a values-
+  affirmation prompt for a named target population, per Cohen & Sherman's
+  self-affirmation literature), but it's never actually been built.
+  Probably the most concrete, best-evidenced gap left.
 - **Prior intervention post-mortem reader** — structures what a team
   already tried and why it did or didn't work, distinct from
   `evidence-base-scoper`'s external-literature focus (this one is about
   the team's own history, not the published record).
 - **Intervention-design skill** — the catalogue jumps from diagnosis
   (`comb-barrier-decomposer`) straight to nothing; there's no skill yet in
-  the `intervention-design` category turning a barrier hypothesis into
-  candidate levers or messages once it's confirmed in the field.
+  the `intervention-design` category turning a confirmed barrier
+  hypothesis into candidate levers or messages (e.g. the Behaviour Change
+  Wheel's nine intervention functions) once it's confirmed in the field.
 
 ## How to turn one of these into a real skill
 

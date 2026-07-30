@@ -3,6 +3,7 @@
   const categoryFilters = document.getElementById("category-filters");
   const stageFilters = document.getElementById("stage-filters");
   const sidebar = document.getElementById("install-sidebar");
+  const searchInput = document.getElementById("skill-search");
 
   let data;
   try {
@@ -12,9 +13,12 @@
     return;
   }
 
+  bindCommandPalette(data.skills);
+
   const activeCategories = new Set();
   const activeStages = new Set();
   const selectedSlugs = new Set();
+  let searchQuery = "";
   const skillsBySlug = new Map(data.skills.map((s) => [s.slug, s]));
 
   sidebar.innerHTML = `
@@ -78,14 +82,16 @@
   }
 
   function renderGrid() {
+    const q = searchQuery.trim().toLowerCase();
     const filtered = data.skills.filter((s) => {
       const catOk = activeCategories.size === 0 || activeCategories.has(s.category);
       const stageOk = activeStages.size === 0 || activeStages.has(s.stage);
-      return catOk && stageOk;
+      const searchOk = !q || `${s.title} ${s.description}`.toLowerCase().includes(q);
+      return catOk && stageOk && searchOk;
     });
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<p class="empty-state">No skills match this filter combination.</p>`;
+      grid.innerHTML = `<p class="empty-state">No skills match${q ? ` "${escapeHtml(searchQuery)}"` : " this filter combination"}.</p>`;
       return;
     }
 
@@ -120,6 +126,11 @@
     renderChips(stageFilters, data.taxonomy.stages, activeStages);
     renderGrid();
   }
+
+  searchInput.addEventListener("input", () => {
+    searchQuery = searchInput.value;
+    renderGrid();
+  });
 
   renderAll();
 })();

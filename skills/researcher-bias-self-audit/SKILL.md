@@ -136,6 +136,72 @@ begins, before design begins, or after a stated number of weeks/major
 findings>
 ```
 
+## Worked example
+
+**Assumption statement (as given):** "They just don't prioritize saving
+the way we'd expect. I've mostly worked with urban Nairobi tech-sector
+employees before, and I'd guess this group is fairly similar — people
+generally know saving is good for them, so if they're not doing it, it's
+probably a discipline issue more than anything structural. I'd change my
+mind if I saw hard evidence they're actively trying to save and failing
+for reasons outside their control." *(Illustrative — continues the
+running example used across this library's other skills; not a real
+audit.)*
+
+```markdown
+# Researcher Bias Self-Audit
+
+**Assumption statement (as given):** They just don't prioritize saving
+the way we'd expect. I've mostly worked with urban Nairobi tech-sector
+employees before, and I'd guess this group is fairly similar — people
+generally know saving is good for them, so if they're not doing it, it's
+probably a discipline issue more than anything structural. I'd change my
+mind if I saw hard evidence they're actively trying to save and failing
+for reasons outside their control.
+
+## Unfalsifiable assumptions
+- "It's probably a discipline issue more than anything structural." —
+  **Why unfalsifiable:** Almost any observed structural barrier (agent
+  distance, cash-handling risk) can be redescribed after the fact as "poor
+  discipline in the face of that barrier," so no observation clearly
+  contradicts it as worded. — **Rewrite as falsifiable:** "If vendors
+  report actively wanting to save and naming a specific structural
+  obstacle (not just 'I forget' or 'I don't feel like it'), that counts
+  against a pure-discipline explanation."
+
+## Default-to-WEIRD priors
+- "People generally know saving is good for them, so if they're not doing
+  it, it's probably discipline." — **Implicit norm assumed:** Individual,
+  formal-sector, salaried saving behaviour (the researcher's own tech-
+  sector reference point) as the default rational baseline. —
+  **What to check locally:** Whether group-based *chama* saving is already
+  functioning as this population's rational savings strategy, just not in
+  the individual-account form the assumption implicitly expects.
+
+## No named disconfirming observation
+- "It's probably a discipline issue" — **"What would change your mind?"
+  answer given:** "Hard evidence they're actively trying to save and
+  failing for reasons outside their control." — **Risk:** As worded, this
+  requires proof of *intent* that's hard to observe directly — without a
+  concrete, observable version of this (e.g. a named barrier report), the
+  belief could survive contact with almost any data.
+
+## Population-transfer risk
+- "I'd guess this group is fairly similar [to urban tech-sector
+  employees]" — **Most similar population researcher has personally
+  worked with:** Urban Nairobi tech-sector employees. — **Stated
+  similarity to target population:** Both urban and Nairobi-based, per the
+  researcher. — **Gap risk:** Salaried, banked, formal-sector employment
+  vs. informal daily cash-based vending are different enough in income
+  timing and access to financial infrastructure that "urban" alone
+  understates the gap.
+
+## Re-audit trigger
+Before comb-barrier-decomposer runs, and again after the first round of
+vendor field interviews, since this statement's priors were given before
+any of the audience-context or field data existed.
+```
+
 ## Known failure modes
 
 - **Performative self-awareness.** Answering the prompts with what sounds

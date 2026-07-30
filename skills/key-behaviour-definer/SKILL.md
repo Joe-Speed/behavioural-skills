@@ -47,6 +47,15 @@ inputs:
       scoring from intuition alone.
     source: skill-output
     required: false
+  - type: audience_context_brief
+    description: >-
+      Optional context map for this goal's population, if
+      context-and-audience-mapper has already run on the same input. When
+      present, use its operationalized population and decision moment to
+      write the "Who" and "When" of the selected behaviour, instead of
+      inheriting the input's abstract population label.
+    source: skill-output
+    required: false
 outputs:
   - type: target_behaviour_brief
     description: >-
@@ -55,7 +64,7 @@ outputs:
       the reasoning for why the top choice won.
 authors:
   - Nikhil Ravichandar
-version: 0.2.0
+version: 0.3.0
 ---
 
 ## What it does
@@ -104,6 +113,13 @@ change the Effectiveness and Impact scores in the table below — a
 candidate the evidence base already shows underperforms shouldn't score the
 same as one with no prior evidence either way.
 
+If an `audience_context_brief` is available (from
+[context-and-audience-mapper](../context-and-audience-mapper)), its
+operationalized population and decision moment should be what "Who" and
+"When" actually say in the selected target behaviour below — writing a
+generic "who" when a specific one is already sitting in the input is a
+regression, not a simplification.
+
 ## Output template
 
 The scoring table is mandatory for every candidate, including the one
@@ -149,6 +165,67 @@ close>
 <anything the definer had to guess at from limited program context>
 ```
 
+## Worked example
+
+**Program goal (as given):** "Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks." Run with an `evidence_scan_brief` (from evidence-base-scoper) and
+an `audience_context_brief` (from context-and-audience-mapper) available.
+*(Illustrative — continues the running example from
+context-and-audience-mapper; not a real program.)*
+
+```markdown
+# Target Behaviour Brief
+
+**Program goal (as given):** Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks.
+
+## Candidate scoring
+
+| Candidate behaviour | A | P | E | A | S | E | Impact | Spillover |
+|---|---|---|---|---|---|---|---|---|
+| Deposit day's cash surplus into M-Pesa savings wallet before leaving the market | +: no new product, uses existing agent access | +: fits the decision moment mapped (cash in hand, pre-departure) | +: evidence brief shows commitment-device saving raised deposits in a comparable Kenyan market study | 0: acceptable but visible cash-counting flagged as a social-cost risk in the context brief | 0: no safety issue once cash is off-person sooner | +: reduces post-dark cash-carrying risk already named as a constraint | +: directly targets the buffer-against-shocks goal | +: could reduce informal borrowing-request pressure by moving cash out of sight sooner |
+| Open a formal bank savings account | -: nearest branch ~40 min away per context brief | -: incompatible with same-day decision moment | 0: evidence brief has no local finding either way for formal accounts | -: low take-up risk given distance/fees | 0 | 0 | -: unlikely to be used at the moment savings actually happens | 0 |
+| Join or increase contribution to existing *chama* savings group (outside the named product/channel infrastructure) | +: already-trusted existing channel per context brief | +: weekly meeting cadence already attended | 0: evidence brief flags mixed effect sizes for rotating savings vs. lockbox commitment devices | +: high social acceptability, already normed | 0 | 0 | 0: helps the goal but with slower, less individually-attributable effect | +: reinforces an existing social structure rather than competing with it |
+
+(Columns, in APEASE order: Affordability, Practicability, Effectiveness,
+Acceptability, Side-effects/safety, Equity.)
+
+## Selected target behaviour
+- **Who:** Female stall vendors in Nairobi's Gikomba and Toi markets
+  (per audience_context_brief, not "informal-sector vendors" generally)
+- **What:** Deposit that day's net cash surplus into an M-Pesa savings
+  wallet
+- **When:** Before leaving the market, each trading day
+- **One-sentence behaviour statement:** Female stall vendors in Gikomba/Toi
+  markets deposit that day's net cash surplus into an M-Pesa savings
+  wallet before leaving the market, each trading day.
+
+## Why this one
+The M-Pesa deposit candidate is the only one whose Practicability score
+lines up with the actual decision moment named in the context brief
+(cash-in-hand, pre-departure) rather than a moment the behaviour would have
+to be relocated to. The evidence brief's Kenyan lockbox finding gave it the
+only positive Effectiveness score among the three; the *chama* candidate
+scored just as well on Acceptability but loses on Impact because its
+effect is diffused across a group rather than attributable to this
+program's rollout.
+
+## Candidate shortlist (ranked, not discarded)
+1. Join/increase *chama* contribution — kept as the fallback if M-Pesa
+   agent access turns out to be less reliable than the context brief
+   assumed.
+2. Open a formal bank account — ranked last; the Practicability and
+   Acceptability scores would need the context (branch distance) to
+   change first, not just the messaging.
+
+## Open questions / assumptions to check
+Whether "net cash surplus" is calculable by vendors without formal
+bookkeeping — flagged as an open question in the audience_context_brief's
+"still needs field confirmation" section and not yet resolved here.
+```
+
 ## Known failure modes
 
 - **Compound behaviours slip through.** "Attend antenatal care and adhere to
@@ -178,4 +255,6 @@ close>
 - **Context collapse.** Run on a goal statement with no population or
   setting context, the output's "who" will be generic and the downstream
   diagnosis will inherit that vagueness. Push back to the user for at least
-  a rough population and setting before finalizing.
+  a rough population and setting before finalizing, or run
+  [context-and-audience-mapper](../context-and-audience-mapper) first and
+  feed its output in as `audience_context_brief`.

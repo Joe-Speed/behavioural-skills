@@ -40,6 +40,12 @@ categories:
       before they shape downstream diagnosis or design. Distinct from
       Cultural Context, which is about the target population rather than
       the researcher.
+  - id: context-mapping
+    label: Context Mapping
+    description: >-
+      Characterizing the specific population, setting, and touchpoints a
+      behaviour actually occurs in, before that context is assumed from a
+      funder's abstract label rather than checked.
 
 # A research stage is orthogonal to category: it's where in a project
 # timeline a skill is normally invoked, independent of what it does.
@@ -124,4 +130,24 @@ io_types:
       population as the implicit norm, or lack a named disconfirming
       observation. Not a pass/fail score, and not a debiasing plan — only a
       surfacing of what's already there.
+    user_suppliable: false
+
+  - id: audience_context_brief
+    label: Audience & context brief
+    description: >-
+      The target population operationalized as a specific, observable
+      subgroup; the decision moment where the behaviour choice actually
+      gets made; the channels already reaching this population today; and
+      which of the input's assumptions default to WEIRD infrastructure
+      without having been confirmed locally.
+    user_suppliable: false
+
+  - id: evaluation_design_brief
+    label: Evaluation design brief
+    description: >-
+      A pre-registration-style plan for measuring one target behaviour:
+      primary outcome metric, comparison condition, minimum detectable
+      effect, data-source feasibility, and any mediating measures needed
+      to evaluate a specific barrier hypothesis, locked in before data
+      collection starts.
     user_suppliable: false

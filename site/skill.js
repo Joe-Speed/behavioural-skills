@@ -17,6 +17,7 @@
   }
 
   document.title = `Behavioural Skills — ${skill.title}`;
+  bindCommandPalette(data.skills);
 
   function producersOf(ioType, excludeSlug) {
     return data.graph.edges
@@ -68,6 +69,7 @@
     <div class="skill-header">
       <h1>${skill.title}</h1>
       <p class="description">${skill.description}</p>
+      <div class="skill-header-actions">${renderShareLinkButton(skill.slug)}</div>
     </div>
 
     <div class="install-block">
@@ -95,7 +97,11 @@
     <ul class="io-list">${outputsHtml}</ul>
 
     <div class="skill-body">${sectionsHtml}</div>
+
+    <h2>Version history <a class="whats-new-link" href="whats-new.html">See all skills' updates &rarr;</a></h2>
+    ${renderChangelog(skill.changelog)}
   `;
 
   bindInstallPanel(main.querySelector(".install-panel"), () => [skill.slug]);
+  bindShareLinkButtons(main);
 })();

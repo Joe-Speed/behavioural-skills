@@ -56,9 +56,15 @@ scripts/            validate.js   — checks every skill against the schema,
 
 site/               A static catalogue: browse and filter by category and
                     research stage, get a copy-paste install command for any
-                    selection of skills, read any skill's full spec. Reads
+                    selection of skills, read any skill's full spec
+                    (including a real worked example and its version
+                    history, derived from git log — nothing hand-authored).
+                    A Cmd+K palette searches skills and jumps to the
+                    Workflow Builder or What's New page from anywhere. Reads
                     only site/data/index.json — no build step beyond
-                    scripts/build-index.js.
+                    scripts/build-index.js, which also emits one static,
+                    real-metadata share page per skill under site/s/ for
+                    correct link unfurls on Slack/Twitter/etc.
 
 templates/          Copy skill-template/ to draft a new skill.
 ```
@@ -110,16 +116,23 @@ isn't stale) on every pull request.
 | Skill | Category | Stage | Consumes | Produces |
 |---|---|---|---|---|
 | [evidence-base-scoper](skills/evidence-base-scoper) | Evidence Scoping | Prepare | a program goal statement (user-supplied) | an evidence scan brief |
+| [context-and-audience-mapper](skills/context-and-audience-mapper) | Context Mapping | Prepare | a program goal statement (user-supplied) | an audience & context brief |
 | [researcher-bias-self-audit](skills/researcher-bias-self-audit) | Researcher Calibration | Prepare | a researcher assumption statement (user-supplied) | a bias audit report |
-| [key-behaviour-definer](skills/key-behaviour-definer) | Behaviour Definition | Define | a program goal statement (user-supplied), optionally an evidence scan brief | a target behaviour brief |
+| [key-behaviour-definer](skills/key-behaviour-definer) | Behaviour Definition | Define | a program goal statement (user-supplied), optionally an evidence scan brief and an audience & context brief | a target behaviour brief |
 | [comb-barrier-decomposer](skills/comb-barrier-decomposer) | Diagnosis | Diagnose | a target behaviour brief, optionally a bias audit report | COM-B barrier hypotheses |
+| [evaluation-design-scoper](skills/evaluation-design-scoper) | Measurement | Test | a target behaviour brief, optionally COM-B barrier hypotheses | an evaluation design brief |
 
-`comb-barrier-decomposer` consumes `key-behaviour-definer`'s output, and
-both `evidence-base-scoper` and `researcher-bias-self-audit` optionally
-feed into the definer and decomposer respectively — this chain is derived
-automatically by `scripts/build-index.js` from the skills' frontmatter,
-not hand-wired, and is visible on each skill's page as its declared
-inputs/outputs.
+`comb-barrier-decomposer` consumes `key-behaviour-definer`'s output, which
+in turn optionally consumes both `evidence-base-scoper`'s and
+`context-and-audience-mapper`'s output; `researcher-bias-self-audit`
+optionally feeds `comb-barrier-decomposer`; and `evaluation-design-scoper`
+consumes `key-behaviour-definer`'s output, optionally alongside
+`comb-barrier-decomposer`'s. This chain is derived automatically by
+`scripts/build-index.js` from the skills' frontmatter, not hand-wired —
+visible on each skill's page as its declared inputs/outputs, and as an
+interactive drag-and-drop sequence on the site's
+[Workflow Builder](site/workflow.html), which flags any step whose
+required input isn't yet produced earlier in the sequence you build.
 
 ## Roadmap
 

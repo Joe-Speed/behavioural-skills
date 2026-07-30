@@ -7,6 +7,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 const yaml = require("js-yaml");
 const matter = require("gray-matter");
 
@@ -14,6 +15,66 @@ const ROOT = path.resolve(__dirname, "..");
 const SKILLS_DIR = path.join(ROOT, "skills");
 const TAXONOMY_PATH = path.join(ROOT, "schema", "taxonomy.yaml");
 const OUT_PATH = path.join(ROOT, "site", "data", "index.json");
+const SHARE_DIR = path.join(ROOT, "site", "s");
+const SITE_BASE_URL = "https://joe-speed.github.io/behavioural-skills";
+
+// Derives a skill's version history straight from git log instead of a
+// hand-maintained changelog field — one entry per commit where the
+// frontmatter's `version` first changes to a new value, dated and worded
+// with the real commit. Needs full git history (CI checkouts must use
+// fetch-depth: 0); returns [] harmlessly otherwise, or for a skill staged
+// but not yet committed — it picks up its first entry on the next build.
+function getChangelog(skillPath) {
+  const relPath = path.relative(ROOT, skillPath).split(path.sep).join("/");
+  let raw;
+  try {
+    raw = execFileSync(
+      "git",
+      ["log", "--follow", "--format=%x00%H\t%ad", "--date=short", "--name-only", "--", relPath],
+      { cwd: ROOT, encoding: "utf8" }
+    );
+  } catch {
+    return [];
+  }
+  if (!raw.trim()) return [];
+
+  // --name-only reports the file's path *as of that commit*, which is what
+  // --follow needs across a rename (this repo's own American->British
+  // spelling rename among them) — using the current path against an old
+  // hash would 404 on `git show`.
+  const commits = raw
+    .split("\0")
+    .filter(Boolean)
+    .map((block) => {
+      const [header, ...rest] = block.trim().split("\n");
+      const [hash, date] = header.split("\t");
+      const file = rest.find((line) => line.trim().length > 0);
+      return { hash, date, file };
+    })
+    .filter((c) => c.file)
+    .reverse(); // oldest first
+
+  const seenVersions = new Set();
+  const entries = [];
+  for (const { hash, date, file } of commits) {
+    let content;
+    try {
+      content = execFileSync("git", ["show", `${hash}:${file}`], { cwd: ROOT, encoding: "utf8" });
+    } catch {
+      continue; // shouldn't happen given --name-only just reported this path at this commit
+    }
+    const { data } = matter(content);
+    const version = data && data.version;
+    if (!version || seenVersions.has(version)) continue;
+    seenVersions.add(version);
+    const summary = execFileSync("git", ["log", "-1", "--format=%s", hash], {
+      cwd: ROOT,
+      encoding: "utf8",
+    }).trim();
+    entries.push({ version, date, summary });
+  }
+  return entries;
+}
 
 function splitSections(body) {
   const lines = body.split("\n");
@@ -50,6 +111,7 @@ function loadSkills() {
       slug: dir,
       frontmatter,
       sections: splitSections(content),
+      changelog: getChangelog(skillPath),
     };
   });
 }
@@ -132,21 +194,85 @@ function computeIndex() {
       slug: s.slug,
       ...s.frontmatter,
       sections: s.sections,
+      changelog: s.changelog,
     })),
     graph,
   };
+}
+
+function escapeHtmlAttr(str) {
+  return String(str).replace(
+    /[&<>"']/g,
+    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
+  );
+}
+
+// skill.html is a single client-rendered template driven by a ?slug= query
+// param, so a crawler that doesn't run JS (link-unfurl bots on Slack,
+// Twitter, etc.) sees no per-skill title or description there. This writes
+// one static, real-metadata redirect page per skill instead — the
+// shareable link a "Copy shareable link" button on the skill page hands
+// out, distinct from the skill.html URL used for in-site browsing.
+function shortDescription(skill) {
+  const whatItDoes = (skill.sections || []).find((s) => s.heading === "What it does");
+  const text = (whatItDoes ? whatItDoes.markdown : skill.description || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (text.length <= 200) return text;
+  const truncated = text.slice(0, 200);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "…";
+}
+
+function writeSharePages(index, dir = SHARE_DIR) {
+  fs.rmSync(dir, { recursive: true, force: true });
+  fs.mkdirSync(dir, { recursive: true });
+
+  for (const skill of index.skills) {
+    const title = `${skill.title} — Behavioural Skills`;
+    const description = shortDescription(skill);
+    const canonical = `${SITE_BASE_URL}/skill.html?slug=${skill.slug}`;
+
+    const html = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHtmlAttr(title)}</title>
+  <link rel="canonical" href="${canonical}" />
+  <meta name="description" content="${escapeHtmlAttr(description)}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="${escapeHtmlAttr(title)}" />
+  <meta property="og:description" content="${escapeHtmlAttr(description)}" />
+  <meta property="og:url" content="${canonical}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="${escapeHtmlAttr(title)}" />
+  <meta name="twitter:description" content="${escapeHtmlAttr(description)}" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta http-equiv="refresh" content="0; url=${canonical}" />
+  <script>location.replace(${JSON.stringify(canonical)});</script>
+</head>
+<body>
+  <p>Redirecting to <a href="${canonical}">${escapeHtmlAttr(skill.title)}</a>…</p>
+</body>
+</html>
+`;
+    fs.writeFileSync(path.join(dir, `${skill.slug}.html`), html);
+  }
 }
 
 function main() {
   const index = computeIndex();
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(index, null, 2) + "\n");
+  writeSharePages(index);
   console.log(
     `Wrote ${path.relative(ROOT, OUT_PATH)}: ${index.skills.length} skill(s), ${index.graph.edges.length} edge(s), ${index.graph.terminalOutputs.length} terminal output(s).`
   );
+  console.log(`Wrote ${index.skills.length} shareable page(s) to ${path.relative(ROOT, SHARE_DIR)}/.`);
 }
 
-module.exports = { computeIndex, OUT_PATH };
+module.exports = { computeIndex, OUT_PATH, SHARE_DIR, writeSharePages };
 
 if (require.main === module) {
   main();

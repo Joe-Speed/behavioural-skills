@@ -135,6 +135,57 @@ stretched analogy to a loosely related study>
 review would need to check that this one couldn't>
 ```
 
+## Worked example
+
+**Program goal (as given):** "Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks." *(Illustrative — continues the running example used across this
+library's other skills; not a real scan.)*
+
+```markdown
+# Evidence Scan Brief
+
+**Program goal (as given):** Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks.
+
+## What's already been tried
+- Lockbox commitment savings devices — market women in Busia, Kenya —
+  increased savings and business investment, especially among women who
+  previously lacked a safe way to keep money at home — confidence: single
+  randomized field experiment (Dupas & Robinson, 2013).
+- Rotating savings and credit associations (ROSCAs / *chama*) — same study
+  population — smaller and less consistent effect on measured savings
+  than the lockbox device — confidence: same field experiment, secondary
+  comparison arm.
+
+## Findings that don't support the goal
+- Formal bank savings accounts — same study population — low take-up and
+  low sustained use, attributed to fees and branch distance — confidence:
+  same field experiment. This directly cautions against assuming a
+  bank-account-based design will work here without addressing access
+  first.
+
+## WEIRD-skew flags
+- Dupas & Robinson (2013) — measured in rural Busia, Kenya, not urban
+  Nairobi markets — the underlying population is a rare non-WEIRD example
+  in the savings-commitment literature, which is otherwise dominated by
+  US/UK studies, but the rural-vs-urban market setting is still a gap to
+  validate before assuming the effect transfers to Nairobi.
+
+## Evidence gaps
+No located study measures mobile-money-based (as opposed to physical
+lockbox) commitment savings devices specifically among urban market
+vendors — the closest evidence is a physical-device study in a rural
+setting, not a mobile-money study in an urban one.
+
+## Confidence in this scan
+Time-bounded scan of a small number of directly relevant field
+experiments in comparable Kenyan settings; a fuller review would need to
+search specifically for mobile-money savings-product evaluations in
+urban East African markets, which this pass did not locate.
+```
+
 ## Known failure modes
 
 - **One-sided search.** Searching only for evidence that the named

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Behavioural Skills — Skill</title>
+  <title>Behavioural Skills — Workflow Builder</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="favicon-64.png" type="image/png" />
@@ -19,7 +19,7 @@
       <div class="site-header-right">
         <nav class="site-nav">
           <a href="index.html">Catalogue</a>
-          <a href="workflow.html">Workflow Builder</a>
+          <a href="workflow.html" class="active">Workflow Builder</a>
           <a href="propose.html">Propose a Skill</a>
         </nav>
         <button class="command-palette-trigger" type="button" aria-label="Search skills">
@@ -36,8 +36,47 @@
     </div>
   </header>
 
-  <main id="skill-main">
-    <p class="empty-state">Loading skill…</p>
+  <main>
+    <p class="lede">
+      Drag skills from the library into the sequence on the right, in the
+      order you'd actually run them for one intervention. Each step shows
+      whether its required inputs are already produced by an earlier step
+      in your workflow, or still need to come from you. When it's ready,
+      generate an install command plus a Markdown plan you can copy or
+      download.
+    </p>
+
+    <div class="workflow-builder">
+      <section class="workflow-library" aria-label="Available skills">
+        <h2>Available skills</h2>
+        <p class="workflow-hint">Drag a card into your workflow, or press its + button.</p>
+        <div id="workflow-library-groups">
+          <p class="empty-state">Loading…</p>
+        </div>
+      </section>
+
+      <section class="workflow-sequence" aria-label="Your workflow">
+        <h2>Your workflow</h2>
+        <p class="workflow-hint">Drop skills here in run order. Drag a step to reorder, or use the arrows.</p>
+
+        <ol class="workflow-steps" id="workflow-steps"></ol>
+        <p class="empty-state" id="workflow-steps-empty">Add a skill to start building your workflow.</p>
+
+        <div class="workflow-actions">
+          <button class="workflow-generate-btn" id="workflow-generate" type="button" disabled>Generate workflow</button>
+          <button class="workflow-clear-btn" id="workflow-clear" type="button">Clear</button>
+        </div>
+
+        <div class="workflow-output" id="workflow-output" hidden>
+          <p class="install-eyebrow">Install command for this workflow</p>
+          <div id="workflow-install-slot"></div>
+          <div class="workflow-output-actions">
+            <button class="share-link-button" id="workflow-copy-md" type="button" data-copy-text="">Copy plan as Markdown</button>
+            <button class="share-link-button" id="workflow-download-md" type="button">Download .md</button>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -83,8 +122,7 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="app.js"></script>
-  <script src="skill.js"></script>
+  <script src="workflow.js"></script>
 </body>
 </html>
