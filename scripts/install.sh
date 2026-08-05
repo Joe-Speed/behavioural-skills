@@ -19,19 +19,22 @@ TARGET=""
 MODE=""
 SELECTOR=""
 
+# Guarded so an empty TMP_DIR doesn't make the trap's last command exit 1
+# under `set -e` on an otherwise-successful run from a checkout.
 cleanup() {
-  [ -n "$TMP_DIR" ] && rm -rf "$TMP_DIR"
+  [ -z "$TMP_DIR" ] || rm -rf "$TMP_DIR"
 }
 trap cleanup EXIT
 
 # When run from a repo checkout, copy skills straight from it. When piped
 # (curl ... | bash) there is no checkout on disk, so fetch the repo tarball
-# into a temp dir and copy from that instead.
+# into a temp dir and copy from that instead. taxonomy.yaml alongside skills/
+# confirms it's *this* repo, not an unrelated sibling directory named skills.
 ensure_skills_src() {
   if [ -n "$SCRIPT_PATH" ]; then
     local repo_root
     repo_root="$(cd "$(dirname "$SCRIPT_PATH")/.." 2>/dev/null && pwd)"
-    if [ -n "$repo_root" ] && [ -d "$repo_root/skills" ]; then
+    if [ -n "$repo_root" ] && [ -d "$repo_root/skills" ] && [ -f "$repo_root/schema/taxonomy.yaml" ]; then
       SKILLS_SRC="$repo_root/skills"
       return
     fi
@@ -137,8 +140,8 @@ case "$MODE" in
     IFS=',' read -ra NAMES <<< "$SELECTOR"
     for n in "${NAMES[@]}"; do
       case "$n" in
-        */*|*..*)
-          echo "Error: invalid skill name '$n' — names cannot contain '/' or '..'" >&2
+        ""|*/*|*..*)
+          echo "Error: invalid skill name '$n' — names cannot be empty or contain '/' or '..'" >&2
           exit 1 ;;
       esac
       if [ ! -d "$SKILLS_SRC/$n" ]; then

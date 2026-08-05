@@ -42,9 +42,9 @@
             ${skills
               .map(
                 (skill) => `
-                  <div class="workflow-library-card" draggable="true" data-slug="${skill.slug}">
+                  <div class="workflow-library-card" draggable="true" data-slug="${escapeHtml(skill.slug)}">
                     <span class="workflow-library-card-title">${escapeHtml(skill.title)}</span>
-                    <button type="button" class="workflow-add-btn" data-slug="${skill.slug}" aria-label="Add ${escapeHtml(
+                    <button type="button" class="workflow-add-btn" data-slug="${escapeHtml(skill.slug)}" aria-label="Add ${escapeHtml(
                       skill.title
                     )} to workflow">+</button>
                   </div>

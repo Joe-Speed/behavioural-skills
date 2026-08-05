@@ -1,6 +1,8 @@
 // Flip this to a real URL to have submissions POST to a backend instead of
 // opening a pre-filled GitHub issue. The form and its payload shape don't
-// change either way — only this constant does.
+// change either way — only this constant does. If set, the endpoint's origin
+// must also be added to connect-src in every page's CSP meta tag, or the
+// browser will block the fetch.
 const SUBMISSION_ENDPOINT = null; // e.g. "https://your-backend.example.com/api/skill-drafts"
 
 const GITHUB_REPO = "Joe-Speed/behavioural-skills";
@@ -53,7 +55,7 @@ const GITHUB_REPO = "Joe-Speed/behavioural-skills";
     evt.preventDefault();
     const payload = Object.fromEntries(new FormData(form).entries());
 
-    status.style.display = "block";
+    status.hidden = false;
 
     if (SUBMISSION_ENDPOINT) {
       try {
