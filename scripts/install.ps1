@@ -26,8 +26,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$RepoRoot = Split-Path -Parent $PSScriptRoot
-$SkillsSrc = Join-Path $RepoRoot "skills"
+$RepoZipUrl = "https://github.com/Joe-Speed/behavioural-skills/archive/refs/heads/main.zip"
+
+function Remove-TmpDir {
+  if ($script:TmpDir -and (Test-Path $script:TmpDir)) { Remove-Item -Recurse -Force $script:TmpDir }
+}
 
 function Get-SkillField {
   param([string]$SkillMdPath, [string]$Field)
@@ -50,19 +53,42 @@ function Show-SkillList {
   $rows | Format-Table -AutoSize
 }
 
+if (-not $List) {
+  if (-not $All -and -not $Name -and -not $Category) {
+    Write-Error "Specify -All, -Name, or -Category (or use -List)."
+    exit 1
+  }
+  if (-not $Target) {
+    Write-Error "-Target <dir> is required."
+    exit 1
+  }
+}
+
+# When run from a repo checkout, copy skills straight from it. When the
+# script was downloaded standalone (iwr ... -OutFile install.ps1) there is no
+# checkout next to it, so fetch the repo zip into a temp dir and copy from
+# that instead. The temp dir is removed by Remove-TmpDir before each exit.
+$RepoRoot = Split-Path -Parent $PSScriptRoot
+$SkillsSrc = Join-Path $RepoRoot "skills"
+$TmpDir = $null
+if (-not (Test-Path $SkillsSrc)) {
+  Write-Host "Fetching skills from $RepoZipUrl ..."
+  $TmpDir = Join-Path ([System.IO.Path]::GetTempPath()) ("behavioural-skills-" + [System.IO.Path]::GetRandomFileName())
+  New-Item -ItemType Directory -Path $TmpDir | Out-Null
+  $zipPath = Join-Path $TmpDir "repo.zip"
+  Invoke-WebRequest -UseBasicParsing -Uri $RepoZipUrl -OutFile $zipPath
+  Expand-Archive -Path $zipPath -DestinationPath $TmpDir
+  $SkillsSrc = Join-Path $TmpDir "behavioural-skills-main/skills"
+  if (-not (Test-Path $SkillsSrc)) {
+    Write-Error "Could not fetch skills from $RepoZipUrl"
+    exit 1
+  }
+}
+
 if ($List) {
   Show-SkillList
+  Remove-TmpDir
   exit 0
-}
-
-if (-not $All -and -not $Name -and -not $Category) {
-  Write-Error "Specify -All, -Name, or -Category (or use -List)."
-  exit 1
-}
-
-if (-not $Target) {
-  Write-Error "-Target <dir> is required."
-  exit 1
 }
 
 $Dest = Join-Path $Target "skills"
@@ -75,6 +101,10 @@ if ($All) {
 }
 elseif ($Name) {
   foreach ($n in $Name) {
+    if ($n -match '[\\/]' -or $n -match '\.\.') {
+      Write-Error "Invalid skill name '$n' — names cannot contain path separators or '..'"
+      exit 1
+    }
     $skillDir = Join-Path $SkillsSrc $n
     if (-not (Test-Path $skillDir)) {
       Write-Error "No skill named '$n' in $SkillsSrc"
@@ -105,4 +135,5 @@ foreach ($name in $ToInstall) {
   Write-Host "installed: $name -> $dst"
 }
 
+Remove-TmpDir
 Write-Host "$($ToInstall.Count) skill(s) installed into $Dest"

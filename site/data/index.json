@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T21:26:38.207Z",
+  "generatedAt": "2026-08-05T12:55:30.551Z",
   "taxonomy": {
     "categories": [
       {
@@ -795,6 +795,11 @@
           "version": "0.1.0",
           "date": "2026-07-30",
           "summary": "Add three intervention/risk skills, clean URLs, and a grouped command palette"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-30",
+          "summary": "Tighten the three newest skills against blind-agent stress tests"
         }
       ]
     },
@@ -1051,6 +1056,11 @@
           "version": "0.1.0",
           "date": "2026-07-30",
           "summary": "Add three intervention/risk skills, clean URLs, and a grouped command palette"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-30",
+          "summary": "Tighten the three newest skills against blind-agent stress tests"
         }
       ]
     },
@@ -1306,6 +1316,11 @@
           "version": "0.1.0",
           "date": "2026-07-30",
           "summary": "Add three intervention/risk skills, clean URLs, and a grouped command palette"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-30",
+          "summary": "Tighten the three newest skills against blind-agent stress tests"
         }
       ]
     }

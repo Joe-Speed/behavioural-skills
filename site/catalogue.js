@@ -101,15 +101,15 @@
       card.className = "skill-card";
       card.innerHTML = `
         <label class="skill-card-check">
-          <input type="checkbox" data-slug="${skill.slug}" ${selectedSlugs.has(skill.slug) ? "checked" : ""} />
+          <input type="checkbox" data-slug="${escapeHtml(skill.slug)}" ${selectedSlugs.has(skill.slug) ? "checked" : ""} />
         </label>
         <a class="skill-card-link" href="${skillUrl(skill.slug)}">
-          <h3>${skill.title}</h3>
+          <h3>${escapeHtml(skill.title)}</h3>
           <div class="tags">
-            <span class="tag">${lookupLabel(data.taxonomy.categories, skill.category)}</span>
-            <span class="tag">${lookupLabel(data.taxonomy.stages, skill.stage)}</span>
+            <span class="tag">${escapeHtml(lookupLabel(data.taxonomy.categories, skill.category))}</span>
+            <span class="tag">${escapeHtml(lookupLabel(data.taxonomy.stages, skill.stage))}</span>
           </div>
-          <p class="desc">${firstSentence(skill.description)}</p>
+          <p class="desc">${escapeHtml(firstSentence(skill.description))}</p>
         </a>
       `;
       card.querySelector("input").addEventListener("change", (e) => {

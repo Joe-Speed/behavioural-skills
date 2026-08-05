@@ -52,7 +52,12 @@
         "properties": {
           "framework": { "type": "string", "minLength": 2 },
           "citation": { "type": "string", "minLength": 5 },
-          "url": { "type": "string", "format": "uri" }
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://",
+            "description": "Link to the paper or framework. Must be http(s) — this renders as a clickable link on the site."
+          }
         }
       }
     },

@@ -9,13 +9,42 @@
 #   install.sh --list
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-SKILLS_SRC="$REPO_ROOT/skills"
+# Empty when the script is piped from curl rather than run from a file.
+SCRIPT_PATH="${BASH_SOURCE[0]:-}"
+REPO_TARBALL_URL="https://github.com/Joe-Speed/behavioural-skills/archive/refs/heads/main.tar.gz"
 
+SKILLS_SRC=""
+TMP_DIR=""
 TARGET=""
 MODE=""
 SELECTOR=""
+
+cleanup() {
+  [ -n "$TMP_DIR" ] && rm -rf "$TMP_DIR"
+}
+trap cleanup EXIT
+
+# When run from a repo checkout, copy skills straight from it. When piped
+# (curl ... | bash) there is no checkout on disk, so fetch the repo tarball
+# into a temp dir and copy from that instead.
+ensure_skills_src() {
+  if [ -n "$SCRIPT_PATH" ]; then
+    local repo_root
+    repo_root="$(cd "$(dirname "$SCRIPT_PATH")/.." 2>/dev/null && pwd)"
+    if [ -n "$repo_root" ] && [ -d "$repo_root/skills" ]; then
+      SKILLS_SRC="$repo_root/skills"
+      return
+    fi
+  fi
+  echo "Fetching skills from $REPO_TARBALL_URL ..." >&2
+  TMP_DIR="$(mktemp -d)"
+  curl -sSL "$REPO_TARBALL_URL" | tar -xz -C "$TMP_DIR"
+  SKILLS_SRC="$TMP_DIR/behavioural-skills-main/skills"
+  if [ ! -d "$SKILLS_SRC" ]; then
+    echo "Error: could not fetch skills from $REPO_TARBALL_URL" >&2
+    exit 1
+  fi
+}
 
 usage() {
   cat <<EOF
@@ -67,7 +96,7 @@ while [ $# -gt 0 ]; do
     --category)
       MODE="category"; SELECTOR="$2"; shift 2 ;;
     --list)
-      list_skills; exit 0 ;;
+      MODE="list"; shift ;;
     -h|--help)
       usage; exit 0 ;;
     *)
@@ -79,6 +108,13 @@ if [ -z "$MODE" ]; then
   echo "Error: specify --all, --name, or --category (or use --list)." >&2
   usage >&2
   exit 1
+fi
+
+ensure_skills_src
+
+if [ "$MODE" = "list" ]; then
+  list_skills
+  exit 0
 fi
 
 if [ -z "$TARGET" ]; then
@@ -100,6 +136,11 @@ case "$MODE" in
   name)
     IFS=',' read -ra NAMES <<< "$SELECTOR"
     for n in "${NAMES[@]}"; do
+      case "$n" in
+        */*|*..*)
+          echo "Error: invalid skill name '$n' — names cannot contain '/' or '..'" >&2
+          exit 1 ;;
+      esac
       if [ ! -d "$SKILLS_SRC/$n" ]; then
         echo "Error: no skill named '$n' in $SKILLS_SRC" >&2
         exit 1

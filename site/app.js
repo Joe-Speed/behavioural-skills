@@ -75,6 +75,8 @@ function bindTerminalCopyButtons(container) {
 }
 
 const INSTALL_RAW_BASE = "https://raw.githubusercontent.com/Joe-Speed/behavioural-skills/main";
+// SITE_BASE_URL is duplicated in scripts/build-index.js (this file can't be
+// required from Node) — a change here must be mirrored there.
 const SITE_BASE_URL = "https://joe-speed.github.io/behavioural-skills";
 
 function shareUrl(slug) {

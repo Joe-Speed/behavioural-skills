@@ -16,6 +16,8 @@ const SKILLS_DIR = path.join(ROOT, "skills");
 const TAXONOMY_PATH = path.join(ROOT, "schema", "taxonomy.yaml");
 const OUT_PATH = path.join(ROOT, "site", "data", "index.json");
 const SHARE_DIR = path.join(ROOT, "site", "s");
+// Duplicated in site/app.js (browser code can't require this module) — a
+// change here must be mirrored there or share links silently break.
 const SITE_BASE_URL = "https://joe-speed.github.io/behavioural-skills";
 
 // Derives a skill's version history straight from git log instead of a
@@ -28,9 +30,11 @@ function getChangelog(skillPath) {
   const relPath = path.relative(ROOT, skillPath).split(path.sep).join("/");
   let raw;
   try {
+    // %x1f (unit separator) between fields rather than a tab — commit
+    // subjects can legally contain tabs, but not control characters.
     raw = execFileSync(
       "git",
-      ["log", "--follow", "--format=%x00%H\t%ad", "--date=short", "--name-only", "--", relPath],
+      ["log", "--follow", "--format=%x00%H%x1f%ad%x1f%s", "--date=short", "--name-only", "--", relPath],
       { cwd: ROOT, encoding: "utf8" }
     );
   } catch {
@@ -47,16 +51,16 @@ function getChangelog(skillPath) {
     .filter(Boolean)
     .map((block) => {
       const [header, ...rest] = block.trim().split("\n");
-      const [hash, date] = header.split("\t");
+      const [hash, date, subject] = header.split("\x1f");
       const file = rest.find((line) => line.trim().length > 0);
-      return { hash, date, file };
+      return { hash, date, subject, file };
     })
     .filter((c) => c.file)
     .reverse(); // oldest first
 
   const seenVersions = new Set();
   const entries = [];
-  for (const { hash, date, file } of commits) {
+  for (const { hash, date, subject, file } of commits) {
     let content;
     try {
       content = execFileSync("git", ["show", `${hash}:${file}`], { cwd: ROOT, encoding: "utf8" });
@@ -67,11 +71,7 @@ function getChangelog(skillPath) {
     const version = data && data.version;
     if (!version || seenVersions.has(version)) continue;
     seenVersions.add(version);
-    const summary = execFileSync("git", ["log", "-1", "--format=%s", hash], {
-      cwd: ROOT,
-      encoding: "utf8",
-    }).trim();
-    entries.push({ version, date, summary });
+    entries.push({ version, date, summary: subject });
   }
   return entries;
 }

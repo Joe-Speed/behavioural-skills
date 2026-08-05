@@ -12,7 +12,7 @@
 
   const skill = data.skills.find((s) => s.slug === slug);
   if (!skill) {
-    main.innerHTML = `<p class="empty-state">No skill found for slug "${slug}". <a href="./">Back to catalogue</a>.</p>`;
+    main.innerHTML = `<p class="empty-state">No skill found for slug "${escapeHtml(slug || "")}". <a href="./">Back to catalogue</a>.</p>`;
     return;
   }
 
@@ -35,11 +35,11 @@
       const producers = producersOf(input.type, skill.slug);
       const producedNote =
         producers.length > 0
-          ? `Produced by ${producers.map((p) => `<a href="${skillUrl(p)}">${p}</a>`).join(", ")}`
+          ? `Produced by ${producers.map((p) => `<a href="${skillUrl(p)}">${escapeHtml(p)}</a>`).join(", ")}`
           : input.source === "user"
           ? "Supplied by a human, not another skill"
           : "No producing skill in the current catalogue";
-      return `<li><code>${input.type}</code> ${input.required === false ? "(optional)" : ""}<br>${input.description}<br><span class="chain-links">${producedNote}</span></li>`;
+      return `<li><code>${escapeHtml(input.type)}</code> ${input.required === false ? "(optional)" : ""}<br>${escapeHtml(input.description)}<br><span class="chain-links">${producedNote}</span></li>`;
     })
     .join("");
 
@@ -48,27 +48,27 @@
       const consumers = consumersOf(output.type, skill.slug);
       const consumedNote =
         consumers.length > 0
-          ? `Consumed by ${consumers.map((c) => `<a href="${skillUrl(c)}">${c}</a>`).join(", ")}`
+          ? `Consumed by ${consumers.map((c) => `<a href="${skillUrl(c)}">${escapeHtml(c)}</a>`).join(", ")}`
           : "Terminal output — no skill in the current catalogue consumes this yet";
-      return `<li><code>${output.type}</code><br>${output.description}<br><span class="chain-links">${consumedNote}</span></li>`;
+      return `<li><code>${escapeHtml(output.type)}</code><br>${escapeHtml(output.description)}<br><span class="chain-links">${consumedNote}</span></li>`;
     })
     .join("");
 
   const evidenceHtml = (skill.evidence_base || [])
     .map(
       (e) =>
-        `<li><strong>${e.framework}</strong><br>${e.citation}${e.url ? ` — <a href="${e.url}" target="_blank" rel="noopener">source</a>` : ""}</li>`
+        `<li><strong>${escapeHtml(e.framework)}</strong><br>${escapeHtml(e.citation)}${e.url ? ` — <a href="${escapeHtml(e.url)}" target="_blank" rel="noopener">source</a>` : ""}</li>`
     )
     .join("");
 
   const sectionsHtml = (skill.sections || [])
-    .map((s) => `<h2>${s.heading}</h2>${marked.parse(s.markdown)}`)
+    .map((s) => `<h2>${escapeHtml(s.heading)}</h2>${marked.parse(s.markdown)}`)
     .join("");
 
   main.innerHTML = `
     <div class="skill-header">
-      <h1>${skill.title}</h1>
-      <p class="description">${skill.description}</p>
+      <h1>${escapeHtml(skill.title)}</h1>
+      <p class="description">${escapeHtml(skill.description)}</p>
       <div class="skill-header-actions">${renderShareLinkButton(skill.slug)}</div>
     </div>
 
@@ -78,14 +78,14 @@
     </div>
 
     <dl class="meta-grid">
-      <div><dt>Category</dt><dd>${lookupLabel(data.taxonomy.categories, skill.category)}</dd></div>
-      <div><dt>Research stage</dt><dd>${lookupLabel(data.taxonomy.stages, skill.stage)}</dd></div>
-      <div><dt>WEIRD context</dt><dd>${skill.weird_context.status}</dd></div>
-      <div><dt>Version</dt><dd>${skill.version}</dd></div>
-      <div><dt>Authors</dt><dd>${(skill.authors || []).join(", ")}</dd></div>
+      <div><dt>Category</dt><dd>${escapeHtml(lookupLabel(data.taxonomy.categories, skill.category))}</dd></div>
+      <div><dt>Research stage</dt><dd>${escapeHtml(lookupLabel(data.taxonomy.stages, skill.stage))}</dd></div>
+      <div><dt>WEIRD context</dt><dd>${escapeHtml(skill.weird_context.status)}</dd></div>
+      <div><dt>Version</dt><dd>${escapeHtml(skill.version)}</dd></div>
+      <div><dt>Authors</dt><dd>${escapeHtml((skill.authors || []).join(", "))}</dd></div>
     </dl>
 
-    ${skill.weird_context.note ? `<p class="notice">${skill.weird_context.note}</p>` : ""}
+    ${skill.weird_context.note ? `<p class="notice">${escapeHtml(skill.weird_context.note)}</p>` : ""}
 
     <h2>Evidence base</h2>
     <ul class="io-list">${evidenceHtml}</ul>

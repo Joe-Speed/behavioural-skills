@@ -35,12 +35,12 @@ function stripVolatile(index) {
 
 // Catches "forgot to run npm run build before committing" — the committed
 // index.json must match what skills/ would produce right now.
-function checkIndexFreshness() {
+function checkIndexFreshness(freshIndex) {
   if (!fs.existsSync(OUT_PATH)) {
     return [`site/data/index.json does not exist — run "npm run build"`];
   }
   const committed = JSON.stringify(stripVolatile(JSON.parse(fs.readFileSync(OUT_PATH, "utf8"))));
-  const fresh = JSON.stringify(stripVolatile(computeIndex()));
+  const fresh = JSON.stringify(stripVolatile(freshIndex));
   return committed === fresh
     ? []
     : [`site/data/index.json is stale relative to skills/ — run "npm run build" and commit the result`];
@@ -136,7 +136,7 @@ function checkSharePagesFreshness(index) {
 function main() {
   const index = computeIndex();
   const checks = [
-    ["site/data/index.json is up to date with skills/", checkIndexFreshness()],
+    ["site/data/index.json is up to date with skills/", checkIndexFreshness(index)],
     ["site/s/ share pages are up to date with skills/", checkSharePagesFreshness(index)],
     ["dependency graph is internally consistent", checkGraphIntegrity(index)],
     ["all local asset references resolve", checkLocalLinks()],
