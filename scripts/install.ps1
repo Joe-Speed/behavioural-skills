@@ -8,10 +8,10 @@
   ./install.ps1 -Target C:\projects\my-app -All
 
 .EXAMPLE
-  ./install.ps1 -Target ./my-app -Name key-behavior-definer,comb-barrier-decomposer
+  ./install.ps1 -Target ./my-app -Name key-behaviour-definer,comb-barrier-decomposer
 
 .EXAMPLE
-  ./install.ps1 -Target ./my-app -Category diagnosis,behavior-definition
+  ./install.ps1 -Target ./my-app -Category diagnosis,behaviour-definition
 
 .EXAMPLE
   ./install.ps1 -List

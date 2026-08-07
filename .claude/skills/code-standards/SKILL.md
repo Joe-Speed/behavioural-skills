@@ -110,9 +110,9 @@ category that doesn't exist yet.
   them (see `build-index.js`: load → derive graph → shape output, each its
   own function).
 - Dependencies are a cost. This repo runs on `ajv`, `ajv-formats`,
-  `gray-matter`, `js-yaml`, plus `cytoscape` and `marked` loaded from a CDN
-  in the two pages that need them. Reach for what's already here before
-  adding another one.
+  `gray-matter`, `js-yaml`, plus a vendored copy of `marked`
+  (`site/marked.js`) on the one page that renders markdown. Reach for
+  what's already here before adding another one.
 
 ## Gates
 

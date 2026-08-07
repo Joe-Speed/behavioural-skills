@@ -174,4 +174,6 @@ function main() {
   if (errorCount > 0) process.exit(1);
 }
 
-main();
+if (require.main === module) {
+  main();
+}

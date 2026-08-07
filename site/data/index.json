@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T09:16:24.632Z",
+  "generatedAt": "2026-08-07T09:37:22.360Z",
   "taxonomy": {
     "categories": [
       {
@@ -1089,7 +1089,13 @@
           "markdown": "- **Technique-shaped decoration.** The copy is persuasive, on-brand, and\n  never delivers the BCT's defined active ingredient. Tip-off: delete the\n  technique's name from the top of the draft — if nothing about the copy\n  now seems mismatched, the fidelity trace was asserted rather than real.\n- **Researcher-register copy.** Drafting at the team's own reading level,\n  idiom, or formality — or shipping a translation of the working copy\n  instead of natively drafted local-language copy. The language note and\n  pre-test exist to catch this, but only if the pre-test runs on the\n  final-language version.\n- **Default-channel assumption.** Writing an SMS because SMS is what\n  behavioural-science examples use, when the audience & context brief\n  names a different confirmed channel — or when no brief exists and the\n  channel was never confirmed at all. An UNCONFIRMED channel flag that\n  survives into launch is a failure of the process, not a formality.\n- **Invented social proof.** An EAST Social line like \"9 out of 10\n  vendors already deposit daily\" with no data source behind it. If the\n  claim is false it's unethical; if it's merely unverified it risks a\n  descriptive-norm backfire (normalizing the undesired behaviour, or\n  collapsing trust when vendors compare notes). No named source, no norm\n  claim.\n- **Multiple techniques in one draft.** Folding a bonus technique into\n  the copy (\"while we're at it, add a commitment prompt\") delivers an\n  intervention nobody selected or diagnosed. One draft instantiates one\n  named technique; a second technique means a second lever decision\n  upstream.\n- **Out of scope: no named technique.** A lever brief whose selected\n  lever is still a bare function name has not finished\n  intervention-lever-selector's own template — send it back rather than\n  guessing which technique was meant."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-07",
+          "summary": "Add lever-content-drafter and sifa-declaration-drafter skills"
+        }
+      ]
     },
     {
       "slug": "prior-intervention-post-mortem-reader",
@@ -1431,7 +1437,13 @@
           "markdown": "- **The vague-virtue declaration.** Audit notes like \"AI was used\n  responsibly throughout\" rate everything a 1 and explain nothing. The\n  note's test: could a skeptical reader tell what the tool concretely\n  produced versus what the humans produced? If not, the declaration is\n  reassurance, not disclosure.\n- **Laundering through the scale.** Rating extensive first-drafting as\n  \"1 — some\" because 2 feels embarrassing. The scale anchors are SIFA's,\n  not the team's comfort: if the tool produced the first version of the\n  artifact, that role is a 2 no matter how heavily it was edited after.\n- **The AI as author.** Listing the tool in the contributor column, or\n  writing audit notes in which the tool \"decided\" or \"concluded.\" SIFA's\n  accountability principle is the opposite: tools appear only inside\n  roles a named human answers for.\n- **Trivial-use omission.** Dropping the grammar pass or a debugged\n  script because \"that's not really AI use.\" Any role the tool touched\n  appears in the table — small ratings with honest notes are exactly what\n  makes the big ratings credible.\n- **Treating the output as verification.** This is self-report. A team\n  that omits a tool produces a clean-looking declaration; nothing in this\n  skill can catch that, which is why the declaration-basis line is\n  mandatory and unhedged.\n- **Out of scope: policy rulings.** An input like \"declare our AI use in\n  a way that will pass the journal's policy\" asks the declaration to\n  answer an acceptability question. Structure what happened; whether it\n  passes is the journal's call, and shading notes toward a desired ruling\n  is the failure the tool exists to prevent."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-07",
+          "summary": "Add lever-content-drafter and sifa-declaration-drafter skills"
+        }
+      ]
     },
     {
       "slug": "values-affirmation-drafter",

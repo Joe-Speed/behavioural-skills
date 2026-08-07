@@ -156,4 +156,6 @@ function main() {
   if (failureCount > 0) process.exit(1);
 }
 
-main();
+if (require.main === module) {
+  main();
+}

@@ -5,7 +5,7 @@
 # Usage:
 #   install.sh --target <dir> --all
 #   install.sh --target <dir> --name skill-a,skill-b
-#   install.sh --target <dir> --category diagnosis,behavior-definition
+#   install.sh --target <dir> --category diagnosis,behaviour-definition
 #   install.sh --list
 set -euo pipefail
 

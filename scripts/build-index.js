@@ -238,6 +238,7 @@ function writeSharePages(index, dir = SHARE_DIR) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>${escapeHtmlAttr(title)}</title>
   <link rel="canonical" href="${canonical}" />
   <meta name="description" content="${escapeHtmlAttr(description)}" />
@@ -250,7 +251,6 @@ function writeSharePages(index, dir = SHARE_DIR) {
   <meta name="twitter:description" content="${escapeHtmlAttr(description)}" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <meta http-equiv="refresh" content="0; url=${canonical}" />
-  <script>location.replace(${JSON.stringify(canonical)});</script>
 </head>
 <body>
   <p>Redirecting to <a href="${canonical}">${escapeHtmlAttr(skill.title)}</a>…</p>

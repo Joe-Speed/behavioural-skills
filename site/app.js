@@ -44,7 +44,7 @@ function renderTerminal(command, label = "bash") {
     <div class="terminal">
       <div class="terminal-bar">
         <span class="terminal-label">${escapeHtml(label)}</span>
-        <button class="terminal-copy" type="button" data-command="${escapeHtml(command)}">Copy</button>
+        <button class="terminal-copy" type="button" data-copy-text="${escapeHtml(command)}">Copy</button>
       </div>
       <pre class="terminal-body"><code>${escapeHtml(command)}</code></pre>
     </div>
