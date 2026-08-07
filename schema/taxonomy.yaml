@@ -46,6 +46,14 @@ categories:
       Characterizing the specific population, setting, and touchpoints a
       behaviour actually occurs in, before that context is assumed from a
       funder's abstract label rather than checked.
+  - id: research-transparency
+    label: Research Transparency
+    description: >-
+      Documenting and disclosing how a piece of work was actually produced —
+      including where AI tools were involved — so readers can hold the
+      human authors accountable for it. Distinct from Researcher
+      Calibration, which checks the team's priors before the work; this
+      discloses the process after it.
 
 # A research stage is orthogonal to category: it's where in a project
 # timeline a skill is normally invoked, independent of what it does.
@@ -70,6 +78,12 @@ stages:
   - id: measure
     label: Measure
     description: Instrumenting or validating measurement itself.
+  - id: report
+    label: Report
+    description: >-
+      Writing up and disclosing what was done and found, after the
+      substantive work — declarations, documentation, and communication of
+      the process itself.
 
 # io_types are the controlled vocabulary for declared inputs/outputs.
 # `user_suppliable: true` marks a type a human is expected to provide
@@ -190,6 +204,38 @@ io_types:
       they believe it succeeded or failed — given before checking that
       belief against whatever data was actually collected.
     user_suppliable: true
+
+  - id: intervention_content_draft
+    label: Intervention content draft
+    description: >-
+      Delivery-ready draft content — message text, script lines, signage,
+      or interface copy — instantiating one named behaviour change
+      technique, with a fidelity trace mapping each content element to the
+      technique's defined active ingredient, delivery notes (channel,
+      timing, sender, frequency ceiling), and the comprehension pre-test
+      the draft must pass before launch.
+    user_suppliable: false
+
+  - id: ai_use_account
+    label: AI use account
+    description: >-
+      A team's own raw, honest account of how a piece of work was actually
+      produced: who worked on which parts, which AI tools were used where,
+      roughly how much each tool contributed, and anything the team is
+      unsure whether to disclose — given in plain language before any
+      structuring.
+    user_suppliable: true
+
+  - id: sifa_declaration
+    label: SIFA declaration
+    description: >-
+      A structured Statement of Intellectual Fellowship and Accountability:
+      for each applicable CRediT contributor role, who performed the work,
+      which AI tool was involved (if any), the extent of AI involvement on
+      SIFA's none/some/extensive scale, and a brief audit note explaining
+      the rating — with responsibility explicitly retained by the human
+      authors.
+    user_suppliable: false
 
   - id: intervention_post_mortem_brief
     label: Intervention post-mortem brief

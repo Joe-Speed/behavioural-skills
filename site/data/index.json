@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T12:55:30.551Z",
+  "generatedAt": "2026-08-07T09:16:24.632Z",
   "taxonomy": {
     "categories": [
       {
@@ -56,6 +56,11 @@
         "id": "context-mapping",
         "label": "Context Mapping",
         "description": "Characterizing the specific population, setting, and touchpoints a behaviour actually occurs in, before that context is assumed from a funder's abstract label rather than checked."
+      },
+      {
+        "id": "research-transparency",
+        "label": "Research Transparency",
+        "description": "Documenting and disclosing how a piece of work was actually produced — including where AI tools were involved — so readers can hold the human authors accountable for it. Distinct from Researcher Calibration, which checks the team's priors before the work; this discloses the process after it."
       }
     ],
     "stages": [
@@ -88,6 +93,11 @@
         "id": "measure",
         "label": "Measure",
         "description": "Instrumenting or validating measurement itself."
+      },
+      {
+        "id": "report",
+        "label": "Report",
+        "description": "Writing up and disclosing what was done and found, after the substantive work — declarations, documentation, and communication of the process itself."
       }
     ],
     "io_types": [
@@ -162,6 +172,24 @@
         "label": "Prior intervention record",
         "description": "A team's own raw, unstructured account of an intervention they already tried: what was planned, what they believe happened, and why they believe it succeeded or failed — given before checking that belief against whatever data was actually collected.",
         "user_suppliable": true
+      },
+      {
+        "id": "intervention_content_draft",
+        "label": "Intervention content draft",
+        "description": "Delivery-ready draft content — message text, script lines, signage, or interface copy — instantiating one named behaviour change technique, with a fidelity trace mapping each content element to the technique's defined active ingredient, delivery notes (channel, timing, sender, frequency ceiling), and the comprehension pre-test the draft must pass before launch.",
+        "user_suppliable": false
+      },
+      {
+        "id": "ai_use_account",
+        "label": "AI use account",
+        "description": "A team's own raw, honest account of how a piece of work was actually produced: who worked on which parts, which AI tools were used where, roughly how much each tool contributed, and anything the team is unsure whether to disclose — given in plain language before any structuring.",
+        "user_suppliable": true
+      },
+      {
+        "id": "sifa_declaration",
+        "label": "SIFA declaration",
+        "description": "A structured Statement of Intellectual Fellowship and Accountability: for each applicable CRediT contributor role, who performed the work, which AI tool was involved (if any), the extent of AI involvement on SIFA's none/some/extensive scale, and a brief audit note explaining the rating — with responsibility explicitly retained by the human authors.",
+        "user_suppliable": false
       },
       {
         "id": "intervention_post_mortem_brief",
@@ -939,6 +967,131 @@
       ]
     },
     {
+      "slug": "lever-content-drafter",
+      "name": "lever-content-drafter",
+      "title": "Lever Content Drafter",
+      "description": "Use when intervention-lever-selector has produced a lever brief whose selected lever names a concrete behaviour change technique, and a field team now needs the actual words — the message, script, signage, or interface copy that delivers it. Invoke it when someone asks \"so what does the SMS / poster / agent script actually say?\" Do not invoke on a bare intervention function with no named technique — route back to intervention-lever-selector first — and do not use it for values-affirmation exercises, which values-affirmation-drafter owns end to end.",
+      "category": "intervention-design",
+      "stage": "design",
+      "evidence_base": [
+        {
+          "framework": "Behaviour Change Technique Taxonomy (v1) — technique definitions as fidelity anchor",
+          "citation": "Michie, S., Richardson, M., Johnston, M., et al. (2013). The Behavior Change Technique Taxonomy (v1) of 93 hierarchically clustered techniques. Annals of Behavioral Medicine, 46(1), 81-95."
+        },
+        {
+          "framework": "EAST framework for applying behavioural insights to delivery design",
+          "citation": "Service, O., Hallsworth, M., Halpern, D., et al. (2014). EAST: Four Simple Ways to Apply Behavioural Insights. The Behavioural Insights Team, London."
+        },
+        {
+          "framework": "Experimental pre-testing of health education materials",
+          "citation": "Whittingham, J. R. D., Ruiter, R. A. C., Castermans, D., Huiberts, A., & Kok, G. (2008). Designing effective health education materials: experimental pre-testing of a theory-based brochure to increase knowledge. Health Education Research, 23(3), 414-426."
+        }
+      ],
+      "weird_context": {
+        "status": "mixed-evidence",
+        "note": "The BCTTv1's definitions are stated as mechanism descriptions and travel reasonably well, but EAST's worked examples are drawn almost entirely from UK government trials, and most message-design evidence (framing, salience, personalization effects) comes from WEIRD, high-literacy, high-SMS-penetration populations. Register, idiom, reading level, and channel norms are all local: a draft produced by this skill is working copy for local adaptation and pre-testing, never final copy — and final copy should be drafted natively in the delivery language by a local speaker, not translated from this skill's output."
+      },
+      "inputs": [
+        {
+          "type": "intervention_lever_brief",
+          "description": "The lever brief from intervention-lever-selector, with its Selected lever section naming a specific BCTTv1 technique. It is that named technique this skill drafts content for — a brief that stops at a function name (\"Environmental restructuring\") isn't ready for this skill yet.",
+          "source": "skill-output",
+          "required": true
+        },
+        {
+          "type": "audience_context_brief",
+          "description": "The audience & context brief from context-and-audience-mapper, whose confirmed channels and decision moment determine the delivery format and timing. Optional — but without it the channel must be stated and confirmed by the user, not assumed, and the draft must flag the channel as unconfirmed.",
+          "source": "skill-output",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "type": "intervention_content_draft",
+          "description": "Delivery-ready draft content — message text, script lines, signage, or interface copy — instantiating the lever brief's named technique, with a fidelity trace, delivery notes, an EAST check, and the comprehension pre-test required before launch."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns the selected lever's named behaviour change technique into the\nliteral draft content — message text, script lines, signage, or interface\ncopy — a field team would deliver, with every content element traced to\nthe technique's defined active ingredient."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- [intervention-lever-selector](../intervention-lever-selector) has\n  produced a brief whose Selected lever names a concrete BCTTv1 technique,\n  and the next question is \"what do we actually say / show / print?\"\n- A field team is about to write intervention copy ad hoc — an SMS, a\n  poster, an agent script — without checking that the copy actually\n  delivers the technique the lever was selected for.\n- Do **not** invoke on a lever brief that stops at a function name with no\n  named BCT — that brief isn't finished; route back to\n  intervention-lever-selector's output template, which requires one.\n- Do **not** use it to draft a values-affirmation exercise —\n  [values-affirmation-drafter](../values-affirmation-drafter) owns that\n  protocol end to end, including its value-list adaptation and delivery\n  cautions.\n- Do **not** use it to choose between levers or techniques — that decision\n  already happened upstream; this skill takes exactly one named technique."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "The BCTTv1 (Michie et al., 2013) defines each technique's active\ningredient — what must actually be present for the technique to be the\none delivered. That definition is this skill's fidelity anchor: a draft\ninstantiates a technique only if some concrete content element delivers\nthe defined ingredient. Copy that is merely persuasive, on-topic, and\nwell-written but contains no such element is a different (unselected,\nundiagnosed) intervention wearing the selected one's name. The BCTTv1\ndefines techniques, not copy — the mapping from a definition to an actual\nsentence, sign, or script line is this skill's own operationalization, and\nthe fidelity trace exists so that mapping is inspectable rather than\nasserted.\n\nEAST (Service et al., 2014) supplies the delivery-design checklist: Easy\n(one action, low reading level, no ambiguity about what to do), Attractive\n(salient at the moment of delivery), Social (only with a truthful, named\ndata source — an invented social norm is both unethical and a documented\nbackfire risk), Timely (delivered at the decision moment the audience &\ncontext brief identified, not whenever the channel is convenient).\n\nPre-testing (Whittingham et al., 2008) is why the output ends with a\nrequired pre-test rather than a launch recommendation: materials that\nlooked fine to their designers routinely fail comprehension checks with\nthe actual population, so the draft is a hypothesis until a named check\npasses."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "The fidelity trace is mandatory: every content element either maps to a\npart of the technique's BCTTv1 definition or gets cut (or explicitly\njustified as delivery scaffolding, e.g. a greeting). A Social line in the\nEAST check that makes a norm claim must name the data source that makes\nit true.\n\n```markdown\n# Intervention Content Draft\n\n**Technique being instantiated:** <BCT number + name, carried verbatim\nfrom the lever brief's Selected lever, plus its BCTTv1 definition>\n**Delivery channel:** <channel and format — from the audience & context\nbrief where available; otherwise state the assumed channel and flag it\nUNCONFIRMED>\n**Language note:** <what language the final copy must be drafted in, by\nwhom — this draft's language is working copy only if it differs>"
+        },
+        {
+          "heading": "Draft content",
+          "markdown": "<the literal copy: message text, script lines, sign wording, interface\nstrings — at the target population's reading level, one requested action>"
+        },
+        {
+          "heading": "Fidelity trace",
+          "markdown": "| Content element | Part of the technique's definition it delivers |\n|---|---|\n| \"<quoted element>\" | <the specific clause of the BCTTv1 definition> |\n<elements that deliver nothing are decoration — cut or justify>"
+        },
+        {
+          "heading": "Delivery notes",
+          "markdown": "- **Sender/messenger:** <who the content appears to come from, and why\n  that source is credible to this population>\n- **Timing:** <when, relative to the decision moment>\n- **Frequency ceiling:** <how many exposures before fatigue or reactance\n  risk outweighs marginal effect>"
+        },
+        {
+          "heading": "EAST check",
+          "markdown": "- **Easy:** <the one action requested, and the reading-level check>\n- **Attractive:** <what makes it salient at the delivery moment>\n- **Social:** <the norm claim made, with the named data source that makes\n  it true — or \"no social-norm claim made\", with why>\n- **Timely:** <how delivery lands at the decision moment>"
+        },
+        {
+          "heading": "Required pre-test before launch",
+          "markdown": "<the specific comprehension/acceptability check, with n and a pass\ncriterion — e.g. \"5-10 members of the target population, shown the draft\ncold, restate the requested action in their own words; pass = all\nrestatements name the intended action\">"
+        },
+        {
+          "heading": "What this draft does not do",
+          "markdown": "<explicit limits — e.g. content supports the environmental or structural\nchange, it does not substitute for it>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Selected lever (from intervention-lever-selector):** BCTTv1 12.1\nRestructuring the physical environment — a privacy partition and a marked\n\"quick deposit\" position at the existing M-Pesa agent kiosk, so deposits\naren't visible to neighbouring stalls. *(Illustrative — continues the\nrunning example from context-and-audience-mapper through\nintervention-lever-selector; not a real design.)*\n\n```markdown\n# Intervention Content Draft\n\n**Technique being instantiated:** BCTTv1 12.1 Restructuring the physical\nenvironment — \"change, or advise to change, the physical environment in\norder to facilitate performance of the wanted behaviour or create\nbarriers to the unwanted behaviour.\"\n**Delivery channel:** Physical signage at the in-market agent kiosk, plus\na one-line verbal script for the agent — per the audience & context\nbrief, the kiosk at closing time is the confirmed decision moment; no\nSMS component, since visibility at the kiosk, not information, is the\nbarrier.\n**Language note:** Working copy below is English. Final sign and script\nmust be drafted natively in Swahili by a local team member — drafted, not\ntranslated — and the pre-test run on the Swahili version."
+        },
+        {
+          "heading": "Draft content",
+          "markdown": "Sign, mounted at the partitioned position (working copy):\n> **Quick deposit here** — behind the screen, no waiting.\n\nAgent script, one line, said while gesturing to the position (working\ncopy):\n> \"Quick deposits this side — it's the fast lane.\""
+        },
+        {
+          "heading": "Fidelity trace",
+          "markdown": "| Content element | Part of the technique's definition it delivers |\n|---|---|\n| \"Quick deposit here — behind the screen\" | Makes the restructured environment (the partitioned position) findable and usable — the physical change facilitates the wanted behaviour only if vendors know it exists and what it is for |\n| \"no waiting\" / \"it's the fast lane\" | Frames the partitioned position as the fast option, so choosing privacy costs nothing socially — using it reads as saving time, not as hiding money |\n| Agent gestures rather than announcing amounts | Keeps the deposit act itself out of neighbouring vendors' line of sight and hearing — the barrier mechanism the restructuring targets |"
+        },
+        {
+          "heading": "Delivery notes",
+          "markdown": "- **Sender/messenger:** The agent kiosk itself — vendors already trust it\n  with transactions; no program branding, which would mark users of the\n  position as \"the program's people.\"\n- **Timing:** Permanent signage; the script is used only when a vendor\n  approaches with cash at closing time.\n- **Frequency ceiling:** Not applicable to signage; agents should not\n  call vendors over to the position — an agent hawking the fast lane\n  recreates the attention the partition exists to remove."
+        },
+        {
+          "heading": "EAST check",
+          "markdown": "- **Easy:** One action (use the marked position); sign is seven words.\n- **Attractive:** \"Quick\" and \"no waiting\" are the salient benefit at a\n  time-pressed closing hour.\n- **Social:** No social-norm claim made — deliberately. The barrier is\n  social visibility of depositing; copy that says \"many vendors deposit\n  here\" would re-attach social attention to the exact act the partition\n  hides.\n- **Timely:** Present at the kiosk at closing time — the confirmed\n  decision moment — rather than delivered earlier in the day by SMS."
+        },
+        {
+          "heading": "Required pre-test before launch",
+          "markdown": "Show the Swahili sign cold to 5-10 vendors from the target markets who\nhaven't seen it before; each says in their own words what the marked\nposition is for. Pass = all name depositing (or a fast transaction)\nwithout prompting; any reading of \"that's where the program watches you\ndeposit\" is a fail and the copy is redrafted."
+        },
+        {
+          "heading": "What this draft does not do",
+          "markdown": "The sign and script support the partition — they do not substitute for\nit. If market management refuses the physical partition (the lever\nbrief's open question), this content has nothing to instantiate and the\nlever decision goes back to intervention-lever-selector's rejected\nfunctions, not to stronger copywriting.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Technique-shaped decoration.** The copy is persuasive, on-brand, and\n  never delivers the BCT's defined active ingredient. Tip-off: delete the\n  technique's name from the top of the draft — if nothing about the copy\n  now seems mismatched, the fidelity trace was asserted rather than real.\n- **Researcher-register copy.** Drafting at the team's own reading level,\n  idiom, or formality — or shipping a translation of the working copy\n  instead of natively drafted local-language copy. The language note and\n  pre-test exist to catch this, but only if the pre-test runs on the\n  final-language version.\n- **Default-channel assumption.** Writing an SMS because SMS is what\n  behavioural-science examples use, when the audience & context brief\n  names a different confirmed channel — or when no brief exists and the\n  channel was never confirmed at all. An UNCONFIRMED channel flag that\n  survives into launch is a failure of the process, not a formality.\n- **Invented social proof.** An EAST Social line like \"9 out of 10\n  vendors already deposit daily\" with no data source behind it. If the\n  claim is false it's unethical; if it's merely unverified it risks a\n  descriptive-norm backfire (normalizing the undesired behaviour, or\n  collapsing trust when vendors compare notes). No named source, no norm\n  claim.\n- **Multiple techniques in one draft.** Folding a bonus technique into\n  the copy (\"while we're at it, add a commitment prompt\") delivers an\n  intervention nobody selected or diagnosed. One draft instantiates one\n  named technique; a second technique means a second lever decision\n  upstream.\n- **Out of scope: no named technique.** A lever brief whose selected\n  lever is still a bare function name has not finished\n  intervention-lever-selector's own template — send it back rather than\n  guessing which technique was meant."
+        }
+      ],
+      "changelog": []
+    },
+    {
       "slug": "prior-intervention-post-mortem-reader",
       "name": "prior-intervention-post-mortem-reader",
       "title": "Prior Intervention Post-Mortem Reader",
@@ -1189,6 +1342,98 @@
       ]
     },
     {
+      "slug": "sifa-declaration-drafter",
+      "name": "sifa-declaration-drafter",
+      "title": "SIFA Declaration Drafter",
+      "description": "Use when a piece of work — a research report, an intervention design, a paper, a deliverable — is being written up and the team needs to declare how humans and AI tools actually interacted in producing it. Invoke it when someone asks \"how do we disclose what the AI did on this project?\" or when a journal, funder, or org policy requires an AI-use statement. Do not invoke to audit the team's prior beliefs about the target population — that is researcher-bias-self-audit — and do not invoke it as an AI-use policy or approval gate: it discloses what happened, it does not rule on whether it was acceptable.",
+      "category": "research-transparency",
+      "stage": "report",
+      "evidence_base": [
+        {
+          "framework": "SIFA — Statement of Intellectual Fellowship and Accountability",
+          "citation": "Schomerus, M., & Saleh, E. SIFA: Statement of Intellectual Fellowship and Accountability. Busara. Browser-based declaration tool mapping AI involvement onto CRediT contributor roles.",
+          "url": "https://mareikeschomerus-ctrl.github.io/sIfA/"
+        },
+        {
+          "framework": "CRediT — Contributor Roles Taxonomy",
+          "citation": "Brand, A., Allen, L., Altman, M., Hlava, M., & Scott, J. (2015). Beyond authorship: attribution, contribution, collaboration, and credit. Learned Publishing, 28(2), 151-155."
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "The declaration practice itself is procedural and travels: it makes no claims about human behaviour, only about disclosure. What is culturally specific is the CRediT taxonomy's origin in Western academic publishing — its 14 roles assume a journal-article division of labour, and authorship/credit norms differ across research cultures and sectors. Teams outside that context should treat the role list as a checklist to adapt (dropping or renaming roles that don't exist in their workflow) rather than a form to force their work into."
+      },
+      "inputs": [
+        {
+          "type": "ai_use_account",
+          "description": "The team's raw, honest account of how the work was produced: who did which parts, which AI tools were used where and roughly how heavily, and anything they're unsure whether to disclose. Honesty in, honesty out — this skill structures the account, it cannot verify it.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "sifa_declaration",
+          "description": "A structured SIFA declaration: per applicable CRediT role, the human contributor(s), any AI tool involved, the extent of AI involvement on SIFA's none/some/extensive scale, and an audit note explaining the rating — with accountability explicitly retained by the humans."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Structures a team's raw account of who-did-what into a SIFA declaration —\nper applicable CRediT contributor role: the humans, the AI tool involved\n(if any), the extent of AI involvement on SIFA's none/some/extensive\nscale, plus an audit note justifying each rating."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A report, paper, intervention design, or other deliverable is being\n  finalized and the team needs a standardised statement of where AI tools\n  were involved in producing it.\n- A journal, funder, or organisational policy asks for an AI-use\n  disclosure and the team's current answer is an unstructured paragraph\n  (\"we used ChatGPT a bit for drafting\").\n- A team wants to make its human-AI division of labour inspectable\n  *before* someone else asks — SIFA's framing is a deliberate, voluntary\n  disclosure, not a compliance response.\n- Do **not** invoke to examine the team's prior beliefs about the target\n  population — that is\n  [researcher-bias-self-audit](../researcher-bias-self-audit)'s job, and\n  it runs *before* the work; this skill runs *after* it.\n- Do **not** invoke as an approval mechanism. The declaration records\n  what happened; whether a given level of AI involvement was appropriate\n  is a policy question for the journal, funder, or org — this skill must\n  not answer it."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "SIFA (Schomerus & Saleh, Busara) maps AI involvement onto the CRediT\ncontributor-role taxonomy (Brand et al., 2015) — the same 14 roles\n(Conceptualization, Methodology, Investigation, Formal analysis,\nWriting — original draft, Writing — review & editing, Visualization, and\nso on) that major journals already use for human contributors. That\nmapping is the core move this skill preserves: instead of one vague\nproject-level sentence, AI involvement is declared role by role, on\nSIFA's three-point scale (none / some / extensive), each rating carrying\na brief audit note saying what the tool actually did. Using an\nestablished taxonomy makes declarations comparable across projects and\njournals rather than bespoke prose.\n\nTwo SIFA principles are load-bearing and this skill enforces them. First,\n*accountability stays human*: an AI tool is never listed as a contributor\nalongside people — it appears only inside a role a named human is\naccountable for. Second, *the audit note is the substance*: a bare \"2\"\nnext to Writing — original draft tells a reader almost nothing; \"first\ndraft of sections 2-4 generated from our outline, then substantially\nrestructured by the authors\" tells them exactly what to weigh.\n\nJudgment call the source doesn't fully specify: SIFA is a self-report\ntool, and so is this skill. It structures what the team says happened; it\nhas no way to detect an omitted tool or an understated rating. The output\ntherefore states that it is a self-declaration on its face."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "Only roles that apply to the work are listed — but every role where *any*\nAI involvement occurred must appear, including ones the team considers\ntrivial (\"it just fixed our grammar\" is a Writing — review & editing\ndisclosure). The scale is SIFA's: 0 = none, 1 = some, 2 = extensive.\n\n```markdown\n# SIFA Declaration — <work title>\n\n**Human authors accountable for this work:** <names — accountability for\nevery role below, including AI-assisted ones, rests with these people>\n**AI tools used anywhere in the work:** <tool + version/model, one line\neach; \"none\" for a clean-hands declaration is also a valid output>\n**Declaration basis:** Self-reported by the authors on <date>. This\nstatement records the authors' own account; it is a disclosure, not an\nexternal audit."
+        },
+        {
+          "heading": "Role-by-role declaration",
+          "markdown": "| CRediT role | Human contributor(s) | AI tool | AI involvement (0-2) | Audit note |\n|---|---|---|---|---|\n| <role> | <names> | <tool or —> | <0/1/2> | <what the tool concretely did, and what the humans did around it> |\n\n<one row per applicable role; roles with no AI involvement and no\nambiguity may be grouped in a single 0 row for brevity>"
+        },
+        {
+          "heading": "Roles not applicable to this work",
+          "markdown": "<CRediT roles omitted and why, one line — so an omission reads as a\njudgment, not an oversight>"
+        },
+        {
+          "heading": "What the humans remain accountable for",
+          "markdown": "<one short paragraph: the claims, analysis, and errors in this work are\nthe named authors' responsibility regardless of the tool ratings above>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**AI use account (user-supplied, condensed):** \"Two of us designed the\nmarket-vendor savings study. I used Claude to sweep the deposit-behaviour\nliterature and it drafted the report's background section, which Amara\nrewrote. Amara ran the diagnostic interviews herself. Analysis was ours\nin R, though I had the model debug two scripts. It also made the first\nversion of two charts. Oh, and it tightened the whole report's grammar at\nthe end.\" *(Illustrative — continues the catalogue's running example; not\na real declaration.)*\n\n```markdown\n# SIFA Declaration — Market-vendor mobile savings study, final report\n\n**Human authors accountable for this work:** J. Okello, A. Diallo\n**AI tools used anywhere in the work:** Claude (Anthropic, Sonnet-class\nmodel, 2026 releases)\n**Declaration basis:** Self-reported by the authors on 2026-08-07. This\nstatement records the authors' own account; it is a disclosure, not an\nexternal audit."
+        },
+        {
+          "heading": "Role-by-role declaration",
+          "markdown": "| CRediT role | Human contributor(s) | AI tool | AI involvement (0-2) | Audit note |\n|---|---|---|---|---|\n| Conceptualization | Okello, Diallo | — | 0 | Study question and design set by the authors before any tool use. |\n| Investigation | Diallo | — | 0 | All diagnostic interviews conducted and coded by Diallo in person. |\n| Data curation / Formal analysis | Okello | Claude | 1 | Analysis specified and run by Okello in R; Claude debugged two analysis scripts. No analytic decisions delegated. |\n| Visualization | Okello | Claude | 2 | First drafts of Figures 2-3 generated by Claude from the cleaned data; Okello set the chart types and corrected axis scaling before inclusion. |\n| Writing — original draft | Diallo | Claude | 2 | Background section first-drafted by Claude from Okello's literature sweep prompts, then substantially rewritten by Diallo; all other sections human-drafted. |\n| Writing — review & editing | Okello, Diallo | Claude | 1 | Full-report grammar and consistency pass by Claude; accepted line-by-line by the authors. |"
+        },
+        {
+          "heading": "Roles not applicable to this work",
+          "markdown": "Funding acquisition, Project administration, Resources, Software,\nSupervision — two-person unfunded pilot with no standing software output;\nValidation is folded into Formal analysis above."
+        },
+        {
+          "heading": "What the humans remain accountable for",
+          "markdown": "Every claim, effect estimate, and error in this report is the\nresponsibility of Okello and Diallo, including content first drafted or\ndebugged by the tool ratings above.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **The vague-virtue declaration.** Audit notes like \"AI was used\n  responsibly throughout\" rate everything a 1 and explain nothing. The\n  note's test: could a skeptical reader tell what the tool concretely\n  produced versus what the humans produced? If not, the declaration is\n  reassurance, not disclosure.\n- **Laundering through the scale.** Rating extensive first-drafting as\n  \"1 — some\" because 2 feels embarrassing. The scale anchors are SIFA's,\n  not the team's comfort: if the tool produced the first version of the\n  artifact, that role is a 2 no matter how heavily it was edited after.\n- **The AI as author.** Listing the tool in the contributor column, or\n  writing audit notes in which the tool \"decided\" or \"concluded.\" SIFA's\n  accountability principle is the opposite: tools appear only inside\n  roles a named human answers for.\n- **Trivial-use omission.** Dropping the grammar pass or a debugged\n  script because \"that's not really AI use.\" Any role the tool touched\n  appears in the table — small ratings with honest notes are exactly what\n  makes the big ratings credible.\n- **Treating the output as verification.** This is self-report. A team\n  that omits a tool produces a clean-looking declaration; nothing in this\n  skill can catch that, which is why the declaration-basis line is\n  mandatory and unhedged.\n- **Out of scope: policy rulings.** An input like \"declare our AI use in\n  a way that will pass the journal's policy\" asks the declaration to\n  answer an acceptability question. Structure what happened; whether it\n  passes is the journal's call, and shading notes toward a desired ruling\n  is the failure the tool exists to prevent."
+        }
+      ],
+      "changelog": []
+    },
+    {
       "slug": "values-affirmation-drafter",
       "name": "values-affirmation-drafter",
       "title": "Values-Affirmation Drafter",
@@ -1370,6 +1615,13 @@
         "stage": "define"
       },
       {
+        "id": "lever-content-drafter",
+        "kind": "skill",
+        "label": "Lever Content Drafter",
+        "category": "intervention-design",
+        "stage": "design"
+      },
+      {
         "id": "prior-intervention-post-mortem-reader",
         "kind": "skill",
         "label": "Prior Intervention Post-Mortem Reader",
@@ -1382,6 +1634,13 @@
         "label": "Researcher Bias Self-Audit",
         "category": "researcher-calibration",
         "stage": "prepare"
+      },
+      {
+        "id": "sifa-declaration-drafter",
+        "kind": "skill",
+        "label": "SIFA Declaration Drafter",
+        "category": "research-transparency",
+        "stage": "report"
       },
       {
         "id": "values-affirmation-drafter",
@@ -1404,6 +1663,11 @@
         "id": "external:researcher_assumption_statement",
         "kind": "external-input",
         "label": "Researcher assumption statement"
+      },
+      {
+        "id": "external:ai_use_account",
+        "kind": "external-input",
+        "label": "AI use account"
       },
       {
         "id": "external:affirmation_context_statement",
@@ -1468,6 +1732,16 @@
         "via": "audience_context_brief"
       },
       {
+        "from": "intervention-lever-selector",
+        "to": "lever-content-drafter",
+        "via": "intervention_lever_brief"
+      },
+      {
+        "from": "context-and-audience-mapper",
+        "to": "lever-content-drafter",
+        "via": "audience_context_brief"
+      },
+      {
         "from": "external:prior_intervention_record",
         "to": "prior-intervention-post-mortem-reader",
         "via": "prior_intervention_record"
@@ -1481,6 +1755,11 @@
         "from": "prior-intervention-post-mortem-reader",
         "to": "researcher-bias-self-audit",
         "via": "intervention_post_mortem_brief"
+      },
+      {
+        "from": "external:ai_use_account",
+        "to": "sifa-declaration-drafter",
+        "via": "ai_use_account"
       },
       {
         "from": "external:affirmation_context_statement",
@@ -1498,6 +1777,18 @@
         "type": "evaluation_design_brief",
         "producedBy": [
           "evaluation-design-scoper"
+        ]
+      },
+      {
+        "type": "intervention_content_draft",
+        "producedBy": [
+          "lever-content-drafter"
+        ]
+      },
+      {
+        "type": "sifa_declaration",
+        "producedBy": [
+          "sifa-declaration-drafter"
         ]
       },
       {

@@ -67,12 +67,33 @@ The three entries this doc used to list here are now built:
 
 All three are visible on the site's [Workflow Builder](site/workflow.html).
 
+## The delivery and disclosure gaps — built
+
+- **[lever-content-drafter](skills/lever-content-drafter)** — the
+  "message/content drafter for a selected lever" entry below, built:
+  turns the concrete behaviour change technique named by
+  `intervention-lever-selector` into the literal message, script,
+  signage, or interface copy a field team would deliver, with a fidelity
+  trace back to the technique's BCTTv1 definition. Category
+  `intervention-design`, stage `design`. Optionally consumes
+  `context-and-audience-mapper`'s brief for channel and timing.
+- **[sifa-declaration-drafter](skills/sifa-declaration-drafter)** —
+  structures a team's raw account of how a piece of work was produced
+  into a [SIFA](https://mareikeschomerus-ctrl.github.io/sIfA/)
+  declaration: AI involvement per CRediT contributor role, on SIFA's
+  none/some/extensive scale, with audit notes. First skill in the new
+  `research-transparency` category and the new `report` stage.
+
 ## Also worth considering (not yet scoped)
 
-- **Message/content drafter for a selected lever** — `intervention-lever-selector`
-  names a concrete behaviour change technique; nothing yet turns that
-  technique into the actual message, script, or interface copy a field
-  team would deliver.
+- **Org-preset workflows in the Workflow Builder** — the builder
+  currently starts from a blank canvas. A preset picker ("start from the
+  Irrational Labs-style flow", "start from the Behavioural Insights
+  Team-style flow") could pre-load a named organisation's typical skill
+  sequence as a starting arrangement, which the user then edits. Needs a
+  small data format for presets (ordered skill slugs + a one-line
+  rationale per step) and someone to source each org's actual published
+  process rather than guessing it.
 - **Measurement feasibility check specific to a chosen data source** —
   `evaluation-design-scoper` checks whether a primary outcome is
   collectible in principle; a deeper skill could pilot-test an actual data

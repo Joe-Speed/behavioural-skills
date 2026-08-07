@@ -127,6 +127,8 @@ isn't stale) on every pull request.
 | [values-affirmation-drafter](skills/values-affirmation-drafter) | Intervention Design | Design | an affirmation context statement (user-supplied), optionally an audience & context brief | a values-affirmation script |
 | [evaluation-design-scoper](skills/evaluation-design-scoper) | Measurement | Test | a target behaviour brief, optionally COM-B barrier hypotheses and an intervention lever brief | an evaluation design brief |
 | [prior-intervention-post-mortem-reader](skills/prior-intervention-post-mortem-reader) | Risk & Pre-Mortem | Prepare | a prior intervention record (user-supplied) | an intervention post-mortem brief |
+| [lever-content-drafter](skills/lever-content-drafter) | Intervention Design | Design | an intervention lever brief, optionally an audience & context brief | an intervention content draft |
+| [sifa-declaration-drafter](skills/sifa-declaration-drafter) | Research Transparency | Report | an AI use account (user-supplied) | a SIFA declaration |
 
 `comb-barrier-decomposer` consumes `key-behaviour-definer`'s output, which
 in turn optionally consumes both `evidence-base-scoper`'s and
@@ -134,7 +136,9 @@ in turn optionally consumes both `evidence-base-scoper`'s and
 optionally consumes `prior-intervention-post-mortem-reader`'s output and
 optionally feeds `comb-barrier-decomposer`; `intervention-lever-selector`
 consumes one field-confirmed hypothesis from `comb-barrier-decomposer`;
-and `evaluation-design-scoper` consumes `key-behaviour-definer`'s output,
+`lever-content-drafter` consumes `intervention-lever-selector`'s output,
+optionally alongside `context-and-audience-mapper`'s; and
+`evaluation-design-scoper` consumes `key-behaviour-definer`'s output,
 optionally alongside `comb-barrier-decomposer`'s and
 `intervention-lever-selector`'s. This chain is derived automatically by
 `scripts/build-index.js` from the skills' frontmatter, not hand-wired —
