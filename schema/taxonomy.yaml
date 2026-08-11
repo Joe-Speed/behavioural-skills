@@ -237,6 +237,86 @@ io_types:
       authors.
     user_suppliable: false
 
+  - id: ai_product_account
+    label: AI product account
+    description: >-
+      A team's plain-language account of an AI product: what it does and
+      for whom, the development outcome it ultimately targets, its current
+      maturity (prototype, piloted, deployed, scaling), what evaluation
+      evidence already exists at each level, and the decision the team is
+      trying to inform next.
+    user_suppliable: true
+
+  - id: ai_eval_level_recommendation
+    label: AI evaluation level recommendation
+    description: >-
+      A stage-matched recommendation, per level of The Agency Fund's
+      four-level AI evaluation framework, of which evaluations this product
+      has earned now, which are premature and why, what evidence each
+      recommended evaluation would produce, and which evaluability-early
+      steps (holdouts, staged rollouts, version tagging) to take
+      immediately regardless.
+    user_suppliable: false
+
+  - id: user_funnel_map
+    label: User funnel map
+    description: >-
+      A staged user funnel worked backward from one development outcome —
+      recruitment, onboarding, engagement, retention, proximal outcome,
+      development outcome — with, per stage: the user action that counts
+      as entering the stage, the confirming metric, a target value or
+      transition rate, and a named owner.
+    user_suppliable: false
+
+  - id: funnel_metric_readout
+    label: Funnel metric readout
+    description: >-
+      A team's actual observed numbers for an existing user funnel: the
+      measured value or stage-to-stage transition rate for each funnel
+      stage over a stated time window, plus any known data-quality caveats
+      (instrumentation gaps, definition changes mid-window).
+    user_suppliable: true
+
+  - id: funnel_weak_link_hypotheses
+    label: Funnel weak-link hypotheses
+    description: >-
+      For the funnel's largest unexplained drop-off: competing, testable
+      mechanism hypotheses for why users fall out at that stage, each
+      paired with the measurement or experiment that would discriminate it
+      from the others — not a redesign proposal.
+    user_suppliable: false
+
+  - id: golden_dataset_spec
+    label: Golden dataset specification
+    description: >-
+      A build specification for a golden evaluation dataset for one AI
+      product: coverage plan across knowledge, implementation,
+      personalization, and stress-test query buckets; sourcing rules for
+      real user queries; ideal-response authoring rules tied to the
+      product's knowledge base and guardrails; and the scoring plan that
+      will consume it.
+    user_suppliable: false
+
+  - id: experiment_intent_statement
+    label: Experiment intent statement
+    description: >-
+      A team's plain-language statement of what they want to test: the
+      change or variant they are considering, who it would apply to, what
+      they expect it to move, and the decision the result will inform —
+      given before any experiment design exists.
+    user_suppliable: true
+
+  - id: experiment_configuration_brief
+    label: Experiment configuration brief
+    description: >-
+      A launch-ready experiment configuration: hypothesis, experiment type,
+      randomization unit and arms, primary and guardrail metrics with
+      direction, power inputs (baseline, minimum effect, sample and
+      duration), stopping rule, and analysis plan — specified concretely
+      enough to enter into an experimentation tool without further design
+      decisions.
+    user_suppliable: false
+
   - id: intervention_post_mortem_brief
     label: Intervention post-mortem brief
     description: >-

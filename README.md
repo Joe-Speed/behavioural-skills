@@ -129,6 +129,11 @@ isn't stale) on every pull request.
 | [prior-intervention-post-mortem-reader](skills/prior-intervention-post-mortem-reader) | Risk & Pre-Mortem | Prepare | a prior intervention record (user-supplied) | an intervention post-mortem brief |
 | [lever-content-drafter](skills/lever-content-drafter) | Intervention Design | Design | an intervention lever brief, optionally an audience & context brief | an intervention content draft |
 | [sifa-declaration-drafter](skills/sifa-declaration-drafter) | Research Transparency | Report | an AI use account (user-supplied) | a SIFA declaration |
+| [ai-eval-level-matcher](skills/ai-eval-level-matcher) | Measurement | Test | an AI product account (user-supplied), optionally a user funnel map | an AI evaluation level recommendation |
+| [user-funnel-builder](skills/user-funnel-builder) | Measurement | Define | an AI product account (user-supplied), optionally an audience & context brief | a user funnel map |
+| [funnel-weak-link-diagnoser](skills/funnel-weak-link-diagnoser) | Diagnosis | Diagnose | a user funnel map and a funnel metric readout (user-supplied) | funnel weak-link hypotheses |
+| [golden-dataset-designer](skills/golden-dataset-designer) | Measurement | Measure | an AI product account (user-supplied) | a golden dataset specification |
+| [evidential-experiment-designer](skills/evidential-experiment-designer) | Measurement | Test | an experiment intent statement (user-supplied), optionally funnel weak-link hypotheses and an evaluation design brief | an experiment configuration brief |
 
 `comb-barrier-decomposer` consumes `key-behaviour-definer`'s output, which
 in turn optionally consumes both `evidence-base-scoper`'s and

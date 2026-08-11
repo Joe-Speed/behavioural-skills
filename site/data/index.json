@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T09:37:22.360Z",
+  "generatedAt": "2026-08-11T07:55:50.609Z",
   "taxonomy": {
     "categories": [
       {
@@ -192,6 +192,54 @@
         "user_suppliable": false
       },
       {
+        "id": "ai_product_account",
+        "label": "AI product account",
+        "description": "A team's plain-language account of an AI product: what it does and for whom, the development outcome it ultimately targets, its current maturity (prototype, piloted, deployed, scaling), what evaluation evidence already exists at each level, and the decision the team is trying to inform next.",
+        "user_suppliable": true
+      },
+      {
+        "id": "ai_eval_level_recommendation",
+        "label": "AI evaluation level recommendation",
+        "description": "A stage-matched recommendation, per level of The Agency Fund's four-level AI evaluation framework, of which evaluations this product has earned now, which are premature and why, what evidence each recommended evaluation would produce, and which evaluability-early steps (holdouts, staged rollouts, version tagging) to take immediately regardless.",
+        "user_suppliable": false
+      },
+      {
+        "id": "user_funnel_map",
+        "label": "User funnel map",
+        "description": "A staged user funnel worked backward from one development outcome — recruitment, onboarding, engagement, retention, proximal outcome, development outcome — with, per stage: the user action that counts as entering the stage, the confirming metric, a target value or transition rate, and a named owner.",
+        "user_suppliable": false
+      },
+      {
+        "id": "funnel_metric_readout",
+        "label": "Funnel metric readout",
+        "description": "A team's actual observed numbers for an existing user funnel: the measured value or stage-to-stage transition rate for each funnel stage over a stated time window, plus any known data-quality caveats (instrumentation gaps, definition changes mid-window).",
+        "user_suppliable": true
+      },
+      {
+        "id": "funnel_weak_link_hypotheses",
+        "label": "Funnel weak-link hypotheses",
+        "description": "For the funnel's largest unexplained drop-off: competing, testable mechanism hypotheses for why users fall out at that stage, each paired with the measurement or experiment that would discriminate it from the others — not a redesign proposal.",
+        "user_suppliable": false
+      },
+      {
+        "id": "golden_dataset_spec",
+        "label": "Golden dataset specification",
+        "description": "A build specification for a golden evaluation dataset for one AI product: coverage plan across knowledge, implementation, personalization, and stress-test query buckets; sourcing rules for real user queries; ideal-response authoring rules tied to the product's knowledge base and guardrails; and the scoring plan that will consume it.",
+        "user_suppliable": false
+      },
+      {
+        "id": "experiment_intent_statement",
+        "label": "Experiment intent statement",
+        "description": "A team's plain-language statement of what they want to test: the change or variant they are considering, who it would apply to, what they expect it to move, and the decision the result will inform — given before any experiment design exists.",
+        "user_suppliable": true
+      },
+      {
+        "id": "experiment_configuration_brief",
+        "label": "Experiment configuration brief",
+        "description": "A launch-ready experiment configuration: hypothesis, experiment type, randomization unit and arms, primary and guardrail metrics with direction, power inputs (baseline, minimum effect, sample and duration), stopping rule, and analysis plan — specified concretely enough to enter into an experimentation tool without further design decisions.",
+        "user_suppliable": false
+      },
+      {
         "id": "intervention_post_mortem_brief",
         "label": "Intervention post-mortem brief",
         "description": "A structured retrospective distinguishing what was planned from what was actually implemented, classifying the outcome as an implementation failure or an idea failure, and checking the team's causal story against what data was actually collected — not a recommendation of what to do next.",
@@ -200,6 +248,121 @@
     ]
   },
   "skills": [
+    {
+      "slug": "ai-eval-level-matcher",
+      "name": "ai-eval-level-matcher",
+      "title": "AI Eval Level Matcher",
+      "description": "Use when a team runs an AI product aimed at a social-sector outcome and must decide what evaluation to run next — or when a funder is asking for impact evidence and the team needs a principled answer to \"is an RCT premature for us?\". Invoke it when evaluation effort is being allocated by pressure (\"the board wants impact numbers\") rather than by what the product has actually earned. Do not invoke to design the chosen evaluation itself — that is evidential-experiment-designer for rapid experiments or evaluation-design-scoper for outcome measurement plans — and do not invoke for products with no AI component; the level definitions assume model behaviour is itself something to evaluate.",
+      "category": "measurement",
+      "stage": "test",
+      "evidence_base": [
+        {
+          "framework": "The Agency Fund AI Evaluation Playbook (four-level framework)",
+          "citation": "Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., & Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook. The Agency Fund. Living document, Apache-2.0.",
+          "url": "https://eval.playbook.org.ai/"
+        },
+        {
+          "framework": "Four-level AI evaluation framework for the development sector",
+          "citation": "Chia, H. S., Carter, S., Abrol, F., Madon, T., On, R., Walsh, J., & Wu, Z. (2025). An AI Evaluation Framework for the Development Sector. The Agency Fund, Center for Global Development, and J-PAL.",
+          "url": "https://www.cgdev.org/blog/ai-evaluation-framework-for-the-development-sector"
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "The framework was built for the development sector — its worked cases are education, health, and agriculture deployments in low- and middle-income countries, so its evidence base is unusually non-WEIRD for this catalogue. The caveats run the other way: the playbook is a 2025 draft/living document, not a validated instrument, and IDinsight's 2026 practitioner review found implementers treat the levels as an initial lens rather than a procedure — expect to exercise judgment at the boundaries, not to read decisions off a chart."
+      },
+      "inputs": [
+        {
+          "type": "ai_product_account",
+          "description": "The team's plain-language account of the product: what it does and for whom, the development outcome it targets, its maturity, what evaluation evidence already exists at each level, and the decision the team is trying to inform next. Honest gaps in — useful recommendation out; a flattering account produces a premature one.",
+          "source": "user",
+          "required": true
+        },
+        {
+          "type": "user_funnel_map",
+          "description": "Optional staged funnel for this product, if user-funnel-builder has already run. When present, use its stages and metrics to judge whether Level 2 evidence actually exists (\"engaging users as intended\" becomes checkable against named stages instead of taken on the team's word).",
+          "source": "skill-output",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "type": "ai_eval_level_recommendation",
+          "description": "Per level of the four-level framework: whether this product has earned that evaluation now, what evidence it would produce, why any premature level is premature, and the evaluability-early steps to take immediately regardless of which levels run."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Matches an AI product's current maturity to the evaluation it has actually\nearned under The Agency Fund's four-level framework — model, product,\nuser, impact — naming which levels to run now, which are premature, plus\nthe evaluability steps to build in early either way."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A team is deciding where the next unit of evaluation effort goes and the\n  candidates span very different costs — another benchmark run, an A/B\n  test, a psychometric survey, a full RCT.\n- A funder or board is requesting impact evidence and the team needs a\n  defensible, framework-grounded account of what evidence the product's\n  stage can support — the playbook's own recommendation is that funders\n  \"match evaluation requirements to the product's development stage,\n  avoiding premature requests for impact evaluations.\"\n- An AI product has strong engagement numbers and someone proposes jumping\n  straight to an RCT with no Level 3 evidence that usage shifts what users\n  think, feel, or do.\n- Do **not** invoke to design the recommended evaluation — hand a Level\n  2/3 recommendation to\n  [evidential-experiment-designer](../evidential-experiment-designer) and\n  a Level 3/4 measurement plan to\n  [evaluation-design-scoper](../evaluation-design-scoper).\n- Do **not** invoke for non-AI programs. The four levels assume there is a\n  model whose behaviour needs evaluating separately from the product\n  around it; for a non-AI intervention, start at\n  [evaluation-design-scoper](../evaluation-design-scoper)."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "The Agency Fund's playbook (Wu et al., 2025; announced jointly with CGD\nand J-PAL in Chia et al., 2025) defines four incremental evaluation\nlevels, each with broadening scope: **Level 1 — model evaluation** (\"Does\nthe AI model produce the desired responses?\"), **Level 2 — product\nevaluation** (\"Does the product facilitate meaningful interactions?\"),\n**Level 3 — user evaluation** (\"Does the product positively support\nusers' thoughts, feelings, and actions?\"), and **Level 4 — impact\nevaluation** (\"Does the product improve development outcomes?\"). The\nframework's central discipline, which this skill operationalizes, is\nstage-matching: Level 1 is cheap and continuous from day one; Level 2\nrequires a deployed product with real users; Level 3 requires Levels 1–2\nto be working; Level 4 is warranted only when Levels 1–3 are strong, the\nteam is preparing to scale, and priors about the treatment effect are\nconfident. The playbook is explicit that a product still in early design,\nwith inconsistent usage or untested mechanism hypotheses, should run\nLevel 3 evaluations instead of an RCT.\n\nTwo further playbook commitments are carried into the output. First,\n*evaluability early*: holdout groups, staged rollouts, version tagging,\nand embedded randomization belong in the product's architecture before a\nLevel 4 evaluation is justified, so the option isn't foreclosed. Second,\n*the social-sector bar*: in the tech sector evaluation typically stops at\nLevels 1–2; here Levels 1–3 are necessary but not sufficient, so \"no\nlevel recommended\" is never a valid output — the recommendation names\nwhat to run now at whatever level fits.\n\nJudgment call the source doesn't fully specify: the playbook gives gates\nin qualitative terms (\"Levels 1–3 are strong\"). This skill requires each\ngate judgment to cite the specific evidence in the `ai_product_account`\n(or `user_funnel_map`) it rests on, so a disagreement about readiness is\na disagreement about named evidence, not adjectives."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "Every level gets a verdict — including levels already satisfied and\nlevels far out of reach — because a skipped row reads as an oversight\ndownstream. Verdicts are one of: **run now**, **continue/monitor**,\n**premature**, **satisfied for this stage**.\n\n```markdown\n# AI Evaluation Level Recommendation\n\n**Product:** <name + one-line description, carried from the account>\n**Development outcome targeted:** <the Level 4 outcome>\n**Decision this recommendation informs:** <what the team will do\ndifferently depending on the answer>"
+        },
+        {
+          "heading": "Level verdicts",
+          "markdown": "| Level | Question | Verdict | Evidence the verdict rests on |\n|---|---|---|---|\n| 1 — Model | Does the model produce the desired responses? | <verdict> | <named evidence from the account, or \"none supplied\"> |\n| 2 — Product | Does the product facilitate meaningful interactions? | <verdict> | <...> |\n| 3 — User | Does it positively support users' thoughts, feelings, actions? | <verdict> | <...> |\n| 4 — Impact | Does it improve the development outcome? | <verdict> | <...> |"
+        },
+        {
+          "heading": "What to run now",
+          "markdown": "<for each \"run now\" level: the concrete evaluation, the method family the\nplaybook prescribes at that level, and the evidence it will produce.\nPoint Level 2/3 experiments at evidential-experiment-designer and\noutcome-measurement planning at evaluation-design-scoper.>"
+        },
+        {
+          "heading": "Why the premature levels are premature",
+          "markdown": "<per premature level: which gate fails, citing the account. This section\nis what the team hands a funder asking for the skipped level.>"
+        },
+        {
+          "heading": "Evaluability-early steps",
+          "markdown": "<holdouts, staged rollout, version tagging, embedded randomization — the\nsteps to take now so higher levels stay possible later. Mandatory even\nwhen Level 4 is far off.>"
+        },
+        {
+          "heading": "What would change this recommendation",
+          "markdown": "<the specific evidence that would move each \"premature\" to \"run now\">\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**AI product account (user-supplied, condensed):** \"MaizeMate is our\nWhatsApp AI assistant answering agronomy questions for smallholder maize\nfarmers in western Kenya; the goal is better yields through timely\ntop-dressing. Piloted with ~1,400 farmers via two cooperatives. We\nbenchmarked answers against an agronomist-written test set last quarter\n(88% rated acceptable); usage is spiky — many farmers ask one question\nand never return. Our funder wants to discuss an RCT at the October\nboard meeting.\" *(Illustrative — not a real program.)*\n\n```markdown\n# AI Evaluation Level Recommendation\n\n**Product:** MaizeMate — WhatsApp AI agronomy assistant for smallholder\nmaize farmers, western Kenya\n**Development outcome targeted:** improved maize yields via timely\ntop-dressing fertilizer application\n**Decision this recommendation informs:** whether to propose an RCT at\nthe October board meeting or a staged alternative"
+        },
+        {
+          "heading": "Level verdicts",
+          "markdown": "| Level | Question | Verdict | Evidence the verdict rests on |\n|---|---|---|---|\n| 1 — Model | Desired responses? | continue/monitor | 88% acceptable on an agronomist-written test set last quarter; no stress-test bucket reported, so safety behaviour unknown |\n| 2 — Product | Meaningful interactions? | run now | account's own description: \"many farmers ask one question and never return\" — engagement is the weak link |\n| 3 — User | Thoughts, feelings, actions? | premature | no evidence usage shifts fertilizer knowledge or intent; but cannot be read until Level 2 stabilizes |\n| 4 — Impact | Yield improvement? | premature | fails all three of the playbook's gates: Levels 2–3 not strong, not preparing to scale, no confident effect priors |"
+        },
+        {
+          "heading": "What to run now",
+          "markdown": "Level 2: an engagement experiment on the one-question-drop-off (e.g.\nproactive check-in variants) — design via evidential-experiment-designer.\nLevel 1, continuing: extend the test set with a stress-test bucket\n(pesticide misuse, out-of-scope medical questions) before any scale-up."
+        },
+        {
+          "heading": "Why the premature levels are premature",
+          "markdown": "Level 4: an RCT on yields now would measure the impact of a product most\nenrolled farmers use once — a null would be uninterpretable (product\nfailure vs. idea failure), which is exactly the premature-RCT case the\nframework warns funders against. Level 3: user-outcome measures are worth\nbuilding (see below) but can't carry weight while retention is this weak."
+        },
+        {
+          "heading": "Evaluability-early steps",
+          "markdown": "Hold out one cooperative's next enrollment cohort from proactive-messaging\nfeatures; tag model + knowledge-base versions in every logged\nconversation; randomize enrollment timing across the waitlist now so a\nfuture Level 4 comparison group exists by design."
+        },
+        {
+          "heading": "What would change this recommendation",
+          "markdown": "Level 3 → run now: 4-week retention stabilizing after the engagement\nexperiments. Level 4 → run now: strong Level 3 evidence that usage shifts\ntop-dressing knowledge and intent, plus a scale decision actually on the\ntable.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Rubber-stamping the pressure.** The account says the funder wants an\n  RCT, and the recommendation obligingly finds Level 4 \"earned.\" The gate\n  evidence column is the tell: if the Level 4 row cites the funder's\n  interest rather than Level 1–3 evidence, the matcher has answered the\n  politics, not the framework.\n- **Reading Level 2 off the team's adjectives.** \"Engagement is strong\"\n  is a claim, not evidence. Without a `user_funnel_map` or named metrics\n  in the account, the verdict must say what it's resting on — and\n  \"founder's impression\" is a legitimate, flag-raising thing to write.\n- **Treating levels as a ladder to climb once.** The playbook's levels\n  are iterative — Level 1 monitoring continues at every later stage, and\n  a product change resets Level 2 questions. A recommendation that reads\n  \"Level 1: done\" has misread the framework.\n- **Skipping evaluability-early because Level 4 is far off.** That\n  section exists precisely for products far from an RCT; omitting it\n  forecloses the option this framework is designed to keep open.\n- **Out of scope: non-AI products.** For a program with no model in the\n  loop, the level distinctions collapse and this skill's output is noise —\n  use evaluation-design-scoper. Also out of scope: ruling on whether the\n  product *should* scale; this skill sequences evidence, it does not make\n  the scale decision."
+        }
+      ],
+      "changelog": []
+    },
     {
       "slug": "comb-barrier-decomposer",
       "name": "comb-barrier-decomposer",
@@ -708,6 +871,327 @@
           "summary": "Tighten output templates and build the two pre-intervention skills"
         }
       ]
+    },
+    {
+      "slug": "evidential-experiment-designer",
+      "name": "evidential-experiment-designer",
+      "title": "Evidential Experiment Designer",
+      "description": "Use when a team has a specific change worth testing — a message variant, an onboarding tweak, a nudge cadence — and intends to run it as a rigorous rapid experiment in Evidential, the open-source experiment engine for nonprofits, but has not yet made the design decisions the tool will demand: experiment type, arms, randomization unit, metrics, power. Invoke it when a weak-link hypothesis or experiment idea is about to be \"just shipped and eyeballed\" instead of randomized. Do not invoke for a full-scale RCT with enumerator-managed arms — Evidential's own docs rule that out; scope it with evaluation-design-scoper and an independent evaluator — and do not invoke to generate the hypothesis itself; that is funnel-weak-link-diagnoser's job.",
+      "category": "measurement",
+      "stage": "test",
+      "evidence_base": [
+        {
+          "framework": "Evidential experiment engine (documentation and design spec)",
+          "citation": "IDinsight & The Agency Fund (2025). Evidential: a free, open-source experiment engine built by and for nonprofits. Documentation and API design specification. Apache-2.0 (backend).",
+          "url": "https://docs.evidential.dev/"
+        },
+        {
+          "framework": "The Agency Fund AI Evaluation Playbook — Repeatable Motion 04, running experiments with rigor and speed",
+          "citation": "Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., & Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Repeatable Motions. The Agency Fund.",
+          "url": "https://eval.playbook.org.ai/motions"
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "Evidential was built for social-sector deployments — its early partners run programs in India and across Africa — so the tooling assumptions are already non-WEIRD-aware (WhatsApp delivery integration, preassigned designs for offline-ish populations). What it does assume is data infrastructure: a BigQuery/Postgres/Redshift warehouse with a clean participant table, and client-side capacity to deliver each arm's treatment. Where those are missing, the design brief this skill produces is a plan for later, not a launch config."
+      },
+      "inputs": [
+        {
+          "type": "experiment_intent_statement",
+          "description": "The team's plain-language statement of what they want to test: the change or variant, who it applies to, what they expect it to move, and the decision the result will inform.",
+          "source": "user",
+          "required": true
+        },
+        {
+          "type": "funnel_weak_link_hypotheses",
+          "description": "Optional diagnosis from funnel-weak-link-diagnoser. When present, the experiment must test a named hypothesis from it — the primary metric is then the funnel transition that hypothesis predicts will move, not a metric chosen fresh.",
+          "source": "skill-output",
+          "required": false
+        },
+        {
+          "type": "evaluation_design_brief",
+          "description": "Optional measurement plan from evaluation-design-scoper. When present, carry its locked primary outcome and minimum effect worth detecting into the metric section instead of inventing new ones — a rapid experiment that quietly redefines the program's locked outcome is the drift that skill exists to prevent.",
+          "source": "skill-output",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "type": "experiment_configuration_brief",
+          "description": "A launch-ready experiment configuration: hypothesis, Evidential experiment type, randomization unit and arms, primary and guardrail metrics with detectable effect, power inputs, stopping rule, delivery integration plan, and analysis plan — plus the decision rule the result feeds."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Turns one testable hypothesis into a launch-ready Evidential experiment\nconfiguration — experiment type, arms, randomization unit, eligibility\nfilters, metrics with a detectable effect, power inputs, stopping rule,\ndelivery integration — specified concretely enough to enter into the tool\nwithout further design decisions."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A change is about to be shipped to everyone at once \"to see if it\n  helps\" when the population, delivery channel, and data warehouse would\n  support randomizing it.\n- [funnel-weak-link-diagnoser](../funnel-weak-link-diagnoser) has\n  produced a surviving hypothesis whose cheapest honest test is an\n  experiment.\n- [ai-eval-level-matcher](../ai-eval-level-matcher) has recommended\n  Level 2 or Level 3 evaluation and the team's experimentation stack is\n  Evidential.\n- A team is staring at Evidential's create-experiment form unsure what\n  half the fields (strata, MDE, balance threshold) should contain — the\n  decisions belong upstream of the form, which is where this skill sits.\n- Do **not** invoke for a full-scale impact RCT. Evidential's docs are\n  explicit: it is \"not built for full-scale Randomized Control Trials\"\n  with enumerator-managed arms and full counterfactuals — that is Level 4\n  territory for [evaluation-design-scoper](../evaluation-design-scoper)\n  plus an independent evaluator.\n- Do **not** invoke to find something to test. An experiment without a\n  mechanism hypothesis produces a significant-or-not answer to a question\n  nobody asked; run the diagnosis first."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Evidential (IDinsight & The Agency Fund, 2025) — the experiment engine\nnamed by the AI Evaluation Playbook's Motion 04 as the tooling that\n\"help[s] teams automate randomization, track real-time results, and\nreduce analysis bottlenecks.\" The design brief mirrors the tool's actual\ndesign spec, so every section lands on a real field rather than a vague\nintention:\n\n- **Experiment type** is Evidential's first fork: `freq_preassigned`\n  (participants sampled from the warehouse and assigned up front, with\n  stratified randomization and a pre-launch balance check),\n  `freq_online` (arms assigned in real time as new participants appear —\n  no stratification, no balance check), and the adaptive family\n  (`mab_online`, `mab_online_dwh`, `cmab_online` — Thompson-sampling\n  bandits that *optimize* allocation rather than estimate effects\n  precisely). The skill's rule of thumb, from the tool's own structure:\n  known finite population → preassigned; open enrollment → online;\n  \"find the best arm cheaply, precise effect size not needed\" → bandit.\n- **Arms** (2–20, optional weights summing to 100), the first arm being\n  control; **eligibility filters** (`includes`/`excludes`/`between` on\n  flagged participant fields); **randomization unit** — individual\n  (`primary_key`) or cluster (`cluster_key` + desired cluster count,\n  for treatments that spill over within groups); **strata** for\n  preassigned designs.\n- **Metrics**: each a flagged numeric/boolean warehouse field with\n  either a relative `metric_pct_change` or absolute `metric_target` to\n  detect; Evidential defaults power to 0.8, alpha to 0.05, and — if the\n  team declines to choose — target effect to baseline × 0.1. This skill\n  treats that last default as a red flag, not a convenience: the\n  detectable effect must come from the program's decision threshold\n  (the `evaluation_design_brief`'s minimum effect worth detecting, when\n  one exists), echoing the same discipline evaluation-design-scoper\n  enforces.\n- **Analysis** is intent-to-treat OLS with strata and pre-treatment\n  outcome values as controls; **delivery is the client's job** —\n  Evidential has no feature flags, it returns assignments (CSV, REST, or\n  webhook) and the program must map each `arm_name` to an actual\n  treatment path (e.g. a WhatsApp journey). An experiment with no\n  delivery mapping randomizes nobody into anything.\n- **Close-out**: Evidential records a `decision` and an `impact` rating\n  per experiment, doubling as the org's experiment registry — so the\n  brief must state the decision rule *before* launch.\n\nJudgment call the sources don't fully specify: guardrail metrics.\nEvidential permits up to 150 metrics; this skill mandates exactly one\nprimary metric plus a small named set of guardrails (metrics that must\n*not* degrade), because a many-primary experiment re-imports the\nwhich-number-moved problem that pre-specification exists to kill."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "```markdown\n# Experiment Configuration Brief\n\n**Hypothesis under test:** <mechanism being tested, carried verbatim from\nthe weak-link hypothesis or intent — not \"variant B is better\">\n**Decision rule:** <what the team will do on a positive, null, or\nnegative result — written before launch>"
+        },
+        {
+          "heading": "Design",
+          "markdown": "| Field | Value | Why |\n|---|---|---|\n| Experiment type | freq_preassigned / freq_online / mab_* | <population + goal rationale> |\n| Randomization unit | individual (primary_key) / cluster (cluster_key) | <spillover reasoning> |\n| Arms | <name + one-line description each; control first; weights if unequal> | |\n| Eligibility filters | <field, relation, value — who is in> | |\n| Strata | <fields, preassigned only> or n/a | |\n| Start / end | <dates> | |"
+        },
+        {
+          "heading": "Metrics",
+          "markdown": "**Primary:** <one warehouse field — for a funnel-sourced hypothesis, the\ntransition it predicts will move> — detectable effect <pct_change or\ntarget>, sourced from <program threshold / evaluation_design_brief>, not\nthe tool's baseline×0.1 default.\n**Guardrails:** <named metrics that must not degrade, with direction>"
+        },
+        {
+          "heading": "Power & stopping",
+          "markdown": "<power (default 0.8), alpha (default 0.05), required n from the power\ncheck vs available n; stopping rule: end_date / target_n / manual — and\nthe commitment not to peek-and-stop early on a p-value>"
+        },
+        {
+          "heading": "Delivery integration",
+          "markdown": "<how each arm becomes a real treatment: the arm_name → delivery-path\nmapping, who builds it, and how assignment is fetched (CSV / REST\nassignment endpoint / webhook). If this section is empty the experiment\ndoes not exist.>"
+        },
+        {
+          "heading": "Analysis plan",
+          "markdown": "<ITT via Evidential's OLS with strata + pre-treatment controls; balance\ncheck expectation for preassigned (or its absence for online, and the\nsmall-sample imbalance risk that implies); who reads results and when>"
+        },
+        {
+          "heading": "Data & ethics notes",
+          "markdown": "<participant table + unique id; no PII in ids; consent/notification\nposture for being experimented on, per org policy>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Inputs (condensed):** MaizeMate's weak-link diagnosis (see\n[funnel-weak-link-diagnoser](../funnel-weak-link-diagnoser)) — log\nanalysis supported H1: onboarded farmers type nothing; they don't know\nwhat to ask. Intent: test a first-question example menu against the\nopen-ended prompt. *(Illustrative — continues the catalogue's running\nexample; not a real program.)*\n\n```markdown\n# Experiment Configuration Brief\n\n**Hypothesis under test:** H1 — onboarded farmers don't engage because\nthe open \"ask me anything\" prompt gives no model of a good first\nquestion; a localized example-question menu will raise\nonboarding→engagement.\n**Decision rule:** ≥8pp lift in week-1 engagement → menu becomes default\nfor all new farmers; null → H1 is weakened, escalate H3 (data cost) to a\ndelivery-model review; negative → keep open prompt, log in registry."
+        },
+        {
+          "heading": "Design",
+          "markdown": "| Field | Value | Why |\n|---|---|---|\n| Experiment type | freq_online | open enrollment — new farmers appear daily; no fixed roster to preassign |\n| Randomization unit | individual (farmer_wa_id) | menu is per-chat; no within-coop spillover expected for a UI prompt |\n| Arms | control: open prompt / treatment: 4-item example menu (county-localized) | 50/50 |\n| Eligibility filters | onboarding_complete includes true; enrollment_date between 2026-08-17 and 2026-10-12 | new onboarders only — existing users have already seen the open prompt |\n| Strata | n/a (online experiments assign without stratification) | |\n| Start / end | 2026-08-17 → 2026-10-12 | |"
+        },
+        {
+          "heading": "Metrics",
+          "markdown": "**Primary:** engaged_week1 (boolean: ≥1 substantive question within 7\ndays of onboarding) — detectable effect: +8pp on a 31% baseline, from\nthe decision rule above, not the default baseline×0.1 (which would be a\nmeaninglessly small 3.1pp for this decision).\n**Guardrails:** setup_completion_rate (must not fall — a menu shown\nmid-onboarding could add friction); guardrail_refusal_rate (must not\nrise — menu items must not bait out-of-scope queries)."
+        },
+        {
+          "heading": "Power & stopping",
+          "markdown": "Power 0.8, alpha 0.05; power check against the participants table says\n~1,100 farmers needed, ~8 weeks of enrollment at current recruitment\nrates — hence the end date. Stopping: end_date; no early stopping on\ninterim p-values (online design has no balance check, so mid-stream\npeeks are doubly untrustworthy at small n)."
+        },
+        {
+          "heading": "Delivery integration",
+          "markdown": "Product lead maps arm_name → WhatsApp flow: assignment fetched per\nfarmer at onboarding-complete via the per-participant assignment\nendpoint; \"menu\" routes to the menu journey, \"control\" to the current\nprompt. Webhook on commit notifies the backend to activate the mapping."
+        },
+        {
+          "heading": "Analysis plan",
+          "markdown": "ITT on engaged_week1 via Evidential's OLS; no strata controls (online);\nresearch lead reads the dashboard at end date, records decision + impact\nin the registry. Small-sample caution: check arm sizes for drift weekly\nsince online assignment carries imbalance risk."
+        },
+        {
+          "heading": "Data & ethics notes",
+          "markdown": "Participants table: farmers view, unique id farmer_wa_id (hashed —\nraw phone numbers must not be the id). Message variants fall under the\nprogram's existing service-improvement consent; no additional data\ncollected beyond standard logs.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Shipping the tool's default effect size.** Accepting baseline × 0.1\n  because the field auto-filled. A detectable effect that no decision\n  hangs on produces a study that is powered, significant, and useless —\n  the same failure evaluation-design-scoper polices, re-imported through\n  a form field.\n- **Bandit envy.** Choosing a bandit because \"adaptive sounds efficient\"\n  when the team needs a defensible effect estimate for a scale decision.\n  Bandits allocate toward winners; they answer \"which arm\" cheaply, not\n  \"how much better, with what confidence.\"\n- **The unmapped arm.** A committed experiment whose treatment arm no\n  system actually delivers — Evidential returns assignments, nothing\n  more, and a missing arm→journey mapping means both arms silently get\n  control. The delivery section's \"if empty, the experiment does not\n  exist\" line is load-bearing.\n- **Individual randomization under spillover.** Randomizing farmers\n  within cooperatives when the treatment travels by word of mouth —\n  contamination shrinks the measured effect toward null. If the\n  treatment is discussable, the unit is the cluster.\n- **Metric sprawl.** Fifteen \"primary-ish\" metrics, one of which will\n  clear p<0.05 by luck. One primary, named guardrails, everything else\n  exploratory-and-labeled — or the registry entry is HARKing bait.\n- **Peeking at online experiments.** Stopping a freq_online experiment\n  the first week the dashboard shows a star — with no balance check and\n  small interim n, that star is noise more often than signal.\n- **Out of scope: no warehouse, no delivery capacity, or Level 4\n  questions.** Without a queryable participant table (or for pure\n  in-person delivery), and for cost-effectiveness-of-the-program\n  questions, this brief can only document aspiration — route\n  infrastructure gaps to the data team and impact questions to\n  evaluation-design-scoper."
+        }
+      ],
+      "changelog": []
+    },
+    {
+      "slug": "funnel-weak-link-diagnoser",
+      "name": "funnel-weak-link-diagnoser",
+      "title": "Funnel Weak-Link Diagnoser",
+      "description": "Use when a user funnel exists, its metrics show where users drop off, and the team is about to jump from \"the number is bad\" straight to a redesign without ever stating why users fall out there. Invoke it when a funnel readout shows a stage transition far below target and the proposed fixes are solutions in search of a diagnosis. Do not invoke without observed funnel numbers — build the funnel first with user-funnel-builder — and do not invoke to diagnose barriers to an offline behaviour outside a product journey; that is comb-barrier-decomposer.",
+      "category": "diagnosis",
+      "stage": "diagnose",
+      "evidence_base": [
+        {
+          "framework": "The Agency Fund AI Evaluation Playbook — Repeatable Motion 03, diagnosing weak links via targeted hypotheses",
+          "citation": "Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., & Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Repeatable Motions. The Agency Fund.",
+          "url": "https://eval.playbook.org.ai/motions"
+        },
+        {
+          "framework": "COM-B model of behaviour",
+          "citation": "Michie, S., van Stralen, M. M., & West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. Implementation Science, 6, 42.",
+          "url": "https://doi.org/10.1186/1748-5908-6-42"
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "The diagnostic move — competing mechanism hypotheses with discriminating tests, instead of a redesign reflex — is method, not culture, and the source playbook's cases are LMIC deployments. The hypothesis space is where WEIRD defaults creep in: explanations drawn from app-market intuitions (notification fatigue, UX friction) crowd out explanations that dominate in other contexts — airtime and data cost, shared handsets, channel trust, literacy and language mismatch. The output template's requirement that at least one hypothesis be non-psychological exists for this reason."
+      },
+      "inputs": [
+        {
+          "type": "user_funnel_map",
+          "description": "The staged funnel this diagnosis runs against — normally user-funnel-builder's output. Stage names, entry actions, and targets are what make a drop-off identifiable at all.",
+          "source": "skill-output",
+          "required": true
+        },
+        {
+          "type": "funnel_metric_readout",
+          "description": "The team's actual observed numbers for this funnel: measured value or transition rate per stage over a stated window, plus known data-quality caveats. The diagnosis targets the largest target-vs-observed gap, not the stage the team already wants to redesign.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "funnel_weak_link_hypotheses",
+          "description": "For the funnel's weakest link: competing, testable mechanism hypotheses for why users fall out at that stage, each paired with the measurement or experiment that would discriminate it from the others — not a redesign proposal."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Locates the weakest stage transition in an observed user funnel, then\nturns \"users drop off there\" into competing, testable mechanism\nhypotheses — each paired with the measurement or experiment that would\ndiscriminate it from the others."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A funnel readout shows a stage far below target and the next team\n  meeting's agenda is a redesign, a new feature, or \"more onboarding\n  messages\" — a fix chosen before any mechanism was named.\n- The team can say *where* users leave (the numbers say so) but answers\n  *why* differently depending on who's asked.\n- An engagement experiment is being planned and needs a hypothesis worth\n  the sample — this skill's output is\n  [evidential-experiment-designer](../evidential-experiment-designer)'s\n  natural input.\n- Do **not** invoke without observed numbers. A funnel with only targets\n  has no weak link yet — run the product, collect a\n  `funnel_metric_readout`, or build the funnel first with\n  [user-funnel-builder](../user-funnel-builder).\n- Do **not** invoke for behaviours outside a product journey (clinic\n  attendance, savings deposits in cash). That diagnosis belongs to\n  [comb-barrier-decomposer](../comb-barrier-decomposer); this skill's\n  stage-transition framing assumes telemetry-visible steps."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Repeatable Motion 03 of The Agency Fund's AI Evaluation Playbook (Wu et\nal., 2025): use funnel drop-off data to generate \"specific, testable\nhypotheses\" about mechanism — the playbook's own examples are \"Is the\nvalue proposition unclear? Are users overwhelmed? Do they mistrust the\nAI?\" — each becoming \"a lens for a focused measurement or experiment.\"\nThe motion sits, in the playbook's words, at the intersection of product\nmanagement and behavioural science, and its discipline is the same one a\nclinician applies: no treatment before a differential diagnosis, and a\ndifferential means *more than one* candidate mechanism held open at once.\n\nCOM-B (Michie et al., 2011) supplies the completeness check on the\nhypothesis space, a judgment call the playbook itself doesn't specify.\nEach candidate mechanism is tagged by whether it locates the failure in\n**capability** (the user can't — literacy, language, digital skill),\n**opportunity** (the context won't let them — cost, connectivity, device\naccess, social permission), or **motivation** (they don't want to —\nunclear value, mistrust, effort not worth it). The tags exist to expose\nlopsidedness: a hypothesis list that is all motivation is usually a team\nprojecting its own product anxieties, and the template requires at least\none opportunity-side (structural, non-psychological) hypothesis for this\nreason.\n\nSecond judgment call: this skill diagnoses the *largest unexplained gap*,\nnot the stage the team is most excited to fix. If the readout's\ndata-quality caveats can explain the gap (an instrumentation change\nmid-window), the honest output says so and diagnoses the next-largest\nreal gap instead."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "Two to four hypotheses. One is not a differential; five means nothing\ngets tested. Each must be falsifiable by the test in its own row.\n\n```markdown\n# Funnel Weak-Link Hypotheses\n\n**Funnel:** <product + funnel name>\n**Readout window:** <dates the numbers cover>\n**Weakest link:** <stage N → N+1: observed X% vs target Y%>\n**Gaps set aside:** <other below-target transitions and why they wait —\nincluding any gap plausibly explained by a data-quality caveat rather\nthan by users>"
+        },
+        {
+          "heading": "Competing hypotheses",
+          "markdown": "| # | Mechanism (why users fall out here) | COM-B locus | What would discriminate it | Cheapest honest test |\n|---|---|---|---|---|\n| H1 | <one mechanism, stated so it can be wrong> | capability / opportunity / motivation | <the observation that separates this from H2/H3> | <measurement or experiment, with the discriminating signal named> |\n| H2 | <...> | <...> | <...> | <...> |\n\n<at least one hypothesis must locate the failure outside users' heads —\ncost, access, device, timing — before any motivational story is accepted>"
+        },
+        {
+          "heading": "What this diagnosis is not",
+          "markdown": "One sentence: no redesign is proposed here; fixes come after a hypothesis\nsurvives its test — via the experiment path\n(evidential-experiment-designer) or intervention design\n(intervention-lever-selector) as appropriate.\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**Inputs (condensed):** MaizeMate's funnel map (see\n[user-funnel-builder](../user-funnel-builder)) and a readout for 6 weeks\nof pilot: recruitment 138/wk (target 120), onboarding 74% (target 70%),\nengagement 31% (target 60%), 4-week retention 22% of the engaged (target\n40%). Caveat noted: the onboarding flow was shortened in week 3.\n*(Illustrative — continues the catalogue's running example; not a real\nprogram.)*\n\n```markdown\n# Funnel Weak-Link Hypotheses\n\n**Funnel:** MaizeMate WhatsApp assistant — yield funnel\n**Readout window:** 2026-06-22 to 2026-08-02\n**Weakest link:** onboarding → engagement: 31% observed vs 60% target\n(retention is also below target but is downstream of this break)\n**Gaps set aside:** retention (22% vs 40%) — deferred until the\nengagement break is understood, since the retained base is currently the\n31% who engaged at all. The week-3 onboarding change does not explain the\nengagement gap: the rate is flat across cohorts before and after."
+        },
+        {
+          "heading": "Competing hypotheses",
+          "markdown": "| # | Mechanism | COM-B locus | What would discriminate it | Cheapest honest test |\n|---|---|---|---|---|\n| H1 | Farmers complete setup, then don't know what to ask — the open \"ask me anything\" prompt gives no model of a good first question | capability | H1 predicts drop-off concentrates on farmers who never send any draft text; H2 predicts sent-but-unanswered attempts | Log analysis: do non-engagers type nothing, or type and abandon? Then A/B a first-question example menu vs the open prompt |\n| H2 | Answers to first questions arrive too slowly or read as generic, so the second question never comes | motivation | Response latency and first-answer length/specificity for engagers vs one-question leavers | Compare first-session transcripts; if separated, A/B a personalized first answer (uses the setup's county + crop stage) vs current |\n| H3 | Data cost: farmers onboard on free cooperative Wi-Fi at enrollment events, then face airtime costs for substantive chat from home | opportunity | H3 predicts drop-off concentrates among farmers onboarded at events vs self-onboarded; engagement clusters near market-day Wi-Fi | Cross-tab engagement by enrollment source; 10 farmer calls asking about data spend |"
+        },
+        {
+          "heading": "What this diagnosis is not",
+          "markdown": "No redesign is proposed here. H1/H2 winners go to\nevidential-experiment-designer as experiment intents; an H3 win is a\ndelivery-model problem no message experiment fixes.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **The single-hypothesis diagnosis.** One mechanism, stated\n  confidently, with a test designed to confirm it. The differential is\n  the method; if only one story was ever on the table, this skill ran as\n  decoration for a decision already made.\n- **All-motivation hypothesis lists.** Every mechanism about desire and\n  trust, none about cost, access, or capability — the classic WEIRD\n  default, and why the template forces one structural hypothesis. Wrong\n  locus means the winning \"fix\" gets A/B-tested against a barrier no\n  message can move.\n- **Diagnosing the pet stage.** The team wants to rebuild onboarding, so\n  onboarding gets diagnosed — while the numbers say the break is\n  elsewhere. The weakest-link line must cite the readout's largest\n  target-vs-observed gap or explicitly justify departing from it.\n- **Mechanism-shaped restatements.** \"Users drop off because they don't\n  engage\" — a tautology wearing a hypothesis costume. The test: does the\n  mechanism column say something the metric didn't already say?\n- **Ignoring the readout's caveats.** Diagnosing a gap manufactured by an\n  instrumentation change. The gaps-set-aside line exists to force this\n  check before farmers get theorized about.\n- **Out of scope: no numbers, or no journey.** Without a readout there is\n  no weak link to find (build and instrument the funnel first); without a\n  product journey the stage framing itself is wrong — use\n  comb-barrier-decomposer."
+        }
+      ],
+      "changelog": []
+    },
+    {
+      "slug": "golden-dataset-designer",
+      "name": "golden-dataset-designer",
+      "title": "Golden Dataset Designer",
+      "description": "Use when an AI product's response quality is being judged by ad-hoc spot checks — someone tries a few prompts and declares it \"pretty good\" — and the team needs a repeatable answer sheet before any model, prompt, or knowledge-base change can be evaluated rather than vibed. Invoke it before shipping a model swap, a rewritten system prompt, or a knowledge-base update with no regression check. Do not invoke to measure whether the product changes its users — that is Level 3 territory (user-funnel-builder, evaluation-design-scoper) — and do not invoke to write the knowledge base or guardrails themselves; this skill specifies the test set that checks them.",
+      "category": "measurement",
+      "stage": "measure",
+      "evidence_base": [
+        {
+          "framework": "The Agency Fund AI Evaluation Playbook — Level 1 model evaluation",
+          "citation": "Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., & Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Level 1: Model Evaluation. The Agency Fund.",
+          "url": "https://eval.playbook.org.ai/level1"
+        },
+        {
+          "framework": "TAF model-evaluation workshop — golden datasets and judge calibration",
+          "citation": "The Agency Fund (2025). Model evaluation workshop materials, AI4GD Midpoint Sprint, Nairobi, June 2025. taf-ai-eval-playbook repository, public/model-eval-case-study.",
+          "url": "https://github.com/agency-fund/taf-ai-eval-playbook"
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "Unusually for this catalogue, the source material is non-WEIRD in origin — the workshop this skill operationalizes was built in Nairobi for LMIC deployments. The caveat is technical rather than cultural: reference-based scoring (semantic-similarity metrics against an ideal answer) is least reliable in exactly the low-resource languages and code-switching registers these products serve, so a golden dataset in Swahili-English mix needs its automated scores calibrated against human judgment before anyone trusts a pass rate."
+      },
+      "inputs": [
+        {
+          "type": "ai_product_account",
+          "description": "The team's account of the product: its domain, who asks it what, in which languages and registers, what its knowledge base covers, and which failures would be harmful rather than merely wrong. The coverage plan is derived from this — especially from what the account says users actually ask.",
+          "source": "user",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "type": "golden_dataset_spec",
+          "description": "A build specification for the product's golden evaluation dataset: coverage plan across knowledge, implementation, personalization, and stress-test buckets; sourcing rules for real queries; ideal-response authoring rules tied to the knowledge base and guardrails; and the scoring plan that will consume it."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Specifies a golden evaluation dataset for one AI product — the query\nbuckets it must cover, where queries come from, who authors each ideal\nresponse under what rules, plus how outputs will be scored against it —\nso model, prompt, or knowledge-base changes get checked against an answer\nsheet instead of impressions."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- Response quality is currently assessed by someone typing a few test\n  prompts after each change (\"vibe checks\" — the playbook's own term for\n  the practice this replaces as the *only* method).\n- A model swap, system-prompt rewrite, or knowledge-base update is about\n  to ship with no way to detect regressions against the previous version.\n- [ai-eval-level-matcher](../ai-eval-level-matcher) has recommended\n  Level 1 evaluation and the team has no gold-standard test set to run.\n- Safety behaviour (refusals, escalations) has never been tested\n  systematically — only noticed anecdotally in logs.\n- Do **not** invoke to measure user outcomes — whether farmers learn,\n  decide, or act differently is Level 3, owned by the funnel's proximal\n  outcome stage and\n  [evaluation-design-scoper](../evaluation-design-scoper).\n- Do **not** invoke to author the knowledge base or guardrail policy\n  itself. The spec references both as inputs to ideal-response authoring;\n  writing them is upstream content work."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Level 1 of The Agency Fund's AI Evaluation Playbook (Wu et al., 2025) and\nits Nairobi model-evaluation workshop materials, which define golden\ndatasets as \"test questions with the correct answers that help you check\nwhether your AI is working properly.\" The workshop's structure is adopted\ndirectly: a golden dataset of query/ideal-response pairs (the workshop's\nfloor is ~40; more for products with broad domains) spanning four\nbuckets — **knowledge** (canonical factual questions), **implementation**\n(procedural \"how do I actually do this\" questions), **personalization**\n(questions whose right answer depends on the user's stated context and\nconstraints), and **stress-test** (queries probing brittleness,\nhallucination under confident-sounding premises, safety, and ethics —\nincluding queries the product must *refuse* per its guardrails).\n\nThe scoring plan follows the playbook's three method families and its\nwarning labels. Reference-based automated metrics (semantic similarity,\ncontextual precision against the golden answer) are cheap and run on\nevery change; rubric-based **LLM-as-judge** scoring covers criteria with\nno single correct phrasing — but the workshop is blunt that LLM judges\n\"typically align with humans only ~50% of the time\" out of the box, so\nthe spec must include a human-calibration step (paired human scores on a\nsample, iterate the judge prompt on discrepancies) before judge scores\nare trusted; and **human annotation** remains the reference standard the\nother two are calibrated against.\n\nJudgment call the source doesn't fully specify: version binding. A golden\nrun is meaningless if nobody knows which model, system prompt, and\nknowledge-base version produced it, so this skill makes the spec name the\nconfig fields every run must record — matching the workshop's own\nconfig-worksheet practice."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "All four buckets are mandatory. A dataset with no stress-test bucket\ntests the product everyone hopes exists, not the one users will poke.\n\n```markdown\n# Golden Dataset Specification\n\n**Product:** <name + one line>\n**Languages/registers covered:** <including code-switching if users mix\nlanguages — the dataset must look like real traffic, not textbook prose>\n**Version binding:** every run records <model id, system-prompt tag,\nknowledge-base tag> alongside scores."
+        },
+        {
+          "heading": "Coverage plan",
+          "markdown": "| Bucket | What it tests | Target count | Query sources |\n|---|---|---|---|\n| Knowledge | canonical factual questions in domain | <n> | <real logs / expert-written / both> |\n| Implementation | procedural guidance users actually need | <n> | <...> |\n| Personalization | answers that must change with user context | <n> | <...> |\n| Stress-test | brittleness, hallucination bait, safety, must-refuse queries | <n> | <guardrail spec + red-team session + logged incidents> |"
+        },
+        {
+          "heading": "Ideal-response authoring rules",
+          "markdown": "<who writes golden answers (domain expert role, not the engineer), what\nthey're written against (knowledge-base version, guardrail spec), and the\nform rules — e.g. must-include facts vs verbatim text; refusal goldens\nquote the guardrail's scripted refusal>"
+        },
+        {
+          "heading": "Scoring plan",
+          "markdown": "<which metric consumes which bucket: reference-based similarity where a\ncanonical answer exists; LLM-judge rubric (criterion, scale) where\nquality is graded — with the mandatory human-calibration step and its\nagreement threshold; human review cadence for stress-test results>"
+        },
+        {
+          "heading": "Refresh triggers",
+          "markdown": "<when the dataset must be extended or re-authored: knowledge-base\nupdates, new observed query patterns, every logged safety incident\nbecomes a stress-test golden>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**AI product account (user-supplied, condensed):** \"MaizeMate answers\nagronomy questions for smallholder maize farmers in western Kenya over\nWhatsApp — mostly in Swahili-English mix, some Luhya. Knowledge base\ncovers maize varieties, planting windows, top-dressing, common pests.\nIt must refuse to advise on restricted pesticides and anything medical.\nWe benchmarked once against an agronomist's test set but it has no\nstress-test questions and we've never re-run it.\" *(Illustrative —\ncontinues the catalogue's running example; not a real program.)*\n\n```markdown\n# Golden Dataset Specification\n\n**Product:** MaizeMate — WhatsApp AI agronomy assistant\n**Languages/registers covered:** Swahili-English code-switched (majority\nof logged traffic), plain Swahili, plain English; 10 Luhya queries to\nsize the gap rather than pretend coverage.\n**Version binding:** every run records model id, system-prompt tag,\nknowledge-base tag."
+        },
+        {
+          "heading": "Coverage plan",
+          "markdown": "| Bucket | What it tests | Target count | Query sources |\n|---|---|---|---|\n| Knowledge | variety selection, planting windows, fertilizer types | 15 | 10 from pilot logs, 5 agronomist-written |\n| Implementation | \"how much CAN per acre\", top-dressing timing steps | 15 | 12 from logs (most common real questions), 3 written |\n| Personalization | same question, different county/rainfall/crop stage from setup data | 10 | written from 5 real user profiles, 2 variants each |\n| Stress-test | banned-pesticide requests, confident wrong premises (\"my maize has rust so I should double-spray, right?\"), medical spillover, prompt-injection attempts | 12 | guardrail spec (6 must-refuse), red-team hour (4), 2 logged incidents |"
+        },
+        {
+          "heading": "Ideal-response authoring rules",
+          "markdown": "Golden answers written by the partner agronomist against knowledge-base\ntag kb-2026-08; engineers may not author agronomy content. Answers list\nmust-include facts and must-not-include claims rather than verbatim text —\nexcept refusal goldens, which quote the guardrail's scripted refusal\nexactly, ending after the single refusal sentence."
+        },
+        {
+          "heading": "Scoring plan",
+          "markdown": "Knowledge + implementation: semantic similarity vs golden answer, with\nthe pass threshold set only after checking score distributions on\ncode-switched queries against human ratings (reference-based metrics\ndegrade off-English). Personalization: LLM-judge rubric \"uses the\nfarmer's stated county and crop stage correctly\" (0–3), calibrated on 30\nhuman-scored pairs; judge adopted only at ≥80% agreement. Stress-test:\nautomated refusal-match plus mandatory human review of every response —\nno automated pass."
+        },
+        {
+          "heading": "Refresh triggers",
+          "markdown": "Every knowledge-base update re-runs the full set before deploy; each\nmonth's top-5 new query patterns become candidate goldens; every safety\nincident in logs becomes a stress-test golden within a week.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **The all-softball dataset.** Queries written by the people who built\n  the knowledge base, phrased the way the knowledge base phrases things.\n  Pass rates soar; real farmers, who ask sideways questions in mixed\n  language, hit failures the set never contained. Sourcing counts from\n  real logs are in the template because of this.\n- **No must-refuse goldens.** A dataset that only checks what the product\n  should say, never what it must decline, will happily green-light a\n  model swap that quietly stopped refusing restricted-pesticide advice.\n- **Trusting the judge uncalibrated.** LLM-judge scores adopted without\n  the human-agreement check — on ~50% baseline alignment, that's a coin\n  flip wearing a rubric. The calibration step is not optional overhead;\n  it is the difference between measurement and theater.\n- **Similarity scores on code-switched text taken at face value.**\n  Reference-based metrics are weakest in exactly this catalogue's\n  deployment languages; a threshold tuned on English goldens silently\n  fails Swahili-English ones. Distribution-check before threshold-set.\n- **The unversioned run.** \"Pass rate dropped to 79%\" — against which\n  model, prompt, and knowledge base? Without version binding the dataset\n  can detect that something changed but never what, which is most of its\n  job.\n- **Out of scope: user outcomes.** A perfect golden pass rate says\n  nothing about whether anyone farms differently. That's the funnel's\n  proximal-outcome stage and Level 3/4 evaluation — pointing a golden\n  dataset at that question is answering \"does the model respond well?\"\n  and calling it impact."
+        }
+      ],
+      "changelog": []
     },
     {
       "slug": "intervention-lever-selector",
@@ -1446,6 +1930,104 @@
       ]
     },
     {
+      "slug": "user-funnel-builder",
+      "name": "user-funnel-builder",
+      "title": "User Funnel Builder",
+      "description": "Use when an AI or digital product targets a development outcome but the path from a user's first contact to that outcome has never been written down as measurable stages — engagement gets reported as one number, or the theory of change lives only in a grant proposal. Invoke it before instrumenting metrics, running engagement experiments, or invoking ai-eval-level-matcher on a product whose \"Level 2 evidence\" would otherwise be vibes. Do not invoke to define a single offline target behaviour — that is key-behaviour-definer — and do not invoke to diagnose why an existing funnel leaks; that is funnel-weak-link-diagnoser.",
+      "category": "measurement",
+      "stage": "define",
+      "evidence_base": [
+        {
+          "framework": "The Agency Fund AI Evaluation Playbook — Repeatable Motion 01, constructing a user funnel across evaluation levels",
+          "citation": "Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., & Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Repeatable Motions. The Agency Fund.",
+          "url": "https://eval.playbook.org.ai/motions"
+        },
+        {
+          "framework": "AI4GD User Funnel and Metrics Playbook",
+          "citation": "On, R., & Madon, T. (2025). AI4GD User Funnel and Metrics Playbook. The Agency Fund, AI for Global Development accelerator. Companion playbook referenced from the AI Evaluation Playbook's Level 2 chapter."
+        }
+      ],
+      "weird_context": {
+        "status": "likely-generalizes",
+        "note": "The funnel structure is accounting, not psychology — it carries no claims about behaviour, and the source playbooks were written for low- and middle-income-country deployments. What does not travel automatically is the instrumentation assumption: stage metrics presume telemetry (message logs, session events) that shared-phone use, intermittent connectivity, and channel switching (a user moving from WhatsApp to calling a hotline) all quietly break. Confirm each stage's confirming metric is observable for this population before trusting funnel numbers."
+      },
+      "inputs": [
+        {
+          "type": "ai_product_account",
+          "description": "The team's plain-language account of the product: what it does, for whom, the development outcome it targets, and how users currently find and use it. The funnel is worked backward from this account's stated outcome.",
+          "source": "user",
+          "required": true
+        },
+        {
+          "type": "audience_context_brief",
+          "description": "Optional context brief, if context-and-audience-mapper has already run. When present, use its decision moment and existing-channels findings to ground the recruitment and onboarding stages in channels this population actually uses, rather than inventing them.",
+          "source": "skill-output",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "type": "user_funnel_map",
+          "description": "A staged funnel worked backward from one development outcome — recruitment, onboarding, engagement, retention, proximal outcome, development outcome — with, per stage: the user action that counts as entering it, the confirming metric, a target value or transition rate, and a named owner."
+        }
+      ],
+      "authors": [
+        "Joe Speed"
+      ],
+      "version": "0.1.0",
+      "sections": [
+        {
+          "heading": "What it does",
+          "markdown": "Works backward from one development outcome to a staged user funnel —\nrecruitment, onboarding, engagement, retention, proximal outcome,\ndevelopment outcome — specifying, per stage, the user action that counts\nas entering it, the metric confirming it, a target transition rate, plus\na named owner."
+        },
+        {
+          "heading": "When to invoke it",
+          "markdown": "- A team reports \"engagement\" as one aggregate number (total messages,\n  DAU) with no account of where users are in the journey from first\n  contact to outcome.\n- A product's theory of change exists only as grant-proposal prose and\n  needs to become, in the playbook's words, \"a measurable, cost-aware\n  program design tool\" before metrics or experiments are built on it.\n- [ai-eval-level-matcher](../ai-eval-level-matcher) needs to judge Level 2\n  evidence and there are no named stages to judge it against.\n- Metrics pipelines are about to be built (the playbook's Motion 02) and\n  need to know which indicators matter per stage.\n- Do **not** invoke to define one offline target behaviour for a non-digital\n  program — that is [key-behaviour-definer](../key-behaviour-definer)'s\n  job, and the funnel's proximal-outcome stage may in fact consume its\n  output.\n- Do **not** invoke to explain why an existing funnel leaks at a\n  particular stage — hand the built funnel plus observed numbers to\n  [funnel-weak-link-diagnoser](../funnel-weak-link-diagnoser)."
+        },
+        {
+          "heading": "What it draws on",
+          "markdown": "Repeatable Motion 01 of The Agency Fund's AI Evaluation Playbook (Wu et\nal., 2025): construct a user funnel across evaluation levels by starting\nfrom the targeted development outcome (Level 4) and working backward\nthrough the proximal user outcome (Level 3) to retention, engagement,\nonboarding, and recruitment (all Level 2), with model-quality monitoring\n(Level 1) running underneath every stage. The motion's stated purpose is\ncarried directly into the output: it \"transforms a generic theory of\nchange into a measurable, cost-aware program design tool.\" The per-stage\nfields — what the program does, what the user must do to count as\nentering the stage, the confirming metric, target values and transition\nrates, and a directly responsible individual — follow the companion\nAI4GD User Funnel and Metrics Playbook (On & Madon, 2025).\n\nTwo constraints this skill enforces that the source states but teams\nskip. First, *entry is a user action, not a program action*: \"we sent\n10,000 SMS invitations\" is program activity; \"farmer sends a first\nmessage\" is a stage entry. Every stage's entry condition must be\nsomething the user does. Second, *the proximal outcome is a real outcome,\nnot more engagement*: the stage before the development outcome must name\na change in the user's knowledge, decision, or behaviour that plausibly\nmediates the outcome — if it's phrased as more usage, the funnel has no\nLevel 3 rung and cannot support user evaluation later.\n\nJudgment call the sources don't fully specify: target transition rates at\nfirst build are usually guesses. This skill requires them anyway — marked\n`provisional` — because a funnel with no targets can't identify a weak\nlink (every stage looks fine when nothing is expected of it), and an\nexplicit guess invites correction where a blank invites nothing."
+        },
+        {
+          "heading": "Output template",
+          "markdown": "All six stages are mandatory. If a stage genuinely doesn't apply (e.g. a\npre-enrolled population with no recruitment), write the stage row with\n\"not applicable\" and the reason — a missing row and a checked non-stage\nmust look different downstream.\n\n```markdown\n# User Funnel Map\n\n**Product:** <name + one line>\n**Development outcome (Level 4):** <the outcome the funnel works backward\nfrom — one outcome; a second outcome is a second funnel>\n**Instrumentation reality check:** <where these metrics will come from,\nand any stage whose metric is not currently observable>"
+        },
+        {
+          "heading": "Stages",
+          "markdown": "| # | Stage | User action that counts as entry | Confirming metric | Target (transition from previous stage) | Owner |\n|---|---|---|---|---|---|\n| 1 | Recruitment | <...> | <...> | <n or % — mark provisional if guessed> | <name/role> |\n| 2 | Onboarding | <...> | <...> | <...> | <...> |\n| 3 | Engagement | <...> | <...> | <...> | <...> |\n| 4 | Retention | <...> | <...> | <...> | <...> |\n| 5 | Proximal outcome (Level 3) | <a knowledge/decision/behaviour change, not more usage> | <...> | <...> | <...> |\n| 6 | Development outcome (Level 4) | <...> | <...> | <...> | <...> |"
+        },
+        {
+          "heading": "Level 1 monitoring underneath the funnel",
+          "markdown": "<the model-quality indicators tracked continuously across all stages —\nresponse quality, safety/guardrail hits — and where they're logged>"
+        },
+        {
+          "heading": "Assumptions this funnel makes",
+          "markdown": "<channel, telemetry, and population assumptions that, if wrong, break a\nstage's metric — each phrased so it can be checked>\n```"
+        },
+        {
+          "heading": "Worked example",
+          "markdown": "**AI product account (user-supplied, condensed):** \"MaizeMate, our\nWhatsApp AI agronomy assistant for smallholder maize farmers in western\nKenya — the goal is better yields through timely top-dressing. Farmers\nhear about it from cooperative SMS blasts and local radio; they message\nit questions and it answers from our agronomy knowledge base.\"\n*(Illustrative — continues the catalogue's running example; not a real\nprogram.)*\n\n```markdown\n# User Funnel Map\n\n**Product:** MaizeMate — WhatsApp AI agronomy assistant\n**Development outcome (Level 4):** improved maize yield via top-dressing\napplied at the correct growth stage\n**Instrumentation reality check:** stages 1–4 from WhatsApp message logs;\nstage 5 requires an in-chat micro-survey that does not exist yet; stage 6\nrequires cooperative harvest records (access unconfirmed)."
+        },
+        {
+          "heading": "Stages",
+          "markdown": "| # | Stage | User action that counts as entry | Confirming metric | Target | Owner |\n|---|---|---|---|---|---|\n| 1 | Recruitment | Farmer sends any first message | new unique senders / week | 120/wk (provisional) | Outreach lead |\n| 2 | Onboarding | Farmer completes the 3-question setup (county, crop stage, plot size) | setup completion rate | 70% of new senders | Product lead |\n| 3 | Engagement | Farmer asks a substantive agronomy question | ≥1 substantive question / week | 60% of onboarded (provisional) | Product lead |\n| 4 | Retention | Farmer returns in a later calendar week | 4-week return rate | 40% (provisional) | Product lead |\n| 5 | Proximal outcome | Farmer correctly identifies their plot's top-dressing window | in-chat 2-item check, correct both | 50% of retained (provisional) | Research lead |\n| 6 | Development outcome | Season yield on registered plot | coop harvest records, kg/acre vs county baseline | +10% (provisional, sponsor threshold unconfirmed) | Research lead |"
+        },
+        {
+          "heading": "Level 1 monitoring underneath the funnel",
+          "markdown": "Weekly golden-set pass rate on the current model + knowledge-base\nversion; guardrail-refusal log reviewed for pesticide-safety and\nout-of-scope medical queries. Version tags on every conversation."
+        },
+        {
+          "heading": "Assumptions this funnel makes",
+          "markdown": "- One WhatsApp number ≈ one farmer (shared handsets would inflate stage 1\n  and corrupt stage 4) — check against cooperative rosters.\n- Farmers will answer an in-chat quiz (stage 5 metric) at meaningful\n  rates — unvalidated.\n- Cooperatives will share plot-level harvest records — unconfirmed with\n  either cooperative.\n```"
+        },
+        {
+          "heading": "Known failure modes",
+          "markdown": "- **Program actions as stage entries.** \"We broadcast on radio\" in the\n  recruitment row. Nothing about the user has happened yet; the funnel\n  then measures the org's activity and reads healthy while no farmer\n  moves. Every entry cell must contain a user's verb.\n- **The engagement-shaped proximal outcome.** Stage 5 written as \"farmer\n  asks 3+ questions\" — that's stage 3 again wearing a hat. If the\n  proximal row names usage, the funnel cannot support Level 3 evaluation,\n  which is most of why it's being built.\n- **Metrics nobody can observe.** A tidy funnel whose stage 5–6 metrics\n  require surveys or records that don't exist. The instrumentation\n  reality-check line is mandatory precisely so an unobservable stage is a\n  named gap, not a discovery during the first readout.\n- **Two outcomes, one funnel.** \"Yield and financial resilience\" at stage\n  6 forks every upstream target. One funnel per outcome; build the second\n  separately if it's real.\n- **Targets omitted as unknowable.** A funnel with blank targets can't\n  flag a weak link. Guess, mark provisional, and let the first\n  funnel_metric_readout correct it.\n- **Out of scope: non-digital single behaviours.** A vaccination-uptake\n  program with no product journey doesn't need six stages — it needs\n  key-behaviour-definer and comb-barrier-decomposer. Forcing funnel\n  structure onto it manufactures stages with no observable metrics."
+        }
+      ],
+      "changelog": []
+    },
+    {
       "slug": "values-affirmation-drafter",
       "name": "values-affirmation-drafter",
       "title": "Values-Affirmation Drafter",
@@ -1585,6 +2167,13 @@
   "graph": {
     "nodes": [
       {
+        "id": "ai-eval-level-matcher",
+        "kind": "skill",
+        "label": "AI Eval Level Matcher",
+        "category": "measurement",
+        "stage": "test"
+      },
+      {
         "id": "comb-barrier-decomposer",
         "kind": "skill",
         "label": "COM-B Barrier Decomposer",
@@ -1611,6 +2200,27 @@
         "label": "Evidence Base Scoper",
         "category": "evidence-scoping",
         "stage": "prepare"
+      },
+      {
+        "id": "evidential-experiment-designer",
+        "kind": "skill",
+        "label": "Evidential Experiment Designer",
+        "category": "measurement",
+        "stage": "test"
+      },
+      {
+        "id": "funnel-weak-link-diagnoser",
+        "kind": "skill",
+        "label": "Funnel Weak-Link Diagnoser",
+        "category": "diagnosis",
+        "stage": "diagnose"
+      },
+      {
+        "id": "golden-dataset-designer",
+        "kind": "skill",
+        "label": "Golden Dataset Designer",
+        "category": "measurement",
+        "stage": "measure"
       },
       {
         "id": "intervention-lever-selector",
@@ -1655,6 +2265,13 @@
         "stage": "report"
       },
       {
+        "id": "user-funnel-builder",
+        "kind": "skill",
+        "label": "User Funnel Builder",
+        "category": "measurement",
+        "stage": "define"
+      },
+      {
         "id": "values-affirmation-drafter",
         "kind": "skill",
         "label": "Values-Affirmation Drafter",
@@ -1662,9 +2279,24 @@
         "stage": "design"
       },
       {
+        "id": "external:ai_product_account",
+        "kind": "external-input",
+        "label": "AI product account"
+      },
+      {
         "id": "external:program_goal_statement",
         "kind": "external-input",
         "label": "Program goal statement"
+      },
+      {
+        "id": "external:experiment_intent_statement",
+        "kind": "external-input",
+        "label": "Experiment intent statement"
+      },
+      {
+        "id": "external:funnel_metric_readout",
+        "kind": "external-input",
+        "label": "Funnel metric readout"
       },
       {
         "id": "external:prior_intervention_record",
@@ -1688,6 +2320,16 @@
       }
     ],
     "edges": [
+      {
+        "from": "external:ai_product_account",
+        "to": "ai-eval-level-matcher",
+        "via": "ai_product_account"
+      },
+      {
+        "from": "user-funnel-builder",
+        "to": "ai-eval-level-matcher",
+        "via": "user_funnel_map"
+      },
       {
         "from": "key-behaviour-definer",
         "to": "comb-barrier-decomposer",
@@ -1722,6 +2364,36 @@
         "from": "external:program_goal_statement",
         "to": "evidence-base-scoper",
         "via": "program_goal_statement"
+      },
+      {
+        "from": "external:experiment_intent_statement",
+        "to": "evidential-experiment-designer",
+        "via": "experiment_intent_statement"
+      },
+      {
+        "from": "funnel-weak-link-diagnoser",
+        "to": "evidential-experiment-designer",
+        "via": "funnel_weak_link_hypotheses"
+      },
+      {
+        "from": "evaluation-design-scoper",
+        "to": "evidential-experiment-designer",
+        "via": "evaluation_design_brief"
+      },
+      {
+        "from": "user-funnel-builder",
+        "to": "funnel-weak-link-diagnoser",
+        "via": "user_funnel_map"
+      },
+      {
+        "from": "external:funnel_metric_readout",
+        "to": "funnel-weak-link-diagnoser",
+        "via": "funnel_metric_readout"
+      },
+      {
+        "from": "external:ai_product_account",
+        "to": "golden-dataset-designer",
+        "via": "ai_product_account"
       },
       {
         "from": "comb-barrier-decomposer",
@@ -1774,6 +2446,16 @@
         "via": "ai_use_account"
       },
       {
+        "from": "external:ai_product_account",
+        "to": "user-funnel-builder",
+        "via": "ai_product_account"
+      },
+      {
+        "from": "context-and-audience-mapper",
+        "to": "user-funnel-builder",
+        "via": "audience_context_brief"
+      },
+      {
         "from": "external:affirmation_context_statement",
         "to": "values-affirmation-drafter",
         "via": "affirmation_context_statement"
@@ -1786,9 +2468,21 @@
     ],
     "terminalOutputs": [
       {
-        "type": "evaluation_design_brief",
+        "type": "ai_eval_level_recommendation",
         "producedBy": [
-          "evaluation-design-scoper"
+          "ai-eval-level-matcher"
+        ]
+      },
+      {
+        "type": "experiment_configuration_brief",
+        "producedBy": [
+          "evidential-experiment-designer"
+        ]
+      },
+      {
+        "type": "golden_dataset_spec",
+        "producedBy": [
+          "golden-dataset-designer"
         ]
       },
       {

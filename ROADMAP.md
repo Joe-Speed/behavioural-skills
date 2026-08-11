@@ -84,16 +84,60 @@ All three are visible on the site's [Workflow Builder](site/workflow.html).
   none/some/extensive scale, with audit notes. First skill in the new
   `research-transparency` category and the new `report` stage.
 
+## The AI-product evaluation gap — built
+
+Five skills incorporating the atomic elements of The Agency Fund's
+[AI Evaluation Playbook](https://eval.playbook.org.ai/) (the four-level
+model/product/user/impact framework published with CGD and J-PAL) and its
+companion experimentation tool
+[Evidential](https://docs.evidential.dev/):
+
+- **[ai-eval-level-matcher](skills/ai-eval-level-matcher)** — the
+  framework's core stage-matching move: which of the four evaluation
+  levels an AI product has actually earned, which are premature, and the
+  evaluability-early steps to take regardless. Category `measurement`,
+  stage `test`.
+- **[user-funnel-builder](skills/user-funnel-builder)** — the playbook's
+  Repeatable Motion 01: one development outcome worked backward into a
+  staged, metric-bearing user funnel. Category `measurement`, stage
+  `define`.
+- **[funnel-weak-link-diagnoser](skills/funnel-weak-link-diagnoser)** —
+  Motion 03: the funnel's worst observed drop-off turned into competing,
+  testable mechanism hypotheses (with a COM-B completeness check), not a
+  redesign. Category `diagnosis`, stage `diagnose`.
+- **[golden-dataset-designer](skills/golden-dataset-designer)** — the
+  playbook's Level 1 workshop artifact: a golden test-set specification
+  across knowledge / implementation / personalization / stress-test
+  buckets, with judge-calibration rules. Category `measurement`, stage
+  `measure` (the first skill at that stage).
+- **[evidential-experiment-designer](skills/evidential-experiment-designer)**
+  — Motion 04 instantiated against Evidential's actual design spec:
+  hypothesis → launch-ready experiment configuration (type, arms,
+  randomization unit, metrics, power, delivery mapping). Category
+  `measurement`, stage `test`. Consumes funnel-weak-link-diagnoser's
+  hypotheses and evaluation-design-scoper's locked outcomes.
+
+Still unbuilt from the same source material: an **LLM-judge rubric
+calibrator** (the workshop's judge-prompt + human-agreement loop as its
+own skill) and an **ETL metrics-pipeline scoper** (Motion 02) — both
+viable next entries if the AI-product chain sees use.
+
 ## Also worth considering (not yet scoped)
 
-- **Org-preset workflows in the Workflow Builder** — the builder
-  currently starts from a blank canvas. A preset picker ("start from the
-  Irrational Labs-style flow", "start from the Behavioural Insights
-  Team-style flow") could pre-load a named organisation's typical skill
-  sequence as a starting arrangement, which the user then edits. Needs a
-  small data format for presets (ordered skill slugs + a one-line
-  rationale per step) and someone to source each org's actual published
-  process rather than guessing it.
+- **Org-preset workflows in the Workflow Builder, sourced from the orgs
+  themselves** — the builder currently starts from a blank canvas. A
+  preset picker ("start from the Irrational Labs-style flow", "start from
+  the Behavioural Insights Team-style flow") could pre-load a named
+  organisation's typical skill sequence as a starting arrangement, which
+  the user then edits. The plan is to ask the organisations directly —
+  Ideas42, Busara, the Behavioural Insights Team, the WHO Behavioural
+  Insights unit, and BIRD Lab are the first targets — to enumerate their
+  own workflows, so each preset is a "pre-approved" sequence the org has
+  actually endorsed rather than a guess reconstructed from their public
+  writing. Needs a small data format for presets (ordered skill slugs + a
+  one-line rationale per step), an outreach note explaining what an org
+  gets out of contributing one, and a provenance field per preset saying
+  who at the org confirmed it and when.
 - **Measurement feasibility check specific to a chosen data source** —
   `evaluation-design-scoper` checks whether a primary outcome is
   collectible in principle; a deeper skill could pilot-test an actual data
