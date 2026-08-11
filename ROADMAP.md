@@ -134,10 +134,9 @@ viable next entries if the AI-product chain sees use.
   Insights unit, and BIRD Lab are the first targets — to enumerate their
   own workflows, so each preset is a "pre-approved" sequence the org has
   actually endorsed rather than a guess reconstructed from their public
-  writing. Needs a small data format for presets (ordered skill slugs + a
-  one-line rationale per step), an outreach note explaining what an org
-  gets out of contributing one, and a provenance field per preset saying
-  who at the org confirmed it and when.
+  writing. The full design — UI placement, preset data format, provenance
+  rules, gap steps, outreach ask, and build order — is written up in
+  [docs/org-preset-workflows.md](docs/org-preset-workflows.md).
 - **Measurement feasibility check specific to a chosen data source** —
   `evaluation-design-scoper` checks whether a primary outcome is
   collectible in principle; a deeper skill could pilot-test an actual data
