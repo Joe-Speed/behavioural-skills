@@ -96,14 +96,16 @@ function loadTaxonomy() {
   return yaml.load(fs.readFileSync(TAXONOMY_PATH, "utf8"));
 }
 
-function loadSkills() {
-  const dirs = fs
+function loadSkillDirs() {
+  return fs
     .readdirSync(SKILLS_DIR, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .sort();
+}
 
-  return dirs.map((dir) => {
+function loadSkills() {
+  return loadSkillDirs().map((dir) => {
     const skillPath = path.join(SKILLS_DIR, dir, "SKILL.md");
     const raw = fs.readFileSync(skillPath, "utf8");
     const { data: frontmatter, content } = matter(raw);
@@ -231,7 +233,10 @@ function writeSharePages(index, dir = SHARE_DIR) {
   for (const skill of index.skills) {
     const title = `${skill.title} — Behavioural Skills`;
     const description = shortDescription(skill);
-    const canonical = `${SITE_BASE_URL}/skill?slug=${skill.slug}`;
+    // Slugs are validated kebab-case, but this lands in HTML attributes on
+    // every share page — encode and escape anyway so the invariant doesn't
+    // rest on a validator this script never runs.
+    const canonical = escapeHtmlAttr(`${SITE_BASE_URL}/skill?slug=${encodeURIComponent(skill.slug)}`);
 
     const html = `<!doctype html>
 <html lang="en">
@@ -243,6 +248,7 @@ function writeSharePages(index, dir = SHARE_DIR) {
   <link rel="canonical" href="${canonical}" />
   <meta name="description" content="${escapeHtmlAttr(description)}" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="${escapeHtmlAttr(title)}" />
   <meta property="og:description" content="${escapeHtmlAttr(description)}" />
   <meta property="og:url" content="${canonical}" />
@@ -261,18 +267,66 @@ function writeSharePages(index, dir = SHARE_DIR) {
   }
 }
 
+// Search engines never see skill?slug= pages (client-rendered) — the sitemap
+// points them at the static share pages instead, which carry real metadata.
+function writeSitemap(index) {
+  const urls = [
+    `${SITE_BASE_URL}/`,
+    `${SITE_BASE_URL}/workflow`,
+    `${SITE_BASE_URL}/whats-new`,
+    `${SITE_BASE_URL}/propose`,
+    ...index.skills.map((skill) => `${SITE_BASE_URL}/s/${encodeURIComponent(skill.slug)}`),
+  ];
+  const xml = [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+    ...urls.map((url) => `  <url><loc>${url}</loc></url>`),
+    `</urlset>`,
+    ``,
+  ].join("\n");
+  fs.writeFileSync(path.join(ROOT, "site", "sitemap.xml"), xml);
+}
+
+// The audience installs these skills into AI agents — llms.txt gives an
+// agent (or a person with one) the whole catalogue as fetchable markdown
+// without cloning the repo. https://llmstxt.org/
+function writeLlmsTxt(index) {
+  const rawBase = "https://raw.githubusercontent.com/Joe-Speed/behavioural-skills/main";
+  const lines = [
+    `# Behavioural Skills`,
+    ``,
+    `> A catalogue of behavioural-science skills — markdown instruction files with`,
+    `> declared inputs, outputs, and evidence bases — designed to be installed into`,
+    `> AI coding agents. Install: \`curl -sSL ${rawBase}/scripts/install.sh | bash -s -- --target . --name <skill>\``,
+    ``,
+    `## Skills`,
+    ``,
+    ...index.skills.map(
+      (skill) => `- [${skill.title}](${rawBase}/skills/${skill.slug}/SKILL.md): ${skill.description.replace(/\s+/g, " ").trim()}`
+    ),
+    ``,
+    `## Optional`,
+    ``,
+    `- [Full catalogue data (JSON)](${SITE_BASE_URL}/data/index.json): every skill's metadata, sections, changelog, and the inter-skill dependency graph`,
+    ``,
+  ];
+  fs.writeFileSync(path.join(ROOT, "site", "llms.txt"), lines.join("\n"));
+}
+
 function main() {
   const index = computeIndex();
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
   fs.writeFileSync(OUT_PATH, JSON.stringify(index, null, 2) + "\n");
   writeSharePages(index);
+  writeSitemap(index);
+  writeLlmsTxt(index);
   console.log(
     `Wrote ${path.relative(ROOT, OUT_PATH)}: ${index.skills.length} skill(s), ${index.graph.edges.length} edge(s), ${index.graph.terminalOutputs.length} terminal output(s).`
   );
-  console.log(`Wrote ${index.skills.length} shareable page(s) to ${path.relative(ROOT, SHARE_DIR)}/.`);
+  console.log(`Wrote ${index.skills.length} shareable page(s) to ${path.relative(ROOT, SHARE_DIR)}/, plus sitemap.xml and llms.txt.`);
 }
 
-module.exports = { computeIndex, OUT_PATH, SHARE_DIR, writeSharePages };
+module.exports = { computeIndex, loadSkillDirs, OUT_PATH, SHARE_DIR, writeSharePages };
 
 if (require.main === module) {
   main();

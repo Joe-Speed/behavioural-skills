@@ -26,7 +26,9 @@ function qs(name) {
 }
 
 function renderError(container, err) {
-  container.innerHTML = `<p class="empty-state">${err.message}</p>`;
+  // <li> when the container is a list — a bare <p> inside a <ul> is invalid.
+  const tag = container.tagName === "UL" || container.tagName === "OL" ? "li" : "p";
+  container.innerHTML = `<${tag} class="empty-state">${escapeHtml(err.message)}</${tag}>`;
   console.error(err);
 }
 
@@ -122,7 +124,11 @@ function renderChangelog(changelog) {
 // terminal always shows a complete (if unrunnable) command rather than
 // disappearing.
 function buildInstallCommand(slugs, platform) {
-  const names = slugs.length > 0 ? slugs.join(",") : "<select-skills>";
+  // Slugs come from our own generated index.json, but this string is pasted
+  // into a shell — restrict to the schema's kebab-case shape so nothing else
+  // can ever ride along.
+  const safeSlugs = slugs.filter((s) => /^[a-z0-9-]+$/.test(s));
+  const names = safeSlugs.length > 0 ? safeSlugs.join(",") : "<select-skills>";
   if (platform === "windows") {
     return `iwr -useb ${INSTALL_RAW_BASE}/scripts/install.ps1 -OutFile install.ps1; ./install.ps1 -Target . -Name ${names}`;
   }
@@ -191,6 +197,14 @@ function bindAdvancedUnfurl(details) {
   summary.addEventListener("click", (evt) => {
     evt.preventDefault();
 
+    // With reduced motion the stylesheet sets `transition: none`, so
+    // transitionend never fires — animating would leave the panel stuck
+    // closed with `open` still true. Snap instead.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      details.open = !details.open;
+      return;
+    }
+
     if (details.open) {
       const startHeight = body.getBoundingClientRect().height;
       body.style.height = `${startHeight}px`;
@@ -244,7 +258,9 @@ function bindInstallPanel(panel, getSlugs) {
     verifySlot.innerHTML = renderTerminal(isWindows ? "dir skills" : "ls skills/", lang);
     bindTerminalCopyButtons(verifySlot);
 
-    if (hint) hint.hidden = slugs.length > 0;
+    // The hint describes a runnable command ("Copy, paste, run"), so it only
+    // applies once at least one skill is in the command.
+    if (hint) hint.hidden = slugs.length === 0;
   }
 
   select.addEventListener("change", refresh);
@@ -310,7 +326,7 @@ function buildCommandPalette(data) {
     <div class="command-palette" role="dialog" aria-modal="true" aria-label="Search skills and pages">
       <input type="text" class="command-palette-input" placeholder="Search skills, or jump to a page…" autocomplete="off" />
       <ul class="command-palette-results"></ul>
-      <p class="command-palette-empty" hidden>No matches.</p>
+      <p class="command-palette-empty" role="status" hidden>No matches.</p>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -371,6 +387,16 @@ function buildCommandPalette(data) {
     window.location.href = url;
   }
 
+  // The input is the only focusable element inside the dialog, so trapping
+  // Tab there is the whole aria-modal contract — without it focus walks
+  // into the page behind the overlay.
+  overlay.addEventListener("keydown", (evt) => {
+    if (evt.key === "Tab") {
+      evt.preventDefault();
+      input.focus();
+    }
+  });
+
   input.addEventListener("input", () => render(input.value));
   input.addEventListener("keydown", (evt) => {
     if (evt.key === "ArrowDown") {
@@ -402,6 +428,7 @@ function buildCommandPalette(data) {
 
 function openCommandPalette() {
   if (!paletteState) return;
+  paletteState.previousFocus = document.activeElement;
   paletteState.overlay.hidden = false;
   paletteState.input.value = "";
   paletteState.render("");
@@ -411,6 +438,9 @@ function openCommandPalette() {
 function closeCommandPalette() {
   if (!paletteState) return;
   paletteState.overlay.hidden = true;
+  if (paletteState.previousFocus && paletteState.previousFocus.focus) {
+    paletteState.previousFocus.focus();
+  }
 }
 
 function bindCommandPalette(data) {

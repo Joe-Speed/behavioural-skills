@@ -29,6 +29,15 @@ jobs:
 
       - run: npm ci
 
+      # The schema/taxonomy invariants (slug shape, https-only evidence URLs)
+      # are what keep the generated site safe — never deploy without them,
+      # even on a direct push to main that skipped CI review.
+      - name: Validate skill frontmatter
+        run: npm run validate
+
+      - name: Site tests
+        run: npm run test:site
+
       - name: Build site index
         run: npm run build
 

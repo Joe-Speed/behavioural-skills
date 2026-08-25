@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11T07:55:50.609Z",
+  "generatedAt": "2026-08-24T09:11:50.798Z",
   "taxonomy": {
     "categories": [
       {
@@ -361,7 +361,13 @@
           "markdown": "- **Rubber-stamping the pressure.** The account says the funder wants an\n  RCT, and the recommendation obligingly finds Level 4 \"earned.\" The gate\n  evidence column is the tell: if the Level 4 row cites the funder's\n  interest rather than Level 1–3 evidence, the matcher has answered the\n  politics, not the framework.\n- **Reading Level 2 off the team's adjectives.** \"Engagement is strong\"\n  is a claim, not evidence. Without a `user_funnel_map` or named metrics\n  in the account, the verdict must say what it's resting on — and\n  \"founder's impression\" is a legitimate, flag-raising thing to write.\n- **Treating levels as a ladder to climb once.** The playbook's levels\n  are iterative — Level 1 monitoring continues at every later stage, and\n  a product change resets Level 2 questions. A recommendation that reads\n  \"Level 1: done\" has misread the framework.\n- **Skipping evaluability-early because Level 4 is far off.** That\n  section exists precisely for products far from an RCT; omitting it\n  forecloses the option this framework is designed to keep open.\n- **Out of scope: non-AI products.** For a program with no model in the\n  loop, the level distinctions collapse and this skill's output is noise —\n  use evaluation-design-scoper. Also out of scope: ruling on whether the\n  product *should* scale; this skill sequences evidence, it does not make\n  the scale decision."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-11",
+          "summary": "Add TAF AI-evaluation and Evidential experiment skills"
+        }
+      ]
     },
     {
       "slug": "comb-barrier-decomposer",
@@ -999,7 +1005,13 @@
           "markdown": "- **Shipping the tool's default effect size.** Accepting baseline × 0.1\n  because the field auto-filled. A detectable effect that no decision\n  hangs on produces a study that is powered, significant, and useless —\n  the same failure evaluation-design-scoper polices, re-imported through\n  a form field.\n- **Bandit envy.** Choosing a bandit because \"adaptive sounds efficient\"\n  when the team needs a defensible effect estimate for a scale decision.\n  Bandits allocate toward winners; they answer \"which arm\" cheaply, not\n  \"how much better, with what confidence.\"\n- **The unmapped arm.** A committed experiment whose treatment arm no\n  system actually delivers — Evidential returns assignments, nothing\n  more, and a missing arm→journey mapping means both arms silently get\n  control. The delivery section's \"if empty, the experiment does not\n  exist\" line is load-bearing.\n- **Individual randomization under spillover.** Randomizing farmers\n  within cooperatives when the treatment travels by word of mouth —\n  contamination shrinks the measured effect toward null. If the\n  treatment is discussable, the unit is the cluster.\n- **Metric sprawl.** Fifteen \"primary-ish\" metrics, one of which will\n  clear p<0.05 by luck. One primary, named guardrails, everything else\n  exploratory-and-labeled — or the registry entry is HARKing bait.\n- **Peeking at online experiments.** Stopping a freq_online experiment\n  the first week the dashboard shows a star — with no balance check and\n  small interim n, that star is noise more often than signal.\n- **Out of scope: no warehouse, no delivery capacity, or Level 4\n  questions.** Without a queryable participant table (or for pure\n  in-person delivery), and for cost-effectiveness-of-the-program\n  questions, this brief can only document aspiration — route\n  infrastructure gaps to the data team and impact questions to\n  evaluation-design-scoper."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-11",
+          "summary": "Add TAF AI-evaluation and Evidential experiment skills"
+        }
+      ]
     },
     {
       "slug": "funnel-weak-link-diagnoser",
@@ -1090,7 +1102,13 @@
           "markdown": "- **The single-hypothesis diagnosis.** One mechanism, stated\n  confidently, with a test designed to confirm it. The differential is\n  the method; if only one story was ever on the table, this skill ran as\n  decoration for a decision already made.\n- **All-motivation hypothesis lists.** Every mechanism about desire and\n  trust, none about cost, access, or capability — the classic WEIRD\n  default, and why the template forces one structural hypothesis. Wrong\n  locus means the winning \"fix\" gets A/B-tested against a barrier no\n  message can move.\n- **Diagnosing the pet stage.** The team wants to rebuild onboarding, so\n  onboarding gets diagnosed — while the numbers say the break is\n  elsewhere. The weakest-link line must cite the readout's largest\n  target-vs-observed gap or explicitly justify departing from it.\n- **Mechanism-shaped restatements.** \"Users drop off because they don't\n  engage\" — a tautology wearing a hypothesis costume. The test: does the\n  mechanism column say something the metric didn't already say?\n- **Ignoring the readout's caveats.** Diagnosing a gap manufactured by an\n  instrumentation change. The gaps-set-aside line exists to force this\n  check before farmers get theorized about.\n- **Out of scope: no numbers, or no journey.** Without a readout there is\n  no weak link to find (build and instrument the funnel first); without a\n  product journey the stage framing itself is wrong — use\n  comb-barrier-decomposer."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-11",
+          "summary": "Add TAF AI-evaluation and Evidential experiment skills"
+        }
+      ]
     },
     {
       "slug": "golden-dataset-designer",
@@ -1191,7 +1209,13 @@
           "markdown": "- **The all-softball dataset.** Queries written by the people who built\n  the knowledge base, phrased the way the knowledge base phrases things.\n  Pass rates soar; real farmers, who ask sideways questions in mixed\n  language, hit failures the set never contained. Sourcing counts from\n  real logs are in the template because of this.\n- **No must-refuse goldens.** A dataset that only checks what the product\n  should say, never what it must decline, will happily green-light a\n  model swap that quietly stopped refusing restricted-pesticide advice.\n- **Trusting the judge uncalibrated.** LLM-judge scores adopted without\n  the human-agreement check — on ~50% baseline alignment, that's a coin\n  flip wearing a rubric. The calibration step is not optional overhead;\n  it is the difference between measurement and theater.\n- **Similarity scores on code-switched text taken at face value.**\n  Reference-based metrics are weakest in exactly this catalogue's\n  deployment languages; a threshold tuned on English goldens silently\n  fails Swahili-English ones. Distribution-check before threshold-set.\n- **The unversioned run.** \"Pass rate dropped to 79%\" — against which\n  model, prompt, and knowledge base? Without version binding the dataset\n  can detect that something changed but never what, which is most of its\n  job.\n- **Out of scope: user outcomes.** A perfect golden pass rate says\n  nothing about whether anyone farms differently. That's the funnel's\n  proximal-outcome stage and Level 3/4 evaluation — pointing a golden\n  dataset at that question is answering \"does the model respond well?\"\n  and calling it impact."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-11",
+          "summary": "Add TAF AI-evaluation and Evidential experiment skills"
+        }
+      ]
     },
     {
       "slug": "intervention-lever-selector",
@@ -2025,7 +2049,13 @@
           "markdown": "- **Program actions as stage entries.** \"We broadcast on radio\" in the\n  recruitment row. Nothing about the user has happened yet; the funnel\n  then measures the org's activity and reads healthy while no farmer\n  moves. Every entry cell must contain a user's verb.\n- **The engagement-shaped proximal outcome.** Stage 5 written as \"farmer\n  asks 3+ questions\" — that's stage 3 again wearing a hat. If the\n  proximal row names usage, the funnel cannot support Level 3 evaluation,\n  which is most of why it's being built.\n- **Metrics nobody can observe.** A tidy funnel whose stage 5–6 metrics\n  require surveys or records that don't exist. The instrumentation\n  reality-check line is mandatory precisely so an unobservable stage is a\n  named gap, not a discovery during the first readout.\n- **Two outcomes, one funnel.** \"Yield and financial resilience\" at stage\n  6 forks every upstream target. One funnel per outcome; build the second\n  separately if it's real.\n- **Targets omitted as unknowable.** A funnel with blank targets can't\n  flag a weak link. Guess, mark provisional, and let the first\n  funnel_metric_readout correct it.\n- **Out of scope: non-digital single behaviours.** A vaccination-uptake\n  program with no product journey doesn't need six stages — it needs\n  key-behaviour-definer and comb-barrier-decomposer. Forcing funnel\n  structure onto it manufactures stages with no observable metrics."
         }
       ],
-      "changelog": []
+      "changelog": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-11",
+          "summary": "Add TAF AI-evaluation and Evidential experiment skills"
+        }
+      ]
     },
     {
       "slug": "values-affirmation-drafter",

@@ -180,8 +180,13 @@
     const dropIndex = targetLi ? Number(targetLi.dataset.index) : steps.length;
 
     if (payload.source === "library") {
+      // Drops can come from outside the page (any drag source can carry
+      // text/plain JSON) — ignore slugs we don't know.
+      if (!skillsBySlug.has(payload.slug)) return;
       addStep(payload.slug, dropIndex);
     } else if (payload.source === "step") {
+      // A forged index would reach splice() — NaN splices at 0.
+      if (!Number.isInteger(payload.index) || payload.index < 0 || payload.index >= steps.length) return;
       const to = payload.index < dropIndex ? dropIndex - 1 : dropIndex;
       moveStep(payload.index, to);
     }

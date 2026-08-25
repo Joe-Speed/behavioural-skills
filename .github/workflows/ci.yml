@@ -26,5 +26,10 @@ jobs:
       - name: Validate skill frontmatter
         run: npm run validate
 
+      # test:site's freshness checks compare the committed generated files
+      # against skills/, so it must run BEFORE build overwrites them.
       - name: Site tests
         run: npm run test:site
+
+      - name: Build site index
+        run: npm run build

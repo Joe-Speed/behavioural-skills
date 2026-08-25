@@ -72,8 +72,15 @@ function checkGraphIntegrity(index) {
 // URLs don't show ".html". A link "exists" here if the literal path does,
 // or (for an extensionless path with no trailing slash) its ".html" file
 // does, mirroring what Pages will actually do.
+// Site-absolute links ("/behavioural-skills/...") are how 404.html reaches
+// assets — GitHub Pages serves it at any URL depth, so relative paths can't
+// work there. They resolve against site/ after stripping the Pages base.
+const PAGES_BASE_PATH = "/behavioural-skills/";
+
 function localLinkExists(baseDir, link) {
-  const resolved = path.join(baseDir, link);
+  const resolved = link.startsWith(PAGES_BASE_PATH)
+    ? path.join(SITE_DIR, link.slice(PAGES_BASE_PATH.length))
+    : path.join(baseDir, link);
   if (fs.existsSync(resolved)) return true;
   if (!link.endsWith("/") && !path.extname(link)) return fs.existsSync(`${resolved}.html`);
   return false;

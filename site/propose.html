@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <title>Behavioural Skills — Propose a Skill</title>
+  <meta name="description" content="Sketch a new behavioural-science skill in the browser — the form opens a pre-filled GitHub issue following the contribution template." />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/propose" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="favicon-64.png" type="image/png" />
@@ -66,11 +68,11 @@
       </label>
       <label>
         Category
-        <select name="category" id="category-select"></select>
+        <select name="category" id="category-select" required></select>
       </label>
       <label>
         Research stage
-        <select name="stage" id="stage-select"></select>
+        <select name="stage" id="stage-select" required></select>
       </label>
       <label>
         What it draws on (framework / paper / evidence base)

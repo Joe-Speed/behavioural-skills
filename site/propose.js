@@ -28,11 +28,14 @@ const GITHUB_REPO = "Joe-Speed/behavioural-skills";
     populateOptions(stageSelect, data.taxonomy.stages);
     bindCommandPalette(data);
   } catch (err) {
-    console.error(err);
+    status.hidden = false;
+    renderError(status, err);
   }
 
   function buildIssueBody(payload) {
     return [
+      `**Proposed name:** \`${payload.name}\``,
+      ``,
       `**What it does:** ${payload.what_it_does}`,
       ``,
       `**Trigger description:**\n${payload.description}`,

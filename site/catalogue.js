@@ -59,24 +59,28 @@
 
   function renderChips(container, items, activeSet) {
     container.innerHTML = "";
-    const allChip = document.createElement("span");
+    const allChip = document.createElement("button");
+    allChip.type = "button";
     allChip.className = "chip" + (activeSet.size === 0 ? " active" : "");
+    allChip.setAttribute("aria-pressed", String(activeSet.size === 0));
     allChip.textContent = "All";
-    allChip.onclick = () => {
+    allChip.addEventListener("click", () => {
       activeSet.clear();
       renderAll();
-    };
+    });
     container.appendChild(allChip);
 
     for (const item of items) {
-      const chip = document.createElement("span");
+      const chip = document.createElement("button");
+      chip.type = "button";
       chip.className = "chip" + (activeSet.has(item.id) ? " active" : "");
+      chip.setAttribute("aria-pressed", String(activeSet.has(item.id)));
       chip.textContent = item.label;
-      chip.onclick = () => {
+      chip.addEventListener("click", () => {
         if (activeSet.has(item.id)) activeSet.delete(item.id);
         else activeSet.add(item.id);
         renderAll();
-      };
+      });
       container.appendChild(chip);
     }
   }
@@ -101,7 +105,7 @@
       card.className = "skill-card";
       card.innerHTML = `
         <label class="skill-card-check">
-          <input type="checkbox" data-slug="${escapeHtml(skill.slug)}" ${selectedSlugs.has(skill.slug) ? "checked" : ""} />
+          <input type="checkbox" aria-label="Select ${escapeHtml(skill.title)} for install" data-slug="${escapeHtml(skill.slug)}" ${selectedSlugs.has(skill.slug) ? "checked" : ""} />
         </label>
         <a class="skill-card-link" href="${skillUrl(skill.slug)}">
           <h3>${escapeHtml(skill.title)}</h3>

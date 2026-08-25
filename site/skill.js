@@ -19,14 +19,14 @@
   document.title = `Behavioural Skills — ${skill.title}`;
   bindCommandPalette(data);
 
-  function producersOf(ioType, excludeSlug) {
+  function producersOf(ioType, consumerSlug) {
     return data.graph.edges
-      .filter((e) => e.via === ioType && e.to === excludeSlug && e.from !== `external:${ioType}`)
+      .filter((e) => e.via === ioType && e.to === consumerSlug && e.from !== `external:${ioType}`)
       .map((e) => e.from);
   }
-  function consumersOf(ioType, excludeSlug) {
+  function consumersOf(ioType, producerSlug) {
     return data.graph.edges
-      .filter((e) => e.via === ioType && e.from === excludeSlug)
+      .filter((e) => e.via === ioType && e.from === producerSlug)
       .map((e) => e.to);
   }
 
@@ -61,6 +61,11 @@
     )
     .join("");
 
+  // marked passes raw HTML tokens through verbatim, and this lands in
+  // innerHTML. The CSP blocks script execution, but an HTML block in a
+  // contributed SKILL.md could still spoof page content (e.g. a fake
+  // install box) — drop raw HTML entirely; skills are pure markdown.
+  marked.use({ renderer: { html: () => "" } });
   const sectionsHtml = (skill.sections || [])
     .map((s) => `<h2>${escapeHtml(s.heading)}</h2>${marked.parse(s.markdown)}`)
     .join("");

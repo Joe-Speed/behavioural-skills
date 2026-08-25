@@ -10,6 +10,7 @@ const yaml = require("js-yaml");
 const matter = require("gray-matter");
 const Ajv2020 = require("ajv/dist/2020");
 const addFormats = require("ajv-formats");
+const { loadSkillDirs } = require("./build-index.js");
 
 const ROOT = path.resolve(__dirname, "..");
 const SKILLS_DIR = path.join(ROOT, "skills");
@@ -26,14 +27,6 @@ function loadTaxonomy() {
     stageIds: new Set(raw.stages.map((s) => s.id)),
     ioTypes: new Map(raw.io_types.map((t) => [t.id, t])),
   };
-}
-
-function loadSkillDirs() {
-  return fs
-    .readdirSync(SKILLS_DIR, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
-    .sort();
 }
 
 function checkFrontmatterShape(fm, dir, validateSchema) {
