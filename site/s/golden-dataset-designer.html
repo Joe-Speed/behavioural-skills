@@ -3,22 +3,256 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Golden Dataset Designer — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=golden-dataset-designer" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/golden-dataset-designer" />
   <meta name="description" content="Specifies a golden evaluation dataset for one AI product — the query buckets it must cover, where queries come from, who authors each ideal response under what rules, plus how outputs will be scored…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Golden Dataset Designer — Behavioural Skills" />
   <meta property="og:description" content="Specifies a golden evaluation dataset for one AI product — the query buckets it must cover, where queries come from, who authors each ideal response under what rules, plus how outputs will be scored…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=golden-dataset-designer" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/golden-dataset-designer" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Golden Dataset Designer — Behavioural Skills" />
   <meta name="twitter:description" content="Specifies a golden evaluation dataset for one AI product — the query buckets it must cover, where queries come from, who authors each ideal response under what rules, plus how outputs will be scored…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=golden-dataset-designer" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=golden-dataset-designer">Golden Dataset Designer</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Golden Dataset Designer</h1>
+      <p class="description">Use when an AI product&#39;s response quality is being judged by ad-hoc spot checks — someone tries a few prompts and declares it &quot;pretty good&quot; — and the team needs a repeatable answer sheet before any model, prompt, or knowledge-base change can be evaluated rather than vibed. Invoke it before shipping a model swap, a rewritten system prompt, or a knowledge-base update with no regression check. Do not invoke to measure whether the product changes its users — that is Level 3 territory (user-funnel-builder, evaluation-design-scoper) — and do not invoke to write the knowledge base or guardrails themselves; this skill specifies the test set that checks them.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=golden-dataset-designer">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Measurement</dd></div>
+      <div><dt>Research stage</dt><dd>Measure</dd></div>
+      <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">Unusually for this catalogue, the source material is non-WEIRD in origin — the workshop this skill operationalizes was built in Nairobi for LMIC deployments. The caveat is technical rather than cultural: reference-based scoring (semantic-similarity metrics against an ideal answer) is least reliable in exactly the low-resource languages and code-switching registers these products serve, so a golden dataset in Swahili-English mix needs its automated scores calibrated against human judgment before anyone trusts a pass rate.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>The Agency Fund AI Evaluation Playbook — Level 1 model evaluation</strong><br>Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., &amp; Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Level 1: Model Evaluation. The Agency Fund. — <a href="https://eval.playbook.org.ai/level1" target="_blank" rel="noopener">source</a></li><li><strong>TAF model-evaluation workshop — golden datasets and judge calibration</strong><br>The Agency Fund (2025). Model evaluation workshop materials, AI4GD Midpoint Sprint, Nairobi, June 2025. taf-ai-eval-playbook repository, public/model-eval-case-study. — <a href="https://github.com/agency-fund/taf-ai-eval-playbook" target="_blank" rel="noopener">source</a></li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>ai_product_account</code><br>The team&#39;s account of the product: its domain, who asks it what, in which languages and registers, what its knowledge base covers, and which failures would be harmful rather than merely wrong. The coverage plan is derived from this — especially from what the account says users actually ask.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>golden_dataset_spec</code><br>A build specification for the product&#39;s golden evaluation dataset: coverage plan across knowledge, implementation, personalization, and stress-test buckets; sourcing rules for real queries; ideal-response authoring rules tied to the knowledge base and guardrails; and the scoring plan that will consume it.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Specifies a golden evaluation dataset for one AI product — the query
+buckets it must cover, where queries come from, who authors each ideal
+response under what rules, plus how outputs will be scored against it —
+so model, prompt, or knowledge-base changes get checked against an answer
+sheet instead of impressions.</p>
+<h2>When to invoke it</h2><ul>
+<li>Response quality is currently assessed by someone typing a few test
+prompts after each change (&quot;vibe checks&quot; — the playbook&#39;s own term for
+the practice this replaces as the <em>only</em> method).</li>
+<li>A model swap, system-prompt rewrite, or knowledge-base update is about
+to ship with no way to detect regressions against the previous version.</li>
+<li><a href="/behavioural-skills/skill?slug=ai-eval-level-matcher">ai-eval-level-matcher</a> has recommended
+Level 1 evaluation and the team has no gold-standard test set to run.</li>
+<li>Safety behaviour (refusals, escalations) has never been tested
+systematically — only noticed anecdotally in logs.</li>
+<li>Do <strong>not</strong> invoke to measure user outcomes — whether farmers learn,
+decide, or act differently is Level 3, owned by the funnel&#39;s proximal
+outcome stage and
+<a href="/behavioural-skills/skill?slug=evaluation-design-scoper">evaluation-design-scoper</a>.</li>
+<li>Do <strong>not</strong> invoke to author the knowledge base or guardrail policy
+itself. The spec references both as inputs to ideal-response authoring;
+writing them is upstream content work.</li>
+</ul>
+<h2>What it draws on</h2><p>Level 1 of The Agency Fund&#39;s AI Evaluation Playbook (Wu et al., 2025) and
+its Nairobi model-evaluation workshop materials, which define golden
+datasets as &quot;test questions with the correct answers that help you check
+whether your AI is working properly.&quot; The workshop&#39;s structure is adopted
+directly: a golden dataset of query/ideal-response pairs (the workshop&#39;s
+floor is ~40; more for products with broad domains) spanning four
+buckets — <strong>knowledge</strong> (canonical factual questions), <strong>implementation</strong>
+(procedural &quot;how do I actually do this&quot; questions), <strong>personalization</strong>
+(questions whose right answer depends on the user&#39;s stated context and
+constraints), and <strong>stress-test</strong> (queries probing brittleness,
+hallucination under confident-sounding premises, safety, and ethics —
+including queries the product must <em>refuse</em> per its guardrails).</p>
+<p>The scoring plan follows the playbook&#39;s three method families and its
+warning labels. Reference-based automated metrics (semantic similarity,
+contextual precision against the golden answer) are cheap and run on
+every change; rubric-based <strong>LLM-as-judge</strong> scoring covers criteria with
+no single correct phrasing — but the workshop is blunt that LLM judges
+&quot;typically align with humans only ~50% of the time&quot; out of the box, so
+the spec must include a human-calibration step (paired human scores on a
+sample, iterate the judge prompt on discrepancies) before judge scores
+are trusted; and <strong>human annotation</strong> remains the reference standard the
+other two are calibrated against.</p>
+<p>Judgment call the source doesn&#39;t fully specify: version binding. A golden
+run is meaningless if nobody knows which model, system prompt, and
+knowledge-base version produced it, so this skill makes the spec name the
+config fields every run must record — matching the workshop&#39;s own
+config-worksheet practice.</p>
+<h2>Output template</h2><p>All four buckets are mandatory. A dataset with no stress-test bucket
+tests the product everyone hopes exists, not the one users will poke.</p>
+<pre><code class="language-markdown"># Golden Dataset Specification
+
+**Product:** &lt;name + one line&gt;
+**Languages/registers covered:** &lt;including code-switching if users mix
+languages — the dataset must look like real traffic, not textbook prose&gt;
+**Version binding:** every run records &lt;model id, system-prompt tag,
+knowledge-base tag&gt; alongside scores.
+</code></pre>
+<h2>Coverage plan</h2><table>
+<thead>
+<tr>
+<th>Bucket</th>
+<th>What it tests</th>
+<th>Target count</th>
+<th>Query sources</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knowledge</td>
+<td>canonical factual questions in domain</td>
+<td></td>
+<td>&lt;real logs / expert-written / both&gt;</td>
+</tr>
+<tr>
+<td>Implementation</td>
+<td>procedural guidance users actually need</td>
+<td></td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>Personalization</td>
+<td>answers that must change with user context</td>
+<td></td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>Stress-test</td>
+<td>brittleness, hallucination bait, safety, must-refuse queries</td>
+<td></td>
+<td>&lt;guardrail spec + red-team session + logged incidents&gt;</td>
+</tr>
+</tbody></table>
+<h2>Ideal-response authoring rules</h2><p>&lt;who writes golden answers (domain expert role, not the engineer), what
+they&#39;re written against (knowledge-base version, guardrail spec), and the
+form rules — e.g. must-include facts vs verbatim text; refusal goldens
+quote the guardrail&#39;s scripted refusal&gt;</p>
+<h2>Scoring plan</h2><p>&lt;which metric consumes which bucket: reference-based similarity where a
+canonical answer exists; LLM-judge rubric (criterion, scale) where
+quality is graded — with the mandatory human-calibration step and its
+agreement threshold; human review cadence for stress-test results&gt;</p>
+<h2>Refresh triggers</h2><p>&lt;when the dataset must be extended or re-authored: knowledge-base
+updates, new observed query patterns, every logged safety incident
+becomes a stress-test golden&gt;
+```</p>
+<h2>Worked example</h2><p><strong>AI product account (user-supplied, condensed):</strong> &quot;MaizeMate answers
+agronomy questions for smallholder maize farmers in western Kenya over
+WhatsApp — mostly in Swahili-English mix, some Luhya. Knowledge base
+covers maize varieties, planting windows, top-dressing, common pests.
+It must refuse to advise on restricted pesticides and anything medical.
+We benchmarked once against an agronomist&#39;s test set but it has no
+stress-test questions and we&#39;ve never re-run it.&quot; <em>(Illustrative —
+continues the catalogue&#39;s running example; not a real program.)</em></p>
+<pre><code class="language-markdown"># Golden Dataset Specification
+
+**Product:** MaizeMate — WhatsApp AI agronomy assistant
+**Languages/registers covered:** Swahili-English code-switched (majority
+of logged traffic), plain Swahili, plain English; 10 Luhya queries to
+size the gap rather than pretend coverage.
+**Version binding:** every run records model id, system-prompt tag,
+knowledge-base tag.
+</code></pre>
+<h2>Coverage plan</h2><table>
+<thead>
+<tr>
+<th>Bucket</th>
+<th>What it tests</th>
+<th>Target count</th>
+<th>Query sources</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knowledge</td>
+<td>variety selection, planting windows, fertilizer types</td>
+<td>15</td>
+<td>10 from pilot logs, 5 agronomist-written</td>
+</tr>
+<tr>
+<td>Implementation</td>
+<td>&quot;how much CAN per acre&quot;, top-dressing timing steps</td>
+<td>15</td>
+<td>12 from logs (most common real questions), 3 written</td>
+</tr>
+<tr>
+<td>Personalization</td>
+<td>same question, different county/rainfall/crop stage from setup data</td>
+<td>10</td>
+<td>written from 5 real user profiles, 2 variants each</td>
+</tr>
+<tr>
+<td>Stress-test</td>
+<td>banned-pesticide requests, confident wrong premises (&quot;my maize has rust so I should double-spray, right?&quot;), medical spillover, prompt-injection attempts</td>
+<td>12</td>
+<td>guardrail spec (6 must-refuse), red-team hour (4), 2 logged incidents</td>
+</tr>
+</tbody></table>
+<h2>Ideal-response authoring rules</h2><p>Golden answers written by the partner agronomist against knowledge-base
+tag kb-2026-08; engineers may not author agronomy content. Answers list
+must-include facts and must-not-include claims rather than verbatim text —
+except refusal goldens, which quote the guardrail&#39;s scripted refusal
+exactly, ending after the single refusal sentence.</p>
+<h2>Scoring plan</h2><p>Knowledge + implementation: semantic similarity vs golden answer, with
+the pass threshold set only after checking score distributions on
+code-switched queries against human ratings (reference-based metrics
+degrade off-English). Personalization: LLM-judge rubric &quot;uses the
+farmer&#39;s stated county and crop stage correctly&quot; (0–3), calibrated on 30
+human-scored pairs; judge adopted only at ≥80% agreement. Stress-test:
+automated refusal-match plus mandatory human review of every response —
+no automated pass.</p>
+<h2>Refresh triggers</h2><p>Every knowledge-base update re-runs the full set before deploy; each
+month&#39;s top-5 new query patterns become candidate goldens; every safety
+incident in logs becomes a stress-test golden within a week.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>The all-softball dataset.</strong> Queries written by the people who built
+the knowledge base, phrased the way the knowledge base phrases things.
+Pass rates soar; real farmers, who ask sideways questions in mixed
+language, hit failures the set never contained. Sourcing counts from
+real logs are in the template because of this.</li>
+<li><strong>No must-refuse goldens.</strong> A dataset that only checks what the product
+should say, never what it must decline, will happily green-light a
+model swap that quietly stopped refusing restricted-pesticide advice.</li>
+<li><strong>Trusting the judge uncalibrated.</strong> LLM-judge scores adopted without
+the human-agreement check — on ~50% baseline alignment, that&#39;s a coin
+flip wearing a rubric. The calibration step is not optional overhead;
+it is the difference between measurement and theater.</li>
+<li><strong>Similarity scores on code-switched text taken at face value.</strong>
+Reference-based metrics are weakest in exactly this catalogue&#39;s
+deployment languages; a threshold tuned on English goldens silently
+fails Swahili-English ones. Distribution-check before threshold-set.</li>
+<li><strong>The unversioned run.</strong> &quot;Pass rate dropped to 79%&quot; — against which
+model, prompt, and knowledge base? Without version binding the dataset
+can detect that something changed but never what, which is most of its
+job.</li>
+<li><strong>Out of scope: user outcomes.</strong> A perfect golden pass rate says
+nothing about whether anyone farms differently. That&#39;s the funnel&#39;s
+proximal-outcome stage and Level 3/4 evaluation — pointing a golden
+dataset at that question is answering &quot;does the model respond well?&quot;
+and calling it impact.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-11</span><p>Add TAF AI-evaluation and Evidential experiment skills</p></li></ul>
+  </main>
 </body>
 </html>

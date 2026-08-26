@@ -86,17 +86,17 @@ a named owner.
 - A product's theory of change exists only as grant-proposal prose and
   needs to become, in the playbook's words, "a measurable, cost-aware
   program design tool" before metrics or experiments are built on it.
-- [ai-eval-level-matcher](../ai-eval-level-matcher) needs to judge Level 2
+- [ai-eval-level-matcher](/behavioural-skills/skill?slug=ai-eval-level-matcher) needs to judge Level 2
   evidence and there are no named stages to judge it against.
 - Metrics pipelines are about to be built (the playbook's Motion 02) and
   need to know which indicators matter per stage.
 - Do **not** invoke to define one offline target behaviour for a non-digital
-  program — that is [key-behaviour-definer](../key-behaviour-definer)'s
+  program — that is [key-behaviour-definer](/behavioural-skills/skill?slug=key-behaviour-definer)'s
   job, and the funnel's proximal-outcome stage may in fact consume its
   output.
 - Do **not** invoke to explain why an existing funnel leaks at a
   particular stage — hand the built funnel plus observed numbers to
-  [funnel-weak-link-diagnoser](../funnel-weak-link-diagnoser).
+  [funnel-weak-link-diagnoser](/behavioural-skills/skill?slug=funnel-weak-link-diagnoser).
 
 ## What it draws on
 

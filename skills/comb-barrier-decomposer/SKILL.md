@@ -79,7 +79,7 @@ the one actually holding the behaviour back.
   they don't think it matters") and need to be organized into testable,
   mutually exclusive hypotheses.
 - Do **not** invoke on a goal or outcome statement — route it through
-  [key-behaviour-definer](../key-behaviour-definer) first. A barrier
+  [key-behaviour-definer](/behavioural-skills/skill?slug=key-behaviour-definer) first. A barrier
   decomposition of "improve maternal health" has nothing concrete to
   attach to.
 
@@ -110,7 +110,7 @@ most common mislabel in COM-B application and the template below makes
 showing this check mandatory, not optional.
 
 If a `bias_audit_report` is available (from
-[researcher-bias-self-audit](../researcher-bias-self-audit)), cross-check
+[researcher-bias-self-audit](/behavioural-skills/skill?slug=researcher-bias-self-audit)), cross-check
 its flagged assumptions against the hypothesis list below: a flagged prior
 that quietly reappears as a hypothesis needs its own diagnostic question
 like any other, not a pass on the strength of already having been named.

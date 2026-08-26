@@ -72,8 +72,8 @@ data was actually collected.
 - A team has a documented account of a prior attempt and is about to
   decide to retry, adapt, or abandon the underlying idea based on that
   account alone.
-- Before [evidence-base-scoper](../evidence-base-scoper) or
-  [key-behaviour-definer](../key-behaviour-definer) re-run on the same
+- Before [evidence-base-scoper](/behavioural-skills/skill?slug=evidence-base-scoper) or
+  [key-behaviour-definer](/behavioural-skills/skill?slug=key-behaviour-definer) re-run on the same
   program goal, so the team's own history is checked rather than silently
   repeated (retrying an approach that already failed for implementation
   reasons) or silently ignored (abandoning an idea that was never actually
@@ -98,7 +98,7 @@ outcomes is why "the idea failed" is never a conclusion this skill lets
 stand without first checking those four dimensions; a null result with
 thin fidelity/dose/reach data supports "cannot yet tell," not "the idea
 doesn't work." The causal-claim check applies the same falsifiability
-discipline [researcher-bias-self-audit](../researcher-bias-self-audit)
+discipline [researcher-bias-self-audit](/behavioural-skills/skill?slug=researcher-bias-self-audit)
 applies to fresh assumption statements — here, to a team's story about why
 a past attempt succeeded or failed.
 

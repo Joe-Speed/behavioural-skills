@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "validate": "node scripts/validate.js",
-    "build": "node scripts/build-index.js",
+    "build": "node scripts/build-index.js && cp node_modules/marked/lib/marked.umd.js site/marked.js",
     "test:site": "node scripts/test-site.js"
   },
   "license": "MIT",
@@ -15,5 +15,8 @@
     "ajv-formats": "^3.0.1",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "marked": "18.0.9"
   }
 }

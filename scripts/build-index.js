@@ -10,6 +10,7 @@ const path = require("path");
 const { execFileSync } = require("child_process");
 const yaml = require("js-yaml");
 const matter = require("gray-matter");
+const marked = require("marked");
 
 const ROOT = path.resolve(__dirname, "..");
 const SKILLS_DIR = path.join(ROOT, "skills");
@@ -202,19 +203,13 @@ function computeIndex() {
   };
 }
 
-function escapeHtmlAttr(str) {
+function escapeHtml(str) {
   return String(str).replace(
     /[&<>"']/g,
     (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 }
 
-// skill.html is a single client-rendered template driven by a ?slug= query
-// param, so a crawler that doesn't run JS (link-unfurl bots on Slack,
-// Twitter, etc.) sees no per-skill title or description there. This writes
-// one static, real-metadata redirect page per skill instead — the
-// shareable link a "Copy shareable link" button on the skill page hands
-// out, distinct from the skill?slug= URL used for in-site browsing.
 function shortDescription(skill) {
   const whatItDoes = (skill.sections || []).find((s) => s.heading === "What it does");
   const text = (whatItDoes ? whatItDoes.markdown : skill.description || "")
@@ -226,9 +221,60 @@ function shortDescription(skill) {
   return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "…";
 }
 
+// Duplicated from site/app.js (browser code can't require this module).
+function lookupLabel(list, id) {
+  const match = list.find((item) => item.id === id);
+  return match ? match.label : id;
+}
+
+function renderIoList(items) {
+  return (items || [])
+    .map(
+      (io) =>
+        `<li><code>${escapeHtml(io.type)}</code>${io.required === false ? " (optional)" : ""}<br>${escapeHtml(io.description)}</li>`
+    )
+    .join("");
+}
+
+function renderEvidenceList(evidenceBase) {
+  return (evidenceBase || [])
+    .map(
+      (e) =>
+        `<li><strong>${escapeHtml(e.framework)}</strong><br>${escapeHtml(e.citation)}${e.url ? ` — <a href="${escapeHtml(e.url)}" target="_blank" rel="noopener">source</a>` : ""}</li>`
+    )
+    .join("");
+}
+
+// Same shape as app.js's renderChangelog — duplicated for the same reason as
+// lookupLabel above.
+function renderChangelogList(changelog) {
+  if (!changelog || changelog.length === 0) return `<p class="empty-state">No version history yet.</p>`;
+  const items = changelog
+    .slice()
+    .reverse()
+    .map(
+      (c) =>
+        `<li><span class="changelog-version">v${escapeHtml(c.version)}</span><span class="changelog-date">${escapeHtml(c.date)}</span><p>${escapeHtml(c.summary)}</p></li>`
+    )
+    .join("");
+  return `<ul class="changelog-list">${items}</ul>`;
+}
+
+// skill.html is a single client-rendered template driven by a ?slug= query
+// param, so a crawler that doesn't run JS (search engines, link-unfurl bots)
+// sees no content there at all. This writes one static, fully-rendered page
+// per skill instead — the real canonical page for search and sharing.
+// skill?slug= remains the interactive alias (install panel, workflow chain
+// links); skill.js points its own canonical tag back here once it loads.
 function writeSharePages(index, dir = SHARE_DIR) {
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
+
+  // marked passes raw HTML tokens through verbatim; dropped here for the
+  // same content-spoofing reason as site/skill.js — these pages ship with no
+  // CSP script-src exception, but a contributed SKILL.md could still forge a
+  // fake link or button in an HTML block otherwise.
+  marked.use({ renderer: { html: () => "" } });
 
   for (const skill of index.skills) {
     const title = `${skill.title} — Behavioural Skills`;
@@ -236,30 +282,69 @@ function writeSharePages(index, dir = SHARE_DIR) {
     // Slugs are validated kebab-case, but this lands in HTML attributes on
     // every share page — encode and escape anyway so the invariant doesn't
     // rest on a validator this script never runs.
-    const canonical = escapeHtmlAttr(`${SITE_BASE_URL}/skill?slug=${encodeURIComponent(skill.slug)}`);
+    const canonical = escapeHtml(`${SITE_BASE_URL}/s/${encodeURIComponent(skill.slug)}`);
+    const appUrl = escapeHtml(`${SITE_BASE_URL}/skill?slug=${encodeURIComponent(skill.slug)}`);
+    const category = lookupLabel(index.taxonomy.categories, skill.category);
+    const stage = lookupLabel(index.taxonomy.stages, skill.stage);
+    const sectionsHtml = (skill.sections || [])
+      .map((s) => `<h2>${escapeHtml(s.heading)}</h2>${marked.parse(s.markdown)}`)
+      .join("");
 
     const html = `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
-  <title>${escapeHtmlAttr(title)}</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <title>${escapeHtml(title)}</title>
   <link rel="canonical" href="${canonical}" />
-  <meta name="description" content="${escapeHtmlAttr(description)}" />
+  <meta name="description" content="${escapeHtml(description)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
-  <meta property="og:title" content="${escapeHtmlAttr(title)}" />
-  <meta property="og:description" content="${escapeHtmlAttr(description)}" />
+  <meta property="og:title" content="${escapeHtml(title)}" />
+  <meta property="og:description" content="${escapeHtml(description)}" />
   <meta property="og:url" content="${canonical}" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="${escapeHtmlAttr(title)}" />
-  <meta name="twitter:description" content="${escapeHtmlAttr(description)}" />
+  <meta name="twitter:title" content="${escapeHtml(title)}" />
+  <meta name="twitter:description" content="${escapeHtml(description)}" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=${canonical}" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="${canonical}">${escapeHtmlAttr(skill.title)}</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>${escapeHtml(skill.title)}</h1>
+      <p class="description">${escapeHtml(skill.description)}</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="${appUrl}">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>${escapeHtml(category)}</dd></div>
+      <div><dt>Research stage</dt><dd>${escapeHtml(stage)}</dd></div>
+      <div><dt>WEIRD context</dt><dd>${escapeHtml(skill.weird_context.status)}</dd></div>
+      <div><dt>Version</dt><dd>${escapeHtml(skill.version)}</dd></div>
+      <div><dt>Authors</dt><dd>${escapeHtml((skill.authors || []).join(", "))}</dd></div>
+    </dl>
+
+    ${skill.weird_context.note ? `<p class="notice">${escapeHtml(skill.weird_context.note)}</p>` : ""}
+
+    <h2>Evidence base</h2>
+    <ul class="io-list">${renderEvidenceList(skill.evidence_base)}</ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list">${renderIoList(skill.inputs)}</ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list">${renderIoList(skill.outputs)}</ul>
+
+    <div class="skill-body">${sectionsHtml}</div>
+
+    <h2>Version history</h2>
+    ${renderChangelogList(skill.changelog)}
+  </main>
 </body>
 </html>
 `;
@@ -313,6 +398,42 @@ function writeLlmsTxt(index) {
   fs.writeFileSync(path.join(ROOT, "site", "llms.txt"), lines.join("\n"));
 }
 
+// Flattens every skill's changelog into one feed, newest first — same
+// tie-break as site/whats-new.js (that file can't be required from Node),
+// so a same-day version bump doesn't invert order.
+function writeFeed(index) {
+  const entries = index.skills
+    .flatMap((skill) => (skill.changelog || []).map((entry, entryIndex) => ({ ...entry, entryIndex, skill })))
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : b.entryIndex - a.entryIndex));
+
+  const items = entries
+    .map((e) => {
+      const link = `${SITE_BASE_URL}/s/${encodeURIComponent(e.skill.slug)}`;
+      return [
+        `  <item>`,
+        `    <title>${escapeHtml(e.skill.title)} v${escapeHtml(e.version)}</title>`,
+        `    <link>${escapeHtml(link)}</link>`,
+        `    <guid isPermaLink="false">${escapeHtml(e.skill.slug)}-v${escapeHtml(e.version)}</guid>`,
+        `    <pubDate>${new Date(e.date).toUTCString()}</pubDate>`,
+        `    <description>${escapeHtml(e.summary)}</description>`,
+        `  </item>`,
+      ].join("\n");
+    })
+    .join("\n");
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Behavioural Skills — What's New</title>
+  <link>${SITE_BASE_URL}/whats-new</link>
+  <description>Version history across every skill in the Behavioural Skills catalogue.</description>
+${items}
+</channel>
+</rss>
+`;
+  fs.writeFileSync(path.join(ROOT, "site", "feed.xml"), xml);
+}
+
 function main() {
   const index = computeIndex();
   fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
@@ -320,10 +441,11 @@ function main() {
   writeSharePages(index);
   writeSitemap(index);
   writeLlmsTxt(index);
+  writeFeed(index);
   console.log(
     `Wrote ${path.relative(ROOT, OUT_PATH)}: ${index.skills.length} skill(s), ${index.graph.edges.length} edge(s), ${index.graph.terminalOutputs.length} terminal output(s).`
   );
-  console.log(`Wrote ${index.skills.length} shareable page(s) to ${path.relative(ROOT, SHARE_DIR)}/, plus sitemap.xml and llms.txt.`);
+  console.log(`Wrote ${index.skills.length} shareable page(s) to ${path.relative(ROOT, SHARE_DIR)}/, plus sitemap.xml, llms.txt, and feed.xml.`);
 }
 
 module.exports = { computeIndex, loadSkillDirs, OUT_PATH, SHARE_DIR, writeSharePages };

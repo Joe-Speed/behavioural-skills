@@ -19,6 +19,13 @@
   document.title = `Behavioural Skills — ${skill.title}`;
   bindCommandPalette(data);
 
+  // skill?slug= is the interactive alias; s/<slug> is the real, fully-
+  // rendered content page search engines should index.
+  const canonicalLink = document.createElement("link");
+  canonicalLink.rel = "canonical";
+  canonicalLink.href = shareUrl(skill.slug);
+  document.head.appendChild(canonicalLink);
+
   function producersOf(ioType, consumerSlug) {
     return data.graph.edges
       .filter((e) => e.via === ioType && e.to === consumerSlug && e.from !== `external:${ioType}`)

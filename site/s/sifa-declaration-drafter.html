@@ -3,22 +3,244 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>SIFA Declaration Drafter — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=sifa-declaration-drafter" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/sifa-declaration-drafter" />
   <meta name="description" content="Structures a team&#39;s raw account of who-did-what into a SIFA declaration — per applicable CRediT contributor role: the humans, the AI tool involved (if any), the extent of AI involvement on SIFA&#39;s…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="SIFA Declaration Drafter — Behavioural Skills" />
   <meta property="og:description" content="Structures a team&#39;s raw account of who-did-what into a SIFA declaration — per applicable CRediT contributor role: the humans, the AI tool involved (if any), the extent of AI involvement on SIFA&#39;s…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=sifa-declaration-drafter" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/sifa-declaration-drafter" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="SIFA Declaration Drafter — Behavioural Skills" />
   <meta name="twitter:description" content="Structures a team&#39;s raw account of who-did-what into a SIFA declaration — per applicable CRediT contributor role: the humans, the AI tool involved (if any), the extent of AI involvement on SIFA&#39;s…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=sifa-declaration-drafter" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=sifa-declaration-drafter">SIFA Declaration Drafter</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>SIFA Declaration Drafter</h1>
+      <p class="description">Use when a piece of work — a research report, an intervention design, a paper, a deliverable — is being written up and the team needs to declare how humans and AI tools actually interacted in producing it. Invoke it when someone asks &quot;how do we disclose what the AI did on this project?&quot; or when a journal, funder, or org policy requires an AI-use statement. Do not invoke to audit the team&#39;s prior beliefs about the target population — that is researcher-bias-self-audit — and do not invoke it as an AI-use policy or approval gate: it discloses what happened, it does not rule on whether it was acceptable.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=sifa-declaration-drafter">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Research Transparency</dd></div>
+      <div><dt>Research stage</dt><dd>Report</dd></div>
+      <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The declaration practice itself is procedural and travels: it makes no claims about human behaviour, only about disclosure. What is culturally specific is the CRediT taxonomy&#39;s origin in Western academic publishing — its 14 roles assume a journal-article division of labour, and authorship/credit norms differ across research cultures and sectors. Teams outside that context should treat the role list as a checklist to adapt (dropping or renaming roles that don&#39;t exist in their workflow) rather than a form to force their work into.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>SIFA — Statement of Intellectual Fellowship and Accountability</strong><br>Schomerus, M., &amp; Saleh, E. SIFA: Statement of Intellectual Fellowship and Accountability. Busara. Browser-based declaration tool mapping AI involvement onto CRediT contributor roles. — <a href="https://mareikeschomerus-ctrl.github.io/sIfA/" target="_blank" rel="noopener">source</a></li><li><strong>CRediT — Contributor Roles Taxonomy</strong><br>Brand, A., Allen, L., Altman, M., Hlava, M., &amp; Scott, J. (2015). Beyond authorship: attribution, contribution, collaboration, and credit. Learned Publishing, 28(2), 151-155.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>ai_use_account</code><br>The team&#39;s raw, honest account of how the work was produced: who did which parts, which AI tools were used where and roughly how heavily, and anything they&#39;re unsure whether to disclose. Honesty in, honesty out — this skill structures the account, it cannot verify it.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>sifa_declaration</code><br>A structured SIFA declaration: per applicable CRediT role, the human contributor(s), any AI tool involved, the extent of AI involvement on SIFA&#39;s none/some/extensive scale, and an audit note explaining the rating — with accountability explicitly retained by the humans.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Structures a team&#39;s raw account of who-did-what into a SIFA declaration —
+per applicable CRediT contributor role: the humans, the AI tool involved
+(if any), the extent of AI involvement on SIFA&#39;s none/some/extensive
+scale, plus an audit note justifying each rating.</p>
+<h2>When to invoke it</h2><ul>
+<li>A report, paper, intervention design, or other deliverable is being
+finalized and the team needs a standardised statement of where AI tools
+were involved in producing it.</li>
+<li>A journal, funder, or organisational policy asks for an AI-use
+disclosure and the team&#39;s current answer is an unstructured paragraph
+(&quot;we used ChatGPT a bit for drafting&quot;).</li>
+<li>A team wants to make its human-AI division of labour inspectable
+<em>before</em> someone else asks — SIFA&#39;s framing is a deliberate, voluntary
+disclosure, not a compliance response.</li>
+<li>Do <strong>not</strong> invoke to examine the team&#39;s prior beliefs about the target
+population — that is
+<a href="/behavioural-skills/skill?slug=researcher-bias-self-audit">researcher-bias-self-audit</a>&#39;s job, and
+it runs <em>before</em> the work; this skill runs <em>after</em> it.</li>
+<li>Do <strong>not</strong> invoke as an approval mechanism. The declaration records
+what happened; whether a given level of AI involvement was appropriate
+is a policy question for the journal, funder, or org — this skill must
+not answer it.</li>
+</ul>
+<h2>What it draws on</h2><p>SIFA (Schomerus &amp; Saleh, Busara) maps AI involvement onto the CRediT
+contributor-role taxonomy (Brand et al., 2015) — the same 14 roles
+(Conceptualization, Methodology, Investigation, Formal analysis,
+Writing — original draft, Writing — review &amp; editing, Visualization, and
+so on) that major journals already use for human contributors. That
+mapping is the core move this skill preserves: instead of one vague
+project-level sentence, AI involvement is declared role by role, on
+SIFA&#39;s three-point scale (none / some / extensive), each rating carrying
+a brief audit note saying what the tool actually did. Using an
+established taxonomy makes declarations comparable across projects and
+journals rather than bespoke prose.</p>
+<p>Two SIFA principles are load-bearing and this skill enforces them. First,
+<em>accountability stays human</em>: an AI tool is never listed as a contributor
+alongside people — it appears only inside a role a named human is
+accountable for. Second, <em>the audit note is the substance</em>: a bare &quot;2&quot;
+next to Writing — original draft tells a reader almost nothing; &quot;first
+draft of sections 2-4 generated from our outline, then substantially
+restructured by the authors&quot; tells them exactly what to weigh.</p>
+<p>Judgment call the source doesn&#39;t fully specify: SIFA is a self-report
+tool, and so is this skill. It structures what the team says happened; it
+has no way to detect an omitted tool or an understated rating. The output
+therefore states that it is a self-declaration on its face.</p>
+<h2>Output template</h2><p>Only roles that apply to the work are listed — but every role where <em>any</em>
+AI involvement occurred must appear, including ones the team considers
+trivial (&quot;it just fixed our grammar&quot; is a Writing — review &amp; editing
+disclosure). The scale is SIFA&#39;s: 0 = none, 1 = some, 2 = extensive.</p>
+<pre><code class="language-markdown"># SIFA Declaration — &lt;work title&gt;
+
+**Human authors accountable for this work:** &lt;names — accountability for
+every role below, including AI-assisted ones, rests with these people&gt;
+**AI tools used anywhere in the work:** &lt;tool + version/model, one line
+each; &quot;none&quot; for a clean-hands declaration is also a valid output&gt;
+**Declaration basis:** Self-reported by the authors on &lt;date&gt;. This
+statement records the authors&#39; own account; it is a disclosure, not an
+external audit.
+</code></pre>
+<h2>Role-by-role declaration</h2><table>
+<thead>
+<tr>
+<th>CRediT role</th>
+<th>Human contributor(s)</th>
+<th>AI tool</th>
+<th>AI involvement (0-2)</th>
+<th>Audit note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td>&lt;tool or —&gt;</td>
+<td>&lt;0/1/2&gt;</td>
+<td>&lt;what the tool concretely did, and what the humans did around it&gt;</td>
+</tr>
+</tbody></table>
+<p>&lt;one row per applicable role; roles with no AI involvement and no
+ambiguity may be grouped in a single 0 row for brevity&gt;</p>
+<h2>Roles not applicable to this work</h2><p>&lt;CRediT roles omitted and why, one line — so an omission reads as a
+judgment, not an oversight&gt;</p>
+<h2>What the humans remain accountable for</h2><p>&lt;one short paragraph: the claims, analysis, and errors in this work are
+the named authors&#39; responsibility regardless of the tool ratings above&gt;
+```</p>
+<h2>Worked example</h2><p><strong>AI use account (user-supplied, condensed):</strong> &quot;Two of us designed the
+market-vendor savings study. I used Claude to sweep the deposit-behaviour
+literature and it drafted the report&#39;s background section, which Amara
+rewrote. Amara ran the diagnostic interviews herself. Analysis was ours
+in R, though I had the model debug two scripts. It also made the first
+version of two charts. Oh, and it tightened the whole report&#39;s grammar at
+the end.&quot; <em>(Illustrative — continues the catalogue&#39;s running example; not
+a real declaration.)</em></p>
+<pre><code class="language-markdown"># SIFA Declaration — Market-vendor mobile savings study, final report
+
+**Human authors accountable for this work:** J. Okello, A. Diallo
+**AI tools used anywhere in the work:** Claude (Anthropic, Sonnet-class
+model, 2026 releases)
+**Declaration basis:** Self-reported by the authors on 2026-08-07. This
+statement records the authors&#39; own account; it is a disclosure, not an
+external audit.
+</code></pre>
+<h2>Role-by-role declaration</h2><table>
+<thead>
+<tr>
+<th>CRediT role</th>
+<th>Human contributor(s)</th>
+<th>AI tool</th>
+<th>AI involvement (0-2)</th>
+<th>Audit note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Conceptualization</td>
+<td>Okello, Diallo</td>
+<td>—</td>
+<td>0</td>
+<td>Study question and design set by the authors before any tool use.</td>
+</tr>
+<tr>
+<td>Investigation</td>
+<td>Diallo</td>
+<td>—</td>
+<td>0</td>
+<td>All diagnostic interviews conducted and coded by Diallo in person.</td>
+</tr>
+<tr>
+<td>Data curation / Formal analysis</td>
+<td>Okello</td>
+<td>Claude</td>
+<td>1</td>
+<td>Analysis specified and run by Okello in R; Claude debugged two analysis scripts. No analytic decisions delegated.</td>
+</tr>
+<tr>
+<td>Visualization</td>
+<td>Okello</td>
+<td>Claude</td>
+<td>2</td>
+<td>First drafts of Figures 2-3 generated by Claude from the cleaned data; Okello set the chart types and corrected axis scaling before inclusion.</td>
+</tr>
+<tr>
+<td>Writing — original draft</td>
+<td>Diallo</td>
+<td>Claude</td>
+<td>2</td>
+<td>Background section first-drafted by Claude from Okello&#39;s literature sweep prompts, then substantially rewritten by Diallo; all other sections human-drafted.</td>
+</tr>
+<tr>
+<td>Writing — review &amp; editing</td>
+<td>Okello, Diallo</td>
+<td>Claude</td>
+<td>1</td>
+<td>Full-report grammar and consistency pass by Claude; accepted line-by-line by the authors.</td>
+</tr>
+</tbody></table>
+<h2>Roles not applicable to this work</h2><p>Funding acquisition, Project administration, Resources, Software,
+Supervision — two-person unfunded pilot with no standing software output;
+Validation is folded into Formal analysis above.</p>
+<h2>What the humans remain accountable for</h2><p>Every claim, effect estimate, and error in this report is the
+responsibility of Okello and Diallo, including content first drafted or
+debugged by the tool ratings above.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>The vague-virtue declaration.</strong> Audit notes like &quot;AI was used
+responsibly throughout&quot; rate everything a 1 and explain nothing. The
+note&#39;s test: could a skeptical reader tell what the tool concretely
+produced versus what the humans produced? If not, the declaration is
+reassurance, not disclosure.</li>
+<li><strong>Laundering through the scale.</strong> Rating extensive first-drafting as
+&quot;1 — some&quot; because 2 feels embarrassing. The scale anchors are SIFA&#39;s,
+not the team&#39;s comfort: if the tool produced the first version of the
+artifact, that role is a 2 no matter how heavily it was edited after.</li>
+<li><strong>The AI as author.</strong> Listing the tool in the contributor column, or
+writing audit notes in which the tool &quot;decided&quot; or &quot;concluded.&quot; SIFA&#39;s
+accountability principle is the opposite: tools appear only inside
+roles a named human answers for.</li>
+<li><strong>Trivial-use omission.</strong> Dropping the grammar pass or a debugged
+script because &quot;that&#39;s not really AI use.&quot; Any role the tool touched
+appears in the table — small ratings with honest notes are exactly what
+makes the big ratings credible.</li>
+<li><strong>Treating the output as verification.</strong> This is self-report. A team
+that omits a tool produces a clean-looking declaration; nothing in this
+skill can catch that, which is why the declaration-basis line is
+mandatory and unhedged.</li>
+<li><strong>Out of scope: policy rulings.</strong> An input like &quot;declare our AI use in
+a way that will pass the journal&#39;s policy&quot; asks the declaration to
+answer an acceptability question. Structure what happened; whether it
+passes is the journal&#39;s call, and shading notes toward a desired ruling
+is the failure the tool exists to prevent.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-07</span><p>Add lever-content-drafter and sifa-declaration-drafter skills</p></li></ul>
+  </main>
 </body>
 </html>

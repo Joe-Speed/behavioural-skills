@@ -84,7 +84,7 @@ list of the other candidate behaviours that were considered and set aside.
   needs one to commit to before diagnosis or design work starts.
 - Do **not** invoke if a specific, already-observable behaviour with a named
   actor and timeframe is on the table — hand that directly to a diagnosis
-  skill (e.g. [comb-barrier-decomposer](../comb-barrier-decomposer)) instead.
+  skill (e.g. [comb-barrier-decomposer](/behavioural-skills/skill?slug=comb-barrier-decomposer)) instead.
 
 ## What it draws on
 
@@ -107,14 +107,14 @@ at least one candidate must come from outside that named infrastructure, or
 the shortlist is just ranking variants of the same idea.
 
 If an `evidence_scan_brief` is available (from
-[evidence-base-scoper](../evidence-base-scoper)), its "what's already been
+[evidence-base-scoper](/behavioural-skills/skill?slug=evidence-base-scoper)), its "what's already been
 tried" and "findings that don't support the goal" sections should visibly
 change the Effectiveness and Impact scores in the table below — a
 candidate the evidence base already shows underperforms shouldn't score the
 same as one with no prior evidence either way.
 
 If an `audience_context_brief` is available (from
-[context-and-audience-mapper](../context-and-audience-mapper)), its
+[context-and-audience-mapper](/behavioural-skills/skill?slug=context-and-audience-mapper)), its
 operationalized population and decision moment should be what "Who" and
 "When" actually say in the selected target behaviour below — writing a
 generic "who" when a specific one is already sitting in the input is a
@@ -256,5 +256,5 @@ bookkeeping — flagged as an open question in the audience_context_brief's
   setting context, the output's "who" will be generic and the downstream
   diagnosis will inherit that vagueness. Push back to the user for at least
   a rough population and setting before finalizing, or run
-  [context-and-audience-mapper](../context-and-audience-mapper) first and
+  [context-and-audience-mapper](/behavioural-skills/skill?slug=context-and-audience-mapper) first and
   feed its output in as `audience_context_brief`.

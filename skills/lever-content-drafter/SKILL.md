@@ -82,7 +82,7 @@ the technique's defined active ingredient.
 
 ## When to invoke it
 
-- [intervention-lever-selector](../intervention-lever-selector) has
+- [intervention-lever-selector](/behavioural-skills/skill?slug=intervention-lever-selector) has
   produced a brief whose Selected lever names a concrete BCTTv1 technique,
   and the next question is "what do we actually say / show / print?"
 - A field team is about to write intervention copy ad hoc — an SMS, a
@@ -92,7 +92,7 @@ the technique's defined active ingredient.
   named BCT — that brief isn't finished; route back to
   intervention-lever-selector's output template, which requires one.
 - Do **not** use it to draft a values-affirmation exercise —
-  [values-affirmation-drafter](../values-affirmation-drafter) owns that
+  [values-affirmation-drafter](/behavioural-skills/skill?slug=values-affirmation-drafter) owns that
   protocol end to end, including its value-list adaptation and delivery
   cautions.
 - Do **not** use it to choose between levers or techniques — that decision

@@ -3,22 +3,234 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Values-Affirmation Drafter — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=values-affirmation-drafter" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/values-affirmation-drafter" />
   <meta name="description" content="Turns a population&#39;s named evaluative-threat domain into a structured values-affirmation writing exercise — value selection plus a guided writing prompt — with delivery timing guidance and a…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Values-Affirmation Drafter — Behavioural Skills" />
   <meta property="og:description" content="Turns a population&#39;s named evaluative-threat domain into a structured values-affirmation writing exercise — value selection plus a guided writing prompt — with delivery timing guidance and a…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=values-affirmation-drafter" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/values-affirmation-drafter" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Values-Affirmation Drafter — Behavioural Skills" />
   <meta name="twitter:description" content="Turns a population&#39;s named evaluative-threat domain into a structured values-affirmation writing exercise — value selection plus a guided writing prompt — with delivery timing guidance and a…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=values-affirmation-drafter" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=values-affirmation-drafter">Values-Affirmation Drafter</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Values-Affirmation Drafter</h1>
+      <p class="description">Use when an intervention needs to buffer a specific population against a named evaluative or stigmatized concern (financial shame, academic underperformance, a health stigma, exposure/visibility risk) before or around the moment they would otherwise feel judged or defensive, and no values-affirmation exercise has been drafted yet. Invoke once the target population and the specific threat domain are named, not just &quot;make people feel better.&quot; Do not invoke as a way to address a structural, material, or design barrier (lack of money, lack of access, lack of time, a program design that exposes people to being seen or judged) — a values-affirmation exercise buffers the psychological response to a threat, it does not remove the threat&#39;s underlying cause.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=values-affirmation-drafter">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Intervention Design</dd></div>
+      <div><dt>Research stage</dt><dd>Design</dd></div>
+      <div><dt>WEIRD context</dt><dd>mixed-evidence</dd></div>
+      <div><dt>Version</dt><dd>0.2.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The overwhelming majority of self-affirmation RCTs were run in US school settings (Henrich, Heine, &amp; Norenzayan, 2010, &quot;The weirdest people in the world?&quot;, Behavioral and Brain Sciences, 33(2-3), 61-83) — and Hanselman et al.&#39;s large-scale replications found the effect itself is heterogeneous even within that WEIRD population, moderated by factors not fully understood. Treat a positive published effect as &quot;worked in some US school contexts, with real variation,&quot; not as a universal effect this skill&#39;s output can guarantee anywhere.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Self-affirmation theory and applied self-affirmation interventions</strong><br>Cohen, G. L., &amp; Sherman, D. K. (2014). The psychology of change: Self-affirmation and social psychological intervention. Annual Review of Psychology, 65, 333-371.</li><li><strong>Self-affirmation theory (mechanism)</strong><br>Sherman, D. K., &amp; Cohen, G. L. (2006). The psychology of self-defense: Self-affirmation theory. Advances in Experimental Social Psychology, 38, 183-242.</li><li><strong>Documented heterogeneity in self-affirmation effects</strong><br>Hanselman, P., Sinclair, K. R., &amp; Borman, G. D. (2017). New evidence on self-affirmation effects and theorized sources of heterogeneity from large-scale replications. Journal of Educational Psychology, 109(3), 405-424.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>affirmation_context_statement</code><br>The target population and the specific evaluative or stigmatized domain the exercise needs to buffer against, plus whatever is known about which values are actually meaningful to this population.</li><li><code>audience_context_brief</code> (optional)<br>Optional context map for this population, if context-and-audience-mapper has already run. When present, use its operationalized population and any noted cultural/value information to adapt the value category list, instead of defaulting to the standard US-derived list.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>values_affirmation_script</code><br>A drafted values-affirmation writing exercise following the standard self-affirmation protocol — a locally adapted value category list, a selection prompt, and a structured writing prompt — plus delivery notes and an explicit caution against using it as a substitute for structural fixes.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Turns a population&#39;s named evaluative-threat domain into a structured
+values-affirmation writing exercise — value selection plus a guided
+writing prompt — with delivery timing guidance and a non-substitute
+caution against treating it as a structural fix.</p>
+<h2>When to invoke it</h2><ul>
+<li>A population is about to face, or repeatedly faces, a specific moment
+where a stigmatized or evaluative concern (financial shame, academic
+underperformance, a health stigma) could trigger defensiveness that
+works against the program&#39;s goal.</li>
+<li>Someone asks for &quot;something to help people feel less judged/defensive
+about X before we ask them to do Y.&quot;</li>
+<li>Do <strong>not</strong> invoke to address a structural, material, or design barrier
+directly — if the actual problem is that a service is unaffordable,
+inaccessible, unavailable, or exposes people to being seen or judged by
+its design (a visible location, a public list, a conspicuous process),
+an affirmation exercise buffers the psychological response to that fact,
+it does not change the fact. Route a structural or design problem to
+intervention design aimed at the structure itself.</li>
+</ul>
+<h2>What it draws on</h2><p>Cohen &amp; Sherman&#39;s applied self-affirmation protocol: ask someone to
+identify a personally important value unrelated to the threatened domain,
+then write briefly about why it matters and a specific time it mattered to
+them. Sherman &amp; Cohen&#39;s account of the mechanism — affirming a valued
+self-domain broadens perspective and reduces the need to defensively
+dismiss threatening information in an unrelated domain — is why the
+writing prompt&#39;s two-part structure (why it matters, a specific time) is
+not optional decoration; a vaguer prompt (&quot;write about something you
+value&quot;) does not reliably produce the self-affirming effect the mechanism
+depends on. Hanselman et al.&#39;s replication findings are the basis for the
+mandatory heterogeneity caveat: this intervention&#39;s effect size varies by
+factors not fully mapped even within similar populations, so the output
+must flag that variation rather than imply a guaranteed effect.</p>
+<p>If no <code>audience_context_brief</code> is available, the value list is this
+skill&#39;s own best guess at cultural fit, not a locally-grounded adaptation
+— the output must say so explicitly and recommend confirming the list
+with someone from or close to the target population before it&#39;s used,
+rather than presenting an unconfirmed guess with the same confidence as a
+brief-informed adaptation. The frequency-ceiling guidance in Delivery
+notes is drawn from single- or few-session study designs; for a delivery
+pattern the cited literature doesn&#39;t cover (e.g. a recurring outreach
+contact over months), say that explicitly and mark the stated ceiling as
+an extrapolated program judgment, not a literature-derived number.</p>
+<h2>Output template</h2><p>The non-substitute caution and the heterogeneity caveat are mandatory, not
+optional disclaimers — an affirmation script presented without either
+invites exactly the two most serious misuses of this technique.</p>
+<pre><code class="language-markdown"># Values-Affirmation Script
+
+**Target population &amp; threat domain (as given):** &lt;condensed restatement
+of the input, not a mid-sentence quote — close enough to verbatim that
+nothing is misrepresented&gt;
+</code></pre>
+<h2>Value category list</h2><p>&lt;adapt to what&#39;s locally/culturally meaningful for this population, using
+any input from an audience_context_brief if available — do not transplant
+the standard US-derived list (relationships, religion, art, humor,
+spontaneity, social skills, athletics, music, career, education,
+creativity) uncritically if there is reason to think it doesn&#39;t fit, and
+actively drop any category that could reinforce the threat rather than
+merely fail to resonate (e.g. a faith-linked category where the stigma
+itself is partly moral/religious in nature). If no <code>audience_context_brief</code>
+is available, say so explicitly here and label this list an unconfirmed
+adaptation pending local confirmation — do not present it with the same
+confidence as a brief-informed list.&gt;</p>
+<ul>
+<li>&lt;value 1&gt;</li>
+<li>&lt;value 2&gt;</li>
+<li>&lt;...&gt;</li>
+</ul>
+<h2>Selection prompt</h2><p>&lt;verbatim instruction asking the person to identify, from the list above,
+the value most personally important to them&gt;</p>
+<h2>Writing prompt (two-part structure — both parts required)</h2><ol>
+<li></li>
+<li></li>
+</ol>
+<h2>Delivery notes</h2><ul>
+<li><strong>Timing:</strong> &lt;must precede the threat-relevant evaluative moment, not
+follow it — an affirmation written after the threatening event has
+already occurred does not buffer it&gt;</li>
+<li><strong>Duration:</strong> &lt;brief — the source protocol uses roughly 5-10 minutes&gt;</li>
+<li><strong>Frequency ceiling:</strong> &lt;state the risk of diminishing or reversed effect
+if administered too often to the same person, per the source literature&gt;</li>
+</ul>
+<h2>Non-substitute caution (mandatory)</h2><p>&lt;state plainly what structural or material barrier, if any, this exercise
+does NOT fix, and that it should not be presented or relied on as if it
+did&gt;</p>
+<h2>Heterogeneity caveat (mandatory)</h2><p>&lt;name what about this specific population or context is unconfirmed
+relative to the published studies, per Hanselman et al.&#39;s documented
+effect variation — a null pilot result should be checked against these
+factors before concluding the technique itself failed&gt;
+```</p>
+<h2>Worked example</h2><p><strong>Affirmation context statement (as given):</strong> &quot;A financial-literacy
+program for first-generation college students. Many avoid asking questions
+in workshops or one-on-one advising sessions because they feel judged or
+embarrassed discussing money — not knowing how credit scores work, or
+having to say they can&#39;t afford something classmates take for granted.&quot;
+<em>(Illustrative — not a real program.)</em></p>
+<pre><code class="language-markdown"># Values-Affirmation Script
+
+**Target population &amp; threat domain (as given):** First-generation college
+students in a financial-literacy program, who avoid engaging in workshops
+or advising sessions from embarrassment about their financial knowledge or
+means relative to peers.
+</code></pre>
+<h2>Value category list</h2><p>Relationships with family (frequently a stronger value anchor for
+first-gen students than the standard list&#39;s generic &quot;relationships with
+friends/family&quot;), being the first in their family to attend college,
+independence/self-reliance, learning and personal growth, community or
+cultural belonging, work ethic. Adapted from the standard list&#39;s
+&quot;relationships,&quot; &quot;education,&quot; and &quot;career&quot; categories toward what
+first-gen-specific research and campus advising literature more commonly
+report as salient for this population; the &quot;art,&quot; &quot;athletics,&quot; and
+&quot;music&quot; categories from the standard list are kept but not emphasized.</p>
+<h2>Selection prompt</h2><p>&quot;From the list above, choose the one value that is most personally
+important to you — not the one you think you should pick, the one that
+actually matters most to you.&quot;</p>
+<h2>Writing prompt</h2><ol>
+<li>Write a few sentences about why this value is important to you.</li>
+<li>Describe a specific time this value mattered to you or guided what you
+did.</li>
+</ol>
+<h2>Delivery notes</h2><ul>
+<li><strong>Timing:</strong> Administered at the start of the workshop or advising
+session, before any financial-knowledge content or questions are
+introduced — not afterward, once embarrassment may already have been
+triggered.</li>
+<li><strong>Duration:</strong> Approximately 5-10 minutes, before the session&#39;s main
+content begins.</li>
+<li><strong>Frequency ceiling:</strong> Not every session — repeated administration to
+the same student across many sessions risks a diminished or reversed
+effect per the source literature; consider administering at first
+contact and at most one or two subsequent milestone sessions.</li>
+</ul>
+<h2>Non-substitute caution</h2><p>This exercise does not address the actual financial constraints (cost of
+attendance, family financial pressure, lack of prior exposure to financial
+concepts) driving the embarrassment — it may reduce defensive avoidance of
+the workshop content itself, but the program&#39;s financial aid, cost, and
+curriculum-accessibility design must be evaluated on their own terms, not
+assumed solved because this exercise is in place.</p>
+<h2>Heterogeneity caveat</h2><p>Hanselman et al.&#39;s replications found self-affirmation effects vary by
+factors including prior academic performance and the specific framing of
+the threat — neither has been confirmed for this financial-literacy
+context, which is a different domain than the academic-performance
+setting most of the replication literature covers. A null result in a
+pilot here should prompt checking these moderators, not an immediate
+conclusion that the technique doesn&#39;t work for this population.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Uncritical list transplant.</strong> Using the standard US-derived value list
+without checking whether it actually reflects what this population
+values is the most common way this skill&#39;s output looks complete but
+isn&#39;t locally grounded.</li>
+<li><strong>Vague writing prompt.</strong> A prompt that skips the &quot;why it matters&quot; or
+&quot;specific time&quot; parts, or merges them into one vague instruction, is not
+the protocol this skill&#39;s evidence base validated — the two-part
+structure is the mechanism, not decoration.</li>
+<li><strong>Wrong-moment delivery.</strong> Administering the exercise after the
+threatening moment (e.g. after a student has already been embarrassed in
+a session) cannot buffer an event that already happened.</li>
+<li><strong>Over-frequent administration.</strong> Repeating the exercise until its
+effect wears off or reverses, with no stated frequency ceiling, is a
+documented risk this skill&#39;s delivery notes exist to flag.</li>
+<li><strong>Used as a structural substitute.</strong> Presenting this exercise as if it
+addresses the underlying material or structural barrier — the single
+most serious misuse, and the reason the non-substitute caution is
+mandatory, not optional.</li>
+<li><strong>Null result treated as universal failure.</strong> Concluding &quot;self-
+affirmation doesn&#39;t work for this population&quot; from one pilot&#39;s null
+result, without checking it against the documented heterogeneity
+moderators, mistakes one context&#39;s result for a general finding.</li>
+<li><strong>Unflagged guesswork.</strong> Producing a locally-adapted-looking value list
+when no <code>audience_context_brief</code> was actually available, with the same
+confident framing as a brief-informed adaptation, misrepresents an
+unconfirmed guess as grounded research.</li>
+<li><strong>Structural barrier mistaken for the only kind.</strong> Treating &quot;structural
+or material barrier&quot; as limited to resource scarcity (cost, access,
+time) misses design-driven exposure risk (a visibly parked van, a public
+sign-up list) and community-level norm barriers — both are just as much
+outside this skill&#39;s scope as a funding gap, and the non-substitute
+caution must name them when they&#39;re the actual barrier.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.2.0</span><span class="changelog-date">2026-07-30</span><p>Tighten the three newest skills against blind-agent stress tests</p></li><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-07-30</span><p>Add three intervention/risk skills, clean URLs, and a grouped command palette</p></li></ul>
+  </main>
 </body>
 </html>

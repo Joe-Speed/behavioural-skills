@@ -3,22 +3,230 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Prior Intervention Post-Mortem Reader — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/prior-intervention-post-mortem-reader" />
   <meta name="description" content="Turns a team&#39;s raw account of a prior intervention attempt into a structured retrospective that separates what was planned from what was actually implemented, classifies the outcome as an…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Prior Intervention Post-Mortem Reader — Behavioural Skills" />
   <meta property="og:description" content="Turns a team&#39;s raw account of a prior intervention attempt into a structured retrospective that separates what was planned from what was actually implemented, classifies the outcome as an…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/prior-intervention-post-mortem-reader" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Prior Intervention Post-Mortem Reader — Behavioural Skills" />
   <meta name="twitter:description" content="Turns a team&#39;s raw account of a prior intervention attempt into a structured retrospective that separates what was planned from what was actually implemented, classifies the outcome as an…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader">Prior Intervention Post-Mortem Reader</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Prior Intervention Post-Mortem Reader</h1>
+      <p class="description">Use when a team has a documented account of an intervention they already tried and is about to decide whether to retry, adapt, or abandon the underlying idea based on that account, without having checked whether the outcome actually reflects the idea failing or the implementation failing. Invoke before evidence-base-scoper or key-behaviour-definer re-run on the same program goal, so the team&#39;s own history informs those rather than being silently repeated or silently ignored. Do not invoke without an actual documented record of what happened — a team&#39;s undocumented memory that &quot;it didn&#39;t really work&quot; is not enough raw material for this skill&#39;s structural checks.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Risk &amp; Pre-Mortem</dd></div>
+      <div><dt>Research stage</dt><dd>Prepare</dd></div>
+      <div><dt>WEIRD context</dt><dd>mixed-evidence</dd></div>
+      <div><dt>Version</dt><dd>0.2.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The implementation-vs-idea-failure distinction is a general evaluation-methodology point, not a claim about any specific population — it applies to judging any program, anywhere. What is WEIRD-skewed is the MRC framework&#39;s own worked examples and evidence base, drawn overwhelmingly from UK health-service interventions; treat the four-dimension structure (fidelity/dose/reach/context) as portable and the specific thresholds or worked cases in the source literature as needing local judgment.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Process evaluation of complex interventions (fidelity, dose, reach, context)</strong><br>Moore, G. F., Audrey, S., Barker, M., et al. (2015). Process evaluation of complex interventions: Medical Research Council guidance. BMJ, 350, h1258.</li><li><strong>Implementation fidelity&#39;s effect on program outcomes</strong><br>Durlak, J. A., &amp; DuPre, E. P. (2008). Implementation matters: A review of research on the influence of implementation on program outcomes. American Journal of Community Psychology, 41(3-4), 327-350.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>prior_intervention_record</code><br>The team&#39;s own raw account of what was planned, what they believe happened, and why they believe it succeeded or failed — given before this skill checks that belief against whatever data was actually collected.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>intervention_post_mortem_brief</code><br>A structured retrospective distinguishing what was planned from what was actually implemented, classifying the outcome as an implementation failure or an idea failure (or stating that the data available cannot yet tell), and checking the team&#39;s causal story against what data was actually collected.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Turns a team&#39;s raw account of a prior intervention attempt into a
+structured retrospective that separates what was planned from what was
+actually implemented, classifies the outcome as an implementation failure
+or an idea failure, and checks the team&#39;s own causal story against what
+data was actually collected.</p>
+<h2>When to invoke it</h2><ul>
+<li>A team has a documented account of a prior attempt and is about to
+decide to retry, adapt, or abandon the underlying idea based on that
+account alone.</li>
+<li>Before <a href="/behavioural-skills/skill?slug=evidence-base-scoper">evidence-base-scoper</a> or
+<a href="/behavioural-skills/skill?slug=key-behaviour-definer">key-behaviour-definer</a> re-run on the same
+program goal, so the team&#39;s own history is checked rather than silently
+repeated (retrying an approach that already failed for implementation
+reasons) or silently ignored (abandoning an idea that was never actually
+tested).</li>
+<li>Someone says &quot;we tried this before and it didn&#39;t work&quot; as if that
+settles whether the idea itself is bad.</li>
+<li>Do <strong>not</strong> invoke without an actual record of what happened — vague
+recollection with no documented fidelity, dose, reach, or outcome data
+gives this skill nothing to structure. Ask the team to write down what
+they actually remember first, even informally.</li>
+</ul>
+<h2>What it draws on</h2><p>The MRC&#39;s process evaluation framework treats fidelity (was it delivered
+as designed), dose (how much of it actually reached people), reach (what
+share of the intended population was exposed), and context (what changed
+in the delivery environment) as the dimensions that separate &quot;did we
+actually do the thing&quot; from &quot;did the thing work&quot; — a program can fail on
+any of the first three while the underlying idea remains untested. Durlak
+&amp; DuPre&#39;s finding that implementation quality substantially moderates
+outcomes is why &quot;the idea failed&quot; is never a conclusion this skill lets
+stand without first checking those four dimensions; a null result with
+thin fidelity/dose/reach data supports &quot;cannot yet tell,&quot; not &quot;the idea
+doesn&#39;t work.&quot; The causal-claim check applies the same falsifiability
+discipline <a href="/behavioural-skills/skill?slug=researcher-bias-self-audit">researcher-bias-self-audit</a>
+applies to fresh assumption statements — here, to a team&#39;s story about why
+a past attempt succeeded or failed.</p>
+<h2>Output template</h2><p>The Planned-vs-Implemented section and the Implementation failure vs. idea
+failure classification are both mandatory and carry equal weight — the
+classification is not a formality tacked onto the end of the detailed
+sections above it. &quot;Cannot yet tell&quot; is a legitimate, and often correct,
+answer for the classification when fidelity/dose/reach data is too thin to
+distinguish the two; forcing a firm classification onto weak data is worse
+than naming the gap, and the accumulated detail in the sections above must
+not create pressure toward a firm-sounding conclusion the data doesn&#39;t
+support. Every bullet in &quot;What was actually implemented,&quot; not only
+&quot;Outcome as observed,&quot; must state whether it&#39;s a confirmed fact from the
+record or an inference/hypothesis the record doesn&#39;t establish — the input
+stating a scheduling choice&#39;s reason (e.g. &quot;the hall was only available at
+2pm&quot;) does not confirm that reason as the cause of a downstream outcome
+(e.g. low attendance) unless the record separately says so.</p>
+<pre><code class="language-markdown"># Intervention Post-Mortem Brief
+
+**Prior intervention (as given):** &lt;verbatim or lightly cleaned account&gt;
+</code></pre>
+<h2>What was planned</h2><p>&lt;the intervention as originally designed — target behaviour, mechanism,
+intended delivery&gt;</p>
+<h2>What was actually implemented</h2><ul>
+<li><strong>Fidelity:</strong> &lt;was it delivered as designed, or did the actual delivery
+diverge — and how&gt; — <strong>Basis:</strong> &lt;confirmed by the record / inferred,
+not directly stated&gt;</li>
+<li><strong>Dose:</strong> &lt;how much of it actually reached people — frequency/intensity
+actually delivered vs. what was planned&gt; — <strong>Basis:</strong> &lt;confirmed /
+inferred&gt;</li>
+<li><strong>Reach:</strong>  — <strong>Basis:</strong> &lt;confirmed / inferred&gt;</li>
+<li><strong>Context:</strong> &lt;what changed in the delivery environment relative to what
+was assumed when it was designed — do not present a plausible cause for
+a downstream outcome as confirmed unless the record itself connects
+them&gt; — <strong>Basis:</strong> &lt;confirmed / inferred&gt;</li>
+</ul>
+<h2>Outcome as observed</h2><p>&lt;what data was actually collected, with a confidence qualifier — a single
+informal observation and a systematically tracked metric are not equally
+strong evidence, state which this is&gt;</p>
+<h2>Causal claim check</h2><ul>
+<li><strong>Team&#39;s stated reason for the outcome:</strong> </li>
+<li><strong>Does the collected data actually support this claim?</strong> &lt;yes / no /
+partially — name the specific data point that does or doesn&#39;t support it&gt;</li>
+<li><strong>Alternative explanation the data doesn&#39;t rule out:</strong> &lt;...&gt;</li>
+</ul>
+<h2>Implementation failure vs. idea failure (mandatory classification)</h2><p>&lt;state which this looks like, given the fidelity/dose/reach/context
+findings above, or state &quot;cannot yet tell&quot; explicitly if that data is too
+thin to distinguish them — a specific-but-approximate figure (e.g. &quot;roughly
+15%&quot;) is enough to support a firm classification on its own dimension; it
+is a thin-data case only when the dimension needed to decide is genuinely
+undocumented, not merely imprecise&gt;</p>
+<h2>Factors to address before any retry</h2><p>&lt;descriptive, not a redesign — what this post-mortem surfaced as
+unaddressed, for whoever designs the next attempt to work from&gt;
+```</p>
+<h2>Worked example</h2><p><strong>Prior intervention (as given):</strong> &quot;We ran a 3-month SMS reminder program
+to improve adherence to a daily medication for enrolled patients. We sent
+one reminder text per day at 8am. Adherence, measured by pharmacy refill
+records, barely moved. Our take is that patients just don&#39;t care enough
+about their health to act on a reminder.&quot; <em>(Illustrative — not a real
+program or dataset.)</em></p>
+<pre><code class="language-markdown"># Intervention Post-Mortem Brief
+
+**Prior intervention (as given):** A 3-month SMS reminder program sending
+one daily 8am text to improve medication adherence, measured via pharmacy
+refill records; adherence barely moved, and the team&#39;s take is that
+patients don&#39;t care enough to act on a reminder.
+</code></pre>
+<h2>What was planned</h2><p>Daily 8am SMS reminder to each enrolled patient, intended to prompt the
+same-day medication-taking behaviour, for 3 months.</p>
+<h2>What was actually implemented</h2><ul>
+<li><strong>Fidelity:</strong> Not fully as designed — the SMS gateway&#39;s delivery logs
+(once checked) show roughly 30% of messages failed silently on a subset
+of carriers, with no fallback or resend. — <strong>Basis:</strong> Confirmed by the
+gateway&#39;s own delivery logs.</li>
+<li><strong>Dose:</strong> For patients on affected carriers, effective dose was closer
+to 2 reminders/week than the planned 7 — a large gap between planned and
+actual exposure. — <strong>Basis:</strong> Confirmed, derived directly from the
+delivery-log failure rate above.</li>
+<li><strong>Reach:</strong> All enrolled patients were nominally in scope, but the
+carrier issue meant reach to a <em>working</em> reminder was uneven and was not
+segmented or reported at the time. — <strong>Basis:</strong> Confirmed that reach was
+uneven; which specific patients were affected is inferred, not logged.</li>
+<li><strong>Context:</strong> No change reported in the delivery environment itself
+(clinic operations, patient population) during the 3 months. —
+<strong>Basis:</strong> Confirmed by the record (absence of a reported change).</li>
+</ul>
+<h2>Outcome as observed</h2><p>Pharmacy refill records (a systematically tracked administrative measure,
+not a self-report) show adherence essentially flat — moderate-confidence
+evidence on the outcome measure itself, but confounded by the fidelity gap
+above, since the actual intervention delivered was substantially weaker
+than the one being evaluated.</p>
+<h2>Causal claim check</h2><ul>
+<li><strong>Team&#39;s stated reason for the outcome:</strong> Patients don&#39;t care enough
+about their health to act on a reminder.</li>
+<li><strong>Does the collected data actually support this claim?</strong> No direct
+support — no patient-level data on message receipt, engagement, or
+attitude was collected; the claim is an inference from the flat outcome
+alone, not from any data about patient motivation.</li>
+<li><strong>Alternative explanation the data doesn&#39;t rule out:</strong> A substantial
+share of patients may never have reliably received the reminder at all,
+given the ~30% carrier-level delivery failure — motivation was never
+actually tested against a fully-delivered intervention.</li>
+</ul>
+<h2>Implementation failure vs. idea failure</h2><p>Cannot yet tell whether the reminder <em>idea</em> fails, but there is a
+confirmed implementation failure (the carrier delivery gap) substantial
+enough that the idea has not actually been fairly tested yet. The team&#39;s
+causal claim about patient motivation is not supported by the data
+collected.</p>
+<h2>Factors to address before any retry</h2><p>Confirm SMS delivery success at the individual-message level (not just
+enrollment), across all patient carriers, before attributing any future
+flat result to the reminder concept itself rather than to delivery
+failure.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Implementation/idea conflation.</strong> Concluding &quot;the idea doesn&#39;t work&quot;
+from an outcome that a fidelity/dose/reach check would show was never
+actually delivered as designed — the central failure mode this skill
+exists to prevent, and the worked example above is a direct illustration
+of it.</li>
+<li><strong>Unchecked causal story.</strong> Accepting the team&#39;s stated reason for the
+outcome without checking it against what data was actually collected —
+a plausible-sounding story is not evidence, even when the team believes
+it sincerely.</li>
+<li><strong>One post-mortem, treated as universal.</strong> Applying a single
+retrospective&#39;s conclusions to a future attempt in a materially
+different context (different population, delivery channel, timeframe)
+without re-checking whether the same factors apply.</li>
+<li><strong>Prescribing a redesign.</strong> This skill surfaces what happened and why
+it&#39;s ambiguous or not; it does not design the next intervention. A
+post-mortem that jumps to &quot;here&#39;s what we should build instead&quot; has
+drifted into intervention design, a different skill&#39;s job.</li>
+<li><strong>Forced classification on thin data.</strong> Picking &quot;implementation failure&quot;
+or &quot;idea failure&quot; when fidelity/dose/reach/context data is too sparse to
+actually distinguish them is less honest than stating &quot;cannot yet tell&quot;
+— a firm-sounding wrong classification is worse than an admitted gap.</li>
+<li><strong>Plausible cause smuggled in as fact.</strong> Writing a plausible explanation
+for a scheduling or delivery choice&#39;s effect (e.g. &quot;the 2pm slot
+conflicted with market hours&quot;) into the Context bullet without a
+<strong>Basis</strong> marking it as inferred rather than confirmed makes an unchecked
+hypothesis read exactly like an established finding — the same problem
+the causal-claim check exists to catch, relocated one section earlier.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.2.0</span><span class="changelog-date">2026-07-30</span><p>Tighten the three newest skills against blind-agent stress tests</p></li><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-07-30</span><p>Add three intervention/risk skills, clean URLs, and a grouped command palette</p></li></ul>
+  </main>
 </body>
 </html>

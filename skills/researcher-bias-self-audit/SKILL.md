@@ -78,7 +78,7 @@ become the barrier hypotheses in a later diagnosis.
 - A project is starting and the research team hasn't yet written down what
   they already believe about why the target population behaves as it does,
   before looking at any data.
-- Before [comb-barrier-decomposer](../comb-barrier-decomposer) runs, so its
+- Before [comb-barrier-decomposer](/behavioural-skills/skill?slug=comb-barrier-decomposer) runs, so its
   barrier hypotheses can be checked against what the researchers already
   believed going in, rather than silently reproducing it.
 - Periodically during a long project — priors drift and harden over time,
@@ -105,7 +105,7 @@ a single audit report doesn't produce that practice, it just gives the
 team something concrete to practice against.
 
 If an `intervention_post_mortem_brief` is available (from
-[prior-intervention-post-mortem-reader](../prior-intervention-post-mortem-reader)),
+[prior-intervention-post-mortem-reader](/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader)),
 its "Causal claim check" already tested one causal story against actual
 data — cross-check the fresh assumption statement against it. A belief the
 post-mortem already found unsupported, restated here as if it were newly
@@ -245,10 +245,10 @@ any of the audience-context or field data existed.
   statement.
 - **Confusing this with the target-population evidence base.** This skill
   audits the *researcher's* priors; it does not survey external evidence
-  on the population — that's [evidence-base-scoper](../evidence-base-scoper).
+  on the population — that's [evidence-base-scoper](/behavioural-skills/skill?slug=evidence-base-scoper).
   Running only this one and treating it as if the population itself has now
   been evidenced leaves the actual evidence gap unaddressed.
 - **Relabeled post-mortem claim.** A causal story already checked and
-  found unsupported by [prior-intervention-post-mortem-reader](../prior-intervention-post-mortem-reader)
+  found unsupported by [prior-intervention-post-mortem-reader](/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader)
   can resurface here as a "fresh" assumption if no one cross-checks it —
   flag it as the same unaudited belief, not as independent input.

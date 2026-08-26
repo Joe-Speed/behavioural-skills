@@ -3,22 +3,304 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Evidential Experiment Designer — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=evidential-experiment-designer" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/evidential-experiment-designer" />
   <meta name="description" content="Turns one testable hypothesis into a launch-ready Evidential experiment configuration — experiment type, arms, randomization unit, eligibility filters, metrics with a detectable effect, power inputs,…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Evidential Experiment Designer — Behavioural Skills" />
   <meta property="og:description" content="Turns one testable hypothesis into a launch-ready Evidential experiment configuration — experiment type, arms, randomization unit, eligibility filters, metrics with a detectable effect, power inputs,…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=evidential-experiment-designer" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/evidential-experiment-designer" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Evidential Experiment Designer — Behavioural Skills" />
   <meta name="twitter:description" content="Turns one testable hypothesis into a launch-ready Evidential experiment configuration — experiment type, arms, randomization unit, eligibility filters, metrics with a detectable effect, power inputs,…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=evidential-experiment-designer" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=evidential-experiment-designer">Evidential Experiment Designer</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Evidential Experiment Designer</h1>
+      <p class="description">Use when a team has a specific change worth testing — a message variant, an onboarding tweak, a nudge cadence — and intends to run it as a rigorous rapid experiment in Evidential, the open-source experiment engine for nonprofits, but has not yet made the design decisions the tool will demand: experiment type, arms, randomization unit, metrics, power. Invoke it when a weak-link hypothesis or experiment idea is about to be &quot;just shipped and eyeballed&quot; instead of randomized. Do not invoke for a full-scale RCT with enumerator-managed arms — Evidential&#39;s own docs rule that out; scope it with evaluation-design-scoper and an independent evaluator — and do not invoke to generate the hypothesis itself; that is funnel-weak-link-diagnoser&#39;s job.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=evidential-experiment-designer">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Measurement</dd></div>
+      <div><dt>Research stage</dt><dd>Test</dd></div>
+      <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">Evidential was built for social-sector deployments — its early partners run programs in India and across Africa — so the tooling assumptions are already non-WEIRD-aware (WhatsApp delivery integration, preassigned designs for offline-ish populations). What it does assume is data infrastructure: a BigQuery/Postgres/Redshift warehouse with a clean participant table, and client-side capacity to deliver each arm&#39;s treatment. Where those are missing, the design brief this skill produces is a plan for later, not a launch config.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Evidential experiment engine (documentation and design spec)</strong><br>IDinsight &amp; The Agency Fund (2025). Evidential: a free, open-source experiment engine built by and for nonprofits. Documentation and API design specification. Apache-2.0 (backend). — <a href="https://docs.evidential.dev/" target="_blank" rel="noopener">source</a></li><li><strong>The Agency Fund AI Evaluation Playbook — Repeatable Motion 04, running experiments with rigor and speed</strong><br>Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., &amp; Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Repeatable Motions. The Agency Fund. — <a href="https://eval.playbook.org.ai/motions" target="_blank" rel="noopener">source</a></li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>experiment_intent_statement</code><br>The team&#39;s plain-language statement of what they want to test: the change or variant, who it applies to, what they expect it to move, and the decision the result will inform.</li><li><code>funnel_weak_link_hypotheses</code> (optional)<br>Optional diagnosis from funnel-weak-link-diagnoser. When present, the experiment must test a named hypothesis from it — the primary metric is then the funnel transition that hypothesis predicts will move, not a metric chosen fresh.</li><li><code>evaluation_design_brief</code> (optional)<br>Optional measurement plan from evaluation-design-scoper. When present, carry its locked primary outcome and minimum effect worth detecting into the metric section instead of inventing new ones — a rapid experiment that quietly redefines the program&#39;s locked outcome is the drift that skill exists to prevent.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>experiment_configuration_brief</code><br>A launch-ready experiment configuration: hypothesis, Evidential experiment type, randomization unit and arms, primary and guardrail metrics with detectable effect, power inputs, stopping rule, delivery integration plan, and analysis plan — plus the decision rule the result feeds.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Turns one testable hypothesis into a launch-ready Evidential experiment
+configuration — experiment type, arms, randomization unit, eligibility
+filters, metrics with a detectable effect, power inputs, stopping rule,
+delivery integration — specified concretely enough to enter into the tool
+without further design decisions.</p>
+<h2>When to invoke it</h2><ul>
+<li>A change is about to be shipped to everyone at once &quot;to see if it
+helps&quot; when the population, delivery channel, and data warehouse would
+support randomizing it.</li>
+<li><a href="/behavioural-skills/skill?slug=funnel-weak-link-diagnoser">funnel-weak-link-diagnoser</a> has
+produced a surviving hypothesis whose cheapest honest test is an
+experiment.</li>
+<li><a href="/behavioural-skills/skill?slug=ai-eval-level-matcher">ai-eval-level-matcher</a> has recommended
+Level 2 or Level 3 evaluation and the team&#39;s experimentation stack is
+Evidential.</li>
+<li>A team is staring at Evidential&#39;s create-experiment form unsure what
+half the fields (strata, MDE, balance threshold) should contain — the
+decisions belong upstream of the form, which is where this skill sits.</li>
+<li>Do <strong>not</strong> invoke for a full-scale impact RCT. Evidential&#39;s docs are
+explicit: it is &quot;not built for full-scale Randomized Control Trials&quot;
+with enumerator-managed arms and full counterfactuals — that is Level 4
+territory for <a href="/behavioural-skills/skill?slug=evaluation-design-scoper">evaluation-design-scoper</a>
+plus an independent evaluator.</li>
+<li>Do <strong>not</strong> invoke to find something to test. An experiment without a
+mechanism hypothesis produces a significant-or-not answer to a question
+nobody asked; run the diagnosis first.</li>
+</ul>
+<h2>What it draws on</h2><p>Evidential (IDinsight &amp; The Agency Fund, 2025) — the experiment engine
+named by the AI Evaluation Playbook&#39;s Motion 04 as the tooling that
+&quot;help[s] teams automate randomization, track real-time results, and
+reduce analysis bottlenecks.&quot; The design brief mirrors the tool&#39;s actual
+design spec, so every section lands on a real field rather than a vague
+intention:</p>
+<ul>
+<li><strong>Experiment type</strong> is Evidential&#39;s first fork: <code>freq_preassigned</code>
+(participants sampled from the warehouse and assigned up front, with
+stratified randomization and a pre-launch balance check),
+<code>freq_online</code> (arms assigned in real time as new participants appear —
+no stratification, no balance check), and the adaptive family
+(<code>mab_online</code>, <code>mab_online_dwh</code>, <code>cmab_online</code> — Thompson-sampling
+bandits that <em>optimize</em> allocation rather than estimate effects
+precisely). The skill&#39;s rule of thumb, from the tool&#39;s own structure:
+known finite population → preassigned; open enrollment → online;
+&quot;find the best arm cheaply, precise effect size not needed&quot; → bandit.</li>
+<li><strong>Arms</strong> (2–20, optional weights summing to 100), the first arm being
+control; <strong>eligibility filters</strong> (<code>includes</code>/<code>excludes</code>/<code>between</code> on
+flagged participant fields); <strong>randomization unit</strong> — individual
+(<code>primary_key</code>) or cluster (<code>cluster_key</code> + desired cluster count,
+for treatments that spill over within groups); <strong>strata</strong> for
+preassigned designs.</li>
+<li><strong>Metrics</strong>: each a flagged numeric/boolean warehouse field with
+either a relative <code>metric_pct_change</code> or absolute <code>metric_target</code> to
+detect; Evidential defaults power to 0.8, alpha to 0.05, and — if the
+team declines to choose — target effect to baseline × 0.1. This skill
+treats that last default as a red flag, not a convenience: the
+detectable effect must come from the program&#39;s decision threshold
+(the <code>evaluation_design_brief</code>&#39;s minimum effect worth detecting, when
+one exists), echoing the same discipline evaluation-design-scoper
+enforces.</li>
+<li><strong>Analysis</strong> is intent-to-treat OLS with strata and pre-treatment
+outcome values as controls; <strong>delivery is the client&#39;s job</strong> —
+Evidential has no feature flags, it returns assignments (CSV, REST, or
+webhook) and the program must map each <code>arm_name</code> to an actual
+treatment path (e.g. a WhatsApp journey). An experiment with no
+delivery mapping randomizes nobody into anything.</li>
+<li><strong>Close-out</strong>: Evidential records a <code>decision</code> and an <code>impact</code> rating
+per experiment, doubling as the org&#39;s experiment registry — so the
+brief must state the decision rule <em>before</em> launch.</li>
+</ul>
+<p>Judgment call the sources don&#39;t fully specify: guardrail metrics.
+Evidential permits up to 150 metrics; this skill mandates exactly one
+primary metric plus a small named set of guardrails (metrics that must
+<em>not</em> degrade), because a many-primary experiment re-imports the
+which-number-moved problem that pre-specification exists to kill.</p>
+<h2>Output template</h2><pre><code class="language-markdown"># Experiment Configuration Brief
+
+**Hypothesis under test:** &lt;mechanism being tested, carried verbatim from
+the weak-link hypothesis or intent — not &quot;variant B is better&quot;&gt;
+**Decision rule:** &lt;what the team will do on a positive, null, or
+negative result — written before launch&gt;
+</code></pre>
+<h2>Design</h2><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Experiment type</td>
+<td>freq_preassigned / freq_online / mab_*</td>
+<td>&lt;population + goal rationale&gt;</td>
+</tr>
+<tr>
+<td>Randomization unit</td>
+<td>individual (primary_key) / cluster (cluster_key)</td>
+<td></td>
+</tr>
+<tr>
+<td>Arms</td>
+<td>&lt;name + one-line description each; control first; weights if unequal&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td>Eligibility filters</td>
+<td>&lt;field, relation, value — who is in&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td>Strata</td>
+<td>&lt;fields, preassigned only&gt; or n/a</td>
+<td></td>
+</tr>
+<tr>
+<td>Start / end</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>Metrics</h2><p><strong>Primary:</strong> &lt;one warehouse field — for a funnel-sourced hypothesis, the
+transition it predicts will move&gt; — detectable effect , sourced from &lt;program threshold / evaluation_design_brief&gt;, not
+the tool&#39;s baseline×0.1 default.
+<strong>Guardrails:</strong> &lt;named metrics that must not degrade, with direction&gt;</p>
+<h2>Power &amp; stopping</h2><p>&lt;power (default 0.8), alpha (default 0.05), required n from the power
+check vs available n; stopping rule: end_date / target_n / manual — and
+the commitment not to peek-and-stop early on a p-value&gt;</p>
+<h2>Delivery integration</h2><p>&lt;how each arm becomes a real treatment: the arm_name → delivery-path
+mapping, who builds it, and how assignment is fetched (CSV / REST
+assignment endpoint / webhook). If this section is empty the experiment
+does not exist.&gt;</p>
+<h2>Analysis plan</h2><p>&lt;ITT via Evidential&#39;s OLS with strata + pre-treatment controls; balance
+check expectation for preassigned (or its absence for online, and the
+small-sample imbalance risk that implies); who reads results and when&gt;</p>
+<h2>Data &amp; ethics notes</h2><p>&lt;participant table + unique id; no PII in ids; consent/notification
+posture for being experimented on, per org policy&gt;
+```</p>
+<h2>Worked example</h2><p><strong>Inputs (condensed):</strong> MaizeMate&#39;s weak-link diagnosis (see
+<a href="/behavioural-skills/skill?slug=funnel-weak-link-diagnoser">funnel-weak-link-diagnoser</a>) — log
+analysis supported H1: onboarded farmers type nothing; they don&#39;t know
+what to ask. Intent: test a first-question example menu against the
+open-ended prompt. <em>(Illustrative — continues the catalogue&#39;s running
+example; not a real program.)</em></p>
+<pre><code class="language-markdown"># Experiment Configuration Brief
+
+**Hypothesis under test:** H1 — onboarded farmers don&#39;t engage because
+the open &quot;ask me anything&quot; prompt gives no model of a good first
+question; a localized example-question menu will raise
+onboarding→engagement.
+**Decision rule:** ≥8pp lift in week-1 engagement → menu becomes default
+for all new farmers; null → H1 is weakened, escalate H3 (data cost) to a
+delivery-model review; negative → keep open prompt, log in registry.
+</code></pre>
+<h2>Design</h2><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Experiment type</td>
+<td>freq_online</td>
+<td>open enrollment — new farmers appear daily; no fixed roster to preassign</td>
+</tr>
+<tr>
+<td>Randomization unit</td>
+<td>individual (farmer_wa_id)</td>
+<td>menu is per-chat; no within-coop spillover expected for a UI prompt</td>
+</tr>
+<tr>
+<td>Arms</td>
+<td>control: open prompt / treatment: 4-item example menu (county-localized)</td>
+<td>50/50</td>
+</tr>
+<tr>
+<td>Eligibility filters</td>
+<td>onboarding_complete includes true; enrollment_date between 2026-08-17 and 2026-10-12</td>
+<td>new onboarders only — existing users have already seen the open prompt</td>
+</tr>
+<tr>
+<td>Strata</td>
+<td>n/a (online experiments assign without stratification)</td>
+<td></td>
+</tr>
+<tr>
+<td>Start / end</td>
+<td>2026-08-17 → 2026-10-12</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>Metrics</h2><p><strong>Primary:</strong> engaged_week1 (boolean: ≥1 substantive question within 7
+days of onboarding) — detectable effect: +8pp on a 31% baseline, from
+the decision rule above, not the default baseline×0.1 (which would be a
+meaninglessly small 3.1pp for this decision).
+<strong>Guardrails:</strong> setup_completion_rate (must not fall — a menu shown
+mid-onboarding could add friction); guardrail_refusal_rate (must not
+rise — menu items must not bait out-of-scope queries).</p>
+<h2>Power &amp; stopping</h2><p>Power 0.8, alpha 0.05; power check against the participants table says
+~1,100 farmers needed, ~8 weeks of enrollment at current recruitment
+rates — hence the end date. Stopping: end_date; no early stopping on
+interim p-values (online design has no balance check, so mid-stream
+peeks are doubly untrustworthy at small n).</p>
+<h2>Delivery integration</h2><p>Product lead maps arm_name → WhatsApp flow: assignment fetched per
+farmer at onboarding-complete via the per-participant assignment
+endpoint; &quot;menu&quot; routes to the menu journey, &quot;control&quot; to the current
+prompt. Webhook on commit notifies the backend to activate the mapping.</p>
+<h2>Analysis plan</h2><p>ITT on engaged_week1 via Evidential&#39;s OLS; no strata controls (online);
+research lead reads the dashboard at end date, records decision + impact
+in the registry. Small-sample caution: check arm sizes for drift weekly
+since online assignment carries imbalance risk.</p>
+<h2>Data &amp; ethics notes</h2><p>Participants table: farmers view, unique id farmer_wa_id (hashed —
+raw phone numbers must not be the id). Message variants fall under the
+program&#39;s existing service-improvement consent; no additional data
+collected beyond standard logs.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Shipping the tool&#39;s default effect size.</strong> Accepting baseline × 0.1
+because the field auto-filled. A detectable effect that no decision
+hangs on produces a study that is powered, significant, and useless —
+the same failure evaluation-design-scoper polices, re-imported through
+a form field.</li>
+<li><strong>Bandit envy.</strong> Choosing a bandit because &quot;adaptive sounds efficient&quot;
+when the team needs a defensible effect estimate for a scale decision.
+Bandits allocate toward winners; they answer &quot;which arm&quot; cheaply, not
+&quot;how much better, with what confidence.&quot;</li>
+<li><strong>The unmapped arm.</strong> A committed experiment whose treatment arm no
+system actually delivers — Evidential returns assignments, nothing
+more, and a missing arm→journey mapping means both arms silently get
+control. The delivery section&#39;s &quot;if empty, the experiment does not
+exist&quot; line is load-bearing.</li>
+<li><strong>Individual randomization under spillover.</strong> Randomizing farmers
+within cooperatives when the treatment travels by word of mouth —
+contamination shrinks the measured effect toward null. If the
+treatment is discussable, the unit is the cluster.</li>
+<li><strong>Metric sprawl.</strong> Fifteen &quot;primary-ish&quot; metrics, one of which will
+clear p&lt;0.05 by luck. One primary, named guardrails, everything else
+exploratory-and-labeled — or the registry entry is HARKing bait.</li>
+<li><strong>Peeking at online experiments.</strong> Stopping a freq_online experiment
+the first week the dashboard shows a star — with no balance check and
+small interim n, that star is noise more often than signal.</li>
+<li><strong>Out of scope: no warehouse, no delivery capacity, or Level 4
+questions.</strong> Without a queryable participant table (or for pure
+in-person delivery), and for cost-effectiveness-of-the-program
+questions, this brief can only document aspiration — route
+infrastructure gaps to the data team and impact questions to
+evaluation-design-scoper.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-11</span><p>Add TAF AI-evaluation and Evidential experiment skills</p></li></ul>
+  </main>
 </body>
 </html>

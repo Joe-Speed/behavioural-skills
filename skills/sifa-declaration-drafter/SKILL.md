@@ -77,7 +77,7 @@ scale, plus an audit note justifying each rating.
   disclosure, not a compliance response.
 - Do **not** invoke to examine the team's prior beliefs about the target
   population — that is
-  [researcher-bias-self-audit](../researcher-bias-self-audit)'s job, and
+  [researcher-bias-self-audit](/behavioural-skills/skill?slug=researcher-bias-self-audit)'s job, and
   it runs *before* the work; this skill runs *after* it.
 - Do **not** invoke as an approval mechanism. The declaration records
   what happened; whether a given level of AI involvement was appropriate

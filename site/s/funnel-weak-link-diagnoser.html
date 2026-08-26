@@ -3,22 +3,225 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Funnel Weak-Link Diagnoser — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=funnel-weak-link-diagnoser" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/funnel-weak-link-diagnoser" />
   <meta name="description" content="Locates the weakest stage transition in an observed user funnel, then turns &quot;users drop off there&quot; into competing, testable mechanism hypotheses — each paired with the measurement or experiment that…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Funnel Weak-Link Diagnoser — Behavioural Skills" />
   <meta property="og:description" content="Locates the weakest stage transition in an observed user funnel, then turns &quot;users drop off there&quot; into competing, testable mechanism hypotheses — each paired with the measurement or experiment that…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=funnel-weak-link-diagnoser" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/funnel-weak-link-diagnoser" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Funnel Weak-Link Diagnoser — Behavioural Skills" />
   <meta name="twitter:description" content="Locates the weakest stage transition in an observed user funnel, then turns &quot;users drop off there&quot; into competing, testable mechanism hypotheses — each paired with the measurement or experiment that…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=funnel-weak-link-diagnoser" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=funnel-weak-link-diagnoser">Funnel Weak-Link Diagnoser</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Funnel Weak-Link Diagnoser</h1>
+      <p class="description">Use when a user funnel exists, its metrics show where users drop off, and the team is about to jump from &quot;the number is bad&quot; straight to a redesign without ever stating why users fall out there. Invoke it when a funnel readout shows a stage transition far below target and the proposed fixes are solutions in search of a diagnosis. Do not invoke without observed funnel numbers — build the funnel first with user-funnel-builder — and do not invoke to diagnose barriers to an offline behaviour outside a product journey; that is comb-barrier-decomposer.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=funnel-weak-link-diagnoser">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Diagnosis</dd></div>
+      <div><dt>Research stage</dt><dd>Diagnose</dd></div>
+      <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The diagnostic move — competing mechanism hypotheses with discriminating tests, instead of a redesign reflex — is method, not culture, and the source playbook&#39;s cases are LMIC deployments. The hypothesis space is where WEIRD defaults creep in: explanations drawn from app-market intuitions (notification fatigue, UX friction) crowd out explanations that dominate in other contexts — airtime and data cost, shared handsets, channel trust, literacy and language mismatch. The output template&#39;s requirement that at least one hypothesis be non-psychological exists for this reason.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>The Agency Fund AI Evaluation Playbook — Repeatable Motion 03, diagnosing weak links via targeted hypotheses</strong><br>Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., &amp; Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Repeatable Motions. The Agency Fund. — <a href="https://eval.playbook.org.ai/motions" target="_blank" rel="noopener">source</a></li><li><strong>COM-B model of behaviour</strong><br>Michie, S., van Stralen, M. M., &amp; West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. Implementation Science, 6, 42. — <a href="https://doi.org/10.1186/1748-5908-6-42" target="_blank" rel="noopener">source</a></li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>user_funnel_map</code><br>The staged funnel this diagnosis runs against — normally user-funnel-builder&#39;s output. Stage names, entry actions, and targets are what make a drop-off identifiable at all.</li><li><code>funnel_metric_readout</code><br>The team&#39;s actual observed numbers for this funnel: measured value or transition rate per stage over a stated window, plus known data-quality caveats. The diagnosis targets the largest target-vs-observed gap, not the stage the team already wants to redesign.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>funnel_weak_link_hypotheses</code><br>For the funnel&#39;s weakest link: competing, testable mechanism hypotheses for why users fall out at that stage, each paired with the measurement or experiment that would discriminate it from the others — not a redesign proposal.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Locates the weakest stage transition in an observed user funnel, then
+turns &quot;users drop off there&quot; into competing, testable mechanism
+hypotheses — each paired with the measurement or experiment that would
+discriminate it from the others.</p>
+<h2>When to invoke it</h2><ul>
+<li>A funnel readout shows a stage far below target and the next team
+meeting&#39;s agenda is a redesign, a new feature, or &quot;more onboarding
+messages&quot; — a fix chosen before any mechanism was named.</li>
+<li>The team can say <em>where</em> users leave (the numbers say so) but answers
+<em>why</em> differently depending on who&#39;s asked.</li>
+<li>An engagement experiment is being planned and needs a hypothesis worth
+the sample — this skill&#39;s output is
+<a href="/behavioural-skills/skill?slug=evidential-experiment-designer">evidential-experiment-designer</a>&#39;s
+natural input.</li>
+<li>Do <strong>not</strong> invoke without observed numbers. A funnel with only targets
+has no weak link yet — run the product, collect a
+<code>funnel_metric_readout</code>, or build the funnel first with
+<a href="/behavioural-skills/skill?slug=user-funnel-builder">user-funnel-builder</a>.</li>
+<li>Do <strong>not</strong> invoke for behaviours outside a product journey (clinic
+attendance, savings deposits in cash). That diagnosis belongs to
+<a href="/behavioural-skills/skill?slug=comb-barrier-decomposer">comb-barrier-decomposer</a>; this skill&#39;s
+stage-transition framing assumes telemetry-visible steps.</li>
+</ul>
+<h2>What it draws on</h2><p>Repeatable Motion 03 of The Agency Fund&#39;s AI Evaluation Playbook (Wu et
+al., 2025): use funnel drop-off data to generate &quot;specific, testable
+hypotheses&quot; about mechanism — the playbook&#39;s own examples are &quot;Is the
+value proposition unclear? Are users overwhelmed? Do they mistrust the
+AI?&quot; — each becoming &quot;a lens for a focused measurement or experiment.&quot;
+The motion sits, in the playbook&#39;s words, at the intersection of product
+management and behavioural science, and its discipline is the same one a
+clinician applies: no treatment before a differential diagnosis, and a
+differential means <em>more than one</em> candidate mechanism held open at once.</p>
+<p>COM-B (Michie et al., 2011) supplies the completeness check on the
+hypothesis space, a judgment call the playbook itself doesn&#39;t specify.
+Each candidate mechanism is tagged by whether it locates the failure in
+<strong>capability</strong> (the user can&#39;t — literacy, language, digital skill),
+<strong>opportunity</strong> (the context won&#39;t let them — cost, connectivity, device
+access, social permission), or <strong>motivation</strong> (they don&#39;t want to —
+unclear value, mistrust, effort not worth it). The tags exist to expose
+lopsidedness: a hypothesis list that is all motivation is usually a team
+projecting its own product anxieties, and the template requires at least
+one opportunity-side (structural, non-psychological) hypothesis for this
+reason.</p>
+<p>Second judgment call: this skill diagnoses the <em>largest unexplained gap</em>,
+not the stage the team is most excited to fix. If the readout&#39;s
+data-quality caveats can explain the gap (an instrumentation change
+mid-window), the honest output says so and diagnoses the next-largest
+real gap instead.</p>
+<h2>Output template</h2><p>Two to four hypotheses. One is not a differential; five means nothing
+gets tested. Each must be falsifiable by the test in its own row.</p>
+<pre><code class="language-markdown"># Funnel Weak-Link Hypotheses
+
+**Funnel:** &lt;product + funnel name&gt;
+**Readout window:** &lt;dates the numbers cover&gt;
+**Weakest link:** &lt;stage N → N+1: observed X% vs target Y%&gt;
+**Gaps set aside:** &lt;other below-target transitions and why they wait —
+including any gap plausibly explained by a data-quality caveat rather
+than by users&gt;
+</code></pre>
+<h2>Competing hypotheses</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Mechanism (why users fall out here)</th>
+<th>COM-B locus</th>
+<th>What would discriminate it</th>
+<th>Cheapest honest test</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H1</td>
+<td>&lt;one mechanism, stated so it can be wrong&gt;</td>
+<td>capability / opportunity / motivation</td>
+<td>&lt;the observation that separates this from H2/H3&gt;</td>
+<td>&lt;measurement or experiment, with the discriminating signal named&gt;</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+</tr>
+</tbody></table>
+<p>&lt;at least one hypothesis must locate the failure outside users&#39; heads —
+cost, access, device, timing — before any motivational story is accepted&gt;</p>
+<h2>What this diagnosis is not</h2><p>One sentence: no redesign is proposed here; fixes come after a hypothesis
+survives its test — via the experiment path
+(evidential-experiment-designer) or intervention design
+(intervention-lever-selector) as appropriate.
+```</p>
+<h2>Worked example</h2><p><strong>Inputs (condensed):</strong> MaizeMate&#39;s funnel map (see
+<a href="/behavioural-skills/skill?slug=user-funnel-builder">user-funnel-builder</a>) and a readout for 6 weeks
+of pilot: recruitment 138/wk (target 120), onboarding 74% (target 70%),
+engagement 31% (target 60%), 4-week retention 22% of the engaged (target
+40%). Caveat noted: the onboarding flow was shortened in week 3.
+<em>(Illustrative — continues the catalogue&#39;s running example; not a real
+program.)</em></p>
+<pre><code class="language-markdown"># Funnel Weak-Link Hypotheses
+
+**Funnel:** MaizeMate WhatsApp assistant — yield funnel
+**Readout window:** 2026-06-22 to 2026-08-02
+**Weakest link:** onboarding → engagement: 31% observed vs 60% target
+(retention is also below target but is downstream of this break)
+**Gaps set aside:** retention (22% vs 40%) — deferred until the
+engagement break is understood, since the retained base is currently the
+31% who engaged at all. The week-3 onboarding change does not explain the
+engagement gap: the rate is flat across cohorts before and after.
+</code></pre>
+<h2>Competing hypotheses</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Mechanism</th>
+<th>COM-B locus</th>
+<th>What would discriminate it</th>
+<th>Cheapest honest test</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H1</td>
+<td>Farmers complete setup, then don&#39;t know what to ask — the open &quot;ask me anything&quot; prompt gives no model of a good first question</td>
+<td>capability</td>
+<td>H1 predicts drop-off concentrates on farmers who never send any draft text; H2 predicts sent-but-unanswered attempts</td>
+<td>Log analysis: do non-engagers type nothing, or type and abandon? Then A/B a first-question example menu vs the open prompt</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>Answers to first questions arrive too slowly or read as generic, so the second question never comes</td>
+<td>motivation</td>
+<td>Response latency and first-answer length/specificity for engagers vs one-question leavers</td>
+<td>Compare first-session transcripts; if separated, A/B a personalized first answer (uses the setup&#39;s county + crop stage) vs current</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>Data cost: farmers onboard on free cooperative Wi-Fi at enrollment events, then face airtime costs for substantive chat from home</td>
+<td>opportunity</td>
+<td>H3 predicts drop-off concentrates among farmers onboarded at events vs self-onboarded; engagement clusters near market-day Wi-Fi</td>
+<td>Cross-tab engagement by enrollment source; 10 farmer calls asking about data spend</td>
+</tr>
+</tbody></table>
+<h2>What this diagnosis is not</h2><p>No redesign is proposed here. H1/H2 winners go to
+evidential-experiment-designer as experiment intents; an H3 win is a
+delivery-model problem no message experiment fixes.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>The single-hypothesis diagnosis.</strong> One mechanism, stated
+confidently, with a test designed to confirm it. The differential is
+the method; if only one story was ever on the table, this skill ran as
+decoration for a decision already made.</li>
+<li><strong>All-motivation hypothesis lists.</strong> Every mechanism about desire and
+trust, none about cost, access, or capability — the classic WEIRD
+default, and why the template forces one structural hypothesis. Wrong
+locus means the winning &quot;fix&quot; gets A/B-tested against a barrier no
+message can move.</li>
+<li><strong>Diagnosing the pet stage.</strong> The team wants to rebuild onboarding, so
+onboarding gets diagnosed — while the numbers say the break is
+elsewhere. The weakest-link line must cite the readout&#39;s largest
+target-vs-observed gap or explicitly justify departing from it.</li>
+<li><strong>Mechanism-shaped restatements.</strong> &quot;Users drop off because they don&#39;t
+engage&quot; — a tautology wearing a hypothesis costume. The test: does the
+mechanism column say something the metric didn&#39;t already say?</li>
+<li><strong>Ignoring the readout&#39;s caveats.</strong> Diagnosing a gap manufactured by an
+instrumentation change. The gaps-set-aside line exists to force this
+check before farmers get theorized about.</li>
+<li><strong>Out of scope: no numbers, or no journey.</strong> Without a readout there is
+no weak link to find (build and instrument the funnel first); without a
+product journey the stage framing itself is wrong — use
+comb-barrier-decomposer.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-11</span><p>Add TAF AI-evaluation and Evidential experiment skills</p></li></ul>
+  </main>
 </body>
 </html>

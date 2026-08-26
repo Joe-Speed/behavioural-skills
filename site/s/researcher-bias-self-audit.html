@@ -3,22 +3,220 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Researcher Bias Self-Audit — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=researcher-bias-self-audit" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/researcher-bias-self-audit" />
   <meta name="description" content="Takes a researcher&#39;s own stated assumptions about why a target population behaves as it does and flags which of those assumptions are unfalsifiable, implicitly assume a WEIRD-default population, or…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Researcher Bias Self-Audit — Behavioural Skills" />
   <meta property="og:description" content="Takes a researcher&#39;s own stated assumptions about why a target population behaves as it does and flags which of those assumptions are unfalsifiable, implicitly assume a WEIRD-default population, or…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=researcher-bias-self-audit" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/researcher-bias-self-audit" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Researcher Bias Self-Audit — Behavioural Skills" />
   <meta name="twitter:description" content="Takes a researcher&#39;s own stated assumptions about why a target population behaves as it does and flags which of those assumptions are unfalsifiable, implicitly assume a WEIRD-default population, or…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=researcher-bias-self-audit" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=researcher-bias-self-audit">Researcher Bias Self-Audit</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Researcher Bias Self-Audit</h1>
+      <p class="description">Use when a research team is about to diagnose barriers or design an intervention and no one has surfaced the team&#39;s own prior beliefs about why the target population behaves the way it does. Invoke before comb-barrier-decomposer, ideally alongside evidence-base-scoper, at the start of a project and again before any major diagnosis or design phase — this is a periodic check, not a one-time gate. Do not invoke expecting it to resolve or correct the biases it finds; it only surfaces and structures them for a human to act on.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=researcher-bias-self-audit">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Researcher Calibration</dd></div>
+      <div><dt>Research stage</dt><dd>Prepare</dd></div>
+      <div><dt>WEIRD context</dt><dd>untested-outside-weird</dd></div>
+      <div><dt>Version</dt><dd>0.2.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The debiasing and metacognition literature this skill draws on is itself drawn overwhelmingly from WEIRD research populations and settings (Henrich, Heine, &amp; Norenzayan, 2010, &quot;The weirdest people in the world?&quot;, Behavioral and Brain Sciences, 33(2-3), 61-83) — a pointed irony for a skill about checking researchers&#39; own priors. The *technique* (forcing falsifiability and a named disconfirming observation) is general-purpose, but treat its effectiveness as unvalidated outside the populations the source studies were run on, same as any other skill in this library would be required to.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Confirmation bias in hypothesis testing</strong><br>Klayman, J. (1995). Varieties of confirmation bias. Psychology of Learning and Motivation, 32, 385-418.</li><li><strong>Debiasing training and self-correction</strong><br>Lilienfeld, S. O., Ammirati, R., &amp; Landfield, K. (2009). Giving debiasing away: Can psychological research on correcting cognitive errors promote human welfare? Perspectives on Psychological Science, 4(4), 390-398.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>researcher_assumption_statement</code><br>The researcher&#39;s own short, honest answers to the fixed prompts named in this io type&#39;s taxonomy entry, given before looking at any diagnostic data on the actual target population.</li><li><code>intervention_post_mortem_brief</code> (optional)<br>Optional post-mortem for a prior attempt on this or a related program, if prior-intervention-post-mortem-reader has already run. When present, cross-check its &quot;Causal claim check&quot; section against the fresh assumption statement — a causal story the post-mortem already found unsupported by data, restated here as a fresh belief about why the population behaves as it does, is the same unaudited assumption reappearing rather than a new one.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>bias_audit_report</code><br>A structured flag list surfacing which stated assumptions are unfalsifiable as written, default to a WEIRD population as the implicit norm, or lack a named disconfirming observation.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Takes a researcher&#39;s own stated assumptions about why a target population
+behaves as it does and flags which of those assumptions are unfalsifiable,
+implicitly assume a WEIRD-default population, or have no named observation
+that would change the researcher&#39;s mind — before those assumptions quietly
+become the barrier hypotheses in a later diagnosis.</p>
+<h2>When to invoke it</h2><ul>
+<li>A project is starting and the research team hasn&#39;t yet written down what
+they already believe about why the target population behaves as it does,
+before looking at any data.</li>
+<li>Before <a href="/behavioural-skills/skill?slug=comb-barrier-decomposer">comb-barrier-decomposer</a> runs, so its
+barrier hypotheses can be checked against what the researchers already
+believed going in, rather than silently reproducing it.</li>
+<li>Periodically during a long project — priors drift and harden over time,
+so this is meant to be re-run at each major diagnosis or design phase,
+not just once at kickoff.</li>
+<li>Do <strong>not</strong> invoke expecting a fixed intervention or training plan out the
+other end. A skill that both surfaces a researcher&#39;s biases and prescribes
+how to fix their thinking is two skills — this one only does the former.</li>
+</ul>
+<h2>What it draws on</h2><p>Klayman&#39;s account of confirmation bias: people don&#39;t just fail to seek
+disconfirming evidence, they often can&#39;t specify what disconfirming
+evidence would even look like, because the belief was never stated in
+falsifiable form. The self-audit&#39;s fixed prompts are built to force that
+specification — asking not just &quot;what do you believe?&quot; but &quot;what would
+change your mind?&quot; and &quot;what&#39;s the most similar population you&#39;ve actually
+worked with?&quot; surfaces both the belief and its evidentiary basis (or lack
+of one) in the same pass. Lilienfeld et al.&#39;s review of debiasing training
+is the basis for treating this as a structuring/surfacing exercise rather
+than a correction exercise — their finding is that durable debiasing needs
+deliberate practice against specific, named errors, not a one-off warning;
+a single audit report doesn&#39;t produce that practice, it just gives the
+team something concrete to practice against.</p>
+<p>If an <code>intervention_post_mortem_brief</code> is available (from
+<a href="/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader">prior-intervention-post-mortem-reader</a>),
+its &quot;Causal claim check&quot; already tested one causal story against actual
+data — cross-check the fresh assumption statement against it. A belief the
+post-mortem already found unsupported, restated here as if it were newly
+being examined, is the same unaudited assumption reappearing under a new
+label, not independent evidence.</p>
+<h2>Output template</h2><p>Every flagged assumption needs a concrete rewrite or a concrete follow-up
+question — a flag with no actionable next step is just a criticism, not an
+audit. The &quot;no flags raised&quot; case is legitimate but should be rare; if nothing
+in the statement is flaggable, that itself is worth a one-line sanity check
+in the report.</p>
+<pre><code class="language-markdown"># Researcher Bias Self-Audit
+
+**Assumption statement (as given):** &lt;verbatim&gt;
+</code></pre>
+<h2>Unfalsifiable assumptions</h2><ul>
+<li>&lt;assumption, quoted or closely paraphrased&gt; — <strong>Why unfalsifiable:</strong>
+ —
+<strong>Rewrite as falsifiable:</strong> &lt;a version of the same belief that some
+specific, obtainable observation could actually contradict&gt;</li>
+</ul>
+<h2>Default-to-WEIRD priors</h2><ul>
+<li> — <strong>Implicit norm assumed:</strong> &lt;e.g. assumes salaried income,
+nuclear-household decision-making, individual rather than collective
+financial choices&gt; — <strong>What to check locally:</strong> </li>
+</ul>
+<h2>No named disconfirming observation</h2><ul>
+<li> — <strong>&quot;What would change your mind?&quot; answer given:</strong>
+&lt;verbatim, or &quot;none given&quot; if the prompt wasn&#39;t answered concretely&gt; —
+<strong>Risk:</strong> </li>
+</ul>
+<h2>Population-transfer risk</h2><ul>
+<li> — <strong>Most similar population researcher has personally
+worked with:</strong>  — <strong>Stated similarity to target population:</strong>
+ — <strong>Gap risk:</strong> &lt;what&#39;s different enough between the two
+that experience with one may not transfer&gt;</li>
+</ul>
+<h2>Re-audit trigger</h2><p>&lt;when this should be re-run for this project — e.g. before diagnosis
+begins, before design begins, or after a stated number of weeks/major
+findings&gt;
+```</p>
+<h2>Worked example</h2><p><strong>Assumption statement (as given):</strong> &quot;They just don&#39;t prioritize saving
+the way we&#39;d expect. I&#39;ve mostly worked with urban Nairobi tech-sector
+employees before, and I&#39;d guess this group is fairly similar — people
+generally know saving is good for them, so if they&#39;re not doing it, it&#39;s
+probably a discipline issue more than anything structural. I&#39;d change my
+mind if I saw hard evidence they&#39;re actively trying to save and failing
+for reasons outside their control.&quot; <em>(Illustrative — continues the
+running example used across this library&#39;s other skills; not a real
+audit.)</em></p>
+<pre><code class="language-markdown"># Researcher Bias Self-Audit
+
+**Assumption statement (as given):** They just don&#39;t prioritize saving
+the way we&#39;d expect. I&#39;ve mostly worked with urban Nairobi tech-sector
+employees before, and I&#39;d guess this group is fairly similar — people
+generally know saving is good for them, so if they&#39;re not doing it, it&#39;s
+probably a discipline issue more than anything structural. I&#39;d change my
+mind if I saw hard evidence they&#39;re actively trying to save and failing
+for reasons outside their control.
+</code></pre>
+<h2>Unfalsifiable assumptions</h2><ul>
+<li>&quot;It&#39;s probably a discipline issue more than anything structural.&quot; —
+<strong>Why unfalsifiable:</strong> Almost any observed structural barrier (agent
+distance, cash-handling risk) can be redescribed after the fact as &quot;poor
+discipline in the face of that barrier,&quot; so no observation clearly
+contradicts it as worded. — <strong>Rewrite as falsifiable:</strong> &quot;If vendors
+report actively wanting to save and naming a specific structural
+obstacle (not just &#39;I forget&#39; or &#39;I don&#39;t feel like it&#39;), that counts
+against a pure-discipline explanation.&quot;</li>
+</ul>
+<h2>Default-to-WEIRD priors</h2><ul>
+<li>&quot;People generally know saving is good for them, so if they&#39;re not doing
+it, it&#39;s probably discipline.&quot; — <strong>Implicit norm assumed:</strong> Individual,
+formal-sector, salaried saving behaviour (the researcher&#39;s own tech-
+sector reference point) as the default rational baseline. —
+<strong>What to check locally:</strong> Whether group-based <em>chama</em> saving is already
+functioning as this population&#39;s rational savings strategy, just not in
+the individual-account form the assumption implicitly expects.</li>
+</ul>
+<h2>No named disconfirming observation</h2><ul>
+<li>&quot;It&#39;s probably a discipline issue&quot; — <strong>&quot;What would change your mind?&quot;
+answer given:</strong> &quot;Hard evidence they&#39;re actively trying to save and
+failing for reasons outside their control.&quot; — <strong>Risk:</strong> As worded, this
+requires proof of <em>intent</em> that&#39;s hard to observe directly — without a
+concrete, observable version of this (e.g. a named barrier report), the
+belief could survive contact with almost any data.</li>
+</ul>
+<h2>Population-transfer risk</h2><ul>
+<li>&quot;I&#39;d guess this group is fairly similar [to urban tech-sector
+employees]&quot; — <strong>Most similar population researcher has personally
+worked with:</strong> Urban Nairobi tech-sector employees. — <strong>Stated
+similarity to target population:</strong> Both urban and Nairobi-based, per the
+researcher. — <strong>Gap risk:</strong> Salaried, banked, formal-sector employment
+vs. informal daily cash-based vending are different enough in income
+timing and access to financial infrastructure that &quot;urban&quot; alone
+understates the gap.</li>
+</ul>
+<h2>Re-audit trigger</h2><p>Before comb-barrier-decomposer runs, and again after the first round of
+vendor field interviews, since this statement&#39;s priors were given before
+any of the audience-context or field data existed.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Performative self-awareness.</strong> Answering the prompts with what sounds
+appropriately humble (&quot;I could be wrong about anything&quot;) rather than a
+specific, checkable belief produces a statement with nothing real to
+flag. The audit can only work on what&#39;s actually stated — vague
+humility isn&#39;t more auditable than vague certainty.</li>
+<li><strong>Treating a completed audit as a resolved bias.</strong> This skill&#39;s output is
+a flag list, not evidence the flagged assumption was corrected. Passing
+&quot;audited&quot; straight to intervention design as if the flagged priors are
+now neutralized skips the actual field-testing the diagnostic skill and
+the disconfirming observations are meant to prompt.</li>
+<li><strong>One-time use on a multi-month project.</strong> Priors harden and new ones
+form as a project proceeds. An audit run once at kickoff and never
+again will miss the assumptions that calcified during diagnosis itself
+— the &quot;Re-audit trigger&quot; field exists so this isn&#39;t left to memory.</li>
+<li><strong>Auditor and subject as the same unchecked person.</strong> If the person
+running this skill is also the sole author of the assumption statement,
+with no one else reviewing the flags, self-serving under-flagging is
+possible and won&#39;t be visible in the report itself. Where feasible, have
+a second team member read the flagged report against the original
+statement.</li>
+<li><strong>Confusing this with the target-population evidence base.</strong> This skill
+audits the <em>researcher&#39;s</em> priors; it does not survey external evidence
+on the population — that&#39;s <a href="/behavioural-skills/skill?slug=evidence-base-scoper">evidence-base-scoper</a>.
+Running only this one and treating it as if the population itself has now
+been evidenced leaves the actual evidence gap unaddressed.</li>
+<li><strong>Relabeled post-mortem claim.</strong> A causal story already checked and
+found unsupported by <a href="/behavioural-skills/skill?slug=prior-intervention-post-mortem-reader">prior-intervention-post-mortem-reader</a>
+can resurface here as a &quot;fresh&quot; assumption if no one cross-checks it —
+flag it as the same unaudited belief, not as independent input.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.2.0</span><span class="changelog-date">2026-07-30</span><p>Add three intervention/risk skills, clean URLs, and a grouped command palette</p></li><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-07-28</span><p>Tighten output templates and build the two pre-intervention skills</p></li></ul>
+  </main>
 </body>
 </html>

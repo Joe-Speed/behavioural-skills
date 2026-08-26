@@ -85,14 +85,14 @@ can quietly redefine "success" after seeing which number moved.
 - A target behaviour brief exists and someone is about to design or launch
   an intervention with no named primary outcome, no comparison condition,
   and no agreement on what effect size would actually matter.
-- [comb-barrier-decomposer](../comb-barrier-decomposer) has produced
+- [comb-barrier-decomposer](/behavioural-skills/skill?slug=comb-barrier-decomposer) has produced
   barrier hypotheses and the team needs to know what mediating measure
   would let those specific hypotheses be evaluated, not just whether the
   headline outcome moved.
 - Someone asks "how will we actually know if this worked?" or "what
   counts as success here?"
 - Do **not** invoke on a vague program goal — route it through
-  [key-behaviour-definer](../key-behaviour-definer) first. There is no
+  [key-behaviour-definer](/behavioural-skills/skill?slug=key-behaviour-definer) first. There is no
   single behaviour yet to measure.
 
 ## What it draws on

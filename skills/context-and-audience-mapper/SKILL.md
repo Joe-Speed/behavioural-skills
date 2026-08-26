@@ -75,7 +75,7 @@ context gets assumed rather than checked.
   would ("smallholder farmers", "gig workers", "first-time mothers") with
   no detail on where, when, or how the target behaviour choice actually
   gets made.
-- Before [key-behaviour-definer](../key-behaviour-definer)'s "who" is
+- Before [key-behaviour-definer](/behavioural-skills/skill?slug=key-behaviour-definer)'s "who" is
   written, or when an existing target behaviour brief's "who" still just
   restates the funder's language.
 - Someone asks "who exactly are we talking about, and where does this

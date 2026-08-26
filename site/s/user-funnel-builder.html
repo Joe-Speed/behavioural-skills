@@ -3,22 +3,295 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>User Funnel Builder — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=user-funnel-builder" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/user-funnel-builder" />
   <meta name="description" content="Works backward from one development outcome to a staged user funnel — recruitment, onboarding, engagement, retention, proximal outcome, development outcome — specifying, per stage, the user action…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="User Funnel Builder — Behavioural Skills" />
   <meta property="og:description" content="Works backward from one development outcome to a staged user funnel — recruitment, onboarding, engagement, retention, proximal outcome, development outcome — specifying, per stage, the user action…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=user-funnel-builder" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/user-funnel-builder" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="User Funnel Builder — Behavioural Skills" />
   <meta name="twitter:description" content="Works backward from one development outcome to a staged user funnel — recruitment, onboarding, engagement, retention, proximal outcome, development outcome — specifying, per stage, the user action…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=user-funnel-builder" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=user-funnel-builder">User Funnel Builder</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>User Funnel Builder</h1>
+      <p class="description">Use when an AI or digital product targets a development outcome but the path from a user&#39;s first contact to that outcome has never been written down as measurable stages — engagement gets reported as one number, or the theory of change lives only in a grant proposal. Invoke it before instrumenting metrics, running engagement experiments, or invoking ai-eval-level-matcher on a product whose &quot;Level 2 evidence&quot; would otherwise be vibes. Do not invoke to define a single offline target behaviour — that is key-behaviour-definer — and do not invoke to diagnose why an existing funnel leaks; that is funnel-weak-link-diagnoser.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=user-funnel-builder">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Measurement</dd></div>
+      <div><dt>Research stage</dt><dd>Define</dd></div>
+      <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The funnel structure is accounting, not psychology — it carries no claims about behaviour, and the source playbooks were written for low- and middle-income-country deployments. What does not travel automatically is the instrumentation assumption: stage metrics presume telemetry (message logs, session events) that shared-phone use, intermittent connectivity, and channel switching (a user moving from WhatsApp to calling a hotline) all quietly break. Confirm each stage&#39;s confirming metric is observable for this population before trusting funnel numbers.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>The Agency Fund AI Evaluation Playbook — Repeatable Motion 01, constructing a user funnel across evaluation levels</strong><br>Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., &amp; Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook — Repeatable Motions. The Agency Fund. — <a href="https://eval.playbook.org.ai/motions" target="_blank" rel="noopener">source</a></li><li><strong>AI4GD User Funnel and Metrics Playbook</strong><br>On, R., &amp; Madon, T. (2025). AI4GD User Funnel and Metrics Playbook. The Agency Fund, AI for Global Development accelerator. Companion playbook referenced from the AI Evaluation Playbook&#39;s Level 2 chapter.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>ai_product_account</code><br>The team&#39;s plain-language account of the product: what it does, for whom, the development outcome it targets, and how users currently find and use it. The funnel is worked backward from this account&#39;s stated outcome.</li><li><code>audience_context_brief</code> (optional)<br>Optional context brief, if context-and-audience-mapper has already run. When present, use its decision moment and existing-channels findings to ground the recruitment and onboarding stages in channels this population actually uses, rather than inventing them.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>user_funnel_map</code><br>A staged funnel worked backward from one development outcome — recruitment, onboarding, engagement, retention, proximal outcome, development outcome — with, per stage: the user action that counts as entering it, the confirming metric, a target value or transition rate, and a named owner.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Works backward from one development outcome to a staged user funnel —
+recruitment, onboarding, engagement, retention, proximal outcome,
+development outcome — specifying, per stage, the user action that counts
+as entering it, the metric confirming it, a target transition rate, plus
+a named owner.</p>
+<h2>When to invoke it</h2><ul>
+<li>A team reports &quot;engagement&quot; as one aggregate number (total messages,
+DAU) with no account of where users are in the journey from first
+contact to outcome.</li>
+<li>A product&#39;s theory of change exists only as grant-proposal prose and
+needs to become, in the playbook&#39;s words, &quot;a measurable, cost-aware
+program design tool&quot; before metrics or experiments are built on it.</li>
+<li><a href="/behavioural-skills/skill?slug=ai-eval-level-matcher">ai-eval-level-matcher</a> needs to judge Level 2
+evidence and there are no named stages to judge it against.</li>
+<li>Metrics pipelines are about to be built (the playbook&#39;s Motion 02) and
+need to know which indicators matter per stage.</li>
+<li>Do <strong>not</strong> invoke to define one offline target behaviour for a non-digital
+program — that is <a href="/behavioural-skills/skill?slug=key-behaviour-definer">key-behaviour-definer</a>&#39;s
+job, and the funnel&#39;s proximal-outcome stage may in fact consume its
+output.</li>
+<li>Do <strong>not</strong> invoke to explain why an existing funnel leaks at a
+particular stage — hand the built funnel plus observed numbers to
+<a href="/behavioural-skills/skill?slug=funnel-weak-link-diagnoser">funnel-weak-link-diagnoser</a>.</li>
+</ul>
+<h2>What it draws on</h2><p>Repeatable Motion 01 of The Agency Fund&#39;s AI Evaluation Playbook (Wu et
+al., 2025): construct a user funnel across evaluation levels by starting
+from the targeted development outcome (Level 4) and working backward
+through the proximal user outcome (Level 3) to retention, engagement,
+onboarding, and recruitment (all Level 2), with model-quality monitoring
+(Level 1) running underneath every stage. The motion&#39;s stated purpose is
+carried directly into the output: it &quot;transforms a generic theory of
+change into a measurable, cost-aware program design tool.&quot; The per-stage
+fields — what the program does, what the user must do to count as
+entering the stage, the confirming metric, target values and transition
+rates, and a directly responsible individual — follow the companion
+AI4GD User Funnel and Metrics Playbook (On &amp; Madon, 2025).</p>
+<p>Two constraints this skill enforces that the source states but teams
+skip. First, <em>entry is a user action, not a program action</em>: &quot;we sent
+10,000 SMS invitations&quot; is program activity; &quot;farmer sends a first
+message&quot; is a stage entry. Every stage&#39;s entry condition must be
+something the user does. Second, <em>the proximal outcome is a real outcome,
+not more engagement</em>: the stage before the development outcome must name
+a change in the user&#39;s knowledge, decision, or behaviour that plausibly
+mediates the outcome — if it&#39;s phrased as more usage, the funnel has no
+Level 3 rung and cannot support user evaluation later.</p>
+<p>Judgment call the sources don&#39;t fully specify: target transition rates at
+first build are usually guesses. This skill requires them anyway — marked
+<code>provisional</code> — because a funnel with no targets can&#39;t identify a weak
+link (every stage looks fine when nothing is expected of it), and an
+explicit guess invites correction where a blank invites nothing.</p>
+<h2>Output template</h2><p>All six stages are mandatory. If a stage genuinely doesn&#39;t apply (e.g. a
+pre-enrolled population with no recruitment), write the stage row with
+&quot;not applicable&quot; and the reason — a missing row and a checked non-stage
+must look different downstream.</p>
+<pre><code class="language-markdown"># User Funnel Map
+
+**Product:** &lt;name + one line&gt;
+**Development outcome (Level 4):** &lt;the outcome the funnel works backward
+from — one outcome; a second outcome is a second funnel&gt;
+**Instrumentation reality check:** &lt;where these metrics will come from,
+and any stage whose metric is not currently observable&gt;
+</code></pre>
+<h2>Stages</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Stage</th>
+<th>User action that counts as entry</th>
+<th>Confirming metric</th>
+<th>Target (transition from previous stage)</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Recruitment</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;n or % — mark provisional if guessed&gt;</td>
+<td>&lt;name/role&gt;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Onboarding</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Engagement</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Retention</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Proximal outcome (Level 3)</td>
+<td>&lt;a knowledge/decision/behaviour change, not more usage&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Development outcome (Level 4)</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+<td>&lt;...&gt;</td>
+</tr>
+</tbody></table>
+<h2>Level 1 monitoring underneath the funnel</h2><p>&lt;the model-quality indicators tracked continuously across all stages —
+response quality, safety/guardrail hits — and where they&#39;re logged&gt;</p>
+<h2>Assumptions this funnel makes</h2><p>&lt;channel, telemetry, and population assumptions that, if wrong, break a
+stage&#39;s metric — each phrased so it can be checked&gt;
+```</p>
+<h2>Worked example</h2><p><strong>AI product account (user-supplied, condensed):</strong> &quot;MaizeMate, our
+WhatsApp AI agronomy assistant for smallholder maize farmers in western
+Kenya — the goal is better yields through timely top-dressing. Farmers
+hear about it from cooperative SMS blasts and local radio; they message
+it questions and it answers from our agronomy knowledge base.&quot;
+<em>(Illustrative — continues the catalogue&#39;s running example; not a real
+program.)</em></p>
+<pre><code class="language-markdown"># User Funnel Map
+
+**Product:** MaizeMate — WhatsApp AI agronomy assistant
+**Development outcome (Level 4):** improved maize yield via top-dressing
+applied at the correct growth stage
+**Instrumentation reality check:** stages 1–4 from WhatsApp message logs;
+stage 5 requires an in-chat micro-survey that does not exist yet; stage 6
+requires cooperative harvest records (access unconfirmed).
+</code></pre>
+<h2>Stages</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Stage</th>
+<th>User action that counts as entry</th>
+<th>Confirming metric</th>
+<th>Target</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Recruitment</td>
+<td>Farmer sends any first message</td>
+<td>new unique senders / week</td>
+<td>120/wk (provisional)</td>
+<td>Outreach lead</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Onboarding</td>
+<td>Farmer completes the 3-question setup (county, crop stage, plot size)</td>
+<td>setup completion rate</td>
+<td>70% of new senders</td>
+<td>Product lead</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Engagement</td>
+<td>Farmer asks a substantive agronomy question</td>
+<td>≥1 substantive question / week</td>
+<td>60% of onboarded (provisional)</td>
+<td>Product lead</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Retention</td>
+<td>Farmer returns in a later calendar week</td>
+<td>4-week return rate</td>
+<td>40% (provisional)</td>
+<td>Product lead</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Proximal outcome</td>
+<td>Farmer correctly identifies their plot&#39;s top-dressing window</td>
+<td>in-chat 2-item check, correct both</td>
+<td>50% of retained (provisional)</td>
+<td>Research lead</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Development outcome</td>
+<td>Season yield on registered plot</td>
+<td>coop harvest records, kg/acre vs county baseline</td>
+<td>+10% (provisional, sponsor threshold unconfirmed)</td>
+<td>Research lead</td>
+</tr>
+</tbody></table>
+<h2>Level 1 monitoring underneath the funnel</h2><p>Weekly golden-set pass rate on the current model + knowledge-base
+version; guardrail-refusal log reviewed for pesticide-safety and
+out-of-scope medical queries. Version tags on every conversation.</p>
+<h2>Assumptions this funnel makes</h2><ul>
+<li>One WhatsApp number ≈ one farmer (shared handsets would inflate stage 1
+and corrupt stage 4) — check against cooperative rosters.</li>
+<li>Farmers will answer an in-chat quiz (stage 5 metric) at meaningful
+rates — unvalidated.</li>
+<li>Cooperatives will share plot-level harvest records — unconfirmed with
+either cooperative.</li>
+</ul>
+<pre><code>
+</code></pre>
+<h2>Known failure modes</h2><ul>
+<li><strong>Program actions as stage entries.</strong> &quot;We broadcast on radio&quot; in the
+recruitment row. Nothing about the user has happened yet; the funnel
+then measures the org&#39;s activity and reads healthy while no farmer
+moves. Every entry cell must contain a user&#39;s verb.</li>
+<li><strong>The engagement-shaped proximal outcome.</strong> Stage 5 written as &quot;farmer
+asks 3+ questions&quot; — that&#39;s stage 3 again wearing a hat. If the
+proximal row names usage, the funnel cannot support Level 3 evaluation,
+which is most of why it&#39;s being built.</li>
+<li><strong>Metrics nobody can observe.</strong> A tidy funnel whose stage 5–6 metrics
+require surveys or records that don&#39;t exist. The instrumentation
+reality-check line is mandatory precisely so an unobservable stage is a
+named gap, not a discovery during the first readout.</li>
+<li><strong>Two outcomes, one funnel.</strong> &quot;Yield and financial resilience&quot; at stage
+6 forks every upstream target. One funnel per outcome; build the second
+separately if it&#39;s real.</li>
+<li><strong>Targets omitted as unknowable.</strong> A funnel with blank targets can&#39;t
+flag a weak link. Guess, mark provisional, and let the first
+funnel_metric_readout correct it.</li>
+<li><strong>Out of scope: non-digital single behaviours.</strong> A vaccination-uptake
+program with no product journey doesn&#39;t need six stages — it needs
+key-behaviour-definer and comb-barrier-decomposer. Forcing funnel
+structure onto it manufactures stages with no observable metrics.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-11</span><p>Add TAF AI-evaluation and Evidential experiment skills</p></li></ul>
+  </main>
 </body>
 </html>

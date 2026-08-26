@@ -3,22 +3,296 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Key Behaviour Definer — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=key-behaviour-definer" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/key-behaviour-definer" />
   <meta name="description" content="Turns one vague program goal into a single measurable, observable target behaviour — specified as who does what, by when — backed by a prioritized list of the other candidate behaviours that were…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Key Behaviour Definer — Behavioural Skills" />
   <meta property="og:description" content="Turns one vague program goal into a single measurable, observable target behaviour — specified as who does what, by when — backed by a prioritized list of the other candidate behaviours that were…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=key-behaviour-definer" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/key-behaviour-definer" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Key Behaviour Definer — Behavioural Skills" />
   <meta name="twitter:description" content="Turns one vague program goal into a single measurable, observable target behaviour — specified as who does what, by when — backed by a prioritized list of the other candidate behaviours that were…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=key-behaviour-definer" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=key-behaviour-definer">Key Behaviour Definer</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Key Behaviour Definer</h1>
+      <p class="description">Use when a program goal, campaign objective, or &quot;theory of change&quot; is stated in vague, aspirational, or attitudinal terms (e.g. &quot;increase savings&quot;, &quot;improve maternal health&quot;, &quot;reduce dropout&quot;, &quot;build trust in the vaccine&quot;) and no single measurable, observable behaviour has been named yet. Invoke before any diagnosis, intervention-design, or measurement skill in this library, since all of them require one defined target behaviour as input. Do not invoke once a specific who + what + when behaviour is already agreed — that&#39;s a sign this step is done.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=key-behaviour-definer">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Behaviour Definition</dd></div>
+      <div><dt>Research stage</dt><dd>Define</dd></div>
+      <div><dt>WEIRD context</dt><dd>mixed-evidence</dd></div>
+      <div><dt>Version</dt><dd>0.3.0</dd></div>
+      <div><dt>Authors</dt><dd>Nikhil Ravichandar</dd></div>
+    </dl>
+
+    <p class="notice">The BCW&#39;s target-behaviour-selection logic itself is context-agnostic (it&#39;s a prioritization procedure, not a claim about what motivates people), but the worked examples and APEASE weighting in the source literature are drawn overwhelmingly from UK/US public health programs. Treat the *procedure* as portable and the *illustrative priors* (e.g. which behaviours are usually &quot;high impact&quot;) as needing local validation.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Behaviour Change Wheel — specifying and selecting target behaviours</strong><br>Michie, S., Atkins, L., &amp; West, R. (2014). The Behaviour Change Wheel: A Guide to Designing Interventions. Silverback Publishing, Ch. 3.</li><li><strong>APEASE criteria for behaviour prioritization</strong><br>Michie, S., Atkins, L., &amp; West, R. (2014). The Behaviour Change Wheel: A Guide to Designing Interventions. Silverback Publishing, pp. 46-48.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>program_goal_statement</code><br>The program or campaign goal as originally stated, plus whatever context is available on the target population, setting, and known constraints (budget, delivery channel, timeline).</li><li><code>evidence_scan_brief</code> (optional)<br>Optional prior evidence scan for this goal/population/context, if evidence-base-scoper has already run on the same input. When present, use it to ground candidate generation and the Effectiveness/Impact scoring columns in what&#39;s already known to work or not, rather than scoring from intuition alone.</li><li><code>audience_context_brief</code> (optional)<br>Optional context map for this goal&#39;s population, if context-and-audience-mapper has already run on the same input. When present, use its operationalized population and decision moment to write the &quot;Who&quot; and &quot;When&quot; of the selected behaviour, instead of inheriting the input&#39;s abstract population label.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>target_behaviour_brief</code><br>One measurable, observable target behaviour specified as who + what + when, plus a prioritized list of runner-up candidate behaviours with the reasoning for why the top choice won.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Turns one vague program goal into a single measurable, observable target
+behaviour — specified as who does what, by when — backed by a prioritized
+list of the other candidate behaviours that were considered and set aside.</p>
+<h2>When to invoke it</h2><ul>
+<li>A program document, funder brief, or stakeholder states a goal as an
+outcome, attitude, or aspiration rather than a behaviour (&quot;increase
+financial resilience&quot;, &quot;improve engagement&quot;, &quot;reduce stigma&quot;).</li>
+<li>Someone asks &quot;what should we actually be trying to change here?&quot; or &quot;what
+behaviour are we targeting?&quot;</li>
+<li>Multiple candidate behaviours are floating around informally and the team
+needs one to commit to before diagnosis or design work starts.</li>
+<li>Do <strong>not</strong> invoke if a specific, already-observable behaviour with a named
+actor and timeframe is on the table — hand that directly to a diagnosis
+skill (e.g. <a href="/behavioural-skills/skill?slug=comb-barrier-decomposer">comb-barrier-decomposer</a>) instead.</li>
+</ul>
+<h2>What it draws on</h2><p>The Behaviour Change Wheel&#39;s &quot;select target behaviour&quot; step: generate a
+reasonably exhaustive list of candidate behaviours that could plausibly
+achieve the stated goal, then score each against the APEASE criteria —
+<strong>A</strong>ffordability, <strong>P</strong>racticability, <strong>E</strong>ffectiveness (and cost-
+effectiveness), <strong>A</strong>cceptability, <strong>S</strong>ide-effects/safety, <strong>E</strong>quity —
+plus impact (how much changing this behaviour would move the goal) and
+spillover (whether changing it makes other useful behaviours more or less
+likely). The highest-scoring candidate becomes the target; the rest are
+kept as a ranked shortlist rather than discarded, since diagnosis on the
+top choice sometimes fails and a team needs a documented next option.</p>
+<p>Candidate generation must not stop at whatever channels or products the
+input happens to name. The input&#39;s mentioned infrastructure (an existing
+product, an existing course, a named delivery channel) describes what&#39;s
+already built, not the boundary of what counts as a candidate behaviour —
+at least one candidate must come from outside that named infrastructure, or
+the shortlist is just ranking variants of the same idea.</p>
+<p>If an <code>evidence_scan_brief</code> is available (from
+<a href="/behavioural-skills/skill?slug=evidence-base-scoper">evidence-base-scoper</a>), its &quot;what&#39;s already been
+tried&quot; and &quot;findings that don&#39;t support the goal&quot; sections should visibly
+change the Effectiveness and Impact scores in the table below — a
+candidate the evidence base already shows underperforms shouldn&#39;t score the
+same as one with no prior evidence either way.</p>
+<p>If an <code>audience_context_brief</code> is available (from
+<a href="/behavioural-skills/skill?slug=context-and-audience-mapper">context-and-audience-mapper</a>), its
+operationalized population and decision moment should be what &quot;Who&quot; and
+&quot;When&quot; actually say in the selected target behaviour below — writing a
+generic &quot;who&quot; when a specific one is already sitting in the input is a
+regression, not a simplification.</p>
+<h2>Output template</h2><p>The scoring table is mandatory for every candidate, including the one
+selected — a rationale paragraph is not a substitute for it. Score each
+cell <code>+</code> (favors this candidate), <code>-</code> (counts against it), or <code>0</code>
+(neutral/no clear effect), each with a one-clause reason; a column of bare
+symbols with no reasons doesn&#39;t count as scored. At least one candidate row
+must fall outside the infrastructure named in the input.</p>
+<pre><code class="language-markdown"># Target Behaviour Brief
+
+**Program goal (as given):** &lt;verbatim or lightly cleaned goal statement&gt;
+</code></pre>
+<h2>Candidate scoring</h2><table>
+<thead>
+<tr>
+<th>Candidate behaviour</th>
+<th>A</th>
+<th>P</th>
+<th>E</th>
+<th>A</th>
+<th>S</th>
+<th>E</th>
+<th>Impact</th>
+<th>Spillover</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;candidate 1&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+</tr>
+<tr>
+<td>&lt;candidate 2&gt;</td>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;candidate 3, from outside the named infrastructure&gt;</td>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>(Columns, in APEASE order: Affordability, Practicability, Effectiveness,
+Acceptability, Side-effects/safety, Equity.)</p>
+<h2>Selected target behaviour</h2><ul>
+<li><strong>Who:</strong> &lt;actor — e.g. &quot;first-time mothers in program clinics&quot;&gt;</li>
+<li><strong>What:</strong> &lt;single observable action — e.g. &quot;attend the 6-week postnatal check&quot;&gt;</li>
+<li><strong>When:</strong> &lt;window — e.g. &quot;within 6-8 weeks of delivery&quot;&gt;</li>
+<li><strong>One-sentence behaviour statement:</strong> &lt;Who does What, by When — no &quot;and&quot;&gt;</li>
+</ul>
+<h2>Why this one</h2><p>&lt;2-4 sentences pointing at the specific table cells that decided it — not a
+restatement of the table, the tie-breaker reasoning where candidates were
+close&gt;</p>
+<h2>Candidate shortlist (ranked, not discarded)</h2><ol>
+<li> — &lt;why it ranked below the selected one, tied to its row above&gt;</li>
+<li> — &lt;why it ranked below the selected one, tied to its row above&gt;</li>
+<li> — &lt;why it ranked below the selected one, tied to its row above&gt;</li>
+</ol>
+<h2>Open questions / assumptions to check</h2><h2>Worked example</h2><p><strong>Program goal (as given):</strong> &quot;Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks.&quot; Run with an <code>evidence_scan_brief</code> (from evidence-base-scoper) and
+an <code>audience_context_brief</code> (from context-and-audience-mapper) available.
+<em>(Illustrative — continues the running example from
+context-and-audience-mapper; not a real program.)</em></p>
+<pre><code class="language-markdown"># Target Behaviour Brief
+
+**Program goal (as given):** Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks.
+</code></pre>
+<h2>Candidate scoring</h2><table>
+<thead>
+<tr>
+<th>Candidate behaviour</th>
+<th>A</th>
+<th>P</th>
+<th>E</th>
+<th>A</th>
+<th>S</th>
+<th>E</th>
+<th>Impact</th>
+<th>Spillover</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deposit day&#39;s cash surplus into M-Pesa savings wallet before leaving the market</td>
+<td>+: no new product, uses existing agent access</td>
+<td>+: fits the decision moment mapped (cash in hand, pre-departure)</td>
+<td>+: evidence brief shows commitment-device saving raised deposits in a comparable Kenyan market study</td>
+<td>0: acceptable but visible cash-counting flagged as a social-cost risk in the context brief</td>
+<td>0: no safety issue once cash is off-person sooner</td>
+<td>+: reduces post-dark cash-carrying risk already named as a constraint</td>
+<td>+: directly targets the buffer-against-shocks goal</td>
+<td>+: could reduce informal borrowing-request pressure by moving cash out of sight sooner</td>
+</tr>
+<tr>
+<td>Open a formal bank savings account</td>
+<td>-: nearest branch ~40 min away per context brief</td>
+<td>-: incompatible with same-day decision moment</td>
+<td>0: evidence brief has no local finding either way for formal accounts</td>
+<td>-: low take-up risk given distance/fees</td>
+<td>0</td>
+<td>0</td>
+<td>-: unlikely to be used at the moment savings actually happens</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Join or increase contribution to existing <em>chama</em> savings group (outside the named product/channel infrastructure)</td>
+<td>+: already-trusted existing channel per context brief</td>
+<td>+: weekly meeting cadence already attended</td>
+<td>0: evidence brief flags mixed effect sizes for rotating savings vs. lockbox commitment devices</td>
+<td>+: high social acceptability, already normed</td>
+<td>0</td>
+<td>0</td>
+<td>0: helps the goal but with slower, less individually-attributable effect</td>
+<td>+: reinforces an existing social structure rather than competing with it</td>
+</tr>
+</tbody></table>
+<p>(Columns, in APEASE order: Affordability, Practicability, Effectiveness,
+Acceptability, Side-effects/safety, Equity.)</p>
+<h2>Selected target behaviour</h2><ul>
+<li><strong>Who:</strong> Female stall vendors in Nairobi&#39;s Gikomba and Toi markets
+(per audience_context_brief, not &quot;informal-sector vendors&quot; generally)</li>
+<li><strong>What:</strong> Deposit that day&#39;s net cash surplus into an M-Pesa savings
+wallet</li>
+<li><strong>When:</strong> Before leaving the market, each trading day</li>
+<li><strong>One-sentence behaviour statement:</strong> Female stall vendors in Gikomba/Toi
+markets deposit that day&#39;s net cash surplus into an M-Pesa savings
+wallet before leaving the market, each trading day.</li>
+</ul>
+<h2>Why this one</h2><p>The M-Pesa deposit candidate is the only one whose Practicability score
+lines up with the actual decision moment named in the context brief
+(cash-in-hand, pre-departure) rather than a moment the behaviour would have
+to be relocated to. The evidence brief&#39;s Kenyan lockbox finding gave it the
+only positive Effectiveness score among the three; the <em>chama</em> candidate
+scored just as well on Acceptability but loses on Impact because its
+effect is diffused across a group rather than attributable to this
+program&#39;s rollout.</p>
+<h2>Candidate shortlist (ranked, not discarded)</h2><ol>
+<li>Join/increase <em>chama</em> contribution — kept as the fallback if M-Pesa
+agent access turns out to be less reliable than the context brief
+assumed.</li>
+<li>Open a formal bank account — ranked last; the Practicability and
+Acceptability scores would need the context (branch distance) to
+change first, not just the messaging.</li>
+</ol>
+<h2>Open questions / assumptions to check</h2><p>Whether &quot;net cash surplus&quot; is calculable by vendors without formal
+bookkeeping — flagged as an open question in the audience_context_brief&#39;s
+&quot;still needs field confirmation&quot; section and not yet resolved here.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Compound behaviours slip through.</strong> &quot;Attend antenatal care and adhere to
+iron supplementation&quot; is two behaviours wearing a trench coat. If the
+output statement needs &quot;and&quot; to describe the action, split it before
+passing it downstream — this skill&#39;s job is exactly one behaviour per run.</li>
+<li><strong>Outcome dressed up as behaviour.</strong> &quot;Reduce anemia&quot; is a health outcome,
+not something anyone <em>does</em>. If the selected behaviour isn&#39;t something a
+specific person could be observed doing at a specific moment, it hasn&#39;t
+actually been defined yet.</li>
+<li><strong>Selecting for measurability over impact.</strong> The easiest behaviour to
+observe (e.g. app logins) is sometimes prioritized over the behaviour that
+actually drives the goal (e.g. offline saving). APEASE scoring should
+catch this, but only if impact is scored honestly rather than deferred to
+&quot;whatever we can already measure.&quot;</li>
+<li><strong>No real alternatives generated.</strong> If the candidate list is padded with
+strawmen so the preferred behaviour wins, the shortlist stops being useful
+as a fallback. Push for candidates that a reasonable person could have
+picked first. A scoring table filled in <em>after</em> the choice is already made
+looks identical to one that drove the choice — if every row conveniently
+favors the same candidate across all eight columns, that&#39;s a signal the
+scoring was reverse-engineered, not applied.</li>
+<li><strong>Anchoring on named infrastructure.</strong> Restating the input&#39;s existing
+products/channels as the only candidates (e.g. &quot;deposit into the savings
+product&quot; vs. &quot;open the app&quot;) isn&#39;t real alternative generation even if it
+produces three distinct rows — see &quot;What it draws on&quot; above.</li>
+<li><strong>Context collapse.</strong> Run on a goal statement with no population or
+setting context, the output&#39;s &quot;who&quot; will be generic and the downstream
+diagnosis will inherit that vagueness. Push back to the user for at least
+a rough population and setting before finalizing, or run
+<a href="/behavioural-skills/skill?slug=context-and-audience-mapper">context-and-audience-mapper</a> first and
+feed its output in as <code>audience_context_brief</code>.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.3.0</span><span class="changelog-date">2026-07-30</span><p>Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder</p></li><li><span class="changelog-version">v0.2.0</span><span class="changelog-date">2026-07-28</span><p>Tighten output templates and build the two pre-intervention skills</p></li><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-07-23</span><p>Initial scaffold: schema, two worked-example skills, tooling, static site, CI</p></li></ul>
+  </main>
 </body>
 </html>

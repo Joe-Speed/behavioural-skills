@@ -3,22 +3,264 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Lever Content Drafter — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=lever-content-drafter" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/lever-content-drafter" />
   <meta name="description" content="Turns the selected lever&#39;s named behaviour change technique into the literal draft content — message text, script lines, signage, or interface copy — a field team would deliver, with every content…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Lever Content Drafter — Behavioural Skills" />
   <meta property="og:description" content="Turns the selected lever&#39;s named behaviour change technique into the literal draft content — message text, script lines, signage, or interface copy — a field team would deliver, with every content…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=lever-content-drafter" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/lever-content-drafter" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Lever Content Drafter — Behavioural Skills" />
   <meta name="twitter:description" content="Turns the selected lever&#39;s named behaviour change technique into the literal draft content — message text, script lines, signage, or interface copy — a field team would deliver, with every content…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=lever-content-drafter" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=lever-content-drafter">Lever Content Drafter</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Lever Content Drafter</h1>
+      <p class="description">Use when intervention-lever-selector has produced a lever brief whose selected lever names a concrete behaviour change technique, and a field team now needs the actual words — the message, script, signage, or interface copy that delivers it. Invoke it when someone asks &quot;so what does the SMS / poster / agent script actually say?&quot; Do not invoke on a bare intervention function with no named technique — route back to intervention-lever-selector first — and do not use it for values-affirmation exercises, which values-affirmation-drafter owns end to end.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=lever-content-drafter">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Intervention Design</dd></div>
+      <div><dt>Research stage</dt><dd>Design</dd></div>
+      <div><dt>WEIRD context</dt><dd>mixed-evidence</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The BCTTv1&#39;s definitions are stated as mechanism descriptions and travel reasonably well, but EAST&#39;s worked examples are drawn almost entirely from UK government trials, and most message-design evidence (framing, salience, personalization effects) comes from WEIRD, high-literacy, high-SMS-penetration populations. Register, idiom, reading level, and channel norms are all local: a draft produced by this skill is working copy for local adaptation and pre-testing, never final copy — and final copy should be drafted natively in the delivery language by a local speaker, not translated from this skill&#39;s output.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Behaviour Change Technique Taxonomy (v1) — technique definitions as fidelity anchor</strong><br>Michie, S., Richardson, M., Johnston, M., et al. (2013). The Behavior Change Technique Taxonomy (v1) of 93 hierarchically clustered techniques. Annals of Behavioral Medicine, 46(1), 81-95.</li><li><strong>EAST framework for applying behavioural insights to delivery design</strong><br>Service, O., Hallsworth, M., Halpern, D., et al. (2014). EAST: Four Simple Ways to Apply Behavioural Insights. The Behavioural Insights Team, London.</li><li><strong>Experimental pre-testing of health education materials</strong><br>Whittingham, J. R. D., Ruiter, R. A. C., Castermans, D., Huiberts, A., &amp; Kok, G. (2008). Designing effective health education materials: experimental pre-testing of a theory-based brochure to increase knowledge. Health Education Research, 23(3), 414-426.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>intervention_lever_brief</code><br>The lever brief from intervention-lever-selector, with its Selected lever section naming a specific BCTTv1 technique. It is that named technique this skill drafts content for — a brief that stops at a function name (&quot;Environmental restructuring&quot;) isn&#39;t ready for this skill yet.</li><li><code>audience_context_brief</code> (optional)<br>The audience &amp; context brief from context-and-audience-mapper, whose confirmed channels and decision moment determine the delivery format and timing. Optional — but without it the channel must be stated and confirmed by the user, not assumed, and the draft must flag the channel as unconfirmed.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>intervention_content_draft</code><br>Delivery-ready draft content — message text, script lines, signage, or interface copy — instantiating the lever brief&#39;s named technique, with a fidelity trace, delivery notes, an EAST check, and the comprehension pre-test required before launch.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Turns the selected lever&#39;s named behaviour change technique into the
+literal draft content — message text, script lines, signage, or interface
+copy — a field team would deliver, with every content element traced to
+the technique&#39;s defined active ingredient.</p>
+<h2>When to invoke it</h2><ul>
+<li><a href="/behavioural-skills/skill?slug=intervention-lever-selector">intervention-lever-selector</a> has
+produced a brief whose Selected lever names a concrete BCTTv1 technique,
+and the next question is &quot;what do we actually say / show / print?&quot;</li>
+<li>A field team is about to write intervention copy ad hoc — an SMS, a
+poster, an agent script — without checking that the copy actually
+delivers the technique the lever was selected for.</li>
+<li>Do <strong>not</strong> invoke on a lever brief that stops at a function name with no
+named BCT — that brief isn&#39;t finished; route back to
+intervention-lever-selector&#39;s output template, which requires one.</li>
+<li>Do <strong>not</strong> use it to draft a values-affirmation exercise —
+<a href="/behavioural-skills/skill?slug=values-affirmation-drafter">values-affirmation-drafter</a> owns that
+protocol end to end, including its value-list adaptation and delivery
+cautions.</li>
+<li>Do <strong>not</strong> use it to choose between levers or techniques — that decision
+already happened upstream; this skill takes exactly one named technique.</li>
+</ul>
+<h2>What it draws on</h2><p>The BCTTv1 (Michie et al., 2013) defines each technique&#39;s active
+ingredient — what must actually be present for the technique to be the
+one delivered. That definition is this skill&#39;s fidelity anchor: a draft
+instantiates a technique only if some concrete content element delivers
+the defined ingredient. Copy that is merely persuasive, on-topic, and
+well-written but contains no such element is a different (unselected,
+undiagnosed) intervention wearing the selected one&#39;s name. The BCTTv1
+defines techniques, not copy — the mapping from a definition to an actual
+sentence, sign, or script line is this skill&#39;s own operationalization, and
+the fidelity trace exists so that mapping is inspectable rather than
+asserted.</p>
+<p>EAST (Service et al., 2014) supplies the delivery-design checklist: Easy
+(one action, low reading level, no ambiguity about what to do), Attractive
+(salient at the moment of delivery), Social (only with a truthful, named
+data source — an invented social norm is both unethical and a documented
+backfire risk), Timely (delivered at the decision moment the audience &amp;
+context brief identified, not whenever the channel is convenient).</p>
+<p>Pre-testing (Whittingham et al., 2008) is why the output ends with a
+required pre-test rather than a launch recommendation: materials that
+looked fine to their designers routinely fail comprehension checks with
+the actual population, so the draft is a hypothesis until a named check
+passes.</p>
+<h2>Output template</h2><p>The fidelity trace is mandatory: every content element either maps to a
+part of the technique&#39;s BCTTv1 definition or gets cut (or explicitly
+justified as delivery scaffolding, e.g. a greeting). A Social line in the
+EAST check that makes a norm claim must name the data source that makes
+it true.</p>
+<pre><code class="language-markdown"># Intervention Content Draft
+
+**Technique being instantiated:** &lt;BCT number + name, carried verbatim
+from the lever brief&#39;s Selected lever, plus its BCTTv1 definition&gt;
+**Delivery channel:** &lt;channel and format — from the audience &amp; context
+brief where available; otherwise state the assumed channel and flag it
+UNCONFIRMED&gt;
+**Language note:** &lt;what language the final copy must be drafted in, by
+whom — this draft&#39;s language is working copy only if it differs&gt;
+</code></pre>
+<h2>Draft content</h2><p>&lt;the literal copy: message text, script lines, sign wording, interface
+strings — at the target population&#39;s reading level, one requested action&gt;</p>
+<h2>Fidelity trace</h2><table>
+<thead>
+<tr>
+<th>Content element</th>
+<th>Part of the technique&#39;s definition it delivers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;elements that deliver nothing are decoration — cut or justify&gt;</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>Delivery notes</h2><ul>
+<li><strong>Sender/messenger:</strong> &lt;who the content appears to come from, and why
+that source is credible to this population&gt;</li>
+<li><strong>Timing:</strong> &lt;when, relative to the decision moment&gt;</li>
+<li><strong>Frequency ceiling:</strong> </li>
+</ul>
+<h2>EAST check</h2><ul>
+<li><strong>Easy:</strong> &lt;the one action requested, and the reading-level check&gt;</li>
+<li><strong>Attractive:</strong> </li>
+<li><strong>Social:</strong> &lt;the norm claim made, with the named data source that makes
+it true — or &quot;no social-norm claim made&quot;, with why&gt;</li>
+<li><strong>Timely:</strong> </li>
+</ul>
+<h2>Required pre-test before launch</h2><p>&lt;the specific comprehension/acceptability check, with n and a pass
+criterion — e.g. &quot;5-10 members of the target population, shown the draft
+cold, restate the requested action in their own words; pass = all
+restatements name the intended action&quot;&gt;</p>
+<h2>What this draft does not do</h2><p>&lt;explicit limits — e.g. content supports the environmental or structural
+change, it does not substitute for it&gt;
+```</p>
+<h2>Worked example</h2><p><strong>Selected lever (from intervention-lever-selector):</strong> BCTTv1 12.1
+Restructuring the physical environment — a privacy partition and a marked
+&quot;quick deposit&quot; position at the existing M-Pesa agent kiosk, so deposits
+aren&#39;t visible to neighbouring stalls. <em>(Illustrative — continues the
+running example from context-and-audience-mapper through
+intervention-lever-selector; not a real design.)</em></p>
+<pre><code class="language-markdown"># Intervention Content Draft
+
+**Technique being instantiated:** BCTTv1 12.1 Restructuring the physical
+environment — &quot;change, or advise to change, the physical environment in
+order to facilitate performance of the wanted behaviour or create
+barriers to the unwanted behaviour.&quot;
+**Delivery channel:** Physical signage at the in-market agent kiosk, plus
+a one-line verbal script for the agent — per the audience &amp; context
+brief, the kiosk at closing time is the confirmed decision moment; no
+SMS component, since visibility at the kiosk, not information, is the
+barrier.
+**Language note:** Working copy below is English. Final sign and script
+must be drafted natively in Swahili by a local team member — drafted, not
+translated — and the pre-test run on the Swahili version.
+</code></pre>
+<h2>Draft content</h2><p>Sign, mounted at the partitioned position (working copy):</p>
+<blockquote>
+<p><strong>Quick deposit here</strong> — behind the screen, no waiting.</p>
+</blockquote>
+<p>Agent script, one line, said while gesturing to the position (working
+copy):</p>
+<blockquote>
+<p>&quot;Quick deposits this side — it&#39;s the fast lane.&quot;</p>
+</blockquote>
+<h2>Fidelity trace</h2><table>
+<thead>
+<tr>
+<th>Content element</th>
+<th>Part of the technique&#39;s definition it delivers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Quick deposit here — behind the screen&quot;</td>
+<td>Makes the restructured environment (the partitioned position) findable and usable — the physical change facilitates the wanted behaviour only if vendors know it exists and what it is for</td>
+</tr>
+<tr>
+<td>&quot;no waiting&quot; / &quot;it&#39;s the fast lane&quot;</td>
+<td>Frames the partitioned position as the fast option, so choosing privacy costs nothing socially — using it reads as saving time, not as hiding money</td>
+</tr>
+<tr>
+<td>Agent gestures rather than announcing amounts</td>
+<td>Keeps the deposit act itself out of neighbouring vendors&#39; line of sight and hearing — the barrier mechanism the restructuring targets</td>
+</tr>
+</tbody></table>
+<h2>Delivery notes</h2><ul>
+<li><strong>Sender/messenger:</strong> The agent kiosk itself — vendors already trust it
+with transactions; no program branding, which would mark users of the
+position as &quot;the program&#39;s people.&quot;</li>
+<li><strong>Timing:</strong> Permanent signage; the script is used only when a vendor
+approaches with cash at closing time.</li>
+<li><strong>Frequency ceiling:</strong> Not applicable to signage; agents should not
+call vendors over to the position — an agent hawking the fast lane
+recreates the attention the partition exists to remove.</li>
+</ul>
+<h2>EAST check</h2><ul>
+<li><strong>Easy:</strong> One action (use the marked position); sign is seven words.</li>
+<li><strong>Attractive:</strong> &quot;Quick&quot; and &quot;no waiting&quot; are the salient benefit at a
+time-pressed closing hour.</li>
+<li><strong>Social:</strong> No social-norm claim made — deliberately. The barrier is
+social visibility of depositing; copy that says &quot;many vendors deposit
+here&quot; would re-attach social attention to the exact act the partition
+hides.</li>
+<li><strong>Timely:</strong> Present at the kiosk at closing time — the confirmed
+decision moment — rather than delivered earlier in the day by SMS.</li>
+</ul>
+<h2>Required pre-test before launch</h2><p>Show the Swahili sign cold to 5-10 vendors from the target markets who
+haven&#39;t seen it before; each says in their own words what the marked
+position is for. Pass = all name depositing (or a fast transaction)
+without prompting; any reading of &quot;that&#39;s where the program watches you
+deposit&quot; is a fail and the copy is redrafted.</p>
+<h2>What this draft does not do</h2><p>The sign and script support the partition — they do not substitute for
+it. If market management refuses the physical partition (the lever
+brief&#39;s open question), this content has nothing to instantiate and the
+lever decision goes back to intervention-lever-selector&#39;s rejected
+functions, not to stronger copywriting.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Technique-shaped decoration.</strong> The copy is persuasive, on-brand, and
+never delivers the BCT&#39;s defined active ingredient. Tip-off: delete the
+technique&#39;s name from the top of the draft — if nothing about the copy
+now seems mismatched, the fidelity trace was asserted rather than real.</li>
+<li><strong>Researcher-register copy.</strong> Drafting at the team&#39;s own reading level,
+idiom, or formality — or shipping a translation of the working copy
+instead of natively drafted local-language copy. The language note and
+pre-test exist to catch this, but only if the pre-test runs on the
+final-language version.</li>
+<li><strong>Default-channel assumption.</strong> Writing an SMS because SMS is what
+behavioural-science examples use, when the audience &amp; context brief
+names a different confirmed channel — or when no brief exists and the
+channel was never confirmed at all. An UNCONFIRMED channel flag that
+survives into launch is a failure of the process, not a formality.</li>
+<li><strong>Invented social proof.</strong> An EAST Social line like &quot;9 out of 10
+vendors already deposit daily&quot; with no data source behind it. If the
+claim is false it&#39;s unethical; if it&#39;s merely unverified it risks a
+descriptive-norm backfire (normalizing the undesired behaviour, or
+collapsing trust when vendors compare notes). No named source, no norm
+claim.</li>
+<li><strong>Multiple techniques in one draft.</strong> Folding a bonus technique into
+the copy (&quot;while we&#39;re at it, add a commitment prompt&quot;) delivers an
+intervention nobody selected or diagnosed. One draft instantiates one
+named technique; a second technique means a second lever decision
+upstream.</li>
+<li><strong>Out of scope: no named technique.</strong> A lever brief whose selected
+lever is still a bare function name has not finished
+intervention-lever-selector&#39;s own template — send it back rather than
+guessing which technique was meant.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-07</span><p>Add lever-content-drafter and sifa-declaration-drafter skills</p></li></ul>
+  </main>
 </body>
 </html>

@@ -3,22 +3,267 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Intervention Lever Selector — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=intervention-lever-selector" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/intervention-lever-selector" />
   <meta name="description" content="Turns one confirmed COM-B barrier into candidate intervention functions read off the Behaviour Change Wheel&#39;s published linkage matrix — not free-brainstormed — scored for feasibility, with the…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Intervention Lever Selector — Behavioural Skills" />
   <meta property="og:description" content="Turns one confirmed COM-B barrier into candidate intervention functions read off the Behaviour Change Wheel&#39;s published linkage matrix — not free-brainstormed — scored for feasibility, with the…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=intervention-lever-selector" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/intervention-lever-selector" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Intervention Lever Selector — Behavioural Skills" />
   <meta name="twitter:description" content="Turns one confirmed COM-B barrier into candidate intervention functions read off the Behaviour Change Wheel&#39;s published linkage matrix — not free-brainstormed — scored for feasibility, with the…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=intervention-lever-selector" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=intervention-lever-selector">Intervention Lever Selector</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Intervention Lever Selector</h1>
+      <p class="description">Use when comb-barrier-decomposer has produced barrier hypotheses AND fieldwork has since confirmed which specific hypothesis is actually holding the behaviour back — invoke on that one confirmed barrier, not on the full unconfirmed hypothesis set. Invoke when someone asks &quot;given that this is the barrier, what could we actually do about it?&quot; Do not invoke on hypotheses that haven&#39;t been field-tested yet — route back to comb-barrier-decomposer&#39;s diagnostic questions first, or this skill will design levers for a barrier that turns out not to be the real one.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=intervention-lever-selector">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Intervention Design</dd></div>
+      <div><dt>Research stage</dt><dd>Design</dd></div>
+      <div><dt>WEIRD context</dt><dd>mixed-evidence</dd></div>
+      <div><dt>Version</dt><dd>0.2.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The COM-B-to-function linkage matrix is presented as a mechanistic, theory-driven mapping rather than a cultural claim — which function could plausibly work follows from which COM-B component the barrier sits in, not from a population&#39;s cultural background. What is WEIRD- skewed is the Behaviour Change Technique Taxonomy&#39;s validation base and worked examples, which are drawn overwhelmingly from UK/US health- behaviour interventions — treat a selected function as portable and a specific BCT&#39;s assumed delivery mechanism (a clinic visit, a printed leaflet) as needing local adaptation.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Behaviour Change Wheel intervention functions and COM-B linkage matrix</strong><br>Michie, S., van Stralen, M. M., &amp; West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. Implementation Science, 6, 42 (see Table 2).</li><li><strong>Behaviour Change Technique Taxonomy (v1)</strong><br>Michie, S., Richardson, M., Johnston, M., et al. (2013). The Behavior Change Technique Taxonomy (v1) of 93 hierarchically clustered techniques. Annals of Behavioral Medicine, 46(1), 81-95.</li><li><strong>APEASE criteria for intervention selection</strong><br>Michie, S., Atkins, L., &amp; West, R. (2014). The Behaviour Change Wheel: A Guide to Designing Interventions. Silverback Publishing, pp. 46-48.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>comb_barrier_hypotheses</code><br>The barrier hypothesis set from comb-barrier-decomposer, with one specific hypothesis identified as confirmed by field diagnostic answers — state which one in the invocation. Running this on the full unconfirmed set produces levers for a barrier that may not be the real one.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>intervention_lever_brief</code><br>Candidate intervention functions for one confirmed COM-B barrier, derived from the Behaviour Change Wheel&#39;s published function-to- component linkage matrix rather than free-generated, each scored for feasibility and — for the top candidate — broken down into concrete behaviour change techniques.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Turns one confirmed COM-B barrier into candidate intervention functions
+read off the Behaviour Change Wheel&#39;s published linkage matrix — not
+free-brainstormed — scored for feasibility, with the winning function
+broken down into concrete, implementable behaviour change techniques.</p>
+<h2>When to invoke it</h2><ul>
+<li>Field diagnostic questions from <a href="/behavioural-skills/skill?slug=comb-barrier-decomposer">comb-barrier-decomposer</a>
+have been answered and one hypothesis is confirmed as the actual barrier.</li>
+<li>Someone asks &quot;given that this is the barrier, what could we actually do
+about it?&quot; or is about to jump straight to an intervention idea (&quot;let&#39;s
+send a text&quot;) without grounding it in the barrier&#39;s COM-B component.</li>
+<li>Do <strong>not</strong> invoke on the unconfirmed hypothesis list — a lever selected
+for the wrong barrier is a wasted pilot. Confirm the barrier in the
+field first.</li>
+</ul>
+<h2>What it draws on</h2><p>The Behaviour Change Wheel names nine intervention functions — Education,
+Persuasion, Incentivisation, Coercion, Training, Restriction, Environmental
+restructuring, Modelling, Enablement — and publishes a matrix (Michie, van
+Stralen &amp; West, 2011, Table 2) linking each COM-B sub-component to the
+functions theoretically capable of changing it. That matrix must be
+consulted directly for the confirmed barrier&#39;s specific sub-component —
+reconstructing it from general impression or memory is exactly the kind of
+plausible-but-wrong shortcut this skill exists to prevent; a barrier&#39;s
+sub-component (e.g. Opportunity/Social) determines which functions are
+even eligible before feasibility is considered at all. APEASE scoring
+(reused from key-behaviour-definer, same criteria) narrows the eligible
+functions to one selection. The Behaviour Change Technique Taxonomy exists
+because a selected function (&quot;Environmental restructuring&quot;) is not yet
+implementable — it names a category of mechanism, not an action; the
+output must name a specific BCT, or it hasn&#39;t actually specified a lever
+yet.</p>
+<h2>Output template</h2><p>The confirmed barrier&#39;s COM-B sub-component and the applicable-functions
+list are mandatory and must be traceable to the published matrix, not
+invented. Where the source (Michie, van Stralen &amp; West, 2011, Table 2)
+isn&#39;t directly at hand to check cell-by-cell, each function listed must
+carry an explicit confidence marker — high confidence for a linkage this
+skill is applying with strong recall of the actual table, lower confidence
+for one applied from general impression — rather than presenting every
+function with the same unearned certainty. Low-confidence entries should
+be verified against the source before the brief is treated as final. The
+selected lever must name a concrete BCT, not just a function name.</p>
+<pre><code class="language-markdown"># Intervention Lever Brief
+
+**Confirmed barrier:** &lt;the one hypothesis from comb_barrier_hypotheses
+that fieldwork confirmed, carried over verbatim, including which COM-B
+sub-component it belongs to&gt;
+</code></pre>
+<h2>Applicable intervention functions</h2><p>&lt;per the BCW&#39;s COM-B-to-function linkage matrix (Michie, van Stralen &amp;
+West, 2011, Table 2) for this specific sub-component&gt;</p>
+<ul>
+<li>&lt;function 1&gt; — &lt;why this function&#39;s mechanism matches this sub-component,
+per the matrix&gt; — <strong>Confidence this linkage is correct:</strong> &lt;high — applied
+directly from the published table / lower — applied from general
+recall, verify against the source before finalizing&gt;</li>
+<li>&lt;function 2&gt; — &lt;...&gt; — <strong>Confidence:</strong> &lt;...&gt;</li>
+</ul>
+<h2>Feasibility scoring (APEASE)</h2><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>A</th>
+<th>P</th>
+<th>E</th>
+<th>A</th>
+<th>S</th>
+<th>E</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;function 1&gt;</td>
+<td>&lt;+/-/0: reason&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;function 2&gt;</td>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>(Columns: Affordability, Practicability, Effectiveness, Acceptability,
+Side-effects/safety, Equity.)</p>
+<h2>Selected lever</h2><p><strong>Function:</strong>  — &lt;tie-breaker reasoning, pointing at
+specific table cells&gt;
+<strong>Concrete technique (BCTTv1):</strong> &lt;a specific, named technique, not a
+restated function&gt; — </p>
+<h2>Rejected functions</h2><p>&lt;functions the matrix linked to this sub-component but that scored poorly
+on feasibility, with why — kept as the next lever to try if the selected
+one fails a pilot, not discarded&gt;</p>
+<h2>Open questions</h2><p>
+```</p>
+<h2>Worked example</h2><p><strong>Confirmed barrier (from comb-barrier-decomposer):</strong> &quot;Opportunity/Social:
+visible cash-counting/depositing at closing invites informal borrowing
+requests from neighbouring vendors&quot; — confirmed in the field as the
+top-ranked hypothesis from the earlier diagnosis. <em>(Illustrative —
+continues the running example from context-and-audience-mapper through
+comb-barrier-decomposer; not a real design.)</em></p>
+<pre><code class="language-markdown"># Intervention Lever Brief
+
+**Confirmed barrier:** Opportunity/Social — visible cash-counting/
+depositing at closing invites informal borrowing requests from
+neighbouring vendors.
+</code></pre>
+<h2>Applicable intervention functions</h2><p>Per the BCW&#39;s Opportunity/Social linkage (Michie, van Stralen &amp; West,
+2011, Table 2): Environmental restructuring, Modelling, and Enablement.</p>
+<ul>
+<li>Environmental restructuring — changing the physical/social environment
+so the deposit act itself isn&#39;t visible to neighbouring vendors. —
+<strong>Confidence:</strong> High — Opportunity/Social&#39;s link to Environmental
+restructuring is a central, well-recalled cell of the published matrix.</li>
+<li>Modelling — a respected peer vendor visibly normalizing discreet deposit
+as routine, reducing the social salience of any one vendor doing it. —
+<strong>Confidence:</strong> High.</li>
+<li>Enablement — reducing the practical friction of depositing before others
+notice (e.g. a faster transaction path). — <strong>Confidence:</strong> Lower —
+Enablement is applied here from general recall of the matrix&#39;s broad
+reach across most Opportunity/Motivation cells rather than a specific
+memory of this exact cell; verify against Table 2 before finalizing.</li>
+</ul>
+<h2>Feasibility scoring (APEASE)</h2><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>A</th>
+<th>P</th>
+<th>E</th>
+<th>A</th>
+<th>S</th>
+<th>E</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Environmental restructuring</td>
+<td>+: low-cost, a screen/partition at the existing agent kiosk</td>
+<td>+: no new behaviour to teach, works within current routine</td>
+<td>+: directly removes the visibility mechanism named in the barrier</td>
+<td>+: no reason vendors would object</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Modelling</td>
+<td>0: no direct cost</td>
+<td>-: requires sustained peer-influencer engagement to stand up</td>
+<td>0: plausible but slower and less directly tied to the mechanism</td>
+<td>+: socially low-risk</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Enablement (faster transaction path)</td>
+<td>-: would require the mobile money provider to change queue/process</td>
+<td>-: outside the program&#39;s control in the pilot window</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h2>Selected lever</h2><p><strong>Function:</strong> Environmental restructuring — wins on Practicability and
+Effectiveness; it&#39;s the only function that acts on the visibility
+mechanism directly rather than around it, and needs no external party&#39;s
+cooperation to pilot.
+<strong>Concrete technique (BCTTv1):</strong> 12.1 Restructuring the physical
+environment — install a small privacy partition or a marked &quot;quick
+deposit&quot; position at the existing M-Pesa agent kiosk inside each market,
+so the deposit transaction is not directly visible to neighbouring stalls.</p>
+<h2>Rejected functions</h2><ul>
+<li>Modelling — kept as the next lever to try if the partition pilot doesn&#39;t
+move the primary outcome; slower to stand up but doesn&#39;t require agent
+cooperation either.</li>
+<li>Enablement via a faster transaction path — rejected for this pilot since
+it requires a change from the mobile money provider outside the
+program&#39;s control; worth revisiting if a provider partnership develops.</li>
+</ul>
+<h2>Open questions</h2><p>Whether market management will permit a physical partition at the agent
+kiosk — not yet confirmed with either market&#39;s vendor association.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Free-brainstormed levers.</strong> Generating candidate levers from intuition
+instead of the published COM-B-to-function matrix defeats the entire
+point — the matrix exists because not every function is theoretically
+capable of changing every kind of barrier, and skipping it risks
+selecting one that can&#39;t work by construction.</li>
+<li><strong>Function without technique.</strong> Stopping at a function name
+(&quot;Environmental restructuring&quot;) without naming a specific BCT is not yet
+a lever — it&#39;s a category. Someone still has to decide what changes.</li>
+<li><strong>Feasibility blind spots.</strong> Selecting a function that requires
+infrastructure, authority, or a partner&#39;s cooperation the implementer
+doesn&#39;t actually have, without that showing up as a negative
+Practicability score, produces a lever that looks selected but can&#39;t be
+piloted.</li>
+<li><strong>Running on an unconfirmed hypothesis.</strong> Selecting levers for a barrier
+that diagnostic questions haven&#39;t actually confirmed risks designing
+for the wrong problem — the &quot;confirmed barrier&quot; input exists specifically
+to prevent this.</li>
+<li><strong>Function/technique conflation.</strong> Treating &quot;Environmental restructuring&quot;
+and &quot;install a partition&quot; as interchangeable labels for the same thing
+loses the distinction the BCTTv1 exists to enforce — one is a category
+covering many possible techniques, the other is one specific instance.</li>
+<li><strong>Unearned certainty.</strong> Listing every applicable function with the same
+confident tone regardless of how well the specific matrix cell is
+actually recalled versus generally inferred misrepresents a guess as a
+sourced fact — the mandatory confidence marker exists so a reader knows
+which functions need checking against Table 2 before the brief is final.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.2.0</span><span class="changelog-date">2026-07-30</span><p>Tighten the three newest skills against blind-agent stress tests</p></li><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-07-30</span><p>Add three intervention/risk skills, clean URLs, and a grouped command palette</p></li></ul>
+  </main>
 </body>
 </html>

@@ -6,12 +6,14 @@
 #   install.sh --target <dir> --all
 #   install.sh --target <dir> --name skill-a,skill-b
 #   install.sh --target <dir> --category diagnosis,behaviour-definition
+#   install.sh --target <dir> --check
 #   install.sh --list
 set -euo pipefail
 
 # Empty when the script is piped from curl rather than run from a file.
 SCRIPT_PATH="${BASH_SOURCE[0]:-}"
 REPO_TARBALL_URL="https://github.com/Joe-Speed/behavioural-skills/archive/refs/heads/main.tar.gz"
+REPO_RAW_BASE="https://raw.githubusercontent.com/Joe-Speed/behavioural-skills/main"
 
 SKILLS_SRC=""
 TMP_DIR=""
@@ -55,6 +57,7 @@ Usage:
   $(basename "$0") --target <dir> --all
   $(basename "$0") --target <dir> --name <skill-a,skill-b,...>
   $(basename "$0") --target <dir> --category <cat-a,cat-b,...>
+  $(basename "$0") --target <dir> --check
   $(basename "$0") --list
 
 Options:
@@ -63,6 +66,9 @@ Options:
   --all               Install every skill in the repo.
   --name <list>        Comma-separated exact skill names (folder names).
   --category <list>    Comma-separated category ids (see schema/taxonomy.yaml).
+  --check              Compare each skill already installed under
+                        <dir>/skills/ against its current version in the
+                        repo and report which are outdated.
   --list               List all available skills with their category and
                         title, then exit. Ignores --target.
   -h, --help            Show this help.
@@ -76,6 +82,44 @@ skill_category() {
 
 skill_title() {
   grep -m1 '^title:' "$1" | sed -E 's/^title:[[:space:]]*//'
+}
+
+skill_version() {
+  grep -m1 '^version:' "$1" | sed -E 's/^version:[[:space:]]*//'
+}
+
+# Compares each locally installed skill's version against the repo's current
+# one, fetched per-skill via raw.githubusercontent.com rather than the full
+# tarball — this only needs to know what changed, not the content itself.
+check_versions() {
+  local installed_dir="$TARGET/skills"
+  if [ ! -d "$installed_dir" ]; then
+    echo "Error: no skills installed under $installed_dir" >&2
+    exit 1
+  fi
+
+  local outdated=0
+  for dir in "$installed_dir"/*/; do
+    local name local_version remote_version
+    name="$(basename "$dir")"
+    [ -f "$dir/SKILL.md" ] || continue
+    local_version="$(skill_version "$dir/SKILL.md")"
+    remote_version="$(curl -sSL "$REPO_RAW_BASE/skills/$name/SKILL.md" | (grep -m1 '^version:' || true) | sed -E 's/^version:[[:space:]]*//')"
+    if [ -z "$remote_version" ]; then
+      printf "%-40s local %-10s remote: not found in repo\n" "$name" "$local_version"
+    elif [ "$local_version" = "$remote_version" ]; then
+      printf "%-40s %s (up to date)\n" "$name" "$local_version"
+    else
+      printf "%-40s %-10s -> %s available\n" "$name" "$local_version" "$remote_version"
+      outdated=$((outdated + 1))
+    fi
+  done
+
+  if [ "$outdated" -gt 0 ]; then
+    echo "$outdated skill(s) have a newer version available. Re-run install with --name to update."
+  else
+    echo "All installed skills are up to date."
+  fi
 }
 
 list_skills() {
@@ -98,6 +142,8 @@ while [ $# -gt 0 ]; do
       MODE="name"; SELECTOR="$2"; shift 2 ;;
     --category)
       MODE="category"; SELECTOR="$2"; shift 2 ;;
+    --check)
+      MODE="check"; shift ;;
     --list)
       MODE="list"; shift ;;
     -h|--help)
@@ -108,9 +154,21 @@ while [ $# -gt 0 ]; do
 done
 
 if [ -z "$MODE" ]; then
-  echo "Error: specify --all, --name, or --category (or use --list)." >&2
+  echo "Error: specify --all, --name, --category, or --check (or use --list)." >&2
   usage >&2
   exit 1
+fi
+
+# --check compares against the repo directly (one file per installed skill)
+# rather than fetching the whole tarball, so it's dispatched before
+# ensure_skills_src.
+if [ "$MODE" = "check" ]; then
+  if [ -z "$TARGET" ]; then
+    echo "Error: --target <dir> is required." >&2
+    exit 1
+  fi
+  check_versions
+  exit 0
 fi
 
 ensure_skills_src

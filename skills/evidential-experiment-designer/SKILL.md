@@ -93,10 +93,10 @@ without further design decisions.
 - A change is about to be shipped to everyone at once "to see if it
   helps" when the population, delivery channel, and data warehouse would
   support randomizing it.
-- [funnel-weak-link-diagnoser](../funnel-weak-link-diagnoser) has
+- [funnel-weak-link-diagnoser](/behavioural-skills/skill?slug=funnel-weak-link-diagnoser) has
   produced a surviving hypothesis whose cheapest honest test is an
   experiment.
-- [ai-eval-level-matcher](../ai-eval-level-matcher) has recommended
+- [ai-eval-level-matcher](/behavioural-skills/skill?slug=ai-eval-level-matcher) has recommended
   Level 2 or Level 3 evaluation and the team's experimentation stack is
   Evidential.
 - A team is staring at Evidential's create-experiment form unsure what
@@ -105,7 +105,7 @@ without further design decisions.
 - Do **not** invoke for a full-scale impact RCT. Evidential's docs are
   explicit: it is "not built for full-scale Randomized Control Trials"
   with enumerator-managed arms and full counterfactuals — that is Level 4
-  territory for [evaluation-design-scoper](../evaluation-design-scoper)
+  territory for [evaluation-design-scoper](/behavioural-skills/skill?slug=evaluation-design-scoper)
   plus an independent evaluator.
 - Do **not** invoke to find something to test. An experiment without a
   mechanism hypothesis produces a significant-or-not answer to a question
@@ -212,7 +212,7 @@ posture for being experimented on, per org policy>
 ## Worked example
 
 **Inputs (condensed):** MaizeMate's weak-link diagnosis (see
-[funnel-weak-link-diagnoser](../funnel-weak-link-diagnoser)) — log
+[funnel-weak-link-diagnoser](/behavioural-skills/skill?slug=funnel-weak-link-diagnoser)) — log
 analysis supported H1: onboarded farmers type nothing; they don't know
 what to ask. Intent: test a first-question example menu against the
 open-ended prompt. *(Illustrative — continues the catalogue's running

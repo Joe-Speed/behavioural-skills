@@ -72,7 +72,7 @@ broken down into concrete, implementable behaviour change techniques.
 
 ## When to invoke it
 
-- Field diagnostic questions from [comb-barrier-decomposer](../comb-barrier-decomposer)
+- Field diagnostic questions from [comb-barrier-decomposer](/behavioural-skills/skill?slug=comb-barrier-decomposer)
   have been answered and one hypothesis is confirmed as the actual barrier.
 - Someone asks "given that this is the barrier, what could we actually do
   about it?" or is about to jump straight to an intervention idea ("let's

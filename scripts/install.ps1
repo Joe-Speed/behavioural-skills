@@ -14,6 +14,9 @@
   ./install.ps1 -Target ./my-app -Category diagnosis,behaviour-definition
 
 .EXAMPLE
+  ./install.ps1 -Target ./my-app -Check
+
+.EXAMPLE
   ./install.ps1 -List
 #>
 param(
@@ -21,12 +24,14 @@ param(
   [switch]$All,
   [string[]]$Name,
   [string[]]$Category,
+  [switch]$Check,
   [switch]$List
 )
 
 $ErrorActionPreference = "Stop"
 
 $RepoZipUrl = "https://github.com/Joe-Speed/behavioural-skills/archive/refs/heads/main.zip"
+$RepoRawBase = "https://raw.githubusercontent.com/Joe-Speed/behavioural-skills/main"
 
 function Remove-TmpDir {
   if ($script:TmpDir -and (Test-Path $script:TmpDir)) { Remove-Item -Recurse -Force $script:TmpDir }
@@ -51,6 +56,60 @@ function Show-SkillList {
     }
   }
   $rows | Format-Table -AutoSize
+}
+
+# Compares each locally installed skill's version against the repo's current
+# one, fetched per-skill via raw.githubusercontent.com rather than the full
+# zip — this only needs to know what changed, not the content itself.
+function Test-SkillVersions {
+  $installedDir = Join-Path $Target "skills"
+  if (-not (Test-Path $installedDir)) {
+    Write-Error "No skills installed under $installedDir"
+    exit 1
+  }
+
+  $script:OutdatedCount = 0
+  Get-ChildItem -Path $installedDir -Directory | ForEach-Object {
+    $md = Join-Path $_.FullName "SKILL.md"
+    if (-not (Test-Path $md)) { return }
+    $name = $_.Name
+    $localVersion = Get-SkillField -SkillMdPath $md -Field "version"
+
+    try {
+      $remoteContent = (Invoke-WebRequest -UseBasicParsing -Uri "$RepoRawBase/skills/$name/SKILL.md").Content
+      $remoteVersion = ($remoteContent -split "`n" | Where-Object { $_ -match "^version:\s*(.+)$" } | Select-Object -First 1)
+      if ($remoteVersion -match "^version:\s*(.+)$") { $remoteVersion = $Matches[1].Trim() } else { $remoteVersion = "" }
+    } catch {
+      $remoteVersion = ""
+    }
+
+    if ([string]::IsNullOrEmpty($remoteVersion)) {
+      Write-Host ("{0,-40} local {1,-10} remote: not found in repo" -f $name, $localVersion)
+    } elseif ($localVersion -eq $remoteVersion) {
+      Write-Host ("{0,-40} {1} (up to date)" -f $name, $localVersion)
+    } else {
+      Write-Host ("{0,-40} {1,-10} -> {2} available" -f $name, $localVersion, $remoteVersion)
+      $script:OutdatedCount++
+    }
+  }
+
+  if ($script:OutdatedCount -gt 0) {
+    Write-Host "$($script:OutdatedCount) skill(s) have a newer version available. Re-run install with -Name to update."
+  } else {
+    Write-Host "All installed skills are up to date."
+  }
+}
+
+# -Check compares against the repo directly (one file per installed skill)
+# rather than fetching the whole zip, so it's dispatched before the
+# SkillsSrc/zip-fetch block below.
+if ($Check) {
+  if (-not $Target) {
+    Write-Error "-Target <dir> is required."
+    exit 1
+  }
+  Test-SkillVersions
+  exit 0
 }
 
 if (-not $List) {

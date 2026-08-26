@@ -3,22 +3,258 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>AI Eval Level Matcher — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=ai-eval-level-matcher" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/ai-eval-level-matcher" />
   <meta name="description" content="Matches an AI product&#39;s current maturity to the evaluation it has actually earned under The Agency Fund&#39;s four-level framework — model, product, user, impact — naming which levels to run now, which…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="AI Eval Level Matcher — Behavioural Skills" />
   <meta property="og:description" content="Matches an AI product&#39;s current maturity to the evaluation it has actually earned under The Agency Fund&#39;s four-level framework — model, product, user, impact — naming which levels to run now, which…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=ai-eval-level-matcher" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/ai-eval-level-matcher" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="AI Eval Level Matcher — Behavioural Skills" />
   <meta name="twitter:description" content="Matches an AI product&#39;s current maturity to the evaluation it has actually earned under The Agency Fund&#39;s four-level framework — model, product, user, impact — naming which levels to run now, which…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=ai-eval-level-matcher" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=ai-eval-level-matcher">AI Eval Level Matcher</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>AI Eval Level Matcher</h1>
+      <p class="description">Use when a team runs an AI product aimed at a social-sector outcome and must decide what evaluation to run next — or when a funder is asking for impact evidence and the team needs a principled answer to &quot;is an RCT premature for us?&quot;. Invoke it when evaluation effort is being allocated by pressure (&quot;the board wants impact numbers&quot;) rather than by what the product has actually earned. Do not invoke to design the chosen evaluation itself — that is evidential-experiment-designer for rapid experiments or evaluation-design-scoper for outcome measurement plans — and do not invoke for products with no AI component; the level definitions assume model behaviour is itself something to evaluate.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=ai-eval-level-matcher">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Measurement</dd></div>
+      <div><dt>Research stage</dt><dd>Test</dd></div>
+      <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">The framework was built for the development sector — its worked cases are education, health, and agriculture deployments in low- and middle-income countries, so its evidence base is unusually non-WEIRD for this catalogue. The caveats run the other way: the playbook is a 2025 draft/living document, not a validated instrument, and IDinsight&#39;s 2026 practitioner review found implementers treat the levels as an initial lens rather than a procedure — expect to exercise judgment at the boundaries, not to read decisions off a chart.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>The Agency Fund AI Evaluation Playbook (four-level framework)</strong><br>Wu, Z., On, R., Walsh, J., Korley, E., Madon, T., &amp; Wong, L. (2025). AI Evaluation in the Social Sector: A Living Playbook. The Agency Fund. Living document, Apache-2.0. — <a href="https://eval.playbook.org.ai/" target="_blank" rel="noopener">source</a></li><li><strong>Four-level AI evaluation framework for the development sector</strong><br>Chia, H. S., Carter, S., Abrol, F., Madon, T., On, R., Walsh, J., &amp; Wu, Z. (2025). An AI Evaluation Framework for the Development Sector. The Agency Fund, Center for Global Development, and J-PAL. — <a href="https://www.cgdev.org/blog/ai-evaluation-framework-for-the-development-sector" target="_blank" rel="noopener">source</a></li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>ai_product_account</code><br>The team&#39;s plain-language account of the product: what it does and for whom, the development outcome it targets, its maturity, what evaluation evidence already exists at each level, and the decision the team is trying to inform next. Honest gaps in — useful recommendation out; a flattering account produces a premature one.</li><li><code>user_funnel_map</code> (optional)<br>Optional staged funnel for this product, if user-funnel-builder has already run. When present, use its stages and metrics to judge whether Level 2 evidence actually exists (&quot;engaging users as intended&quot; becomes checkable against named stages instead of taken on the team&#39;s word).</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>ai_eval_level_recommendation</code><br>Per level of the four-level framework: whether this product has earned that evaluation now, what evidence it would produce, why any premature level is premature, and the evaluability-early steps to take immediately regardless of which levels run.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Matches an AI product&#39;s current maturity to the evaluation it has actually
+earned under The Agency Fund&#39;s four-level framework — model, product,
+user, impact — naming which levels to run now, which are premature, plus
+the evaluability steps to build in early either way.</p>
+<h2>When to invoke it</h2><ul>
+<li>A team is deciding where the next unit of evaluation effort goes and the
+candidates span very different costs — another benchmark run, an A/B
+test, a psychometric survey, a full RCT.</li>
+<li>A funder or board is requesting impact evidence and the team needs a
+defensible, framework-grounded account of what evidence the product&#39;s
+stage can support — the playbook&#39;s own recommendation is that funders
+&quot;match evaluation requirements to the product&#39;s development stage,
+avoiding premature requests for impact evaluations.&quot;</li>
+<li>An AI product has strong engagement numbers and someone proposes jumping
+straight to an RCT with no Level 3 evidence that usage shifts what users
+think, feel, or do.</li>
+<li>Do <strong>not</strong> invoke to design the recommended evaluation — hand a Level
+2/3 recommendation to
+<a href="/behavioural-skills/skill?slug=evidential-experiment-designer">evidential-experiment-designer</a> and
+a Level 3/4 measurement plan to
+<a href="/behavioural-skills/skill?slug=evaluation-design-scoper">evaluation-design-scoper</a>.</li>
+<li>Do <strong>not</strong> invoke for non-AI programs. The four levels assume there is a
+model whose behaviour needs evaluating separately from the product
+around it; for a non-AI intervention, start at
+<a href="/behavioural-skills/skill?slug=evaluation-design-scoper">evaluation-design-scoper</a>.</li>
+</ul>
+<h2>What it draws on</h2><p>The Agency Fund&#39;s playbook (Wu et al., 2025; announced jointly with CGD
+and J-PAL in Chia et al., 2025) defines four incremental evaluation
+levels, each with broadening scope: <strong>Level 1 — model evaluation</strong> (&quot;Does
+the AI model produce the desired responses?&quot;), <strong>Level 2 — product
+evaluation</strong> (&quot;Does the product facilitate meaningful interactions?&quot;),
+<strong>Level 3 — user evaluation</strong> (&quot;Does the product positively support
+users&#39; thoughts, feelings, and actions?&quot;), and <strong>Level 4 — impact
+evaluation</strong> (&quot;Does the product improve development outcomes?&quot;). The
+framework&#39;s central discipline, which this skill operationalizes, is
+stage-matching: Level 1 is cheap and continuous from day one; Level 2
+requires a deployed product with real users; Level 3 requires Levels 1–2
+to be working; Level 4 is warranted only when Levels 1–3 are strong, the
+team is preparing to scale, and priors about the treatment effect are
+confident. The playbook is explicit that a product still in early design,
+with inconsistent usage or untested mechanism hypotheses, should run
+Level 3 evaluations instead of an RCT.</p>
+<p>Two further playbook commitments are carried into the output. First,
+<em>evaluability early</em>: holdout groups, staged rollouts, version tagging,
+and embedded randomization belong in the product&#39;s architecture before a
+Level 4 evaluation is justified, so the option isn&#39;t foreclosed. Second,
+<em>the social-sector bar</em>: in the tech sector evaluation typically stops at
+Levels 1–2; here Levels 1–3 are necessary but not sufficient, so &quot;no
+level recommended&quot; is never a valid output — the recommendation names
+what to run now at whatever level fits.</p>
+<p>Judgment call the source doesn&#39;t fully specify: the playbook gives gates
+in qualitative terms (&quot;Levels 1–3 are strong&quot;). This skill requires each
+gate judgment to cite the specific evidence in the <code>ai_product_account</code>
+(or <code>user_funnel_map</code>) it rests on, so a disagreement about readiness is
+a disagreement about named evidence, not adjectives.</p>
+<h2>Output template</h2><p>Every level gets a verdict — including levels already satisfied and
+levels far out of reach — because a skipped row reads as an oversight
+downstream. Verdicts are one of: <strong>run now</strong>, <strong>continue/monitor</strong>,
+<strong>premature</strong>, <strong>satisfied for this stage</strong>.</p>
+<pre><code class="language-markdown"># AI Evaluation Level Recommendation
+
+**Product:** &lt;name + one-line description, carried from the account&gt;
+**Development outcome targeted:** &lt;the Level 4 outcome&gt;
+**Decision this recommendation informs:** &lt;what the team will do
+differently depending on the answer&gt;
+</code></pre>
+<h2>Level verdicts</h2><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Question</th>
+<th>Verdict</th>
+<th>Evidence the verdict rests on</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 — Model</td>
+<td>Does the model produce the desired responses?</td>
+<td></td>
+<td>&lt;named evidence from the account, or &quot;none supplied&quot;&gt;</td>
+</tr>
+<tr>
+<td>2 — Product</td>
+<td>Does the product facilitate meaningful interactions?</td>
+<td></td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>3 — User</td>
+<td>Does it positively support users&#39; thoughts, feelings, actions?</td>
+<td></td>
+<td>&lt;...&gt;</td>
+</tr>
+<tr>
+<td>4 — Impact</td>
+<td>Does it improve the development outcome?</td>
+<td></td>
+<td>&lt;...&gt;</td>
+</tr>
+</tbody></table>
+<h2>What to run now</h2><p>&lt;for each &quot;run now&quot; level: the concrete evaluation, the method family the
+playbook prescribes at that level, and the evidence it will produce.
+Point Level 2/3 experiments at evidential-experiment-designer and
+outcome-measurement planning at evaluation-design-scoper.&gt;</p>
+<h2>Why the premature levels are premature</h2><p>&lt;per premature level: which gate fails, citing the account. This section
+is what the team hands a funder asking for the skipped level.&gt;</p>
+<h2>Evaluability-early steps</h2><p>&lt;holdouts, staged rollout, version tagging, embedded randomization — the
+steps to take now so higher levels stay possible later. Mandatory even
+when Level 4 is far off.&gt;</p>
+<h2>What would change this recommendation</h2><p>&lt;the specific evidence that would move each &quot;premature&quot; to &quot;run now&quot;&gt;
+```</p>
+<h2>Worked example</h2><p><strong>AI product account (user-supplied, condensed):</strong> &quot;MaizeMate is our
+WhatsApp AI assistant answering agronomy questions for smallholder maize
+farmers in western Kenya; the goal is better yields through timely
+top-dressing. Piloted with ~1,400 farmers via two cooperatives. We
+benchmarked answers against an agronomist-written test set last quarter
+(88% rated acceptable); usage is spiky — many farmers ask one question
+and never return. Our funder wants to discuss an RCT at the October
+board meeting.&quot; <em>(Illustrative — not a real program.)</em></p>
+<pre><code class="language-markdown"># AI Evaluation Level Recommendation
+
+**Product:** MaizeMate — WhatsApp AI agronomy assistant for smallholder
+maize farmers, western Kenya
+**Development outcome targeted:** improved maize yields via timely
+top-dressing fertilizer application
+**Decision this recommendation informs:** whether to propose an RCT at
+the October board meeting or a staged alternative
+</code></pre>
+<h2>Level verdicts</h2><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Question</th>
+<th>Verdict</th>
+<th>Evidence the verdict rests on</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 — Model</td>
+<td>Desired responses?</td>
+<td>continue/monitor</td>
+<td>88% acceptable on an agronomist-written test set last quarter; no stress-test bucket reported, so safety behaviour unknown</td>
+</tr>
+<tr>
+<td>2 — Product</td>
+<td>Meaningful interactions?</td>
+<td>run now</td>
+<td>account&#39;s own description: &quot;many farmers ask one question and never return&quot; — engagement is the weak link</td>
+</tr>
+<tr>
+<td>3 — User</td>
+<td>Thoughts, feelings, actions?</td>
+<td>premature</td>
+<td>no evidence usage shifts fertilizer knowledge or intent; but cannot be read until Level 2 stabilizes</td>
+</tr>
+<tr>
+<td>4 — Impact</td>
+<td>Yield improvement?</td>
+<td>premature</td>
+<td>fails all three of the playbook&#39;s gates: Levels 2–3 not strong, not preparing to scale, no confident effect priors</td>
+</tr>
+</tbody></table>
+<h2>What to run now</h2><p>Level 2: an engagement experiment on the one-question-drop-off (e.g.
+proactive check-in variants) — design via evidential-experiment-designer.
+Level 1, continuing: extend the test set with a stress-test bucket
+(pesticide misuse, out-of-scope medical questions) before any scale-up.</p>
+<h2>Why the premature levels are premature</h2><p>Level 4: an RCT on yields now would measure the impact of a product most
+enrolled farmers use once — a null would be uninterpretable (product
+failure vs. idea failure), which is exactly the premature-RCT case the
+framework warns funders against. Level 3: user-outcome measures are worth
+building (see below) but can&#39;t carry weight while retention is this weak.</p>
+<h2>Evaluability-early steps</h2><p>Hold out one cooperative&#39;s next enrollment cohort from proactive-messaging
+features; tag model + knowledge-base versions in every logged
+conversation; randomize enrollment timing across the waitlist now so a
+future Level 4 comparison group exists by design.</p>
+<h2>What would change this recommendation</h2><p>Level 3 → run now: 4-week retention stabilizing after the engagement
+experiments. Level 4 → run now: strong Level 3 evidence that usage shifts
+top-dressing knowledge and intent, plus a scale decision actually on the
+table.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>Rubber-stamping the pressure.</strong> The account says the funder wants an
+RCT, and the recommendation obligingly finds Level 4 &quot;earned.&quot; The gate
+evidence column is the tell: if the Level 4 row cites the funder&#39;s
+interest rather than Level 1–3 evidence, the matcher has answered the
+politics, not the framework.</li>
+<li><strong>Reading Level 2 off the team&#39;s adjectives.</strong> &quot;Engagement is strong&quot;
+is a claim, not evidence. Without a <code>user_funnel_map</code> or named metrics
+in the account, the verdict must say what it&#39;s resting on — and
+&quot;founder&#39;s impression&quot; is a legitimate, flag-raising thing to write.</li>
+<li><strong>Treating levels as a ladder to climb once.</strong> The playbook&#39;s levels
+are iterative — Level 1 monitoring continues at every later stage, and
+a product change resets Level 2 questions. A recommendation that reads
+&quot;Level 1: done&quot; has misread the framework.</li>
+<li><strong>Skipping evaluability-early because Level 4 is far off.</strong> That
+section exists precisely for products far from an RCT; omitting it
+forecloses the option this framework is designed to keep open.</li>
+<li><strong>Out of scope: non-AI products.</strong> For a program with no model in the
+loop, the level distinctions collapse and this skill&#39;s output is noise —
+use evaluation-design-scoper. Also out of scope: ruling on whether the
+product <em>should</em> scale; this skill sequences evidence, it does not make
+the scale decision.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-08-11</span><p>Add TAF AI-evaluation and Evidential experiment skills</p></li></ul>
+  </main>
 </body>
 </html>

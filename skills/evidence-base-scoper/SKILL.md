@@ -79,7 +79,7 @@ target behaviour or diagnoses barriers from intuition alone.
   external evidence.
 - Someone asks "has this been done before?" or "what does the evidence
   actually say works here?"
-- Do **not** invoke as a substitute for [key-behaviour-definer](../key-behaviour-definer)
+- Do **not** invoke as a substitute for [key-behaviour-definer](/behavioural-skills/skill?slug=key-behaviour-definer)
   — this skill surveys what's known, it doesn't select a target behaviour.
   Run them on the same input, not one instead of the other.
 

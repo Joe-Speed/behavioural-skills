@@ -3,22 +3,182 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
   <title>Evidence Base Scoper — Behavioural Skills</title>
-  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/skill?slug=evidence-base-scoper" />
+  <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/evidence-base-scoper" />
   <meta name="description" content="Surveys existing evidence for the behaviour, population, or context named in a program goal, and produces a structured brief of what&#39;s already known to work, not work, or remain untested — before…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
   <meta property="og:title" content="Evidence Base Scoper — Behavioural Skills" />
   <meta property="og:description" content="Surveys existing evidence for the behaviour, population, or context named in a program goal, and produces a structured brief of what&#39;s already known to work, not work, or remain untested — before…" />
-  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/skill?slug=evidence-base-scoper" />
+  <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/evidence-base-scoper" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Evidence Base Scoper — Behavioural Skills" />
   <meta name="twitter:description" content="Surveys existing evidence for the behaviour, population, or context named in a program goal, and produces a structured brief of what&#39;s already known to work, not work, or remain untested — before…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-  <meta http-equiv="refresh" content="0; url=https://joe-speed.github.io/behavioural-skills/skill?slug=evidence-base-scoper" />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="https://joe-speed.github.io/behavioural-skills/skill?slug=evidence-base-scoper">Evidence Base Scoper</a>…</p>
+  <header class="site-header">
+    <div class="wrap"><a class="brand" href="../">Behavioural <span>Skills</span></a></div>
+  </header>
+  <main>
+    <div class="skill-header">
+      <h1>Evidence Base Scoper</h1>
+      <p class="description">Use when a program goal has been named but no one has checked what evidence already exists for similar behaviours, populations, or interventions — before key-behaviour-definer or comb-barrier-decomposer run, so their framing is informed by prior work instead of starting cold. Invoke as early as possible, ideally alongside or just before key-behaviour-definer, on the same raw program goal statement. Do not invoke once a target behaviour is already defined and a diagnosis is underway — feed this skill&#39;s output into that process instead of re-running it mid-diagnosis.</p>
+      <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=evidence-base-scoper">Open interactive page &amp; install &rarr;</a></div>
+    </div>
+
+    <dl class="meta-grid">
+      <div><dt>Category</dt><dd>Evidence Scoping</dd></div>
+      <div><dt>Research stage</dt><dd>Prepare</dd></div>
+      <div><dt>WEIRD context</dt><dd>weird-only</dd></div>
+      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Authors</dt><dd>Joe Speed</dd></div>
+    </dl>
+
+    <p class="notice">This skill&#39;s entire purpose is surfacing what&#39;s in the indexed, published literature — and that literature is itself overwhelmingly WEIRD (Western, Educated, Industrialized, Rich, Democratic) in its samples (Henrich, Heine, &amp; Norenzayan, 2010, &quot;The weirdest people in the world?&quot;, Behavioral and Brain Sciences, 33(2-3), 61-83). A &quot;no evidence found&quot; result from this skill means &quot;no *published* evidence was found,&quot; not &quot;this doesn&#39;t work here&quot; — the output template forces this distinction into its own field rather than letting it stay implicit.</p>
+
+    <h2>Evidence base</h2>
+    <ul class="io-list"><li><strong>Rapid Evidence Assessment (REA) methodology</strong><br>Grant, M. J., &amp; Booth, A. (2009). A typology of reviews: an analysis of 14 review types and associated methodologies. Health Information &amp; Libraries Journal, 26(2), 91-108.</li><li><strong>GRADE approach to rating evidence quality</strong><br>Guyatt, G. H., Oxman, A. D., Vist, G. E., et al. (2008). GRADE: an emerging consensus on rating quality of evidence and strength of recommendations. BMJ, 336(7650), 924-926.</li><li><strong>Publication bias in evidence synthesis</strong><br>Rothstein, H. R., Sutton, A. J., &amp; Borenstein, M. (Eds.). (2005). Publication Bias in Meta-Analysis: Prevention, Assessment and Adjustments. John Wiley &amp; Sons, Ch. 1.</li></ul>
+
+    <h2>Inputs</h2>
+    <ul class="io-list"><li><code>program_goal_statement</code><br>The program or campaign goal as originally stated, plus whatever context is available on the target population, setting, and known constraints. The same raw input key-behaviour-definer takes — this skill can run in parallel with it, not necessarily after it.</li></ul>
+
+    <h2>Outputs</h2>
+    <ul class="io-list"><li><code>evidence_scan_brief</code><br>What&#39;s already been tried for this behaviour/population/context, what the effect sizes looked like where reported, where the evidence base is thin or contradictory, and which specific findings are WEIRD-skewed.</li></ul>
+
+    <div class="skill-body"><h2>What it does</h2><p>Surveys existing evidence for the behaviour, population, or context named
+in a program goal, and produces a structured brief of what&#39;s already known
+to work, not work, or remain untested — before anyone downstream defines a
+target behaviour or diagnoses barriers from intuition alone.</p>
+<h2>When to invoke it</h2><ul>
+<li>A program goal has just been stated and no one has checked whether
+similar interventions have already been tried, anywhere, for this
+behaviour or population.</li>
+<li>A team is about to define a target behaviour or generate barrier
+hypotheses based purely on internal assumptions, with no reference to
+external evidence.</li>
+<li>Someone asks &quot;has this been done before?&quot; or &quot;what does the evidence
+actually say works here?&quot;</li>
+<li>Do <strong>not</strong> invoke as a substitute for <a href="/behavioural-skills/skill?slug=key-behaviour-definer">key-behaviour-definer</a>
+— this skill surveys what&#39;s known, it doesn&#39;t select a target behaviour.
+Run them on the same input, not one instead of the other.</li>
+</ul>
+<h2>What it draws on</h2><p>A Rapid Evidence Assessment (REA): a time-bounded, structured literature
+scan rather than a full systematic review — the goal is a usable brief in
+hours or days, not exhaustive coverage over months. GRADE-style thinking
+governs how each finding is reported: name the effect (if any), the
+population and setting it was measured in, and how confident that estimate
+should be treated (a single small pilot and a multi-site RCT are not
+equally trustworthy evidence, even if both point the same direction).
+Publication-bias literature is why the output template has a mandatory
+section for null and contradicting findings — a scan that only surfaces
+supporting evidence is not reporting the evidence base, it&#39;s building a
+case for a conclusion already reached.</p>
+<h2>Output template</h2><p>The &quot;Findings that don&#39;t support the goal&quot; and &quot;WEIRD-skew flags&quot; sections
+are mandatory, not optional appendices — a brief with an empty first
+section on a well-studied behaviour is more likely an incomplete search
+than a genuinely one-sided evidence base.</p>
+<pre><code class="language-markdown"># Evidence Scan Brief
+
+**Program goal (as given):** &lt;verbatim or lightly cleaned goal statement&gt;
+</code></pre>
+<h2>What&#39;s already been tried</h2><ul>
+<li>&lt;intervention/approach 1&gt; — &lt;population/setting it was tried in&gt; —
+&lt;effect reported, with size/direction if available&gt; — &lt;confidence: e.g.
+single pilot / multiple studies / RCT / meta-analysis&gt;</li>
+<li>&lt;intervention/approach 2&gt; — &lt;...&gt;</li>
+</ul>
+<h2>Findings that don&#39;t support the goal (mandatory — state &quot;none found in</h2><p>the time available&quot; explicitly if genuinely none, do not omit the section)</p>
+<ul>
+<li>&lt;null result, contradicting result, or backfire effect&gt; — &lt;population/
+setting&gt; — </li>
+</ul>
+<h2>WEIRD-skew flags (mandatory — per finding above, not once for the whole brief)</h2><ul>
+<li> — &lt;population/setting it was actually measured in, vs. the
+target population/setting named in the program goal&gt; — </li>
+</ul>
+<h2>Evidence gaps</h2><p>&lt;what&#39;s asked by the program goal that the available literature simply
+doesn&#39;t address — a real gap, stated plainly, is more useful than a
+stretched analogy to a loosely related study&gt;</p>
+<h2>Confidence in this scan</h2><p>&lt;how much time/how many sources this scan covered, and what a fuller
+review would need to check that this one couldn&#39;t&gt;
+```</p>
+<h2>Worked example</h2><p><strong>Program goal (as given):</strong> &quot;Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks.&quot; <em>(Illustrative — continues the running example used across this
+library&#39;s other skills; not a real scan.)</em></p>
+<pre><code class="language-markdown"># Evidence Scan Brief
+
+**Program goal (as given):** Increase long-term savings among informal-
+sector market vendors in Nairobi so they have a buffer against income
+shocks.
+</code></pre>
+<h2>What&#39;s already been tried</h2><ul>
+<li>Lockbox commitment savings devices — market women in Busia, Kenya —
+increased savings and business investment, especially among women who
+previously lacked a safe way to keep money at home — confidence: single
+randomized field experiment (Dupas &amp; Robinson, 2013).</li>
+<li>Rotating savings and credit associations (ROSCAs / <em>chama</em>) — same study
+population — smaller and less consistent effect on measured savings
+than the lockbox device — confidence: same field experiment, secondary
+comparison arm.</li>
+</ul>
+<h2>Findings that don&#39;t support the goal</h2><ul>
+<li>Formal bank savings accounts — same study population — low take-up and
+low sustained use, attributed to fees and branch distance — confidence:
+same field experiment. This directly cautions against assuming a
+bank-account-based design will work here without addressing access
+first.</li>
+</ul>
+<h2>WEIRD-skew flags</h2><ul>
+<li>Dupas &amp; Robinson (2013) — measured in rural Busia, Kenya, not urban
+Nairobi markets — the underlying population is a rare non-WEIRD example
+in the savings-commitment literature, which is otherwise dominated by
+US/UK studies, but the rural-vs-urban market setting is still a gap to
+validate before assuming the effect transfers to Nairobi.</li>
+</ul>
+<h2>Evidence gaps</h2><p>No located study measures mobile-money-based (as opposed to physical
+lockbox) commitment savings devices specifically among urban market
+vendors — the closest evidence is a physical-device study in a rural
+setting, not a mobile-money study in an urban one.</p>
+<h2>Confidence in this scan</h2><p>Time-bounded scan of a small number of directly relevant field
+experiments in comparable Kenyan settings; a fuller review would need to
+search specifically for mobile-money savings-product evaluations in
+urban East African markets, which this pass did not locate.
+```</p>
+<h2>Known failure modes</h2><ul>
+<li><strong>One-sided search.</strong> Searching only for evidence that the named
+intervention or approach works, rather than for evidence on the
+behaviour/population generally, produces a brief that confirms rather
+than informs. If every finding points the same direction, check whether
+the search terms themselves were leading.</li>
+<li><strong>Analogy laundering.</strong> Citing a study on a loosely related behaviour or
+a very different population as if it directly answers the program goal,
+without naming the gap in the &quot;WEIRD-skew flags&quot; or &quot;Evidence gaps&quot;
+section. A study on urban US college students&#39; savings behaviour is not
+silently transferable to rural smallholder farmers — say so if that&#39;s
+the best evidence available.</li>
+<li><strong>Confidence collapse.</strong> Treating a single small pilot and a replicated
+RCT as equally strong evidence because both get reported as &quot;a study
+found...&quot; The confidence/GRADE-style qualifier in each bullet exists
+specifically to prevent this.</li>
+<li><strong>Padding to look thorough.</strong> Listing many superficially similar studies
+that all report the same underlying finding inflates the appearance of
+a rich evidence base without adding information. Fewer, more clearly
+characterized findings beat a long list of redundant ones.</li>
+<li><strong>Treating &quot;no evidence found&quot; as &quot;doesn&#39;t work.&quot;</strong> An REA is
+time-bounded and WEIRD-skewed by construction (see <code>weird_context</code>
+above) — absence of published evidence for this exact population is
+not evidence of absence. The &quot;Evidence gaps&quot; section exists to make that
+distinction explicit rather than letting a thin scan read as a null
+result.</li>
+</ul>
+</div>
+
+    <h2>Version history</h2>
+    <ul class="changelog-list"><li><span class="changelog-version">v0.1.0</span><span class="changelog-date">2026-07-28</span><p>Tighten output templates and build the two pre-intervention skills</p></li></ul>
+  </main>
 </body>
 </html>

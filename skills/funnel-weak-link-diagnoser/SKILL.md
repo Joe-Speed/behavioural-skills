@@ -85,15 +85,15 @@ discriminate it from the others.
   *why* differently depending on who's asked.
 - An engagement experiment is being planned and needs a hypothesis worth
   the sample — this skill's output is
-  [evidential-experiment-designer](../evidential-experiment-designer)'s
+  [evidential-experiment-designer](/behavioural-skills/skill?slug=evidential-experiment-designer)'s
   natural input.
 - Do **not** invoke without observed numbers. A funnel with only targets
   has no weak link yet — run the product, collect a
   `funnel_metric_readout`, or build the funnel first with
-  [user-funnel-builder](../user-funnel-builder).
+  [user-funnel-builder](/behavioural-skills/skill?slug=user-funnel-builder).
 - Do **not** invoke for behaviours outside a product journey (clinic
   attendance, savings deposits in cash). That diagnosis belongs to
-  [comb-barrier-decomposer](../comb-barrier-decomposer); this skill's
+  [comb-barrier-decomposer](/behavioural-skills/skill?slug=comb-barrier-decomposer); this skill's
   stage-transition framing assumes telemetry-visible steps.
 
 ## What it draws on
@@ -160,7 +160,7 @@ survives its test — via the experiment path
 ## Worked example
 
 **Inputs (condensed):** MaizeMate's funnel map (see
-[user-funnel-builder](../user-funnel-builder)) and a readout for 6 weeks
+[user-funnel-builder](/behavioural-skills/skill?slug=user-funnel-builder)) and a readout for 6 weeks
 of pilot: recruitment 138/wk (target 120), onboarding 74% (target 70%),
 engagement 31% (target 60%), 4-week retention 22% of the engaged (target
 40%). Caveat noted: the onboarding flow was shortened in week 3.

@@ -79,14 +79,14 @@ sheet instead of impressions.
   the practice this replaces as the *only* method).
 - A model swap, system-prompt rewrite, or knowledge-base update is about
   to ship with no way to detect regressions against the previous version.
-- [ai-eval-level-matcher](../ai-eval-level-matcher) has recommended
+- [ai-eval-level-matcher](/behavioural-skills/skill?slug=ai-eval-level-matcher) has recommended
   Level 1 evaluation and the team has no gold-standard test set to run.
 - Safety behaviour (refusals, escalations) has never been tested
   systematically — only noticed anecdotally in logs.
 - Do **not** invoke to measure user outcomes — whether farmers learn,
   decide, or act differently is Level 3, owned by the funnel's proximal
   outcome stage and
-  [evaluation-design-scoper](../evaluation-design-scoper).
+  [evaluation-design-scoper](/behavioural-skills/skill?slug=evaluation-design-scoper).
 - Do **not** invoke to author the knowledge base or guardrail policy
   itself. The spec references both as inputs to ideal-response authoring;
   writing them is upstream content work.

@@ -21,6 +21,13 @@
   let searchQuery = "";
   const skillsBySlug = new Map(data.skills.map((s) => [s.slug, s]));
 
+  // A curated selection is shareable: seed it from ?skills=a,b,c on load, and
+  // keep the URL in sync as the selection changes, so a refresh or a pasted
+  // link preserves it.
+  for (const slug of (qs("skills") || "").split(",").map((s) => s.trim())) {
+    if (skillsBySlug.has(slug)) selectedSlugs.add(slug);
+  }
+
   sidebar.innerHTML = `
     <h2>Install</h2>
     <p class="install-hint">Select skills from the list to build a combined install command.</p>
@@ -40,6 +47,11 @@
       refreshSelection();
     });
     refreshTerminal();
+
+    const url = new URL(window.location.href);
+    if (selectedSlugs.size > 0) url.searchParams.set("skills", Array.from(selectedSlugs).join(","));
+    else url.searchParams.delete("skills");
+    history.replaceState(null, "", url.pathname + url.search);
   }
 
   function firstSentence(text) {
@@ -137,4 +149,5 @@
   });
 
   renderAll();
+  refreshSelection();
 })();

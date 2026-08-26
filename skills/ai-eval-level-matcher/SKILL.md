@@ -91,13 +91,13 @@ the evaluability steps to build in early either way.
   think, feel, or do.
 - Do **not** invoke to design the recommended evaluation — hand a Level
   2/3 recommendation to
-  [evidential-experiment-designer](../evidential-experiment-designer) and
+  [evidential-experiment-designer](/behavioural-skills/skill?slug=evidential-experiment-designer) and
   a Level 3/4 measurement plan to
-  [evaluation-design-scoper](../evaluation-design-scoper).
+  [evaluation-design-scoper](/behavioural-skills/skill?slug=evaluation-design-scoper).
 - Do **not** invoke for non-AI programs. The four levels assume there is a
   model whose behaviour needs evaluating separately from the product
   around it; for a non-AI intervention, start at
-  [evaluation-design-scoper](../evaluation-design-scoper).
+  [evaluation-design-scoper](/behavioural-skills/skill?slug=evaluation-design-scoper).
 
 ## What it draws on
 
