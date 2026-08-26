@@ -472,12 +472,17 @@ function formatStarCount(n) {
 // keeps the link) on rate-limit or network errors.
 async function bindGithubStarBadge() {
   const countEl = document.querySelector(".github-badge-count");
-  if (!countEl) return;
+  const numberEl = document.querySelector(".github-badge-number");
+  if (!countEl || !numberEl) return;
   try {
-    const res = await fetch("https://api.github.com/repos/Joe-Speed/behavioural-skills");
+    // no-store: GitHub serves repo metadata with max-age=60, and without this
+    // the browser keeps showing a stale count long after a star lands.
+    const res = await fetch("https://api.github.com/repos/Joe-Speed/behavioural-skills", {
+      cache: "no-store",
+    });
     if (!res.ok) throw new Error(String(res.status));
     const data = await res.json();
-    countEl.textContent = formatStarCount(data.stargazers_count);
+    numberEl.textContent = formatStarCount(data.stargazers_count);
   } catch (err) {
     console.error("Could not load GitHub star count", err);
     countEl.remove();

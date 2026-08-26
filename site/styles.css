@@ -105,6 +105,9 @@ a { color: var(--accent); }
 .github-badge-icon { fill: currentColor; }
 
 .github-badge-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 0.75rem;
   font-weight: 400;
@@ -114,9 +117,11 @@ a { color: var(--accent); }
   padding: 0.1rem 0.5rem;
   /* Reserve room for the async star count so the header doesn't shift
      when the placeholder "…" swaps to a number. */
-  min-width: 2.2rem;
-  text-align: center;
+  min-width: 3.1rem;
+  justify-content: center;
 }
+
+.github-badge-star { fill: #e3b341; flex: none; }
 
 main {
   max-width: var(--max-width);
