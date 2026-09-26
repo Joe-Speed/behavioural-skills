@@ -1,19 +1,13 @@
 ---
 name: evidential-experiment-designer
-title: Evidential Experiment Designer
+title: Design an Experiment in Evidential
 description: >-
-  Use when a team has a specific change worth testing — a message
-  variant, an onboarding tweak, a nudge cadence — and intends to run it
-  as a rigorous rapid experiment in Evidential, the open-source
-  experiment engine for nonprofits, but has not yet made the design
-  decisions the tool will demand: experiment type, arms, randomization
-  unit, metrics, power. Invoke it when a weak-link hypothesis or
-  experiment idea is about to be "just shipped and eyeballed" instead of
-  randomized. Do not invoke for a full-scale RCT with enumerator-managed
-  arms — Evidential's own docs rule that out; scope it with
-  evaluation-design-scoper and an independent evaluator — and do not
-  invoke to generate the hypothesis itself; that is
-  funnel-weak-link-diagnoser's job.
+  Use when a team wants to test one specific change, such as a new message
+  or reminder timing, with a randomized experiment in Evidential, a free
+  experiment tool for nonprofits. It makes every design decision the tool
+  asks for: experiment type, groups, who or what to randomize, metrics, and
+  sample size. Not for large trials run by field staff. To find what to
+  test, use "Find Out Why Users Drop Out of Your Product".
 category: measurement
 stage: test
 evidence_base:
@@ -77,16 +71,15 @@ outputs:
       rule the result feeds.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Turns one testable hypothesis into a launch-ready Evidential experiment
-configuration — experiment type, arms, randomization unit, eligibility
-filters, metrics with a detectable effect, power inputs, stopping rule,
-delivery integration — specified concretely enough to enter into the tool
-without further design decisions.
+Turns one testable idea into a complete experiment setup for Evidential:
+experiment type, groups, what is randomized, who is eligible, metrics, the
+effect size to detect, sample size, when to stop, and how each version is
+delivered. It is detailed enough to enter into the tool as it stands.
 
 ## When to invoke it
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T10:39:19.650Z",
+  "generatedAt": "2026-09-26T18:04:47.438Z",
   "taxonomy": {
     "categories": [
       {
@@ -251,8 +251,8 @@
     {
       "slug": "ai-eval-level-matcher",
       "name": "ai-eval-level-matcher",
-      "title": "AI Eval Level Matcher",
-      "description": "Use when a team runs an AI product aimed at a social-sector outcome and must decide what evaluation to run next — or when a funder is asking for impact evidence and the team needs a principled answer to \"is an RCT premature for us?\". Invoke it when evaluation effort is being allocated by pressure (\"the board wants impact numbers\") rather than by what the product has actually earned. Do not invoke to design the chosen evaluation itself — that is evidential-experiment-designer for rapid experiments or evaluation-design-scoper for outcome measurement plans — and do not invoke for products with no AI component; the level definitions assume model behaviour is itself something to evaluate.",
+      "title": "Choose Which AI Evaluations to Run Next",
+      "description": "Use when a team with an AI product for a social cause must decide which evaluation to run next, especially when a funder wants proof of impact. It recommends which of four stages the product is ready for (the AI model, the product, user behaviour, real-world impact) and says whether a randomized controlled trial is still too early. To design the chosen evaluation, use \"Design an Experiment in Evidential\" or \"Plan How You Will Measure Success\".",
       "category": "measurement",
       "stage": "test",
       "evidence_base": [
@@ -294,11 +294,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Matches an AI product's current maturity to the evaluation it has actually\nearned under The Agency Fund's four-level framework — model, product,\nuser, impact — naming which levels to run now, which are premature, plus\nthe evaluability steps to build in early either way."
+          "markdown": "Recommends which evaluations an AI product is ready for, based on what it\nhas already shown. It uses The Agency Fund's four stages: the AI model, the\nproduct, user behaviour, and real-world impact. For each stage it says\nwhether to run it now or why it is too early, and it lists what to set up\nnow so later evaluation is possible."
         },
         {
           "heading": "When to invoke it",
@@ -372,8 +372,8 @@
     {
       "slug": "comb-barrier-decomposer",
       "name": "comb-barrier-decomposer",
-      "title": "COM-B Barrier Decomposer",
-      "description": "Use when one specific, already-defined target behaviour exists (a clear who + what + when, not a goal or outcome) and the question on the table is \"why isn't this happening yet?\" Invoke immediately after key-behaviour-definer, or any time a defined behaviour is handed over without an accompanying barrier diagnosis. Do not invoke on a vague program goal — that has to become one defined behaviour first, or the barriers produced here will be diagnosing the wrong thing.",
+      "title": "Find Out Why People Aren't Doing a Behaviour",
+      "description": "Use when one behaviour is clearly defined (who does what, and when) and you need to know why people aren't doing it. It lists possible reasons under Capability, Opportunity, and Motivation (the COM-B model), each with a question that tests it. If you only have a broad goal, run \"Turn a Vague Goal into One Clear Behaviour\" first.",
       "category": "diagnosis",
       "stage": "diagnose",
       "evidence_base": [
@@ -413,11 +413,11 @@
       "authors": [
         "Nikhil Ravichandar"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Decomposes one defined target behaviour into competing Capability,\nOpportunity, and Motivation barrier hypotheses, each attached to the\ndiagnostic question that would tell you whether that specific hypothesis is\nthe one actually holding the behaviour back."
+          "markdown": "Lists competing reasons why one defined behaviour isn't happening, grouped\nby the COM-B model: Capability (can people do it?), Opportunity (does their\nsituation allow it?), and Motivation (do they want to?). Each reason comes\nwith a question that shows whether it is the real barrier."
         },
         {
           "heading": "When to invoke it",
@@ -488,8 +488,8 @@
     {
       "slug": "context-and-audience-mapper",
       "name": "context-and-audience-mapper",
-      "title": "Context & Audience Mapper",
-      "description": "Use when a program goal names its target population only in the abstract identity terms a funder or stakeholder would use (e.g. \"smallholder farmers\", \"gig workers\", \"first-time mothers\") with no detail on the actual setting, decision moment, or channels already reaching them. Invoke alongside or just before key-behaviour-definer, on the same raw program goal statement, so the \"who\" in a target behaviour brief is a specific observed context rather than a restated label. Do not invoke once the population's decision moment and existing channels are already documented at that level of detail — re-running this on an already-mapped context just restates what's known.",
+      "title": "Map Your Audience and Their Setting",
+      "description": "Use when a program describes its audience only with a broad label, such as \"smallholder farmers\", and says nothing about their real setting. It names a specific group, the moment they make the decision, and the channels that already reach them. It also flags assumptions carried over from wealthy Western settings. Skip it if this is already documented.",
       "category": "context-mapping",
       "stage": "prepare",
       "evidence_base": [
@@ -527,11 +527,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns a program goal's abstract population label into a specific, observed\ndecision moment, an existing-channel list, and a named check for which of\nthe input's assumptions default to WEIRD infrastructure — before that\ncontext gets assumed rather than checked."
+          "markdown": "Replaces a broad audience label with a specific group of people, the moment\nthey make the decision, and the channels that already reach them. It also\nflags assumptions carried over from wealthy Western settings that nobody has\nchecked locally."
         },
         {
           "heading": "When to invoke it",
@@ -618,8 +618,8 @@
     {
       "slug": "evaluation-design-scoper",
       "name": "evaluation-design-scoper",
-      "title": "Evaluation Design Scoper",
-      "description": "Use when a target behaviour has been defined and a plan to measure it is about to be assumed rather than actually specified — no named primary outcome, no comparison condition, no minimum detectable effect agreed before rollout. Invoke once key-behaviour-definer has produced a target behaviour brief, and again whenever comb-barrier-decomposer's hypotheses change what a mediating measure needs to capture. Do not invoke before a target behaviour is defined — there is nothing concrete yet to plan measurement for.",
+      "title": "Plan How You Will Measure Success",
+      "description": "Use when a target behaviour is defined but nobody has agreed how to measure success: the main outcome, the comparison group, and the smallest effect worth detecting. It produces a measurement plan fixed before launch, so nobody can redefine success after seeing the results. Needs a defined behaviour first; run \"Turn a Vague Goal into One Clear Behaviour\" if you don't have one.",
       "category": "measurement",
       "stage": "test",
       "evidence_base": [
@@ -665,11 +665,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns one defined target behaviour into a locked-in measurement plan —\nprimary outcome, comparison condition, minimum detectable effect, and a\ndata-feasibility check — before an intervention launches and before anyone\ncan quietly redefine \"success\" after seeing which number moved."
+          "markdown": "Produces a measurement plan for one defined behaviour, fixed before launch:\nthe main outcome, what it is compared against, the smallest effect worth\ndetecting, and whether the data can be collected. Fixing it in advance stops\nanyone redefining success after seeing the results."
         },
         {
           "heading": "When to invoke it",
@@ -764,8 +764,8 @@
     {
       "slug": "evidence-base-scoper",
       "name": "evidence-base-scoper",
-      "title": "Evidence Base Scoper",
-      "description": "Use when a program goal has been named but no one has checked what evidence already exists for similar behaviours, populations, or interventions — before key-behaviour-definer or comb-barrier-decomposer run, so their framing is informed by prior work instead of starting cold. Invoke as early as possible, ideally alongside or just before key-behaviour-definer, on the same raw program goal statement. Do not invoke once a target behaviour is already defined and a diagnosis is underway — feed this skill's output into that process instead of re-running it mid-diagnosis.",
+      "title": "Check What Research Already Exists",
+      "description": "Use when a program goal is set but nobody has checked what research already exists on similar behaviours, audiences, or interventions. It summarizes what has worked, what has not, how large the effects were, and where the evidence is thin or drawn mainly from wealthy Western populations. Run it early, before choosing a target behaviour.",
       "category": "evidence-scoping",
       "stage": "prepare",
       "evidence_base": [
@@ -803,11 +803,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Surveys existing evidence for the behaviour, population, or context named\nin a program goal, and produces a structured brief of what's already known\nto work, not work, or remain untested — before anyone downstream defines a\ntarget behaviour or diagnoses barriers from intuition alone."
+          "markdown": "Reviews existing research on the behaviour, audience, or setting in a\nprogram goal. It reports what is known to work, what is known not to work,\nand what is untested, so later steps start from evidence rather than\nintuition."
         },
         {
           "heading": "When to invoke it",
@@ -881,8 +881,8 @@
     {
       "slug": "evidential-experiment-designer",
       "name": "evidential-experiment-designer",
-      "title": "Evidential Experiment Designer",
-      "description": "Use when a team has a specific change worth testing — a message variant, an onboarding tweak, a nudge cadence — and intends to run it as a rigorous rapid experiment in Evidential, the open-source experiment engine for nonprofits, but has not yet made the design decisions the tool will demand: experiment type, arms, randomization unit, metrics, power. Invoke it when a weak-link hypothesis or experiment idea is about to be \"just shipped and eyeballed\" instead of randomized. Do not invoke for a full-scale RCT with enumerator-managed arms — Evidential's own docs rule that out; scope it with evaluation-design-scoper and an independent evaluator — and do not invoke to generate the hypothesis itself; that is funnel-weak-link-diagnoser's job.",
+      "title": "Design an Experiment in Evidential",
+      "description": "Use when a team wants to test one specific change, such as a new message or reminder timing, with a randomized experiment in Evidential, a free experiment tool for nonprofits. It makes every design decision the tool asks for: experiment type, groups, who or what to randomize, metrics, and sample size. Not for large trials run by field staff. To find what to test, use \"Find Out Why Users Drop Out of Your Product\".",
       "category": "measurement",
       "stage": "test",
       "evidence_base": [
@@ -930,11 +930,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns one testable hypothesis into a launch-ready Evidential experiment\nconfiguration — experiment type, arms, randomization unit, eligibility\nfilters, metrics with a detectable effect, power inputs, stopping rule,\ndelivery integration — specified concretely enough to enter into the tool\nwithout further design decisions."
+          "markdown": "Turns one testable idea into a complete experiment setup for Evidential:\nexperiment type, groups, what is randomized, who is eligible, metrics, the\neffect size to detect, sample size, when to stop, and how each version is\ndelivered. It is detailed enough to enter into the tool as it stands."
         },
         {
           "heading": "When to invoke it",
@@ -1016,8 +1016,8 @@
     {
       "slug": "funnel-weak-link-diagnoser",
       "name": "funnel-weak-link-diagnoser",
-      "title": "Funnel Weak-Link Diagnoser",
-      "description": "Use when a user funnel exists, its metrics show where users drop off, and the team is about to jump from \"the number is bad\" straight to a redesign without ever stating why users fall out there. Invoke it when a funnel readout shows a stage transition far below target and the proposed fixes are solutions in search of a diagnosis. Do not invoke without observed funnel numbers — build the funnel first with user-funnel-builder — and do not invoke to diagnose barriers to an offline behaviour outside a product journey; that is comb-barrier-decomposer.",
+      "title": "Find Out Why Users Drop Out of Your Product",
+      "description": "Use when your product's numbers show where users drop out, and the team wants to redesign that step without first knowing why. It picks the step furthest below its target and sets out competing explanations, each with a measurement or experiment that could confirm or rule it out. Needs real numbers; to set out the steps first, use \"Map the User Journey from First Contact to Outcome\".",
       "category": "diagnosis",
       "stage": "diagnose",
       "evidence_base": [
@@ -1059,11 +1059,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Locates the weakest stage transition in an observed user funnel, then\nturns \"users drop off there\" into competing, testable mechanism\nhypotheses — each paired with the measurement or experiment that would\ndiscriminate it from the others."
+          "markdown": "Finds the step in a product's user journey that falls furthest below its\ntarget, then sets out competing explanations for why users drop out there.\nEach explanation comes with the measurement or experiment that would tell it\napart from the others."
         },
         {
           "heading": "When to invoke it",
@@ -1113,8 +1113,8 @@
     {
       "slug": "golden-dataset-designer",
       "name": "golden-dataset-designer",
-      "title": "Golden Dataset Designer",
-      "description": "Use when an AI product's response quality is being judged by ad-hoc spot checks — someone tries a few prompts and declares it \"pretty good\" — and the team needs a repeatable answer sheet before any model, prompt, or knowledge-base change can be evaluated rather than vibed. Invoke it before shipping a model swap, a rewritten system prompt, or a knowledge-base update with no regression check. Do not invoke to measure whether the product changes its users — that is Level 3 territory (user-funnel-builder, evaluation-design-scoper) — and do not invoke to write the knowledge base or guardrails themselves; this skill specifies the test set that checks them.",
+      "title": "Build a Test Set to Check Your AI's Answers",
+      "description": "Use when an AI product's answers are judged by trying a few questions and deciding they seem fine, and the team needs a repeatable test before changing the model, prompt, or knowledge base. It specifies a \"golden dataset\": real questions with approved answers, the topics they must cover, who writes the answers, and how the AI's replies are scored. It tests the AI's answers, not its effect on users.",
       "category": "measurement",
       "stage": "measure",
       "evidence_base": [
@@ -1150,11 +1150,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Specifies a golden evaluation dataset for one AI product — the query\nbuckets it must cover, where queries come from, who authors each ideal\nresponse under what rules, plus how outputs will be scored against it —\nso model, prompt, or knowledge-base changes get checked against an answer\nsheet instead of impressions."
+          "markdown": "Specifies a golden dataset for one AI product: a fixed set of real user\nquestions with approved answers. It defines the topics to cover, where the\nquestions come from, who writes the answers and to what rules, and how the\nAI's replies are scored. Changes to the model, prompt, or knowledge base can\nthen be checked against it."
         },
         {
           "heading": "When to invoke it",
@@ -1220,8 +1220,8 @@
     {
       "slug": "intervention-lever-selector",
       "name": "intervention-lever-selector",
-      "title": "Intervention Lever Selector",
-      "description": "Use when comb-barrier-decomposer has produced barrier hypotheses AND fieldwork has since confirmed which specific hypothesis is actually holding the behaviour back — invoke on that one confirmed barrier, not on the full unconfirmed hypothesis set. Invoke when someone asks \"given that this is the barrier, what could we actually do about it?\" Do not invoke on hypotheses that haven't been field-tested yet — route back to comb-barrier-decomposer's diagnostic questions first, or this skill will design levers for a barrier that turns out not to be the real one.",
+      "title": "Choose Interventions for a Confirmed Barrier",
+      "description": "Use when field research has confirmed the main reason a behaviour isn't happening, and the team needs to decide what to do about it. It uses the Behaviour Change Wheel, a published framework that links each type of barrier to the approaches that address it, to shortlist interventions, score them for practicality, and break the best one into specific techniques. Not for reasons that are still untested.",
       "category": "intervention-design",
       "stage": "design",
       "evidence_base": [
@@ -1259,11 +1259,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns one confirmed COM-B barrier into candidate intervention functions\nread off the Behaviour Change Wheel's published linkage matrix — not\nfree-brainstormed — scored for feasibility, with the winning function\nbroken down into concrete, implementable behaviour change techniques."
+          "markdown": "Shortlists the types of intervention that can address one confirmed barrier,\nusing the Behaviour Change Wheel's published table rather than open\nbrainstorming. It scores each for practicality and breaks the best one into\nspecific behaviour change techniques."
         },
         {
           "heading": "When to invoke it",
@@ -1342,8 +1342,8 @@
     {
       "slug": "key-behaviour-definer",
       "name": "key-behaviour-definer",
-      "title": "Key Behaviour Definer",
-      "description": "Use when a program goal, campaign objective, or \"theory of change\" is stated in vague, aspirational, or attitudinal terms (e.g. \"increase savings\", \"improve maternal health\", \"reduce dropout\", \"build trust in the vaccine\") and no single measurable, observable behaviour has been named yet. Invoke before any diagnosis, intervention-design, or measurement skill in this library, since all of them require one defined target behaviour as input. Do not invoke once a specific who + what + when behaviour is already agreed — that's a sign this step is done.",
+      "title": "Turn a Vague Goal into One Clear Behaviour",
+      "description": "Use when a program goal is vague, such as \"increase savings\" or \"build trust in the vaccine\", and no specific behaviour has been chosen. It picks one observable behaviour, stated as who does what, and when, and explains why it beat the other candidates. Most other skills here need this behaviour, so run it first.",
       "category": "behaviour-definition",
       "stage": "define",
       "evidence_base": [
@@ -1389,11 +1389,11 @@
       "authors": [
         "Nikhil Ravichandar"
       ],
-      "version": "0.3.0",
+      "version": "0.3.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns one vague program goal into a single measurable, observable target\nbehaviour — specified as who does what, by when — backed by a prioritized\nlist of the other candidate behaviours that were considered and set aside."
+          "markdown": "Turns one vague program goal into a single observable, measurable behaviour,\nstated as who does what, and when. It ranks the other candidates it\nconsidered and says why each was set aside."
         },
         {
           "heading": "When to invoke it",
@@ -1477,8 +1477,8 @@
     {
       "slug": "lever-content-drafter",
       "name": "lever-content-drafter",
-      "title": "Lever Content Drafter",
-      "description": "Use when intervention-lever-selector has produced a lever brief whose selected lever names a concrete behaviour change technique, and a field team now needs the actual words — the message, script, signage, or interface copy that delivers it. Invoke it when someone asks \"so what does the SMS / poster / agent script actually say?\" Do not invoke on a bare intervention function with no named technique — route back to intervention-lever-selector first — and do not use it for values-affirmation exercises, which values-affirmation-drafter owns end to end.",
+      "title": "Write an Intervention's Messages and Scripts",
+      "description": "Use when a specific behaviour change technique has been chosen and the team needs the actual words: the text message, script, poster, or app wording. It drafts that content, links each part to the technique, and sets out a test to check the audience understands it before launch. For values-affirmation exercises, use \"Write an Exercise to Help People Feel Less Judged\".",
       "category": "intervention-design",
       "stage": "design",
       "evidence_base": [
@@ -1522,11 +1522,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns the selected lever's named behaviour change technique into the\nliteral draft content — message text, script lines, signage, or interface\ncopy — a field team would deliver, with every content element traced to\nthe technique's defined active ingredient."
+          "markdown": "Drafts what a field team will deliver, such as text messages, script lines,\nsigns, or app wording, based on the chosen behaviour change technique. Each\npart of the draft is linked to the part of the technique it delivers."
         },
         {
           "heading": "When to invoke it",
@@ -1608,8 +1608,8 @@
     {
       "slug": "prior-intervention-post-mortem-reader",
       "name": "prior-intervention-post-mortem-reader",
-      "title": "Prior Intervention Post-Mortem Reader",
-      "description": "Use when a team has a documented account of an intervention they already tried and is about to decide whether to retry, adapt, or abandon the underlying idea based on that account, without having checked whether the outcome actually reflects the idea failing or the implementation failing. Invoke before evidence-base-scoper or key-behaviour-definer re-run on the same program goal, so the team's own history informs those rather than being silently repeated or silently ignored. Do not invoke without an actual documented record of what happened — a team's undocumented memory that \"it didn't really work\" is not enough raw material for this skill's structural checks.",
+      "title": "Review a Past Program: Bad Idea or Bad Delivery?",
+      "description": "Use when a team has a written record of a program it already tried and must decide whether to retry it, change it, or drop the idea. It compares what was planned with what happened, judges whether the idea or its delivery failed (or whether the data can't tell), and checks the team's explanation against the data. A written record is required; memory alone is not enough.",
       "category": "risk-review",
       "stage": "prepare",
       "evidence_base": [
@@ -1643,11 +1643,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns a team's raw account of a prior intervention attempt into a\nstructured retrospective that separates what was planned from what was\nactually implemented, classifies the outcome as an implementation failure\nor an idea failure, and checks the team's own causal story against what\ndata was actually collected."
+          "markdown": "Turns a team's account of a past intervention into a structured review. It\nseparates what was planned from what was done, judges whether the idea or\nits delivery failed, and checks the team's explanation against the data it\ncollected."
         },
         {
           "heading": "When to invoke it",
@@ -1734,8 +1734,8 @@
     {
       "slug": "researcher-bias-self-audit",
       "name": "researcher-bias-self-audit",
-      "title": "Researcher Bias Self-Audit",
-      "description": "Use when a research team is about to diagnose barriers or design an intervention and no one has surfaced the team's own prior beliefs about why the target population behaves the way it does. Invoke before comb-barrier-decomposer, ideally alongside evidence-base-scoper, at the start of a project and again before any major diagnosis or design phase — this is a periodic check, not a one-time gate. Do not invoke expecting it to resolve or correct the biases it finds; it only surfaces and structures them for a human to act on.",
+      "title": "Check Your Team's Assumptions About the Audience",
+      "description": "Use when a research team hasn't written down its own beliefs about why its audience behaves as it does. It flags beliefs that can't be tested, that assume a wealthy Western audience, or that name no evidence that would change the team's mind. Run it at the start of a project and again before major design work. It points out bias; people must correct it.",
       "category": "researcher-calibration",
       "stage": "prepare",
       "evidence_base": [
@@ -1775,11 +1775,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Takes a researcher's own stated assumptions about why a target population\nbehaves as it does and flags which of those assumptions are unfalsifiable,\nimplicitly assume a WEIRD-default population, or have no named observation\nthat would change the researcher's mind — before those assumptions quietly\nbecome the barrier hypotheses in a later diagnosis."
+          "markdown": "Flags three problems in a researcher's beliefs about why an audience behaves\nas it does: beliefs that can't be tested, beliefs that assume a wealthy\nWestern audience, and beliefs with no named evidence that would change the\nresearcher's mind. This catches them before they shape a later diagnosis."
         },
         {
           "heading": "When to invoke it",
@@ -1858,8 +1858,8 @@
     {
       "slug": "sifa-declaration-drafter",
       "name": "sifa-declaration-drafter",
-      "title": "SIFA Declaration Drafter",
-      "description": "Use when a piece of work — a research report, an intervention design, a paper, a deliverable — is being written up and the team needs to declare how humans and AI tools actually interacted in producing it. Invoke it when someone asks \"how do we disclose what the AI did on this project?\" or when a journal, funder, or org policy requires an AI-use statement. Do not invoke to audit the team's prior beliefs about the target population — that is researcher-bias-self-audit — and do not invoke it as an AI-use policy or approval gate: it discloses what happened, it does not rule on whether it was acceptable.",
+      "title": "Write an AI-Use Disclosure Statement",
+      "description": "Use when writing up a report, paper, or other deliverable and the team must disclose how people and AI tools each contributed. It produces a SIFA declaration (Statement of Intellectual Fellowship and Accountability): for each contributor role, who did the work, which AI tool helped, how much, and why that rating. It records what happened; it does not judge whether the AI use was acceptable.",
       "category": "research-transparency",
       "stage": "report",
       "evidence_base": [
@@ -1894,11 +1894,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Structures a team's raw account of who-did-what into a SIFA declaration —\nper applicable CRediT contributor role: the humans, the AI tool involved\n(if any), the extent of AI involvement on SIFA's none/some/extensive\nscale, plus an audit note justifying each rating."
+          "markdown": "Turns a team's account of who did what into a SIFA declaration. For each\nrelevant role in CRediT (a standard list of research contributor roles), it\nrecords the people involved, any AI tool used, how much the AI contributed\n(none, some, or extensive), and a short reason for that rating."
         },
         {
           "heading": "When to invoke it",
@@ -1956,8 +1956,8 @@
     {
       "slug": "user-funnel-builder",
       "name": "user-funnel-builder",
-      "title": "User Funnel Builder",
-      "description": "Use when an AI or digital product targets a development outcome but the path from a user's first contact to that outcome has never been written down as measurable stages — engagement gets reported as one number, or the theory of change lives only in a grant proposal. Invoke it before instrumenting metrics, running engagement experiments, or invoking ai-eval-level-matcher on a product whose \"Level 2 evidence\" would otherwise be vibes. Do not invoke to define a single offline target behaviour — that is key-behaviour-definer — and do not invoke to diagnose why an existing funnel leaks; that is funnel-weak-link-diagnoser.",
+      "title": "Map the User Journey from First Contact to Outcome",
+      "description": "Use when an AI or digital product aims at a real-world outcome, but nobody has written down the steps from a user's first contact to that outcome. It works backward from the outcome to set out each step, from reaching users to the final result, with the action that marks it, a metric, a target, and an owner. To explain drop-off at a step, use \"Find Out Why Users Drop Out of Your Product\".",
       "category": "measurement",
       "stage": "define",
       "evidence_base": [
@@ -1998,11 +1998,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.1.0",
+      "version": "0.1.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Works backward from one development outcome to a staged user funnel —\nrecruitment, onboarding, engagement, retention, proximal outcome,\ndevelopment outcome — specifying, per stage, the user action that counts\nas entering it, the metric confirming it, a target transition rate, plus\na named owner."
+          "markdown": "Works backward from one real-world outcome to a series of user steps:\nreaching users, onboarding, regular use, retention, early results, and the\nfinal outcome. For each step it defines the action that counts as reaching\nit, the metric that confirms it, a target, and an owner."
         },
         {
           "heading": "When to invoke it",
@@ -2060,8 +2060,8 @@
     {
       "slug": "values-affirmation-drafter",
       "name": "values-affirmation-drafter",
-      "title": "Values-Affirmation Drafter",
-      "description": "Use when an intervention needs to buffer a specific population against a named evaluative or stigmatized concern (financial shame, academic underperformance, a health stigma, exposure/visibility risk) before or around the moment they would otherwise feel judged or defensive, and no values-affirmation exercise has been drafted yet. Invoke once the target population and the specific threat domain are named, not just \"make people feel better.\" Do not invoke as a way to address a structural, material, or design barrier (lack of money, lack of access, lack of time, a program design that exposes people to being seen or judged) — a values-affirmation exercise buffers the psychological response to a threat, it does not remove the threat's underlying cause.",
+      "title": "Write an Exercise to Help People Feel Less Judged",
+      "description": "Use when people are likely to feel judged at a key moment, for example about money, school results, or a health condition, and the program wants to reduce that stress. It drafts a values-affirmation exercise: a short writing task where people pick a value that matters to them and write about it, which has eased defensiveness in some studies. It does not fix practical barriers such as lack of money, access, or time.",
       "category": "intervention-design",
       "stage": "design",
       "evidence_base": [
@@ -2105,11 +2105,11 @@
       "authors": [
         "Joe Speed"
       ],
-      "version": "0.2.0",
+      "version": "0.2.1",
       "sections": [
         {
           "heading": "What it does",
-          "markdown": "Turns a population's named evaluative-threat domain into a structured\nvalues-affirmation writing exercise — value selection plus a guided\nwriting prompt — with delivery timing guidance and a non-substitute\ncaution against treating it as a structural fix."
+          "markdown": "Drafts a values-affirmation exercise, in which people choose a value that\nmatters to them and write briefly about it. It is tailored to one audience\nand the specific thing that makes them feel judged. It includes a locally\nadapted value list, the writing prompt, timing guidance, and a warning that\nit does not replace fixing practical barriers."
         },
         {
           "heading": "When to invoke it",
@@ -2199,112 +2199,112 @@
       {
         "id": "ai-eval-level-matcher",
         "kind": "skill",
-        "label": "AI Eval Level Matcher",
+        "label": "Choose Which AI Evaluations to Run Next",
         "category": "measurement",
         "stage": "test"
       },
       {
         "id": "comb-barrier-decomposer",
         "kind": "skill",
-        "label": "COM-B Barrier Decomposer",
+        "label": "Find Out Why People Aren't Doing a Behaviour",
         "category": "diagnosis",
         "stage": "diagnose"
       },
       {
         "id": "context-and-audience-mapper",
         "kind": "skill",
-        "label": "Context & Audience Mapper",
+        "label": "Map Your Audience and Their Setting",
         "category": "context-mapping",
         "stage": "prepare"
       },
       {
         "id": "evaluation-design-scoper",
         "kind": "skill",
-        "label": "Evaluation Design Scoper",
+        "label": "Plan How You Will Measure Success",
         "category": "measurement",
         "stage": "test"
       },
       {
         "id": "evidence-base-scoper",
         "kind": "skill",
-        "label": "Evidence Base Scoper",
+        "label": "Check What Research Already Exists",
         "category": "evidence-scoping",
         "stage": "prepare"
       },
       {
         "id": "evidential-experiment-designer",
         "kind": "skill",
-        "label": "Evidential Experiment Designer",
+        "label": "Design an Experiment in Evidential",
         "category": "measurement",
         "stage": "test"
       },
       {
         "id": "funnel-weak-link-diagnoser",
         "kind": "skill",
-        "label": "Funnel Weak-Link Diagnoser",
+        "label": "Find Out Why Users Drop Out of Your Product",
         "category": "diagnosis",
         "stage": "diagnose"
       },
       {
         "id": "golden-dataset-designer",
         "kind": "skill",
-        "label": "Golden Dataset Designer",
+        "label": "Build a Test Set to Check Your AI's Answers",
         "category": "measurement",
         "stage": "measure"
       },
       {
         "id": "intervention-lever-selector",
         "kind": "skill",
-        "label": "Intervention Lever Selector",
+        "label": "Choose Interventions for a Confirmed Barrier",
         "category": "intervention-design",
         "stage": "design"
       },
       {
         "id": "key-behaviour-definer",
         "kind": "skill",
-        "label": "Key Behaviour Definer",
+        "label": "Turn a Vague Goal into One Clear Behaviour",
         "category": "behaviour-definition",
         "stage": "define"
       },
       {
         "id": "lever-content-drafter",
         "kind": "skill",
-        "label": "Lever Content Drafter",
+        "label": "Write an Intervention's Messages and Scripts",
         "category": "intervention-design",
         "stage": "design"
       },
       {
         "id": "prior-intervention-post-mortem-reader",
         "kind": "skill",
-        "label": "Prior Intervention Post-Mortem Reader",
+        "label": "Review a Past Program: Bad Idea or Bad Delivery?",
         "category": "risk-review",
         "stage": "prepare"
       },
       {
         "id": "researcher-bias-self-audit",
         "kind": "skill",
-        "label": "Researcher Bias Self-Audit",
+        "label": "Check Your Team's Assumptions About the Audience",
         "category": "researcher-calibration",
         "stage": "prepare"
       },
       {
         "id": "sifa-declaration-drafter",
         "kind": "skill",
-        "label": "SIFA Declaration Drafter",
+        "label": "Write an AI-Use Disclosure Statement",
         "category": "research-transparency",
         "stage": "report"
       },
       {
         "id": "user-funnel-builder",
         "kind": "skill",
-        "label": "User Funnel Builder",
+        "label": "Map the User Journey from First Contact to Outcome",
         "category": "measurement",
         "stage": "define"
       },
       {
         "id": "values-affirmation-drafter",
         "kind": "skill",
-        "label": "Values-Affirmation Drafter",
+        "label": "Write an Exercise to Help People Feel Less Judged",
         "category": "intervention-design",
         "stage": "design"
       },

@@ -1,16 +1,13 @@
 ---
 name: lever-content-drafter
-title: Lever Content Drafter
+title: Write an Intervention's Messages and Scripts
 description: >-
-  Use when intervention-lever-selector has produced a lever brief whose
-  selected lever names a concrete behaviour change technique, and a field
-  team now needs the actual words — the message, script, signage, or
-  interface copy that delivers it. Invoke it when someone asks "so what
-  does the SMS / poster / agent script actually say?" Do not invoke on a
-  bare intervention function with no named technique — route back to
-  intervention-lever-selector first — and do not use it for
-  values-affirmation exercises, which values-affirmation-drafter owns
-  end to end.
+  Use when a specific behaviour change technique has been chosen and the
+  team needs the actual words: the text message, script, poster, or app
+  wording. It drafts that content, links each part to the technique, and
+  sets out a test to check the audience understands it before launch. For
+  values-affirmation exercises, use "Write an Exercise to Help People Feel
+  Less Judged".
 category: intervention-design
 stage: design
 evidence_base:
@@ -70,15 +67,14 @@ outputs:
       comprehension pre-test required before launch.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Turns the selected lever's named behaviour change technique into the
-literal draft content — message text, script lines, signage, or interface
-copy — a field team would deliver, with every content element traced to
-the technique's defined active ingredient.
+Drafts what a field team will deliver, such as text messages, script lines,
+signs, or app wording, based on the chosen behaviour change technique. Each
+part of the draft is linked to the part of the technique it delivers.
 
 ## When to invoke it
 

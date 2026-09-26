@@ -1,16 +1,13 @@
 ---
 name: user-funnel-builder
-title: User Funnel Builder
+title: Map the User Journey from First Contact to Outcome
 description: >-
-  Use when an AI or digital product targets a development outcome but the
-  path from a user's first contact to that outcome has never been written
-  down as measurable stages — engagement gets reported as one number,
-  or the theory of change lives only in a grant proposal. Invoke it
-  before instrumenting metrics, running engagement experiments, or
-  invoking ai-eval-level-matcher on a product whose "Level 2 evidence"
-  would otherwise be vibes. Do not invoke to define a single offline
-  target behaviour — that is key-behaviour-definer — and do not invoke to
-  diagnose why an existing funnel leaks; that is funnel-weak-link-diagnoser.
+  Use when an AI or digital product aims at a real-world outcome, but nobody
+  has written down the steps from a user's first contact to that outcome. It
+  works backward from the outcome to set out each step, from reaching users
+  to the final result, with the action that marks it, a metric, a target,
+  and an owner. To explain drop-off at a step, use "Find Out Why Users Drop
+  Out of Your Product".
 category: measurement
 stage: define
 evidence_base:
@@ -67,16 +64,15 @@ outputs:
       rate, and a named owner.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Works backward from one development outcome to a staged user funnel —
-recruitment, onboarding, engagement, retention, proximal outcome,
-development outcome — specifying, per stage, the user action that counts
-as entering it, the metric confirming it, a target transition rate, plus
-a named owner.
+Works backward from one real-world outcome to a series of user steps:
+reaching users, onboarding, regular use, retention, early results, and the
+final outcome. For each step it defines the action that counts as reaching
+it, the metric that confirms it, a target, and an owner.
 
 ## When to invoke it
 

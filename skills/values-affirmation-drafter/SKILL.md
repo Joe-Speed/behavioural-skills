@@ -1,18 +1,13 @@
 ---
 name: values-affirmation-drafter
-title: Values-Affirmation Drafter
+title: Write an Exercise to Help People Feel Less Judged
 description: >-
-  Use when an intervention needs to buffer a specific population against a
-  named evaluative or stigmatized concern (financial shame, academic
-  underperformance, a health stigma, exposure/visibility risk) before or
-  around the moment they would otherwise feel judged or defensive, and no
-  values-affirmation exercise has been drafted yet. Invoke once the target
-  population and the specific threat domain are named, not just "make
-  people feel better." Do not invoke as a way to address a structural,
-  material, or design barrier (lack of money, lack of access, lack of
-  time, a program design that exposes people to being seen or judged) — a
-  values-affirmation exercise buffers the psychological response to a
-  threat, it does not remove the threat's underlying cause.
+  Use when people are likely to feel judged at a key moment, for example
+  about money, school results, or a health condition, and the program wants
+  to reduce that stress. It drafts a values-affirmation exercise: a short
+  writing task where people pick a value that matters to them and write
+  about it, which has eased defensiveness in some studies. It does not fix
+  practical barriers such as lack of money, access, or time.
 category: intervention-design
 stage: design
 evidence_base:
@@ -70,15 +65,16 @@ outputs:
       substitute for structural fixes.
 authors:
   - Joe Speed
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Turns a population's named evaluative-threat domain into a structured
-values-affirmation writing exercise — value selection plus a guided
-writing prompt — with delivery timing guidance and a non-substitute
-caution against treating it as a structural fix.
+Drafts a values-affirmation exercise, in which people choose a value that
+matters to them and write briefly about it. It is tailored to one audience
+and the specific thing that makes them feel judged. It includes a locally
+adapted value list, the writing prompt, timing guidance, and a warning that
+it does not replace fixing practical barriers.
 
 ## When to invoke it
 

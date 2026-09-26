@@ -1,17 +1,13 @@
 ---
 name: prior-intervention-post-mortem-reader
-title: Prior Intervention Post-Mortem Reader
+title: "Review a Past Program: Bad Idea or Bad Delivery?"
 description: >-
-  Use when a team has a documented account of an intervention they already
-  tried and is about to decide whether to retry, adapt, or abandon the
-  underlying idea based on that account, without having checked whether
-  the outcome actually reflects the idea failing or the implementation
-  failing. Invoke before evidence-base-scoper or key-behaviour-definer
-  re-run on the same program goal, so the team's own history informs those
-  rather than being silently repeated or silently ignored. Do not invoke
-  without an actual documented record of what happened — a team's
-  undocumented memory that "it didn't really work" is not enough raw
-  material for this skill's structural checks.
+  Use when a team has a written record of a program it already tried and
+  must decide whether to retry it, change it, or drop the idea. It compares
+  what was planned with what happened, judges whether the idea or its
+  delivery failed (or whether the data can't tell), and checks the team's
+  explanation against the data. A written record is required; memory alone
+  is not enough.
 category: risk-review
 stage: prepare
 evidence_base:
@@ -56,16 +52,15 @@ outputs:
       against what data was actually collected.
 authors:
   - Joe Speed
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Turns a team's raw account of a prior intervention attempt into a
-structured retrospective that separates what was planned from what was
-actually implemented, classifies the outcome as an implementation failure
-or an idea failure, and checks the team's own causal story against what
-data was actually collected.
+Turns a team's account of a past intervention into a structured review. It
+separates what was planned from what was done, judges whether the idea or
+its delivery failed, and checks the team's explanation against the data it
+collected.
 
 ## When to invoke it
 

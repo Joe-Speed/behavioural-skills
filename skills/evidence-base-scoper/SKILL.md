@@ -1,16 +1,12 @@
 ---
 name: evidence-base-scoper
-title: Evidence Base Scoper
+title: Check What Research Already Exists
 description: >-
-  Use when a program goal has been named but no one has checked what
-  evidence already exists for similar behaviours, populations, or
-  interventions — before key-behaviour-definer or comb-barrier-decomposer
-  run, so their framing is informed by prior work instead of starting cold.
-  Invoke as early as possible, ideally alongside or just before
-  key-behaviour-definer, on the same raw program goal statement. Do not
-  invoke once a target behaviour is already defined and a diagnosis is
-  underway — feed this skill's output into that process instead of
-  re-running it mid-diagnosis.
+  Use when a program goal is set but nobody has checked what research
+  already exists on similar behaviours, audiences, or interventions. It
+  summarizes what has worked, what has not, how large the effects were, and
+  where the evidence is thin or drawn mainly from wealthy Western
+  populations. Run it early, before choosing a target behaviour.
 category: evidence-scoping
 stage: prepare
 evidence_base:
@@ -59,15 +55,15 @@ outputs:
       WEIRD-skewed.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Surveys existing evidence for the behaviour, population, or context named
-in a program goal, and produces a structured brief of what's already known
-to work, not work, or remain untested — before anyone downstream defines a
-target behaviour or diagnoses barriers from intuition alone.
+Reviews existing research on the behaviour, audience, or setting in a
+program goal. It reports what is known to work, what is known not to work,
+and what is untested, so later steps start from evidence rather than
+intuition.
 
 ## When to invoke it
 

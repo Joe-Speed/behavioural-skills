@@ -1,14 +1,12 @@
 ---
 name: comb-barrier-decomposer
-title: COM-B Barrier Decomposer
+title: Find Out Why People Aren't Doing a Behaviour
 description: >-
-  Use when one specific, already-defined target behaviour exists (a clear who
-  + what + when, not a goal or outcome) and the question on the table is
-  "why isn't this happening yet?" Invoke immediately after
-  key-behaviour-definer, or any time a defined behaviour is handed over
-  without an accompanying barrier diagnosis. Do not invoke on a vague program
-  goal — that has to become one defined behaviour first, or the barriers
-  produced here will be diagnosing the wrong thing.
+  Use when one behaviour is clearly defined (who does what, and when) and
+  you need to know why people aren't doing it. It lists possible reasons
+  under Capability, Opportunity, and Motivation (the COM-B model), each with
+  a question that tests it. If you only have a broad goal, run "Turn a Vague
+  Goal into One Clear Behaviour" first.
 category: diagnosis
 stage: diagnose
 evidence_base:
@@ -57,15 +55,15 @@ outputs:
       would discriminate it from the others.
 authors:
   - Nikhil Ravichandar
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Decomposes one defined target behaviour into competing Capability,
-Opportunity, and Motivation barrier hypotheses, each attached to the
-diagnostic question that would tell you whether that specific hypothesis is
-the one actually holding the behaviour back.
+Lists competing reasons why one defined behaviour isn't happening, grouped
+by the COM-B model: Capability (can people do it?), Opportunity (does their
+situation allow it?), and Motivation (do they want to?). Each reason comes
+with a question that shows whether it is the real barrier.
 
 ## When to invoke it
 

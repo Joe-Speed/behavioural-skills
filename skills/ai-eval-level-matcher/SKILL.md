@@ -1,17 +1,14 @@
 ---
 name: ai-eval-level-matcher
-title: AI Eval Level Matcher
+title: Choose Which AI Evaluations to Run Next
 description: >-
-  Use when a team runs an AI product aimed at a social-sector outcome and
-  must decide what evaluation to run next — or when a funder is asking for
-  impact evidence and the team needs a principled answer to "is an RCT
-  premature for us?". Invoke it when evaluation effort is being allocated
-  by pressure ("the board wants impact numbers") rather than by what the
-  product has actually earned. Do not invoke to design the chosen
-  evaluation itself — that is evidential-experiment-designer for rapid
-  experiments or evaluation-design-scoper for outcome measurement plans —
-  and do not invoke for products with no AI component; the level
-  definitions assume model behaviour is itself something to evaluate.
+  Use when a team with an AI product for a social cause must decide which
+  evaluation to run next, especially when a funder wants proof of impact. It
+  recommends which of four stages the product is ready for (the AI model,
+  the product, user behaviour, real-world impact) and says whether a
+  randomized controlled trial is still too early. To design the chosen
+  evaluation, use "Design an Experiment in Evidential" or "Plan How You Will
+  Measure Success".
 category: measurement
 stage: test
 evidence_base:
@@ -66,15 +63,16 @@ outputs:
       take immediately regardless of which levels run.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Matches an AI product's current maturity to the evaluation it has actually
-earned under The Agency Fund's four-level framework — model, product,
-user, impact — naming which levels to run now, which are premature, plus
-the evaluability steps to build in early either way.
+Recommends which evaluations an AI product is ready for, based on what it
+has already shown. It uses The Agency Fund's four stages: the AI model, the
+product, user behaviour, and real-world impact. For each stage it says
+whether to run it now or why it is too early, and it lists what to set up
+now so later evaluation is possible.
 
 ## When to invoke it
 

@@ -1,15 +1,13 @@
 ---
 name: evaluation-design-scoper
-title: Evaluation Design Scoper
+title: Plan How You Will Measure Success
 description: >-
-  Use when a target behaviour has been defined and a plan to measure it is
-  about to be assumed rather than actually specified — no named primary
-  outcome, no comparison condition, no minimum detectable effect agreed
-  before rollout. Invoke once key-behaviour-definer has produced a target
-  behaviour brief, and again whenever comb-barrier-decomposer's hypotheses
-  change what a mediating measure needs to capture. Do not invoke before a
-  target behaviour is defined — there is nothing concrete yet to plan
-  measurement for.
+  Use when a target behaviour is defined but nobody has agreed how to
+  measure success: the main outcome, the comparison group, and the smallest
+  effect worth detecting. It produces a measurement plan fixed before
+  launch, so nobody can redefine success after seeing the results. Needs a
+  defined behaviour first; run "Turn a Vague Goal into One Clear Behaviour"
+  if you don't have one.
 category: measurement
 stage: test
 evidence_base:
@@ -70,15 +68,15 @@ outputs:
       collection starts.
 authors:
   - Joe Speed
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Turns one defined target behaviour into a locked-in measurement plan —
-primary outcome, comparison condition, minimum detectable effect, and a
-data-feasibility check — before an intervention launches and before anyone
-can quietly redefine "success" after seeing which number moved.
+Produces a measurement plan for one defined behaviour, fixed before launch:
+the main outcome, what it is compared against, the smallest effect worth
+detecting, and whether the data can be collected. Fixing it in advance stops
+anyone redefining success after seeing the results.
 
 ## When to invoke it
 

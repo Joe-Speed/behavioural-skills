@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
-  <title>AI Eval Level Matcher — Behavioural Skills</title>
+  <title>Choose Which AI Evaluations to Run Next — Behavioural Skills</title>
   <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/ai-eval-level-matcher" />
-  <meta name="description" content="Matches an AI product&#39;s current maturity to the evaluation it has actually earned under The Agency Fund&#39;s four-level framework — model, product, user, impact — naming which levels to run now, which…" />
+  <meta name="description" content="Recommends which evaluations an AI product is ready for, based on what it has already shown. It uses The Agency Fund&#39;s four stages: the AI model, the product, user behaviour, and real-world impact.…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
-  <meta property="og:title" content="AI Eval Level Matcher — Behavioural Skills" />
-  <meta property="og:description" content="Matches an AI product&#39;s current maturity to the evaluation it has actually earned under The Agency Fund&#39;s four-level framework — model, product, user, impact — naming which levels to run now, which…" />
+  <meta property="og:title" content="Choose Which AI Evaluations to Run Next — Behavioural Skills" />
+  <meta property="og:description" content="Recommends which evaluations an AI product is ready for, based on what it has already shown. It uses The Agency Fund&#39;s four stages: the AI model, the product, user behaviour, and real-world impact.…" />
   <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/ai-eval-level-matcher" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="AI Eval Level Matcher — Behavioural Skills" />
-  <meta name="twitter:description" content="Matches an AI product&#39;s current maturity to the evaluation it has actually earned under The Agency Fund&#39;s four-level framework — model, product, user, impact — naming which levels to run now, which…" />
+  <meta name="twitter:title" content="Choose Which AI Evaluations to Run Next — Behavioural Skills" />
+  <meta name="twitter:description" content="Recommends which evaluations an AI product is ready for, based on what it has already shown. It uses The Agency Fund&#39;s four stages: the AI model, the product, user behaviour, and real-world impact.…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
@@ -24,8 +24,8 @@
   </header>
   <main>
     <div class="skill-header">
-      <h1>AI Eval Level Matcher</h1>
-      <p class="description">Use when a team runs an AI product aimed at a social-sector outcome and must decide what evaluation to run next — or when a funder is asking for impact evidence and the team needs a principled answer to &quot;is an RCT premature for us?&quot;. Invoke it when evaluation effort is being allocated by pressure (&quot;the board wants impact numbers&quot;) rather than by what the product has actually earned. Do not invoke to design the chosen evaluation itself — that is evidential-experiment-designer for rapid experiments or evaluation-design-scoper for outcome measurement plans — and do not invoke for products with no AI component; the level definitions assume model behaviour is itself something to evaluate.</p>
+      <h1>Choose Which AI Evaluations to Run Next</h1>
+      <p class="description">Use when a team with an AI product for a social cause must decide which evaluation to run next, especially when a funder wants proof of impact. It recommends which of four stages the product is ready for (the AI model, the product, user behaviour, real-world impact) and says whether a randomized controlled trial is still too early. To design the chosen evaluation, use &quot;Design an Experiment in Evidential&quot; or &quot;Plan How You Will Measure Success&quot;.</p>
       <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=ai-eval-level-matcher">Open interactive page &amp; install &rarr;</a></div>
     </div>
 
@@ -33,7 +33,7 @@
       <div><dt>Category</dt><dd>Measurement</dd></div>
       <div><dt>Research stage</dt><dd>Test</dd></div>
       <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
-      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Version</dt><dd>0.1.1</dd></div>
       <div><dt>Authors</dt><dd>Joe Speed</dd></div>
     </dl>
 
@@ -48,10 +48,11 @@
     <h2>Outputs</h2>
     <ul class="io-list"><li><code>ai_eval_level_recommendation</code><br>Per level of the four-level framework: whether this product has earned that evaluation now, what evidence it would produce, why any premature level is premature, and the evaluability-early steps to take immediately regardless of which levels run.</li></ul>
 
-    <div class="skill-body"><h2>What it does</h2><p>Matches an AI product&#39;s current maturity to the evaluation it has actually
-earned under The Agency Fund&#39;s four-level framework — model, product,
-user, impact — naming which levels to run now, which are premature, plus
-the evaluability steps to build in early either way.</p>
+    <div class="skill-body"><h2>What it does</h2><p>Recommends which evaluations an AI product is ready for, based on what it
+has already shown. It uses The Agency Fund&#39;s four stages: the AI model, the
+product, user behaviour, and real-world impact. For each stage it says
+whether to run it now or why it is too early, and it lists what to set up
+now so later evaluation is possible.</p>
 <h2>When to invoke it</h2><ul>
 <li>A team is deciding where the next unit of evaluation effort goes and the
 candidates span very different costs — another benchmark run, an A/B

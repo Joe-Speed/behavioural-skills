@@ -1,16 +1,13 @@
 ---
 name: sifa-declaration-drafter
-title: SIFA Declaration Drafter
+title: Write an AI-Use Disclosure Statement
 description: >-
-  Use when a piece of work — a research report, an intervention design, a
-  paper, a deliverable — is being written up and the team needs to declare
-  how humans and AI tools actually interacted in producing it. Invoke it
-  when someone asks "how do we disclose what the AI did on this project?"
-  or when a journal, funder, or org policy requires an AI-use statement.
-  Do not invoke to audit the team's prior beliefs about the target
-  population — that is researcher-bias-self-audit — and do not invoke it
-  as an AI-use policy or approval gate: it discloses what happened, it
-  does not rule on whether it was acceptable.
+  Use when writing up a report, paper, or other deliverable and the team
+  must disclose how people and AI tools each contributed. It produces a SIFA
+  declaration (Statement of Intellectual Fellowship and Accountability): for
+  each contributor role, who did the work, which AI tool helped, how much,
+  and why that rating. It records what happened; it does not judge whether
+  the AI use was acceptable.
 category: research-transparency
 stage: report
 evidence_base:
@@ -54,15 +51,15 @@ outputs:
       the rating — with accountability explicitly retained by the humans.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Structures a team's raw account of who-did-what into a SIFA declaration —
-per applicable CRediT contributor role: the humans, the AI tool involved
-(if any), the extent of AI involvement on SIFA's none/some/extensive
-scale, plus an audit note justifying each rating.
+Turns a team's account of who did what into a SIFA declaration. For each
+relevant role in CRediT (a standard list of research contributor roles), it
+records the people involved, any AI tool used, how much the AI contributed
+(none, some, or extensive), and a short reason for that rating.
 
 ## When to invoke it
 

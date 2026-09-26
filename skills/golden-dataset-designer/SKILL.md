@@ -1,17 +1,13 @@
 ---
 name: golden-dataset-designer
-title: Golden Dataset Designer
+title: Build a Test Set to Check Your AI's Answers
 description: >-
-  Use when an AI product's response quality is being judged by ad-hoc
-  spot checks — someone tries a few prompts and declares it "pretty
-  good" — and the team needs a repeatable answer sheet before any model,
-  prompt, or knowledge-base change can be evaluated rather than vibed.
-  Invoke it before shipping a model swap, a rewritten system prompt, or a
-  knowledge-base update with no regression check. Do not invoke to
-  measure whether the product changes its users — that is Level 3
-  territory (user-funnel-builder, evaluation-design-scoper) — and do not
-  invoke to write the knowledge base or guardrails themselves; this skill
-  specifies the test set that checks them.
+  Use when an AI product's answers are judged by trying a few questions and
+  deciding they seem fine, and the team needs a repeatable test before
+  changing the model, prompt, or knowledge base. It specifies a "golden
+  dataset": real questions with approved answers, the topics they must
+  cover, who writes the answers, and how the AI's replies are scored. It
+  tests the AI's answers, not its effect on users.
 category: measurement
 stage: measure
 evidence_base:
@@ -61,16 +57,16 @@ outputs:
       guardrails; and the scoring plan that will consume it.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Specifies a golden evaluation dataset for one AI product — the query
-buckets it must cover, where queries come from, who authors each ideal
-response under what rules, plus how outputs will be scored against it —
-so model, prompt, or knowledge-base changes get checked against an answer
-sheet instead of impressions.
+Specifies a golden dataset for one AI product: a fixed set of real user
+questions with approved answers. It defines the topics to cover, where the
+questions come from, who writes the answers and to what rules, and how the
+AI's replies are scored. Changes to the model, prompt, or knowledge base can
+then be checked against it.
 
 ## When to invoke it
 

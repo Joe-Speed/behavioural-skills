@@ -1,15 +1,13 @@
 ---
 name: intervention-lever-selector
-title: Intervention Lever Selector
+title: Choose Interventions for a Confirmed Barrier
 description: >-
-  Use when comb-barrier-decomposer has produced barrier hypotheses AND
-  fieldwork has since confirmed which specific hypothesis is actually
-  holding the behaviour back — invoke on that one confirmed barrier, not on
-  the full unconfirmed hypothesis set. Invoke when someone asks "given that
-  this is the barrier, what could we actually do about it?" Do not invoke
-  on hypotheses that haven't been field-tested yet — route back to
-  comb-barrier-decomposer's diagnostic questions first, or this skill will
-  design levers for a barrier that turns out not to be the real one.
+  Use when field research has confirmed the main reason a behaviour isn't
+  happening, and the team needs to decide what to do about it. It uses the
+  Behaviour Change Wheel, a published framework that links each type of
+  barrier to the approaches that address it, to shortlist interventions,
+  score them for practicality, and break the best one into specific
+  techniques. Not for reasons that are still untested.
 category: intervention-design
 stage: design
 evidence_base:
@@ -60,15 +58,15 @@ outputs:
       behaviour change techniques.
 authors:
   - Joe Speed
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Turns one confirmed COM-B barrier into candidate intervention functions
-read off the Behaviour Change Wheel's published linkage matrix — not
-free-brainstormed — scored for feasibility, with the winning function
-broken down into concrete, implementable behaviour change techniques.
+Shortlists the types of intervention that can address one confirmed barrier,
+using the Behaviour Change Wheel's published table rather than open
+brainstorming. It scores each for practicality and breaks the best one into
+specific behaviour change techniques.
 
 ## When to invoke it
 

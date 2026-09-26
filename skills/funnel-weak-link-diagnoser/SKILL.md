@@ -1,16 +1,13 @@
 ---
 name: funnel-weak-link-diagnoser
-title: Funnel Weak-Link Diagnoser
+title: Find Out Why Users Drop Out of Your Product
 description: >-
-  Use when a user funnel exists, its metrics show where users drop off,
-  and the team is about to jump from "the number is bad" straight to a
-  redesign without ever stating why users fall out there. Invoke it when
-  a funnel readout shows a stage transition far below target and the
-  proposed fixes are solutions in search of a diagnosis. Do not invoke
-  without observed funnel numbers — build the funnel first with
-  user-funnel-builder — and do not invoke to diagnose barriers to an
-  offline behaviour outside a product journey; that is
-  comb-barrier-decomposer.
+  Use when your product's numbers show where users drop out, and the team
+  wants to redesign that step without first knowing why. It picks the step
+  furthest below its target and sets out competing explanations, each with a
+  measurement or experiment that could confirm or rule it out. Needs real
+  numbers; to set out the steps first, use "Map the User Journey from First
+  Contact to Outcome".
 category: diagnosis
 stage: diagnose
 evidence_base:
@@ -66,15 +63,15 @@ outputs:
       others — not a redesign proposal.
 authors:
   - Joe Speed
-version: 0.1.0
+version: 0.1.1
 ---
 
 ## What it does
 
-Locates the weakest stage transition in an observed user funnel, then
-turns "users drop off there" into competing, testable mechanism
-hypotheses — each paired with the measurement or experiment that would
-discriminate it from the others.
+Finds the step in a product's user journey that falls furthest below its
+target, then sets out competing explanations for why users drop out there.
+Each explanation comes with the measurement or experiment that would tell it
+apart from the others.
 
 ## When to invoke it
 

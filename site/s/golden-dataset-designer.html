@@ -4,17 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'" />
-  <title>Golden Dataset Designer — Behavioural Skills</title>
+  <title>Build a Test Set to Check Your AI&#39;s Answers — Behavioural Skills</title>
   <link rel="canonical" href="https://joe-speed.github.io/behavioural-skills/s/golden-dataset-designer" />
-  <meta name="description" content="Specifies a golden evaluation dataset for one AI product — the query buckets it must cover, where queries come from, who authors each ideal response under what rules, plus how outputs will be scored…" />
+  <meta name="description" content="Specifies a golden dataset for one AI product: a fixed set of real user questions with approved answers. It defines the topics to cover, where the questions come from, who writes the answers and to…" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Behavioural Skills" />
-  <meta property="og:title" content="Golden Dataset Designer — Behavioural Skills" />
-  <meta property="og:description" content="Specifies a golden evaluation dataset for one AI product — the query buckets it must cover, where queries come from, who authors each ideal response under what rules, plus how outputs will be scored…" />
+  <meta property="og:title" content="Build a Test Set to Check Your AI&#39;s Answers — Behavioural Skills" />
+  <meta property="og:description" content="Specifies a golden dataset for one AI product: a fixed set of real user questions with approved answers. It defines the topics to cover, where the questions come from, who writes the answers and to…" />
   <meta property="og:url" content="https://joe-speed.github.io/behavioural-skills/s/golden-dataset-designer" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Golden Dataset Designer — Behavioural Skills" />
-  <meta name="twitter:description" content="Specifies a golden evaluation dataset for one AI product — the query buckets it must cover, where queries come from, who authors each ideal response under what rules, plus how outputs will be scored…" />
+  <meta name="twitter:title" content="Build a Test Set to Check Your AI&#39;s Answers — Behavioural Skills" />
+  <meta name="twitter:description" content="Specifies a golden dataset for one AI product: a fixed set of real user questions with approved answers. It defines the topics to cover, where the questions come from, who writes the answers and to…" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
@@ -24,8 +24,8 @@
   </header>
   <main>
     <div class="skill-header">
-      <h1>Golden Dataset Designer</h1>
-      <p class="description">Use when an AI product&#39;s response quality is being judged by ad-hoc spot checks — someone tries a few prompts and declares it &quot;pretty good&quot; — and the team needs a repeatable answer sheet before any model, prompt, or knowledge-base change can be evaluated rather than vibed. Invoke it before shipping a model swap, a rewritten system prompt, or a knowledge-base update with no regression check. Do not invoke to measure whether the product changes its users — that is Level 3 territory (user-funnel-builder, evaluation-design-scoper) — and do not invoke to write the knowledge base or guardrails themselves; this skill specifies the test set that checks them.</p>
+      <h1>Build a Test Set to Check Your AI&#39;s Answers</h1>
+      <p class="description">Use when an AI product&#39;s answers are judged by trying a few questions and deciding they seem fine, and the team needs a repeatable test before changing the model, prompt, or knowledge base. It specifies a &quot;golden dataset&quot;: real questions with approved answers, the topics they must cover, who writes the answers, and how the AI&#39;s replies are scored. It tests the AI&#39;s answers, not its effect on users.</p>
       <div class="skill-header-actions"><a class="share-link-button" href="https://joe-speed.github.io/behavioural-skills/skill?slug=golden-dataset-designer">Open interactive page &amp; install &rarr;</a></div>
     </div>
 
@@ -33,7 +33,7 @@
       <div><dt>Category</dt><dd>Measurement</dd></div>
       <div><dt>Research stage</dt><dd>Measure</dd></div>
       <div><dt>WEIRD context</dt><dd>likely-generalizes</dd></div>
-      <div><dt>Version</dt><dd>0.1.0</dd></div>
+      <div><dt>Version</dt><dd>0.1.1</dd></div>
       <div><dt>Authors</dt><dd>Joe Speed</dd></div>
     </dl>
 
@@ -48,11 +48,11 @@
     <h2>Outputs</h2>
     <ul class="io-list"><li><code>golden_dataset_spec</code><br>A build specification for the product&#39;s golden evaluation dataset: coverage plan across knowledge, implementation, personalization, and stress-test buckets; sourcing rules for real queries; ideal-response authoring rules tied to the knowledge base and guardrails; and the scoring plan that will consume it.</li></ul>
 
-    <div class="skill-body"><h2>What it does</h2><p>Specifies a golden evaluation dataset for one AI product — the query
-buckets it must cover, where queries come from, who authors each ideal
-response under what rules, plus how outputs will be scored against it —
-so model, prompt, or knowledge-base changes get checked against an answer
-sheet instead of impressions.</p>
+    <div class="skill-body"><h2>What it does</h2><p>Specifies a golden dataset for one AI product: a fixed set of real user
+questions with approved answers. It defines the topics to cover, where the
+questions come from, who writes the answers and to what rules, and how the
+AI&#39;s replies are scored. Changes to the model, prompt, or knowledge base can
+then be checked against it.</p>
 <h2>When to invoke it</h2><ul>
 <li>Response quality is currently assessed by someone typing a few test
 prompts after each change (&quot;vibe checks&quot; — the playbook&#39;s own term for

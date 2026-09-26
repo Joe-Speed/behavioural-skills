@@ -1,15 +1,12 @@
 ---
 name: researcher-bias-self-audit
-title: Researcher Bias Self-Audit
+title: Check Your Team's Assumptions About the Audience
 description: >-
-  Use when a research team is about to diagnose barriers or design an
-  intervention and no one has surfaced the team's own prior beliefs about
-  why the target population behaves the way it does. Invoke before
-  comb-barrier-decomposer, ideally alongside evidence-base-scoper, at the
-  start of a project and again before any major diagnosis or design phase
-  — this is a periodic check, not a one-time gate. Do not invoke expecting
-  it to resolve or correct the biases it finds; it only surfaces and
-  structures them for a human to act on.
+  Use when a research team hasn't written down its own beliefs about why its
+  audience behaves as it does. It flags beliefs that can't be tested, that
+  assume a wealthy Western audience, or that name no evidence that would
+  change the team's mind. Run it at the start of a project and again before
+  major design work. It points out bias; people must correct it.
 category: researcher-calibration
 stage: prepare
 evidence_base:
@@ -62,16 +59,15 @@ outputs:
       implicit norm, or lack a named disconfirming observation.
 authors:
   - Joe Speed
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Takes a researcher's own stated assumptions about why a target population
-behaves as it does and flags which of those assumptions are unfalsifiable,
-implicitly assume a WEIRD-default population, or have no named observation
-that would change the researcher's mind — before those assumptions quietly
-become the barrier hypotheses in a later diagnosis.
+Flags three problems in a researcher's beliefs about why an audience behaves
+as it does: beliefs that can't be tested, beliefs that assume a wealthy
+Western audience, and beliefs with no named evidence that would change the
+researcher's mind. This catches them before they shape a later diagnosis.
 
 ## When to invoke it
 

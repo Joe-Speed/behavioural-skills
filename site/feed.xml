@@ -5,175 +5,175 @@
   <link>https://joe-speed.github.io/behavioural-skills/whats-new</link>
   <description>Version history across every skill in the Behavioural Skills catalogue.</description>
   <item>
-    <title>AI Eval Level Matcher v0.1.0</title>
+    <title>Choose Which AI Evaluations to Run Next v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/ai-eval-level-matcher</link>
     <guid isPermaLink="false">ai-eval-level-matcher-v0.1.0</guid>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add TAF AI-evaluation and Evidential experiment skills</description>
   </item>
   <item>
-    <title>Evidential Experiment Designer v0.1.0</title>
+    <title>Design an Experiment in Evidential v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/evidential-experiment-designer</link>
     <guid isPermaLink="false">evidential-experiment-designer-v0.1.0</guid>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add TAF AI-evaluation and Evidential experiment skills</description>
   </item>
   <item>
-    <title>Funnel Weak-Link Diagnoser v0.1.0</title>
+    <title>Find Out Why Users Drop Out of Your Product v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/funnel-weak-link-diagnoser</link>
     <guid isPermaLink="false">funnel-weak-link-diagnoser-v0.1.0</guid>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add TAF AI-evaluation and Evidential experiment skills</description>
   </item>
   <item>
-    <title>Golden Dataset Designer v0.1.0</title>
+    <title>Build a Test Set to Check Your AI&#39;s Answers v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/golden-dataset-designer</link>
     <guid isPermaLink="false">golden-dataset-designer-v0.1.0</guid>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add TAF AI-evaluation and Evidential experiment skills</description>
   </item>
   <item>
-    <title>User Funnel Builder v0.1.0</title>
+    <title>Map the User Journey from First Contact to Outcome v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/user-funnel-builder</link>
     <guid isPermaLink="false">user-funnel-builder-v0.1.0</guid>
     <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add TAF AI-evaluation and Evidential experiment skills</description>
   </item>
   <item>
-    <title>Lever Content Drafter v0.1.0</title>
+    <title>Write an Intervention&#39;s Messages and Scripts v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/lever-content-drafter</link>
     <guid isPermaLink="false">lever-content-drafter-v0.1.0</guid>
     <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add lever-content-drafter and sifa-declaration-drafter skills</description>
   </item>
   <item>
-    <title>SIFA Declaration Drafter v0.1.0</title>
+    <title>Write an AI-Use Disclosure Statement v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/sifa-declaration-drafter</link>
     <guid isPermaLink="false">sifa-declaration-drafter-v0.1.0</guid>
     <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
     <description>Add lever-content-drafter and sifa-declaration-drafter skills</description>
   </item>
   <item>
-    <title>Key Behaviour Definer v0.3.0</title>
+    <title>Turn a Vague Goal into One Clear Behaviour v0.3.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/key-behaviour-definer</link>
     <guid isPermaLink="false">key-behaviour-definer-v0.3.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder</description>
   </item>
   <item>
-    <title>Context &amp; Audience Mapper v0.2.0</title>
+    <title>Map Your Audience and Their Setting v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/context-and-audience-mapper</link>
     <guid isPermaLink="false">context-and-audience-mapper-v0.2.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add three intervention/risk skills, clean URLs, and a grouped command palette</description>
   </item>
   <item>
-    <title>Evaluation Design Scoper v0.2.0</title>
+    <title>Plan How You Will Measure Success v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/evaluation-design-scoper</link>
     <guid isPermaLink="false">evaluation-design-scoper-v0.2.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add three intervention/risk skills, clean URLs, and a grouped command palette</description>
   </item>
   <item>
-    <title>Intervention Lever Selector v0.2.0</title>
+    <title>Choose Interventions for a Confirmed Barrier v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/intervention-lever-selector</link>
     <guid isPermaLink="false">intervention-lever-selector-v0.2.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten the three newest skills against blind-agent stress tests</description>
   </item>
   <item>
-    <title>Prior Intervention Post-Mortem Reader v0.2.0</title>
+    <title>Review a Past Program: Bad Idea or Bad Delivery? v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/prior-intervention-post-mortem-reader</link>
     <guid isPermaLink="false">prior-intervention-post-mortem-reader-v0.2.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten the three newest skills against blind-agent stress tests</description>
   </item>
   <item>
-    <title>Researcher Bias Self-Audit v0.2.0</title>
+    <title>Check Your Team&#39;s Assumptions About the Audience v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/researcher-bias-self-audit</link>
     <guid isPermaLink="false">researcher-bias-self-audit-v0.2.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add three intervention/risk skills, clean URLs, and a grouped command palette</description>
   </item>
   <item>
-    <title>Values-Affirmation Drafter v0.2.0</title>
+    <title>Write an Exercise to Help People Feel Less Judged v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/values-affirmation-drafter</link>
     <guid isPermaLink="false">values-affirmation-drafter-v0.2.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten the three newest skills against blind-agent stress tests</description>
   </item>
   <item>
-    <title>Context &amp; Audience Mapper v0.1.0</title>
+    <title>Map Your Audience and Their Setting v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/context-and-audience-mapper</link>
     <guid isPermaLink="false">context-and-audience-mapper-v0.1.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder</description>
   </item>
   <item>
-    <title>Evaluation Design Scoper v0.1.0</title>
+    <title>Plan How You Will Measure Success v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/evaluation-design-scoper</link>
     <guid isPermaLink="false">evaluation-design-scoper-v0.1.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add two pre-intervention skills, a git-derived changelog, and an interactive Workflow Builder</description>
   </item>
   <item>
-    <title>Intervention Lever Selector v0.1.0</title>
+    <title>Choose Interventions for a Confirmed Barrier v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/intervention-lever-selector</link>
     <guid isPermaLink="false">intervention-lever-selector-v0.1.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add three intervention/risk skills, clean URLs, and a grouped command palette</description>
   </item>
   <item>
-    <title>Prior Intervention Post-Mortem Reader v0.1.0</title>
+    <title>Review a Past Program: Bad Idea or Bad Delivery? v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/prior-intervention-post-mortem-reader</link>
     <guid isPermaLink="false">prior-intervention-post-mortem-reader-v0.1.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add three intervention/risk skills, clean URLs, and a grouped command palette</description>
   </item>
   <item>
-    <title>Values-Affirmation Drafter v0.1.0</title>
+    <title>Write an Exercise to Help People Feel Less Judged v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/values-affirmation-drafter</link>
     <guid isPermaLink="false">values-affirmation-drafter-v0.1.0</guid>
     <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
     <description>Add three intervention/risk skills, clean URLs, and a grouped command palette</description>
   </item>
   <item>
-    <title>COM-B Barrier Decomposer v0.2.0</title>
+    <title>Find Out Why People Aren&#39;t Doing a Behaviour v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/comb-barrier-decomposer</link>
     <guid isPermaLink="false">comb-barrier-decomposer-v0.2.0</guid>
     <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten output templates and build the two pre-intervention skills</description>
   </item>
   <item>
-    <title>Key Behaviour Definer v0.2.0</title>
+    <title>Turn a Vague Goal into One Clear Behaviour v0.2.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/key-behaviour-definer</link>
     <guid isPermaLink="false">key-behaviour-definer-v0.2.0</guid>
     <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten output templates and build the two pre-intervention skills</description>
   </item>
   <item>
-    <title>Evidence Base Scoper v0.1.0</title>
+    <title>Check What Research Already Exists v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/evidence-base-scoper</link>
     <guid isPermaLink="false">evidence-base-scoper-v0.1.0</guid>
     <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten output templates and build the two pre-intervention skills</description>
   </item>
   <item>
-    <title>Researcher Bias Self-Audit v0.1.0</title>
+    <title>Check Your Team&#39;s Assumptions About the Audience v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/researcher-bias-self-audit</link>
     <guid isPermaLink="false">researcher-bias-self-audit-v0.1.0</guid>
     <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
     <description>Tighten output templates and build the two pre-intervention skills</description>
   </item>
   <item>
-    <title>COM-B Barrier Decomposer v0.1.0</title>
+    <title>Find Out Why People Aren&#39;t Doing a Behaviour v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/comb-barrier-decomposer</link>
     <guid isPermaLink="false">comb-barrier-decomposer-v0.1.0</guid>
     <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>
     <description>Initial scaffold: schema, two worked-example skills, tooling, static site, CI</description>
   </item>
   <item>
-    <title>Key Behaviour Definer v0.1.0</title>
+    <title>Turn a Vague Goal into One Clear Behaviour v0.1.0</title>
     <link>https://joe-speed.github.io/behavioural-skills/s/key-behaviour-definer</link>
     <guid isPermaLink="false">key-behaviour-definer-v0.1.0</guid>
     <pubDate>Thu, 23 Jul 2026 00:00:00 GMT</pubDate>

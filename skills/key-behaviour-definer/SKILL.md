@@ -1,15 +1,12 @@
 ---
 name: key-behaviour-definer
-title: Key Behaviour Definer
+title: Turn a Vague Goal into One Clear Behaviour
 description: >-
-  Use when a program goal, campaign objective, or "theory of change" is stated
-  in vague, aspirational, or attitudinal terms (e.g. "increase savings",
-  "improve maternal health", "reduce dropout", "build trust in the vaccine")
-  and no single measurable, observable behaviour has been named yet. Invoke
-  before any diagnosis, intervention-design, or measurement skill in this
-  library, since all of them require one defined target behaviour as input.
-  Do not invoke once a specific who + what + when behaviour is already agreed
-  — that's a sign this step is done.
+  Use when a program goal is vague, such as "increase savings" or "build
+  trust in the vaccine", and no specific behaviour has been chosen. It picks
+  one observable behaviour, stated as who does what, and when, and explains
+  why it beat the other candidates. Most other skills here need this
+  behaviour, so run it first.
 category: behaviour-definition
 stage: define
 evidence_base:
@@ -64,14 +61,14 @@ outputs:
       the reasoning for why the top choice won.
 authors:
   - Nikhil Ravichandar
-version: 0.3.0
+version: 0.3.1
 ---
 
 ## What it does
 
-Turns one vague program goal into a single measurable, observable target
-behaviour — specified as who does what, by when — backed by a prioritized
-list of the other candidate behaviours that were considered and set aside.
+Turns one vague program goal into a single observable, measurable behaviour,
+stated as who does what, and when. It ranks the other candidates it
+considered and says why each was set aside.
 
 ## When to invoke it
 

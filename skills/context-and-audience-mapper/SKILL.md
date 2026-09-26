@@ -1,17 +1,12 @@
 ---
 name: context-and-audience-mapper
-title: Context & Audience Mapper
+title: Map Your Audience and Their Setting
 description: >-
-  Use when a program goal names its target population only in the abstract
-  identity terms a funder or stakeholder would use (e.g. "smallholder
-  farmers", "gig workers", "first-time mothers") with no detail on the
-  actual setting, decision moment, or channels already reaching them.
-  Invoke alongside or just before key-behaviour-definer, on the same raw
-  program goal statement, so the "who" in a target behaviour brief is a
-  specific observed context rather than a restated label. Do not invoke
-  once the population's decision moment and existing channels are already
-  documented at that level of detail — re-running this on an
-  already-mapped context just restates what's known.
+  Use when a program describes its audience only with a broad label, such as
+  "smallholder farmers", and says nothing about their real setting. It names
+  a specific group, the moment they make the decision, and the channels that
+  already reach them. It also flags assumptions carried over from wealthy
+  Western settings. Skip it if this is already documented.
 category: context-mapping
 stage: prepare
 evidence_base:
@@ -59,15 +54,15 @@ outputs:
       without having been confirmed locally.
 authors:
   - Joe Speed
-version: 0.2.0
+version: 0.2.1
 ---
 
 ## What it does
 
-Turns a program goal's abstract population label into a specific, observed
-decision moment, an existing-channel list, and a named check for which of
-the input's assumptions default to WEIRD infrastructure — before that
-context gets assumed rather than checked.
+Replaces a broad audience label with a specific group of people, the moment
+they make the decision, and the channels that already reach them. It also
+flags assumptions carried over from wealthy Western settings that nobody has
+checked locally.
 
 ## When to invoke it
 
